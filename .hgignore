@@ -1,0 +1,20 @@
+# glob syntax
+syntax: glob
+
+picworks/.cproject
+picworks/.project
+picworks/*.user
+picworks/*.Debug
+picworks/*.Release
+picworks/*.ini
+picworks/debug/*
+picworks/release/*
+
+vergen/.cproject
+vergen/.project
+vergen/*.user
+vergen/*.Debug
+vergen/*.Release
+vergen/*.ini
+vergen/debug/*
+vergen/release/*
