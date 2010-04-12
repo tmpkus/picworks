@@ -7,8 +7,11 @@ picworks/*.user
 picworks/*.Debug
 picworks/*.Release
 picworks/*.ini
+picworks/*.o
 picworks/debug/*
 picworks/release/*
+picworks/Makefile
+picworks/PicWorks
 
 vergen/.cproject
 vergen/.project
@@ -16,5 +19,8 @@ vergen/*.user
 vergen/*.Debug
 vergen/*.Release
 vergen/*.ini
+vergen/*.o
 vergen/debug/*
 vergen/release/*
+vergen/Makefile
+vergen/vergen
