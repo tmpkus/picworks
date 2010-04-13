@@ -93,12 +93,12 @@ QString VersionInfo::rivi = QString("0");
   \internal
   \brief Build version number.
  */
-QString VersionInfo::bu = QString("1097");
+QString VersionInfo::bu = QString("1103");
 
 /*!
   \internal
   \brief Build date.
  */
-QString VersionInfo::bDate = QString("2010-4-7");
+QString VersionInfo::bDate = QString("2010-4-13");
 
 }

@@ -487,11 +487,13 @@ void MainWindow::showProjectCreateDialog()
 {
     ProjectCreateDialog *pcd = new ProjectCreateDialog(this);// Qt::WindowSystemMenuHint | Qt::WindowTitleHint
     // block...
-    pcd->exec();
+    int rtn = pcd->exec();
     // get project
-    ProjectWindow * pw = new ProjectWindow(pcd->getProject());
-    mdiArea->addSubWindow(pw);
-    pw->show();
+    if(rtn == QDialog::Accepted) {
+        ProjectWindow * pw = new ProjectWindow(pcd->getProject());
+        mdiArea->addSubWindow(pw);
+        pw->show();
+    }
     delete pcd;
 }
 
