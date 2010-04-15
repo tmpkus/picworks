@@ -20,17 +20,17 @@
   \file layer.cpp
   \ingroup Model
   \brief This file contains
-  - class PicWorks::Layer implemtation
+  - class Data::Layer implemtation
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-10-17 Created.
  */
 
 #include "layer.h"
 
-using namespace PicWorks;
+using namespace Data;
 
 /*!
-  \class PicWorks::Layer layer.h
+  \class Data::Layer layer.h
   \brief Layer data of project in PicWorks.
   PicWorks's projects support mutil-layers. Each layer is
   an instance of this class. It is a data model of layers used
@@ -41,32 +41,32 @@ using namespace PicWorks;
 */
 
 /*!
-  \fn const QString& PicWorks::Layer::name() const
+  \fn const QString& Data::Layer::name() const
   Gets the name of this layer.
   \return name of this layer
 
-  \fn void PicWorks::Layer::setName(const QString &name)
+  \fn void Data::Layer::setName(const QString &name)
   Sets the name of this layer. This function will emit \a layerNameChanged
   signal if the new name id different from the old one.
   \param name new name of this layer
 
-  \fn int PicWorks::Layer::id() const
+  \fn int Data::Layer::id() const
   Gets the ID of this layer.
   ID is the identity flag of this layer. This field is read-only.
   Once a layer created, PicWorks will assign an ID to it. Developers
   needn't care about its value, just use it to identify this layer.
   \return ID of this layer
 
-  \fn void PicWorks::Layer::layerNameChanged(const QString &newName, const QString &oldName)
+  \fn void Data::Layer::layerNameChanged(const QString &newName, const QString &oldName)
   Emits when layer name has been changed.
   \param newName new layer name
   \param oldName old layer name
 
-  \fn bool PicWorks::Layer::isBackground() const
+  \fn bool Data::Layer::isBackground() const
   Checks if this layer is the backgound layer.
   \return \a true if is background
 
-  \fn void PicWorks::Layer::setBackground(bool b)
+  \fn void Data::Layer::setBackground(bool b)
   Sets if this layer is background.
   \param b \a true if is background
  */

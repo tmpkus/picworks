@@ -20,7 +20,7 @@
   \file aboutdialog.h
   \ingroup View
   \brief This file contains
-  - class PicWorks::AboutDialog declaration
+  - class View::AboutDialog declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-10-8 Created.
  */
@@ -34,7 +34,7 @@ class QMouseEvent;
 class QPaintEvent;
 class QPixmap;
 
-namespace PicWorks {
+namespace View {
 
 class AboutDialog : public QDialog
 {

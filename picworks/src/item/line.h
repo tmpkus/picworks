@@ -33,14 +33,16 @@
 
 class QGraphicsSceneMouseEvent;
 
-namespace PicWorks {
+namespace View {
+    class ProjectScene;
+};
 
-class ProjectScene;
+namespace GraphicsItem {
 
 class Line : public QGraphicsLineItem, public AbstractShape
 {
 public:
-    Line(ProjectScene *s);
+    Line(View::ProjectScene *s);
     virtual ~Line();
     void startDraw(QGraphicsSceneMouseEvent * event);
     void drawing(QGraphicsSceneMouseEvent * event);

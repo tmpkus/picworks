@@ -20,7 +20,7 @@
   \file projectview.cpp
   \ingroup View
   \brief This file contains
-  - class PicWorks::ProjectView implemtation
+  - class View::ProjectView implemtation
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-9-19 Created.
  */
@@ -35,10 +35,10 @@
 #include "projectview.h"
 #include "projectscene.h"
 
-using namespace PicWorks;
+using namespace View;
 
 /*!
-  \class PicWorks::ProjectView projectview.h
+  \class View::ProjectView projectview.h
   \brief Project view in PicWorks.
   Project view is used for showing project scene in PicWorks. This is the main
   graphics view of subwindow added in MDI space. The difference between this
@@ -58,7 +58,7 @@ using namespace PicWorks;
   \param pro project data to show, not null.
   \param parent parent widgets of this window, default value is 0.
  */
-ProjectView::ProjectView(Project *pro, QWidget *parent /* = 0 */)
+ProjectView::ProjectView(Data::Project *pro, QWidget *parent /* = 0 */)
         : QGraphicsView(parent), project(pro)
 {
     // entry conditions

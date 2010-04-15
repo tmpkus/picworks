@@ -20,7 +20,7 @@
   \file dataaction.h
   \ingroup Utilities
   \brief This file contains
-  - class PicWorks::DataAction declaration
+  - class Action::DataAction declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-11-26 Created.
  */
@@ -32,7 +32,7 @@
 
 class QVariant;
 
-namespace PicWorks {
+namespace Action {
 
 class DataAction : public QAction
 {

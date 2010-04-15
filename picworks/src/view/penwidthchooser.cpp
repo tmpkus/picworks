@@ -20,7 +20,7 @@
   \file penwidthchooser.cpp
   \ingroup View
   \brief This file contains
-  - class PicWorks::PenWidthChooser implemtation
+  - class View::PenWidthChooser implemtation
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2009-12-4 Created.
  */
@@ -34,7 +34,7 @@
 #include "../util/appcontext.h"
 
 /*!
-  \class PicWorks::PenWidthChooser penwidthchooser.h
+  \class View::PenWidthChooser penwidthchooser.h
   \brief Chooser for pen width.
   \version 0.0.1
   \version 0.0.2 Changed to spin box.
@@ -43,25 +43,27 @@
  */
 
 /*!
-  \fn void PicWorks::PenWidthChooser::penWidthChanged(int newValue, int oldValue)
+  \fn void View::PenWidthChooser::penWidthChanged(int newValue, int oldValue)
   \brief Emits when pen width value changed.
   \param newValue the new value of pen width
   \param oldValue the old value of pen width
  */
 
 /*!
-  \fn void PicWorks::PenWidthChooser::setPenWidth(int w)
+  \fn void View::PenWidthChooser::setPenWidth(int w)
   \brief Sets pen width.
   This setter will emit \a penWidthChanged signal if pen width value changed.
   \param w the new value of pen width
  */
+
+using namespace View;
 
 /*!
   \brief Constructs a chooser.
   \param showLabel \a true if show text label
   \param parent parent widget pointer
  */
-PicWorks::PenWidthChooser::PenWidthChooser(bool showLabel /* = true */, QWidget *parent /* = 0 */)
+PenWidthChooser::PenWidthChooser(bool showLabel /* = true */, QWidget *parent /* = 0 */)
     : QWidget(parent), pw(1)
 {
     QHBoxLayout *layout = new QHBoxLayout(this);
@@ -86,6 +88,6 @@ PicWorks::PenWidthChooser::PenWidthChooser(bool showLabel /* = true */, QWidget 
 /*!
   \brief Destructs this chooser.
  */
-PicWorks::PenWidthChooser::~PenWidthChooser()
+PenWidthChooser::~PenWidthChooser()
 {
 }

@@ -20,7 +20,7 @@
   \file commonbar.h
   \ingroup View
   \brief This file contains
-  - class PicWorks::CommonBar declaration
+  - class View::CommonBar declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-11-27 Created.
  */
@@ -35,7 +35,7 @@
 class QAction;
 class QToolBar;
 
-namespace PicWorks {
+namespace View {
 
 class CommonBar : public QObject
 {
@@ -45,7 +45,7 @@ public:
     static CommonBar & instance(const QString &title = "CommonBar", QWidget *parent = 0);
 
 public slots:
-    QToolBar * makeCommonBar(const QVariant & action);
+    QToolBar * createCommonBar(const QVariant & action);
 
 private:
     CommonBar(const QString &title = "CommonBar", QWidget *parent = 0);

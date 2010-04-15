@@ -20,7 +20,7 @@
   \file dataaction.cpp
   \ingroup Utilities
   \brief This file contains
-  - class PicWorks::DataAction implemtation
+  - class Action::DataAction implemtation
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2009-11-26 Created.
  */
@@ -32,10 +32,10 @@
 
 #include "../view/commonbar.h"
 
-using namespace PicWorks;
+using namespace Action;
 
 /*!
-  \class PicWorks::DataAction dataaction.h
+  \class Action::DataAction dataaction.h
   \brief This is the action which contains data, such as \a AppResource::Action.
   \version 0.0.1
   \author Cheng Liang <chengliang.soft@gmail.com>
@@ -43,7 +43,7 @@ using namespace PicWorks;
  */
 
 /*!
-  \fn void PicWorks::DataAction::actionPerformed(const QVariant &data)
+  \fn void Action::DataAction::actionPerformed(const QVariant &data)
   \brief Signal when action triggered.
   \param data data related to this action
  */
@@ -63,7 +63,7 @@ DataAction::DataAction(const QVariant &d, QObject * parent /* = 0 */)
 
     connect(this, SIGNAL(triggered()), this, SLOT(actionTriggered()));
     connect(this, SIGNAL(actionPerformed(const QVariant &)), &AppCtx, SLOT(setCurrentAction(const QVariant &)));
-    connect(this, SIGNAL(actionPerformed(const QVariant &)), &CommonBar::instance(), SLOT(makeCommonBar(const QVariant &)));
+    connect(this, SIGNAL(actionPerformed(const QVariant &)), &View::CommonBar::instance(), SLOT(createCommonBar(const QVariant &)));
 }
 
 /*!

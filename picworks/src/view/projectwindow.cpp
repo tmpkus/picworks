@@ -20,7 +20,7 @@
   \file projectwindow.cpp
   \ingroup View
   \brief This file contains
-  - class PicWorks::ProjectWindow implemtation
+  - class View::ProjectWindow implemtation
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-9-5 Created.
  */
@@ -44,10 +44,10 @@
 #include "../model/project.h"
 #include "../util/appresource.h"
 
-using namespace PicWorks;
+using namespace View;
 
 /*!
-  \class PicWorks::ProjectWindow projectwindow.h
+  \class View::ProjectWindow projectwindow.h
   \brief Project window in PicWorks.
   Project window is used for showing project data in PicWorks.
   This is the main graphics view of subwindow added in MDI space.
@@ -62,7 +62,7 @@ using namespace PicWorks;
   \param pro project data to show, not null.
   \param parent parent widgets of this window, default value is 0.
  */
-ProjectWindow::ProjectWindow(Project *pro, QWidget *parent /* = 0 */)
+ProjectWindow::ProjectWindow(Data::Project *pro, QWidget *parent /* = 0 */)
         : QMdiSubWindow(parent), project(pro)
 {
     // entry conditions
@@ -70,7 +70,7 @@ ProjectWindow::ProjectWindow(Project *pro, QWidget *parent /* = 0 */)
 
     setAttribute(Qt::WA_DeleteOnClose);
 
-    setWindowIcon(AppRes.icon(AppResource::ProjectIcon));
+    setWindowIcon(AppRes.icon(Global::AppResource::ProjectIcon));
     setWindowTitle(project->name());
     setMinimumSize(200, 200);
 

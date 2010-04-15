@@ -20,7 +20,7 @@
   \file appresource.h
   \ingroup Utilities
   \brief This file contains
-  - class PicWorks::AppResource declaration
+  - class Global::AppResource declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-10-13 Created.
  */
@@ -31,7 +31,7 @@
 #include <QObject>
 #include <QPixmap>
 
-namespace PicWorks {
+namespace Global {
 
 class AppResource : public QObject
 {
@@ -39,7 +39,7 @@ class AppResource : public QObject
 
 public:
 
-    #define AppRes (AppResource::instance())
+    #define AppRes (Global::AppResource::instance())
 
     enum Icon
     {

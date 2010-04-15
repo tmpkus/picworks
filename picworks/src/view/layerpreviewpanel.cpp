@@ -20,7 +20,7 @@
   \file layerpreviewpanel.cpp
   \ingroup View
   \brief This file contains
-  - class PicWorks::LayerPreviewPanel implemtation
+  - class View::LayerPreviewPanel implemtation
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2009-12-4 Created.
  */
@@ -28,7 +28,7 @@
 #include "layerpreviewpanel.h"
 
 /*!
-  \class PicWorks::LayerPreviewPanel layerpreviewpanel.h
+  \class View::LayerPreviewPanel layerpreviewpanel.h
   \brief A panel that can preview project layers.
   A project may has several layers. Each layer is an instance of \a Layer.
   This panel can preview layers. Usually this panel adds on the dock panels
@@ -38,11 +38,13 @@
   \date 2009-12-4 Created.
  */
 
+using namespace View;
+
 /*!
   \brief Constructs the panel that can preview layers.
   \param parent the parent widget pointer
  */
-PicWorks::LayerPreviewPanel::LayerPreviewPanel(QWidget *parent /* = 0 */)
+LayerPreviewPanel::LayerPreviewPanel(QWidget *parent /* = 0 */)
     : QWidget(parent)
 {
 }
@@ -50,6 +52,6 @@ PicWorks::LayerPreviewPanel::LayerPreviewPanel(QWidget *parent /* = 0 */)
 /*!
   \brief Destructor.
  */
-PicWorks::LayerPreviewPanel::~LayerPreviewPanel()
+LayerPreviewPanel::~LayerPreviewPanel()
 {
 }

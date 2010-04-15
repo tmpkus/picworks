@@ -20,7 +20,7 @@
   \file layer.h
   \ingroup Model
   \brief This file contains
-  - class PicWorks::Layer declaration
+  - class Data::Layer declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-10-17 Created.
  */
@@ -31,7 +31,7 @@
 #include <QObject>
 #include <QString>
 
-namespace PicWorks {
+namespace Data {
 
 class Layer : public QObject
 {

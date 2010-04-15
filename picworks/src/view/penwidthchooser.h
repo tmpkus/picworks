@@ -20,7 +20,7 @@
   \file penwidthchooser.h
   \ingroup View
   \brief This file contains
-  - class PicWorks::PenWidthChooser declaration
+  - class View::PenWidthChooser declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-12-4 Created.
  */
@@ -30,7 +30,7 @@
 
 #include <QWidget>
 
-namespace PicWorks {
+namespace View {
 
 class PenWidthChooser : public QWidget
 {

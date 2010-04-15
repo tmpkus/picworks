@@ -19,6 +19,7 @@
 #include <QDate>
 #include <QFile>
 #include <QTextStream>
+#include <QDataStream>
 #include <QStringList>
 
 #include "vng.h"
@@ -39,8 +40,22 @@ VersionNumberGenarator::VersionNumberGenarator(int argc, char *argv[])
  */
 int VersionNumberGenarator::genarate()
 {
+    QFile verFile("ver.dat");
+    quint32 localVer = 1;
+    if(verFile.open(QFile::ReadOnly)) { // file exists, read local version number
+        QDataStream verStream(&verFile);
+        verStream >> localVer;
+        verFile.close();
+        localVer++;
+    }
+    if(verFile.open(QFile::WriteOnly | QFile::Truncate)) { // write local version number
+        QDataStream verStream(&verFile);
+        verStream << localVer;
+        verFile.close();
+    }
+
     const QDate today(QDate::currentDate());
-    int buildNumber = (today.year() - 2009) * 1000 + today.dayOfYear();
+    int buildNumber = localVer;
     if(QFile::exists(args.at(4))) {
         QFile::remove(args.at(4));
     }

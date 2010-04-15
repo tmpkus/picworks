@@ -40,13 +40,16 @@
 
 int main(int argc, char *argv[])
 {
-    using namespace PicWorks;
-
-    QtSingleApplication app(argc, argv);
+    Ext::QtSingleApplication app(argc, argv);
     QCoreApplication::setOrganizationName("galaxy");
     QCoreApplication::setOrganizationDomain("galaxy");
     QCoreApplication::setApplicationName("PicWorks");
-    QCoreApplication::setApplicationVersion(QString("%1.%2.%3.%4").arg(VersionInfo::major(), VersionInfo::minor(), VersionInfo::revision(), VersionInfo::build()));
+    QCoreApplication::setApplicationVersion(
+            QString("%1.%2.%3.%4").arg(
+                    PicWorks::VersionInfo::major(),
+                    PicWorks::VersionInfo::minor(),
+                    PicWorks::VersionInfo::revision(),
+                    PicWorks::VersionInfo::build()));
     if(app.isRunning())
     {
         app.activeWindow();
@@ -78,7 +81,7 @@ int main(int argc, char *argv[])
         app.installTranslator(qtTranslator);
     }
 
-    MainWindow win;
+    View::MainWindow win;
     app.setActivationWindow(&win);
 
     //splash->showMessage(QObject::tr("Loading modules..."), topRight, Qt::white);

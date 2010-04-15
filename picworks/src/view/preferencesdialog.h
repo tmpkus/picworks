@@ -20,7 +20,7 @@
   \file preferencesdialog.h
   \ingroup View
   \brief This file contains
-  - class PicWorks::PreferencesDialog declaration
+  - class View::PreferencesDialog declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-10-17 Created.
  */
@@ -30,7 +30,7 @@
 
 #include <QDialog>
 
-namespace PicWorks {
+namespace View {
 
 class PreferencesDialog : public QDialog
 {

@@ -20,7 +20,7 @@
   \file aboutdialog.cpp
   \ingroup View
   \brief This file contains
-  - class PicWorks::AboutDialog implemtation
+  - class View::AboutDialog implemtation
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2009-10-8 Created.
  */
@@ -38,10 +38,10 @@
 #include "aboutdialog.h"
 #include "licensedialog.h"
 
-using namespace PicWorks;
+using namespace View;
 
 /*!
-  \class PicWorks::AboutDialog aboutdialog.h
+  \class View::AboutDialog aboutdialog.h
   \brief The about dialog of PicWorks.
   This is the about dialog of PicWorks. There are some important message
   of PicWorks to be shown on this dialog such as copyright and licences.

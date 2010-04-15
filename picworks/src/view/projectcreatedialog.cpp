@@ -20,8 +20,7 @@
   \file projectcreatedialog.cpp
   \ingroup View
   \brief This file contains
-  - class PicWorks::ProjectCreateDialog implemtation
-  - class PicWorks::BackgroundColorSelector implemtation
+  - class View::ProjectCreateDialog implemtation
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-9-5 Created.
  */
@@ -45,10 +44,10 @@
 #include "../model/project.h"
 #include "../util/appresource.h"
 
-using namespace PicWorks;
+using namespace View;
 
 /*!
-  \class PicWorks::ProjectCreateDialog projectcreatedialog.h
+  \class View::ProjectCreateDialog projectcreatedialog.h
   \brief Creator of project in PicWorks.
   ProjectCreateDialog is a dialog when the action "new" is actived.
   The dialog is used for collecting data from user in order to construct a new project.
@@ -58,7 +57,7 @@ using namespace PicWorks;
  */
 
 /*!
-  \fn void PicWorks::ProjectCreateDialog::accept()
+  \fn void View::ProjectCreateDialog::accept()
   \brief Closes the dialog and emits projectCreated(Project&) signal.
  */
 
@@ -74,16 +73,16 @@ ProjectCreateDialog::ProjectCreateDialog(QWidget *parent /* = 0 */, Qt::WindowFl
     // Measurement unit for creating a new project. The sequence of this list must be the
     // same as enum MeasureUnitEnum which defines in global.h.
     QStringList unitList;
-    unitList<<AppRes.measurementUnitName(AppResource::pxMeasurementUnit)
-            <<AppRes.measurementUnitName(AppResource::cmMeasurementUnit);
+    unitList<<AppRes.measurementUnitName(Global::AppResource::pxMeasurementUnit)
+            <<AppRes.measurementUnitName(Global::AppResource::cmMeasurementUnit);
     // DPI unit for creating a new project. The sequence of this list must be the
     // same as enum DpiUnit which defines in global.h.
     QStringList dpiList;
-    dpiList<<AppRes.dpiUnitName(AppResource::perInchDpiUnit)
-           <<AppRes.dpiUnitName(AppResource::perCmDpiUnit);
+    dpiList<<AppRes.dpiUnitName(Global::AppResource::perInchDpiUnit)
+           <<AppRes.dpiUnitName(Global::AppResource::perCmDpiUnit);
 
-    setWindowTitle(tr("New A Project", "Project creating dialog title."));
-    setWindowIcon(AppRes.icon(AppResource::ApplicationIcon));
+    setWindowTitle(tr("New", "Project creating dialog title."));
+    setWindowIcon(AppRes.icon(Global::AppResource::ApplicationIcon));
     setFixedSize(260, 240);
 
     // project name
@@ -181,16 +180,16 @@ ProjectCreateDialog::~ProjectCreateDialog()
   \brief Gets the project data.
   \return pointer of project instance
  */
-Project * ProjectCreateDialog::getProject()
+Data::Project * ProjectCreateDialog::getProject()
 {
-    Project *p = new Project;
+    Data::Project *p = new Data::Project;
     p->setName(proNameEdit->text());
     p->setWidth(proWidthBox->value());
     p->setHeight(proHeightBox->value());
-    p->setWidthUnit(static_cast<AppResource::MeasurementUnit>(proWidthUnitBox->currentIndex()));
-    p->setHeightUnit(static_cast<AppResource::MeasurementUnit>(proHeightUnitBox->currentIndex()));
+    p->setWidthUnit(static_cast<Global::AppResource::MeasurementUnit>(proWidthUnitBox->currentIndex()));
+    p->setHeightUnit(static_cast<Global::AppResource::MeasurementUnit>(proHeightUnitBox->currentIndex()));
     p->setDpi(proDpiBox->value());
-    p->setDpiUnit(static_cast<AppResource::DpiUnit>(proDpiUnitBox->currentIndex()));
+    p->setDpiUnit(static_cast<Global::AppResource::DpiUnit>(proDpiUnitBox->currentIndex()));
     p->setBackgroundColor(proBackgroundColorPicker->currentColor());
     return p;
 }

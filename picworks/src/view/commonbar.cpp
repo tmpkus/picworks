@@ -20,7 +20,7 @@
   \file commonbar.cpp
   \ingroup View
   \brief This file contains
-  - class PicWorks::CommonBar implemtation
+  - class View::CommonBar implemtation
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2009-11-27 Created.
  */
@@ -33,10 +33,10 @@
 #include "penwidthchooser.h"
 #include "../util/appcontext.h"
 
-using namespace PicWorks;
+using namespace View;
 
 /*!
-  \class PicWorks::CommonBar commonbar.h
+  \class View::CommonBar commonbar.h
   \brief This is the common bar of PicWorks.
   Common bar usually below the commands bar. In PicWorks, many tools have their
   own properties you can set. These properties setting controls are added in this
@@ -99,12 +99,12 @@ CommonBar & CommonBar::instance(const QString &title /* = "CommonBar" */, QWidge
   \brief Gets different common bars according to current action.
   \param data current action
  */
-QToolBar * CommonBar::makeCommonBar(const QVariant & data)
+QToolBar * CommonBar::createCommonBar(const QVariant & data)
 {
     if(data.canConvert(QVariant::Int)) {
-        AppResource::Action a = static_cast<AppResource::Action>(data.toInt());
+        Global::AppResource::Action a = static_cast<Global::AppResource::Action>(data.toInt());
         switch(a) {
-        case AppResource::DrawLineAction:
+        case Global::AppResource::DrawLineAction:
             {
                 penColorAction->setVisible(true);
                 penWidthAction->setVisible(true);

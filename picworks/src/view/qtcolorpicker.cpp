@@ -69,7 +69,7 @@
 #include "qtcolorpicker.h"
 #include "../util/appresource.h"
 
-using namespace PicWorks;
+using namespace View;
 
 /*! \class QtColorPicker
 

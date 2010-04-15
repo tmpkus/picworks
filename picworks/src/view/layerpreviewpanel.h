@@ -20,7 +20,7 @@
   \file layerpreviewpanel.h
   \ingroup View
   \brief This file contains
-  - class PicWorks::LayerPreviewPanel declaration
+  - class View::LayerPreviewPanel declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-12-4 Created.
  */
@@ -30,7 +30,7 @@
 
 #include <QWidget>
 
-namespace PicWorks {
+namespace View {
 
 class LayerPreviewPanel : public QWidget
 {

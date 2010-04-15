@@ -1,20 +1,62 @@
 /*
- * Note: This file is not used in compiling. It is only used for
- * doxygen to generate documents.
- * Please do not care about contents in this file.
+ * Note: This file is not included in compiling. It is only used for
+ * generating documents by doxygen.
+ * Please do not care about contents in this file. Just ignore it.
  */
 
 /*!
   \namespace PicWorks
-  \brief This is the main namespace. Most components of PicWorks are in this namespace
-  not including 3th-party widgets. If you want to use components of PicWorks, you
-  must use this namespace.
+  \brief Namespace for classes that do not included by other namespaces,
+  such as main() and so on.
+  Mainly in group Common.
+ */
+
+/*!
+  \namespace Ext
+  \brief Namespace for 3rd-party libraries.
+ */
+
+/*!
+  \namespace GraphicsItem
+  \brief Namespace for graphics items such as lines.
+  Mainly in group Item.
+ */
+
+/*!
+  \namespace Data
+  \brief Namespace for data used in PicWorks.
+  Mainly in group Model.
+ */
+
+/*!
+  \namespace Global
+  \brief Namespace for global data, such as application context.
+  Mainly in group Utilities.
+ */
+
+/*!
+  \namespace Action
+  \brief Namespace for actions.
+  Mainly in group Utilities.
+ */
+
+/*!
+  \namespace IO
+  \brief Namespace for IO operations.
+  Mainly in group Utilities.
+ */
+
+/*!
+  \namespace View
+  \brief Namespace for GUI components.
+  Mainly in group View.
  */
 
 /*!
   \defgroup Common
   \brief This is the group for common usage.
-  Files that contains \a main() function and version numbers should be added in this group.
+  Files that contains \a main() function and version numbers should be
+  added in this group.
  */
 
 /*!

@@ -20,7 +20,7 @@
   \file projectscene.h
   \ingroup View
   \brief This file contains
-  - class PicWorks::ProjectScene declaration
+  - class View::ProjectScene declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-10-12 Created.
  */
@@ -32,17 +32,22 @@
 
 class QGraphicsSceneMouseEvent;
 
-namespace PicWorks {
+namespace Data {
+    class Project;
+};
 
-class Project;
-class AbstractShape;
+namespace GraphicsItem {
+    class AbstractShape;
+};
+
+namespace View {
 
 class ProjectScene : public QGraphicsScene
 {
     Q_OBJECT
 
 public:
-    ProjectScene(Project *pro, QObject *parent = 0);
+    ProjectScene(Data::Project *pro, QObject *parent = 0);
     virtual ~ProjectScene();
 
 public slots:
@@ -55,8 +60,8 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent * event);
 
 private:
-    Project *project;
-    AbstractShape *drawingShape;
+    Data::Project *project;
+    GraphicsItem::AbstractShape *drawingShape;
     bool processing;
     int layerIndex;
 

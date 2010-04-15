@@ -20,7 +20,7 @@
   \file projectcreatedialog.h
   \ingroup View
   \brief This file contains
-  - class PicWorks::ProjectCreateDialog declaration
+  - class View::ProjectCreateDialog declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-9-5 Created.
  */
@@ -40,16 +40,18 @@ class QStringList;
 class QPaintEvent;
 class QtColorPicker;
 
-namespace PicWorks {
+namespace Data {
+    class Project;
+};
 
-class Project;
+namespace View {
 
 class ProjectCreateDialog : public QDialog
 {
 public:
     ProjectCreateDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
     virtual ~ProjectCreateDialog();
-    Project * getProject();
+    Data::Project * getProject();
 
 private:
     QLineEdit *proNameEdit;

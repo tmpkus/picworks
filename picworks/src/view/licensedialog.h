@@ -20,7 +20,7 @@
   \file licensedialog.h
   \ingroup View
   \brief This file contains
-  - class PicWorks::LicenseDialog declaration
+  - class View::LicenseDialog declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-10-20 Created.
  */
@@ -30,7 +30,7 @@
 
 #include <QDialog>
 
-namespace PicWorks {
+namespace View {
 
 class LicenseDialog : public QDialog
 {

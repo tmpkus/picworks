@@ -32,10 +32,10 @@
 #include "line.h"
 #include "../view/projectscene.h"
 
-using namespace PicWorks;
+using namespace GraphicsItem;
 
 /*!
-  \class PicWorks::Line line.h
+  \class GraphicsItem::Line line.h
   \brief Line model.
   \version 0.0.1
   \author Cheng Liang <chengliang.soft@gmail.com>
@@ -47,7 +47,7 @@ using namespace PicWorks;
   Constrats a line item.
   \param s pointer of the scene in which this line is
  */
-Line::Line(ProjectScene *s)
+Line::Line(View::ProjectScene *s)
         : AbstractShape(s)
 {
 }

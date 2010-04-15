@@ -20,7 +20,7 @@
   \file licensedialog.cpp
   \ingroup View
   \brief This file contains
-  - class PicWorks::LicenseDialog implemtation
+  - class View::LicenseDialog implemtation
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2009-10-20 Created.
  */
@@ -32,10 +32,10 @@
 
 #include "licensedialog.h"
 
-using namespace PicWorks;
+using namespace View;
 
 /*!
-  \class PicWorks::LicenseDialog licensedialog.h
+  \class View::LicenseDialog licensedialog.h
   \brief The license dialog of PicWorks.
   This is the license dialog of PicWorks. It is used for showing licenses.
   \version 0.0.1

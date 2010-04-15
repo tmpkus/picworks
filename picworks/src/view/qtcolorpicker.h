@@ -72,6 +72,8 @@
 
 class ColorPickerPopup;
 
+namespace View {
+
 class QT_QTCOLORPICKER_EXPORT QtColorPicker : public QPushButton
 {
     Q_OBJECT
@@ -119,5 +121,7 @@ private:
     bool firstInserted;
     bool showTxt;
 };
+
+} // end of namespace
 
 #endif

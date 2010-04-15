@@ -20,7 +20,7 @@
   \file projectwindow.h
   \ingroup View
   \brief This file contains
-  - class PicWorks::ProjectWindow declaration
+  - class View::ProjectWindow declaration
   \version 0.0.1
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-9-5 Created.
@@ -36,21 +36,24 @@ class QSize;
 class QAction;
 class QStatusBar;
 
-namespace PicWorks {
+namespace Data {
+    class Project;
+};
 
-class Project;
+namespace View {
+
 class ProjectView;
 class ProjectWindowPanel;
 
 class ProjectWindow : public QMdiSubWindow
 {
 public:
-    ProjectWindow(Project *pro, QWidget *parent = 0);
+    ProjectWindow(Data::Project *pro, QWidget *parent = 0);
     virtual ~ProjectWindow();
     QSize sizeHint() const;
 
 private:
-    Project *project;
+    Data::Project *project;
     ProjectView *view;
     QStatusBar *statusBar;
 

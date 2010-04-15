@@ -20,7 +20,7 @@
   \file mainwindow.h
   \ingroup View
   \brief This file contains
-  - class PicWorks::MainWindow declaration
+  - class View::MainWindow declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-9-5 Created.
  */
@@ -41,10 +41,15 @@ class QtWindowListMenu;
 class QDockWidget;
 class QCloseEvent;
 
-namespace PicWorks {
+namespace Data {
+    class Project;
+};
 
-class Project;
-class DataAction;
+namespace Action {
+    class DataAction;
+};
+
+namespace View {
 
 class MainWindow : public QMainWindow
 {
@@ -84,12 +89,12 @@ private:
     QAction *eraserToolAction;
     QAction *paintCanToolAction;
     QAction *textToolAction;
-    DataAction *lineToolAction;
-    DataAction *curveToolAction;
-    DataAction *ellipseToolAction;
-    DataAction *polygonToolAction;
-    DataAction *rectangleToolAction;
-    DataAction *roundRectangleToolAction;
+    Action::DataAction *lineToolAction;
+    Action::DataAction *curveToolAction;
+    Action::DataAction *ellipseToolAction;
+    Action::DataAction *polygonToolAction;
+    Action::DataAction *rectangleToolAction;
+    Action::DataAction *roundRectangleToolAction;
 
     QMenu *fileMenu;
     QMenu *editMenu;
@@ -124,7 +129,7 @@ private slots:
     void showAboutDialog();
     void showPreferencesDialog();
     void showFileOpenDialog();
-    void getProject(Project & project);
+    void getProject(Data::Project & project);
 
 }; // end of class
 

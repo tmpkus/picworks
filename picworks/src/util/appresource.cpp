@@ -20,7 +20,7 @@
   \file appresource.cpp
   \ingroup Utilities
   \brief This file contains
-  - class PicWorks::AppResource implemtation
+  - class Global::AppResource implemtation
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2009-10-13 Created.
  */
@@ -29,10 +29,10 @@
 
 #include "appresource.h"
 
-using namespace PicWorks;
+using namespace Global;
 
 /*!
-  \class PicWorks::AppResource appresource.h
+  \class Global::AppResource appresource.h
   \brief Application resources.
   This resources set contains global strings and icons used in PicWorks.
   These variables are:
@@ -55,41 +55,41 @@ using namespace PicWorks;
   \endcode
   , so the following is dot(.) not pointer(->).
 
-  \enum PicWorks::AppResource::Icon
+  \enum Global::AppResource::Icon
   \brief An enum type for icons used in PicWorks.
 
-  \enum PicWorks::AppResource::MeasurementUnit
+  \enum Global::AppResource::MeasurementUnit
   \brief An enum type for measurement unit.
 
-  \enum PicWorks::AppResource::DpiUnit
+  \enum Global::AppResource::DpiUnit
   \brief An enum type of DPI(Dots per Inch).
 
-  \enum PicWorks::AppResource::Action
+  \enum Global::AppResource::Action
   \brief An enum type of actions.
 
-  \fn const QString & PicWorks::AppResource::measurementUnitName(int index) const
+  \fn const QString & Global::AppResource::measurementUnitName(int index) const
   \brief Gets the measurement unit name.
   DPI unit names have the same sequence as code.
   \param index the index of name to get
   \return measurement unit name with this index
 
-  \fn const QString & PicWorks::AppResource::dpiUnitName(int index) const
+  \fn const QString & Global::AppResource::dpiUnitName(int index) const
   \brief Gets the DPI unit name.
   Measurement unit names have the same sequence as code.
   \param index the index of name to get
   \return DPI unit name with this index
 
-  \fn const QPixmap & PicWorks::AppResource::icon(Icon iconCode) const
+  \fn const QPixmap & Global::AppResource::icon(Icon iconCode) const
   \brief Gets icon.
   Icons can be add to actions.
   \param iconCode the code defined in enum Icon
   \return icon map to this code
 
-  \fn const QPixmap & PicWorks::AppResource::splashImage() const
+  \fn const QPixmap & Global::AppResource::splashImage() const
   \brief The image used for splash and about dialog.
   \return the image instance
 
-  \fn const QPixmap & PicWorks::AppResource::grayGridImage() const
+  \fn const QPixmap & Global::AppResource::grayGridImage() const
   \brief Gets gray grid image.
   The gray grid image is 20px * 20px with two white boards
   and two gray boards. It is just like parts of a chessboard.

@@ -32,16 +32,18 @@
 
 class QGraphicsSceneMouseEvent;
 
-namespace PicWorks {
+namespace View {
+    class ProjectScene;
+};
 
-class ProjectScene;
+namespace GraphicsItem {
 
 class AbstractShape : public QObject
 {
     Q_OBJECT
 
 public:
-    AbstractShape(ProjectScene *s);
+    AbstractShape(View::ProjectScene *s);
     virtual ~AbstractShape();
     virtual void startDraw(QGraphicsSceneMouseEvent * event) = 0;
     virtual void drawing(QGraphicsSceneMouseEvent * event) = 0;
@@ -51,7 +53,7 @@ signals:
     void isDrawing(bool d);
 
 private:
-    ProjectScene *scene;
+    View::ProjectScene *scene;
 
 }; // end of class
 

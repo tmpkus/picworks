@@ -20,7 +20,7 @@
   \file appcontext.h
   \ingroup Utilities
   \brief This file contains
-  - class PicWorks::AppContext declaration
+  - class Global::AppContext declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-10-13 Created.
  */
@@ -38,7 +38,7 @@
 
 class QColor;
 
-namespace PicWorks {
+namespace Global {
 
 class AppContext : public QObject
 {
@@ -46,7 +46,7 @@ class AppContext : public QObject
     typedef AppResource::Action Action;
 
 public:
-    #define AppCtx (AppContext::instance())
+    #define AppCtx (Global::AppContext::instance())
 
     static AppContext & instance();
 

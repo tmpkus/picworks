@@ -45,7 +45,7 @@
 
 #include "twocolorselector.h"
 
-using namespace PicWorks;
+using namespace View;
 
 /*!
   \class PicWorks::TwoColorSelector twocolorselector.h

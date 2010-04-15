@@ -47,8 +47,6 @@
 
 #include <QtGui/QApplication>
 
-class QtLocalPeer;
-
 #if defined(Q_WS_WIN)
 #  if !defined(QT_QTSINGLEAPPLICATION_EXPORT) && !defined(QT_QTSINGLEAPPLICATION_IMPORT)
 #    define QT_QTSINGLEAPPLICATION_EXPORT
@@ -64,6 +62,10 @@ class QtLocalPeer;
 #else
 #  define QT_QTSINGLEAPPLICATION_EXPORT
 #endif
+
+namespace Ext {
+
+class QtLocalPeer;
 
 class QT_QTSINGLEAPPLICATION_EXPORT QtSingleApplication : public QApplication
 {
@@ -100,6 +102,8 @@ Q_SIGNALS:
 
 private:
     void sysInit(const QString &appId = QString());
-    QtLocalPeer *peer;
+    Ext::QtLocalPeer *peer;
     QWidget *actWin;
 };
+
+}

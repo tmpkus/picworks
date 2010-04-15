@@ -53,6 +53,8 @@ namespace QtLP_Private {
 #include "qtlockedfile.h"
 }
 
+namespace Ext {
+
 class QtLocalPeer : public QObject
 {
     Q_OBJECT
@@ -79,3 +81,5 @@ protected:
 private:
     static const char* ack;
 };
+
+}

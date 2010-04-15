@@ -20,7 +20,7 @@
  * @file twocolorselector.h
  * @ingroup View
  * @brief This file contains
- * - class PicWorks::TwoColorSelector declaration
+ * - class View::TwoColorSelector declaration
  * @author Cheng Liang <changliang.soft@gmail.com>
  * @date 2009-10-26 Created.
  */
@@ -40,7 +40,7 @@ class QDragEnterEvent;
 class QDragMoveEvent;
 class QDropEvent;
 
-namespace PicWorks {
+namespace View {
 
 class TwoColorSelector : public QWidget
 {

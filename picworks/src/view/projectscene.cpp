@@ -20,7 +20,7 @@
   \file projectscene.cpp
   \ingroup View
   \brief This file contains
-  - class PicWorks::ProjectScene implemtation
+  - class View::ProjectScene implemtation
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-10-12 Created.
  */
@@ -38,16 +38,16 @@
 #include "../item/line.h"
 #include "../item/abstractshape.h"
 
-using namespace PicWorks;
+using namespace View;
 
 /*!
-  \class PicWorks::ProjectScene projectscene.h
+  \class View::ProjectScene projectscene.h
   \brief Project scene in PicWorks.
   Project scene is used for processing project data in PicWorks. This is
   the main graphics scene. The project's data should be processed
   first in this scene and then to be shown by project view.
   That is to say the project view is the default view port of this scene.
-  \sa PicWorks::ProjectView
+  \sa View::ProjectView
   \version 0.0.1
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2009-10-12 Created.
@@ -59,7 +59,7 @@ using namespace PicWorks;
   \param pro the project pointer, not null.
   \param parent parent widget of this dialog, default value is 0.
  */
-ProjectScene::ProjectScene(Project *pro, QObject *parent /* = 0 */)
+ProjectScene::ProjectScene(Data::Project *pro, QObject *parent /* = 0 */)
         : QGraphicsScene(parent), project(pro), layerIndex(1)
 {
     // entry conditions
@@ -87,32 +87,32 @@ void ProjectScene::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
     if(event->button() == Qt::LeftButton) {
         switch(AppCtx.currentAction()) {
-        case AppResource::DrawLineAction:
+        case Global::AppResource::DrawLineAction:
             {
-                Line *drawingLine = new Line(this);
+                GraphicsItem::Line *drawingLine = new GraphicsItem::Line(this);
                 drawingLine->setPen(QPen(QBrush(AppCtx.penColor(), Qt::SolidPattern), AppCtx.penWidth()));
                 drawingLine->setZValue(layerIndex);
                 addItem(drawingLine);
                 drawingShape = drawingLine;
                 break;
             }
-        case AppResource::DrawCurveAction:
+        case Global::AppResource::DrawCurveAction:
             {
                 break;
             }
-        case AppResource::DrawRectAction:
+        case Global::AppResource::DrawRectAction:
             {
                 break;
             }
-        case AppResource::DrawRoundRectAction:
+        case Global::AppResource::DrawRoundRectAction:
             {
                 break;
             }
-        case AppResource::DrawEllipseAction:
+        case Global::AppResource::DrawEllipseAction:
             {
                 break;
             }
-        case AppResource::DrawPolygonAction:
+        case Global::AppResource::DrawPolygonAction:
             {
                 break;
             }

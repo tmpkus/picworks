@@ -20,7 +20,7 @@
   \file mainwindow.cpp
   \ingroup View
   \brief This file contains
-  - class PicWorks::MainWindow implemtation
+  - class View::MainWindow implemtation
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2009-9-5 Created.
  */
@@ -58,10 +58,10 @@
 #include "commonbar.h"
 #include "layerpreviewpanel.h"
 
-using namespace PicWorks;
+using namespace View;
 
 /*!
-  \class PicWorks::MainWindow mainwindow.h
+  \class View::MainWindow mainwindow.h
   \brief Main window of PicWorks.
   This is the main application window of PicWorks. PicWorks default main window is a MDI
   (Multiple Document Interface) window which can open many documents at the same time.
@@ -79,7 +79,7 @@ using namespace PicWorks;
 MainWindow::MainWindow(QWidget *parent /* = 0 */)
     : QMainWindow(parent)
 {
-    setWindowIcon(AppRes.icon(AppResource::ApplicationIcon));
+    setWindowIcon(AppRes.icon(Global::AppResource::ApplicationIcon));
     setWindowTitle(tr("PicWorks v%1", "Main window title with version number.").arg(AppCtx.version()));
     //setMinimumSize(800, 600);
 
@@ -135,8 +135,8 @@ void MainWindow::createMenus()
 
     subwindowMenu = new QtWindowListMenu(menuBar());
     subwindowMenu->attachToMdiArea(mdiArea);
-    subwindowMenu->setCascadeIcon(AppRes.icon(AppResource::CascadeIcon));
-    subwindowMenu->setTileIcon(AppRes.icon(AppResource::TileIcon));
+    subwindowMenu->setCascadeIcon(AppRes.icon(Global::AppResource::CascadeIcon));
+    subwindowMenu->setTileIcon(AppRes.icon(Global::AppResource::TileIcon));
     menuBar()->addMenu(subwindowMenu);
 
     menuBar()->addSeparator();
@@ -220,7 +220,7 @@ void MainWindow::createToolBars()
 
     // comm bar which is a tool bar
     // for layouting properties of several tools
-    commonBar = CommonBar::instance().makeCommonBar(AppResource::DrawLineAction);
+    commonBar = CommonBar::instance().createCommonBar(Global::AppResource::DrawLineAction);
     commonBar->setObjectName("CommonBar");
     addToolBar(Qt::TopToolBarArea, commonBar);
 
@@ -300,157 +300,157 @@ void MainWindow::createActions()
 {
     // Common Actions
     newAction = new QAction(tr("&New...", "[New] action text."), this);
-    newAction->setIcon(AppRes.icon(AppResource::NewIcon));
+    newAction->setIcon(AppRes.icon(Global::AppResource::NewIcon));
     newAction->setShortcut(QKeySequence::New);
     newAction->setStatusTip(tr("Create a new image file.", "[New] action tip on status bar."));
 
     openAction = new QAction(tr("&Open...", "[Open] action text."), this);
-    openAction->setIcon(AppRes.icon(AppResource::OpenIcon));
+    openAction->setIcon(AppRes.icon(Global::AppResource::OpenIcon));
     openAction->setShortcut(QKeySequence::Open);
     openAction->setStatusTip(tr("Open an image file.", "[Open] action tip on status bar."));
 
     saveAction = new QAction(tr("&Save", "[Save] action text."), this);
-    saveAction->setIcon(AppRes.icon(AppResource::SaveIcon));
+    saveAction->setIcon(AppRes.icon(Global::AppResource::SaveIcon));
     saveAction->setShortcut(QKeySequence::Save);
     saveAction->setStatusTip(tr("Save the project into a file.", "[Save] action tip on status bar."));
 
     saveAsAction = new QAction(tr("Save &As...", "[Save As] action text."), this);
-    saveAsAction->setIcon(AppRes.icon(AppResource::SaveAsIcon));
+    saveAsAction->setIcon(AppRes.icon(Global::AppResource::SaveAsIcon));
     saveAsAction->setShortcut(QKeySequence::SaveAs);
     saveAsAction->setStatusTip(tr("Save the project as another file.", "[Save As] action tip on status bar."));
 
     saveAllAction = new QAction(tr("Save &All", "[Save All] action text."), this);
-    saveAllAction->setIcon(AppRes.icon(AppResource::SaveAllIcon));
+    saveAllAction->setIcon(AppRes.icon(Global::AppResource::SaveAllIcon));
     saveAllAction->setStatusTip(tr("Save all the projects.", "[Save All] action tip on status bar."));
 
     printAction = new QAction(tr("&Print...", "[Print] action text."), this);
-    printAction->setIcon(AppRes.icon(AppResource::PrintIcon));
+    printAction->setIcon(AppRes.icon(Global::AppResource::PrintIcon));
     printAction->setShortcut(QKeySequence::Print);
     printAction->setStatusTip(tr("Print the project.", "[Print] action tip on status bar."));
 
     exitAction = new QAction(tr("E&xit", "[Exit] action text."), this);
-    exitAction->setIcon(AppRes.icon(AppResource::ExitIcon));
+    exitAction->setIcon(AppRes.icon(Global::AppResource::ExitIcon));
     exitAction->setShortcut(tr("Ctrl+Q", "[Exit] action shortcut."));
     exitAction->setStatusTip(tr("Exit PicWorks.", "[Exit] action tip on status bar."));
 
     undoAction = new QAction(tr("&Undo", "[Undo] action text."), this);
-    undoAction->setIcon(AppRes.icon(AppResource::UndoIcon));
+    undoAction->setIcon(AppRes.icon(Global::AppResource::UndoIcon));
     undoAction->setShortcut(QKeySequence::Undo);
     undoAction->setStatusTip(tr("Undo the last action.", "[Undo] action tip on status bar."));
 
     redoAction = new QAction(tr("&Redo", "[Redo] action text."), this);
-    redoAction->setIcon(AppRes.icon(AppResource::RedoIcon));
+    redoAction->setIcon(AppRes.icon(Global::AppResource::RedoIcon));
     redoAction->setShortcut(QKeySequence::Redo);
     redoAction->setStatusTip(tr("Redo the next action.", "[Redo] action tip on status bar."));
 
     cutAction = new QAction(tr("Cu&t", "[Cut] action text."), this);
-    cutAction->setIcon(AppRes.icon(AppResource::CutIcon));
+    cutAction->setIcon(AppRes.icon(Global::AppResource::CutIcon));
     cutAction->setShortcut(QKeySequence::Cut);
     cutAction->setStatusTip(tr("Cut selected area.", "[Cut] action tip on status bar."));
 
     copyAction = new QAction(tr("&Copy", "[Copy] action text."), this);
-    copyAction->setIcon(AppRes.icon(AppResource::CopyIcon));
+    copyAction->setIcon(AppRes.icon(Global::AppResource::CopyIcon));
     copyAction->setShortcut(QKeySequence::Copy);
     copyAction->setStatusTip(tr("Copy selected area.", "[Copy] action tip on status bar."));
 
     pasteAction = new QAction(tr("&Paste", "[Paste] action text."), this);
-    pasteAction->setIcon(AppRes.icon(AppResource::PasteIcon));
+    pasteAction->setIcon(AppRes.icon(Global::AppResource::PasteIcon));
     pasteAction->setShortcut(QKeySequence::Paste);
     pasteAction->setStatusTip(tr("Paste the cut or copied area.", "[Paste] action tip on status bar."));
 
     preferencesAction = new QAction(tr("&Preferences...", "[Preferences] action text."), this);
-    preferencesAction->setIcon(AppRes.icon(AppResource::PreferencesIcon));
+    preferencesAction->setIcon(AppRes.icon(Global::AppResource::PreferencesIcon));
     preferencesAction->setStatusTip(tr("Open preferences dialog.", "[Preferences] action tip on status bar."));
 
     helpAction = new QAction(tr("&Help...", "[Help] action text."), this);
-    helpAction->setIcon(AppRes.icon(AppResource::HelpIcon));
+    helpAction->setIcon(AppRes.icon(Global::AppResource::HelpIcon));
     helpAction->setShortcut(QKeySequence::HelpContents);
     helpAction->setStatusTip(tr("Open help contents.", "[Help] action tip on status bar."));
 
     aboutAction = new QAction(tr("&About...", "[About] action text."), this);
-    aboutAction->setIcon(AppRes.icon(AppResource::AboutIcon));
+    aboutAction->setIcon(AppRes.icon(Global::AppResource::AboutIcon));
     aboutAction->setStatusTip(tr("About PicWorks.", "[About] action tip on status bar."));
 
     // Tool Box Actions
     selectToolAction = new QAction(this);
-    selectToolAction->setIcon(AppRes.icon(AppResource::SelectIcon));
+    selectToolAction->setIcon(AppRes.icon(Global::AppResource::SelectIcon));
     selectToolAction->setToolTip(tr("Select[S]", "[Select] action tip with shortcut."));
     selectToolAction->setStatusTip(tr("Select an area.", "[Select] action tip on status bar."));
     selectToolAction->setShortcut(tr("S"));
     toolBoxActionGroup->addAction(selectToolAction);
 
     moveToolAction = new QAction(this);
-    moveToolAction->setIcon(AppRes.icon(AppResource::MoveIcon));
+    moveToolAction->setIcon(AppRes.icon(Global::AppResource::MoveIcon));
     moveToolAction->setToolTip(tr("Move[M]", "[Move] action tip with shortcut."));
     moveToolAction->setStatusTip(tr("Move the selected area or the whole page.", "[Move] action tip on status bar."));
     moveToolAction->setShortcut(tr("M"));
     toolBoxActionGroup->addAction(moveToolAction);
 
     brushToolAction = new QAction(this);
-    brushToolAction->setIcon(AppRes.icon(AppResource::BrushIcon));
+    brushToolAction->setIcon(AppRes.icon(Global::AppResource::BrushIcon));
     brushToolAction->setToolTip(tr("Brush[B]", "[Brush] action tip with shortcut."));
     brushToolAction->setStatusTip(tr("Use brush.", "[Brush] action tip on status bar."));
     brushToolAction->setShortcut(tr("B"));
     toolBoxActionGroup->addAction(brushToolAction);
 
     eraserToolAction = new QAction(this);
-    eraserToolAction->setIcon(AppRes.icon(AppResource::EraserIcon));
+    eraserToolAction->setIcon(AppRes.icon(Global::AppResource::EraserIcon));
     eraserToolAction->setToolTip(tr("Eraser[E]", "[Eraser] action tip with shortcut."));
     eraserToolAction->setStatusTip(tr("Use eraser.", "[Eraser] action tip on status bar."));
     eraserToolAction->setShortcut(tr("E"));
     toolBoxActionGroup->addAction(eraserToolAction);
 
     paintCanToolAction = new QAction(this);
-    paintCanToolAction->setIcon(AppRes.icon(AppResource::PaintCanIcon));
+    paintCanToolAction->setIcon(AppRes.icon(Global::AppResource::PaintCanIcon));
     paintCanToolAction->setToolTip(tr("Paint Can[P]", "[Paint Can] action tip with shortcut."));
     paintCanToolAction->setStatusTip(tr("Fill the area with selected color.", "[Paint Can] action tip on status bar."));
     paintCanToolAction->setShortcut(tr("P"));
     toolBoxActionGroup->addAction(paintCanToolAction);
 
     textToolAction = new QAction(this);
-    textToolAction->setIcon(AppRes.icon(AppResource::TextIcon));
+    textToolAction->setIcon(AppRes.icon(Global::AppResource::TextIcon));
     textToolAction->setToolTip(tr("Text[T]", "[Text] action tip with shortcut."));
     textToolAction->setStatusTip(tr("Add text.", "[Text] action tip on status bar."));
     textToolAction->setShortcut(tr("T"));
     toolBoxActionGroup->addAction(textToolAction);
 
-    lineToolAction = new DataAction(AppRes.DrawLineAction, this);
-    lineToolAction->setIcon(AppRes.icon(AppResource::LineIcon));
+    lineToolAction = new Action::DataAction(AppRes.DrawLineAction, this);
+    lineToolAction->setIcon(AppRes.icon(Global::AppResource::LineIcon));
     lineToolAction->setToolTip(tr("Line[L]", "[Line] action tip with shortcut."));
     lineToolAction->setStatusTip(tr("Draw a line.", "[Line] action tip on status bar."));
     lineToolAction->setShortcut(tr("L"));
     toolBoxActionGroup->addAction(lineToolAction);
 
-    curveToolAction = new DataAction(AppRes.DrawCurveAction, this);
-    curveToolAction->setIcon(AppRes.icon(AppResource::CurveIcon));
+    curveToolAction = new Action::DataAction(AppRes.DrawCurveAction, this);
+    curveToolAction->setIcon(AppRes.icon(Global::AppResource::CurveIcon));
     curveToolAction->setToolTip(tr("Curve[C]", "[Curve] action tip with shortcut."));
     curveToolAction->setStatusTip(tr("Draw a curve.", "[Curve] action tip on status bar."));
     curveToolAction->setShortcut(tr("C"));
     toolBoxActionGroup->addAction(curveToolAction);
 
-    ellipseToolAction = new DataAction(AppRes.DrawEllipseAction, this);
-    ellipseToolAction->setIcon(AppRes.icon(AppResource::EllipseIcon));
+    ellipseToolAction = new Action::DataAction(AppRes.DrawEllipseAction, this);
+    ellipseToolAction->setIcon(AppRes.icon(Global::AppResource::EllipseIcon));
     ellipseToolAction->setToolTip(tr("Ellipse[P]", "[Ellipse] action tip with shortcut."));
     ellipseToolAction->setStatusTip(tr("Draw an ellipse.", "[Ellipse] action tip on status bar."));
     ellipseToolAction->setShortcut(tr("L"));
     toolBoxActionGroup->addAction(ellipseToolAction);
 
-    polygonToolAction = new DataAction(AppRes.DrawPolygonAction, this);
-    polygonToolAction->setIcon(AppRes.icon(AppResource::PolygonIcon));
+    polygonToolAction = new Action::DataAction(AppRes.DrawPolygonAction, this);
+    polygonToolAction->setIcon(AppRes.icon(Global::AppResource::PolygonIcon));
     polygonToolAction->setToolTip(tr("Polygon[O]", "[Polygon] action tip with shortcut."));
     polygonToolAction->setStatusTip(tr("Draw a polygon.", "[Polygon] action tip on status bar."));
     polygonToolAction->setShortcut(tr("O"));
     toolBoxActionGroup->addAction(polygonToolAction);
 
-    rectangleToolAction = new DataAction(AppRes.DrawRectAction, this);
-    rectangleToolAction->setIcon(AppRes.icon(AppResource::RectangleIcon));
+    rectangleToolAction = new Action::DataAction(AppRes.DrawRectAction, this);
+    rectangleToolAction->setIcon(AppRes.icon(Global::AppResource::RectangleIcon));
     rectangleToolAction->setToolTip(tr("Rectangle[R]", "[Rectangle] action tip with shortcut."));
     rectangleToolAction->setStatusTip(tr("Draw a rectangle.", "[Rectangle] action tip on status bar."));
     rectangleToolAction->setShortcut(tr("R"));
     toolBoxActionGroup->addAction(rectangleToolAction);
 
-    roundRectangleToolAction = new DataAction(AppRes.DrawRoundRectAction, this);
-    roundRectangleToolAction->setIcon(AppRes.icon(AppResource::RoundRectangleIcon));
+    roundRectangleToolAction = new Action::DataAction(AppRes.DrawRoundRectAction, this);
+    roundRectangleToolAction->setIcon(AppRes.icon(Global::AppResource::RoundRectangleIcon));
     roundRectangleToolAction->setToolTip(tr("Round corner rectangle[U]", "[Round Cornor Rectangle] action tip with shortcut."));
     roundRectangleToolAction->setStatusTip(tr("Draw a round corner rectangle.", "[Round Cornor Rectangle] action tip on status bar."));
     roundRectangleToolAction->setShortcut(tr("U"));
@@ -537,7 +537,7 @@ void MainWindow::showFileOpenDialog()
   At last this slot will show a subwindow that is an instance of ProjectWindow.
   \param project project created by dialog
  */
-void MainWindow::getProject(Project & project)
+void MainWindow::getProject(Data::Project & project)
 {
     ProjectWindow * pw = new ProjectWindow(&project);
     mdiArea->addSubWindow(pw);

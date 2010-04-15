@@ -20,7 +20,7 @@
   \file projectview.h
   \ingroup View
   \brief This file contains
-  - class PicWorks::ProjectView declaration
+  - class View::ProjectView declaration
   \version 0.0.1
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-9-19 Created.
@@ -33,20 +33,23 @@
 
 class QSize;
 
-namespace PicWorks {
+namespace Data {
+    class Project;
+};
 
-class Project;
+namespace View {
+
 class ProjectScene;
 
 class ProjectView : public QGraphicsView
 {
 public:
-    ProjectView(Project *pro, QWidget *parent = 0);
+    ProjectView(Data::Project *pro, QWidget *parent = 0);
     virtual ~ProjectView();
     QSize sizeHint() const;
 
 private:
-    Project *project;
+    Data::Project *project;
     ProjectScene *projectScene;
 
 }; // end of class

@@ -20,7 +20,7 @@
   \file preferencesdialog.cpp
   \ingroup View
   \brief This file contains
-  - class PicWorks::PreferencesDialog implemtation
+  - class View::PreferencesDialog implemtation
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-10-17 Created.
  */
@@ -30,10 +30,10 @@
 
 #include "preferencesdialog.h"
 
-using namespace PicWorks;
+using namespace View;
 
 /*!
-  \class PicWorks::PreferencesDialog preferencesdialog.h
+  \class View::PreferencesDialog preferencesdialog.h
   \brief Preferences dialog in PicWorks.
   PreferencesDialog is a dialog to configure PicWorks. It supplied a friendly UI
   to set PicWorks attributes.
