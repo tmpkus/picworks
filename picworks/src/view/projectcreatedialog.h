@@ -48,6 +48,7 @@ namespace View {
 
 class ProjectCreateDialog : public QDialog
 {
+    Q_OBJECT
 public:
     ProjectCreateDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
     virtual ~ProjectCreateDialog();
