@@ -65,7 +65,7 @@ ProjectScene::ProjectScene(Data::Project *pro, QObject *parent /* = 0 */)
     // entry conditions
     Q_CHECK_PTR(pro);
 
-    setBackgroundBrush(QBrush(AppRes.grayGridImage()));
+    setBackgroundBrush(QBrush(appRes->grayGridImage()));
     addRect(0, 0, project->width(), project->height(),
             QPen(Qt::NoPen), QBrush(project->backgroundColor()));
 }
@@ -86,33 +86,33 @@ ProjectScene::~ProjectScene()
 void ProjectScene::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
     if(event->button() == Qt::LeftButton) {
-        switch(AppCtx.currentAction()) {
-        case Global::AppResource::DrawLineAction:
+        switch(appCtx->currentAction()) {
+        case Core::AppResource::DrawLineAction:
             {
                 GraphicsItem::Line *drawingLine = new GraphicsItem::Line(this);
-                drawingLine->setPen(QPen(QBrush(AppCtx.penColor(), Qt::SolidPattern), AppCtx.penWidth()));
+                drawingLine->setPen(QPen(QBrush(appCtx->penColor(), Qt::SolidPattern), appCtx->penWidth()));
                 drawingLine->setZValue(layerIndex);
                 addItem(drawingLine);
                 drawingShape = drawingLine;
                 break;
             }
-        case Global::AppResource::DrawCurveAction:
+        case Core::AppResource::DrawCurveAction:
             {
                 break;
             }
-        case Global::AppResource::DrawRectAction:
+        case Core::AppResource::DrawRectAction:
             {
                 break;
             }
-        case Global::AppResource::DrawRoundRectAction:
+        case Core::AppResource::DrawRoundRectAction:
             {
                 break;
             }
-        case Global::AppResource::DrawEllipseAction:
+        case Core::AppResource::DrawEllipseAction:
             {
                 break;
             }
-        case Global::AppResource::DrawPolygonAction:
+        case Core::AppResource::DrawPolygonAction:
             {
                 break;
             }

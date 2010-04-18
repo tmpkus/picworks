@@ -50,13 +50,13 @@ public:
 
     inline int height() const { return projectHeight; }
 
-    inline Global::AppResource::MeasurementUnit widthUnit() const { return projectWidthUnit; }
+    inline Core::AppResource::MeasurementUnit widthUnit() const { return projectWidthUnit; }
 
-    inline Global::AppResource::MeasurementUnit heightUnit() const { return projectHeightUnit; }
+    inline Core::AppResource::MeasurementUnit heightUnit() const { return projectHeightUnit; }
 
     inline int dpi() const { return projectDpi; }
 
-    inline Global::AppResource::DpiUnit dpiUnit() const { return projectDpiUnit; }
+    inline Core::AppResource::DpiUnit dpiUnit() const { return projectDpiUnit; }
 
     inline const QColor & backgroundColor() const { return projectBackgroundColor; }
 
@@ -87,7 +87,7 @@ public slots:
         }
     }
 
-    inline void setWidthUnit(Global::AppResource::MeasurementUnit wu)
+    inline void setWidthUnit(Core::AppResource::MeasurementUnit wu)
     {
         if(wu != projectWidthUnit) {
             emit projectWidthUnitChanged(wu, projectWidthUnit);
@@ -95,7 +95,7 @@ public slots:
         }
     }
 
-    inline void setHeightUnit(Global::AppResource::MeasurementUnit hu)
+    inline void setHeightUnit(Core::AppResource::MeasurementUnit hu)
     {
         if(hu != projectHeightUnit) {
             emit projectHeightUnitChanged(hu, projectHeightUnit);
@@ -112,7 +112,7 @@ public slots:
         }
     }
 
-    inline void setDpiUnit(Global::AppResource::DpiUnit dpiUnit)
+    inline void setDpiUnit(Core::AppResource::DpiUnit dpiUnit)
     {
         if(dpiUnit != projectDpiUnit) {
             emit projectDpiUnitChanged(dpiUnit, projectDpiUnit);
@@ -132,20 +132,20 @@ signals:
     void projectNameChanged(const QString &newName, const QString &oldName);
     void projectWidthChanged(const int newWidth, const int oldWidth);
     void projectHeightChanged(const int newHeight, const int oldHeight);
-    void projectWidthUnitChanged(const Global::AppResource::MeasurementUnit newWidthUnit, const Global::AppResource::MeasurementUnit oldWidthUnit);
-    void projectHeightUnitChanged(const Global::AppResource::MeasurementUnit newHeightUnit, const Global::AppResource::MeasurementUnit oldHeightUnit);
+    void projectWidthUnitChanged(const Core::AppResource::MeasurementUnit newWidthUnit, const Core::AppResource::MeasurementUnit oldWidthUnit);
+    void projectHeightUnitChanged(const Core::AppResource::MeasurementUnit newHeightUnit, const Core::AppResource::MeasurementUnit oldHeightUnit);
     void projectDpiChanged(const int newDpi, const int oldDpi);
-    void projectDpiUnitChanged(const Global::AppResource::DpiUnit newDpiUnit, const Global::AppResource::DpiUnit oldDpiUnit);
+    void projectDpiUnitChanged(const Core::AppResource::DpiUnit newDpiUnit, const Core::AppResource::DpiUnit oldDpiUnit);
     void projectBackgroundColorChanged(const QColor &newColor, const QColor &oldColor);
 
 private:
     QString projectName;
     int projectWidth;
     int projectHeight;
-    Global::AppResource::MeasurementUnit projectWidthUnit;
-    Global::AppResource::MeasurementUnit projectHeightUnit;
+    Core::AppResource::MeasurementUnit projectWidthUnit;
+    Core::AppResource::MeasurementUnit projectHeightUnit;
     int projectDpi;
-    Global::AppResource::DpiUnit projectDpiUnit;
+    Core::AppResource::DpiUnit projectDpiUnit;
     QColor projectBackgroundColor;
 
 }; // end of class

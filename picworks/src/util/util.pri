@@ -7,8 +7,12 @@
 SOURCES += $$PWD/appresource.cpp \
     $$PWD/appcontext.cpp \
     $$PWD/dataaction.cpp \
-    $$PWD/imageio.cpp
+    $$PWD/imageio.cpp \
+    $$PWD/actionmanager.cpp \
+    $$PWD/singleton.cpp
 HEADERS += $$PWD/appresource.h \
     $$PWD/appcontext.h \
     $$PWD/dataaction.h \
-    $$PWD/imageio.h
+    $$PWD/imageio.h \
+    $$PWD/actionmanager.h \
+    $$PWD/singleton.h

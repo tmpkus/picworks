@@ -63,7 +63,7 @@ AboutDialog::AboutDialog(QWidget *parent /* = 0 */)
     setWindowTitle(tr("About PicWorks", "About dialog title."));
     setAttribute(Qt::WA_DeleteOnClose);
 
-    backgroundImage = AppRes.splashImage();
+    backgroundImage = appRes->splashImage();
     resize(backgroundImage.width(), backgroundImage.height());
 
     int buttonY = backgroundImage.height() - 45;
@@ -71,7 +71,7 @@ AboutDialog::AboutDialog(QWidget *parent /* = 0 */)
     QTextEdit *desc = new QTextEdit(this);
     desc->setReadOnly(true);
     desc->setGeometry(15, 110, 370, 90);
-    desc->setText("PicWorks Dev Version " + AppCtx.version());
+    desc->setText("PicWorks Dev Version " + appCtx->version());
     desc->append(tr("Copyright (C) Galaxy.org\n"
                     "PicWorks is developed on Qt Framework under the terms of GPLv3."
                     ,"Other description text in About Dialog."));
@@ -107,7 +107,7 @@ void AboutDialog::paintEvent(QPaintEvent* event)
     font.setBold(true);
     p.setFont(font);
     p.setPen(Qt::blue);
-    p.drawText(230, 100, "Version " + AppCtx.version());
+    p.drawText(230, 100, "Version " + appCtx->version());
 }
 
 /*!

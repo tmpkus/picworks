@@ -60,7 +60,7 @@ CommonBar::CommonBar(const QString &title /* = "CommonBar" */, QWidget *parent /
 
     QtColorPicker *penColorPicker = new QtColorPicker(bar, -1, true, false);
     penColorPicker->setStandardColors();
-    penColorPicker->setCurrentColor(AppCtx.penColor());
+    penColorPicker->setCurrentColor(appCtx->penColor());
     penColorPicker->setMaximumSize(20, 20);
     penColorPicker->setToolTip(tr("Choose pen color.", "Pen color button on Common Bar."));
 
@@ -71,8 +71,8 @@ CommonBar::CommonBar(const QString &title /* = "CommonBar" */, QWidget *parent /
     penColorAction = bar->addWidget(penColorPicker);
     penWidthAction = bar->addWidget(penWidthChooser);
 
-    connect(penColorPicker, SIGNAL(colorChanged(QColor)), &AppCtx, SLOT(setPenColor(QColor)));
-    connect(penWidthChooser, SIGNAL(penWidthChanged(int,int)), &AppCtx, SLOT(setPenWidth(int)));
+    connect(penColorPicker, SIGNAL(colorChanged(QColor)), appCtx, SLOT(setPenColor(QColor)));
+    connect(penWidthChooser, SIGNAL(penWidthChanged(int,int)), appCtx, SLOT(setPenWidth(int)));
 }
 
 /*!
@@ -102,9 +102,9 @@ CommonBar & CommonBar::instance(const QString &title /* = "CommonBar" */, QWidge
 QToolBar * CommonBar::createCommonBar(const QVariant & data)
 {
     if(data.canConvert(QVariant::Int)) {
-        Global::AppResource::Action a = static_cast<Global::AppResource::Action>(data.toInt());
+        Core::AppResource::Action a = static_cast<Core::AppResource::Action>(data.toInt());
         switch(a) {
-        case Global::AppResource::DrawLineAction:
+        case Core::AppResource::DrawLineAction:
             {
                 penColorAction->setVisible(true);
                 penWidthAction->setVisible(true);

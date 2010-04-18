@@ -24,19 +24,14 @@
   \date 2009-9-5 Created.
  */
 
-#include <QDebug>
 #include <QTranslator>
 #include <QSplashScreen>
-#include <QFileInfo>
-#include <QDir>
 #include <QSettings>
 
 #include "extern/qtsingleapplication/qtsingleapplication.h"
 #include "util/appresource.h"
 #include "util/appcontext.h"
 #include "view/mainwindow.h"
-#include "view/aboutdialog.h"
-#include "version.h"
 
 int main(int argc, char *argv[])
 {
@@ -44,12 +39,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName("galaxy");
     QCoreApplication::setOrganizationDomain("galaxy");
     QCoreApplication::setApplicationName("PicWorks");
-    QCoreApplication::setApplicationVersion(
-            QString("%1.%2.%3.%4").arg(
-                    PicWorks::VersionInfo::major(),
-                    PicWorks::VersionInfo::minor(),
-                    PicWorks::VersionInfo::revision(),
-                    PicWorks::VersionInfo::build()));
+    QCoreApplication::setApplicationVersion(appCtx->version());
     if(app.isRunning())
     {
         app.activeWindow();
@@ -57,7 +47,7 @@ int main(int argc, char *argv[])
     }
 
     QSplashScreen *splash = new QSplashScreen;
-    splash->setPixmap(AppRes.splashImage());
+    splash->setPixmap(appRes->splashImage());
     splash->show();
     Qt::Alignment topRight = Qt::AlignRight | Qt::AlignTop;
     splash->showMessage(QObject::tr("Loading main window...", "Loading text on splash screen."), topRight, Qt::white);
@@ -82,6 +72,7 @@ int main(int argc, char *argv[])
     }
 
     View::MainWindow win;
+    appCtx->setMainWindow(&win);
     app.setActivationWindow(&win);
 
     //splash->showMessage(QObject::tr("Loading modules..."), topRight, Qt::white);
@@ -91,6 +82,7 @@ int main(int argc, char *argv[])
     win.showMaximized();
     splash->finish(&win);
     delete splash;
+    splash = NULL;
 
     return app.exec();
 }

@@ -73,16 +73,16 @@ ProjectCreateDialog::ProjectCreateDialog(QWidget *parent /* = 0 */, Qt::WindowFl
     // Measurement unit for creating a new project. The sequence of this list must be the
     // same as enum MeasureUnitEnum which defines in global.h.
     QStringList unitList;
-    unitList<<AppRes.measurementUnitName(Global::AppResource::pxMeasurementUnit)
-            <<AppRes.measurementUnitName(Global::AppResource::cmMeasurementUnit);
+    unitList<<appRes->measurementUnitName(Core::AppResource::pxMeasurementUnit)
+            <<appRes->measurementUnitName(Core::AppResource::cmMeasurementUnit);
     // DPI unit for creating a new project. The sequence of this list must be the
     // same as enum DpiUnit which defines in global.h.
     QStringList dpiList;
-    dpiList<<AppRes.dpiUnitName(Global::AppResource::perInchDpiUnit)
-           <<AppRes.dpiUnitName(Global::AppResource::perCmDpiUnit);
+    dpiList<<appRes->dpiUnitName(Core::AppResource::perInchDpiUnit)
+           <<appRes->dpiUnitName(Core::AppResource::perCmDpiUnit);
 
     setWindowTitle(tr("New", "Project creating dialog title."));
-    setWindowIcon(AppRes.icon(Global::AppResource::ApplicationIcon));
+    setWindowIcon(appRes->icon(Core::AppResource::ApplicationIcon));
     setFixedSize(260, 240);
 
     // project name
@@ -186,10 +186,10 @@ Data::Project * ProjectCreateDialog::getProject()
     p->setName(proNameEdit->text());
     p->setWidth(proWidthBox->value());
     p->setHeight(proHeightBox->value());
-    p->setWidthUnit(static_cast<Global::AppResource::MeasurementUnit>(proWidthUnitBox->currentIndex()));
-    p->setHeightUnit(static_cast<Global::AppResource::MeasurementUnit>(proHeightUnitBox->currentIndex()));
+    p->setWidthUnit(static_cast<Core::AppResource::MeasurementUnit>(proWidthUnitBox->currentIndex()));
+    p->setHeightUnit(static_cast<Core::AppResource::MeasurementUnit>(proHeightUnitBox->currentIndex()));
     p->setDpi(proDpiBox->value());
-    p->setDpiUnit(static_cast<Global::AppResource::DpiUnit>(proDpiUnitBox->currentIndex()));
+    p->setDpiUnit(static_cast<Core::AppResource::DpiUnit>(proDpiUnitBox->currentIndex()));
     p->setBackgroundColor(proBackgroundColorPicker->currentColor());
     return p;
 }

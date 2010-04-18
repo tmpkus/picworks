@@ -20,19 +20,23 @@
   \file appcontext.cpp
   \ingroup Utilities
   \brief This file contains
-  - class Global::AppContext implemtation
+  - class Core::AppContext implemtation
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2009-10-14 Created.
  */
 
 #include "appcontext.h"
+#include "actionmanager.h"
 
-using namespace Global;
+using namespace Core;
 
 /*!
-  \class Global::AppResource appcontext.h
+  \class Core::AppContext appcontext.h
   \brief Application context.
-  This context contains global data used in PicWorks.
+  This context contains global data and managers used in PicWorks.
+  This class is a singleton class, the macro \a AppCtx is used for getting
+  the existing instance.
+  \note DO NOT try to get instance using its constructor.
   \version 0.0.1
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2009-10-14 Created.
@@ -41,19 +45,15 @@ using namespace Global;
 /*!
   \def AppCtx
   \brief The abbrev for getting instance function.
-  This is the abbrev for getting instance. It is equivalent to
-  \code
-  AppContext::instance()
-  \endcode
-  , so the following is dot(.) not pointer(->).
+  This is the abbrev for getting instance. It returns an instance not a pointer.
 
-  \fn void Global::AppContext::setCurrentAction(AppResource::Action a)
+  \fn void Core::AppContext::setCurrentAction(AppResource::Action a)
   \brief Sets the current action code of PicWorks.
   If new action is different from the old one, \a currentActionChanged
   signal will be emited.
   \param new action code to change, its type is defined in AppResource::Action
 
-  \fn const QString & Global::AppContext::version() const
+  \fn const QString & Core::AppContext::version() const
   \brief Gets version number of PicWorks.
   Version can identify this application's version. The special version
   numbering scheme is
@@ -69,55 +69,68 @@ using namespace Global;
   is compatible to the older versions.
   \return version number string with format major.minor.revision.build
 
-  \fn AppResource::Action Global::AppContext::currentAction() const
+  \fn AppResource::Action Core::AppContext::currentAction() const
   \brief Gets the current action of PicWorks.
   This action code is a type of enum Action defined in AppResource.
-  \sa AppResource
+  \sa Core::AppResource
   \return current action code
 
-  \fn void Global::AppContext::setPenColor(const QColor &c)
+  \fn ActionManager * Core::ActionManager::actionManager() const
+  \brief Action manager in PicWorks.
+  \sa Core::ActionManager
+  \return the action manager
+
+  \fn MainWindow * Core::AppContext::mainWindow() const
+  \brief Gets the main window of PicWorks.
+  \return main window
+
+  \fn void Core::AppContext::setMainWindow(View::MainWindow * mw)
+  \brief Sets main window of PicWorks.
+  \param mw main window pointer
+
+  \fn void Core::AppContext::setPenColor(const QColor &c)
   \brief Sets the color of global pen.
   This setter will emit \a penColorChanged signal.
   \param c new color of pen
 
-  \fn void Global::AppContext::setPenWidth(int w)
+  \fn void Core::AppContext::setPenWidth(int w)
   \brief Sets the width of global pen.
   This setter will emit \a penWidthChanged signal.
   \param w new width value of pen
 
-  \fn void Global::AppContext::setMaxPenWidth(int mw)
+  \fn void Core::AppContext::setMaxPenWidth(int mw)
   \brief Sets the max width of global pen.
   This setter will emit \a maxPenWidthChanged signal.
   \param w new max width value of pen
 
-  \fn const QColor & Global::AppContext::penColor() const
+  \fn const QColor & Core::AppContext::penColor() const
   \brief Gets global pen color.
   \return pen color
 
-  \fn int Global::AppContext::penWidth() const
+  \fn int Core::AppContext::penWidth() const
   \brief Gets global pen width.
   \return pen width
 
-  \fn int Global::AppContext::maxPenWidth() const
+  \fn int Core::AppContext::maxPenWidth() const
   \brief Gets global max pen width
   \return max pen width
 
-  \fn void Global::AppContext::currentActionChanged(const AppResource::Action & newCurrAction, const AppResource::Action & oldCurrAction)
+  \fn void Core::AppContext::currentActionChanged(const AppResource::Action & newCurrAction, const AppResource::Action & oldCurrAction)
   \brief Emits when current action changes.
   \param newCurrAction the new action code
   \param oldCurrAction the old action code
 
-  \fn void Global::AppContext::penColorChanged(const QColor & newColor, const QColor & oldColor)
+  \fn void Core::AppContext::penColorChanged(const QColor & newColor, const QColor & oldColor)
   \brief Emits when pen color changes.
   \param newColor the new color
   \param oldColor the old color
 
-  \fn void Global::AppContext::penWidthChanged(int newWidth, int oldWidth)
+  \fn void Core::AppContext::penWidthChanged(int newWidth, int oldWidth)
   \brief Emits when pen width changes.
   \param newWidth the new width value
   \param oldWidth the old width value
 
-  \fn void Global::AppContext::maxPenWidthChanged(int newValue, int oldValue)
+  \fn void Core::AppContext::maxPenWidthChanged(int newValue, int oldValue)
   \brief Emits when max pen width changes.
   \param newMaxWidth the new max width value
   \param oldMaxWidth the old max width value
@@ -128,33 +141,13 @@ using namespace Global;
   \brief Private constructor.
  */
 AppContext::AppContext()
-        : pColor(Qt::black), maxPWidth(500)
+        : pColor(Qt::black),
+          maxPWidth(500),
+          actMgr(new ActionManager)
 {
     appVersion = QString("%1.%2.%3.%4")
                  .arg(PicWorks::VersionInfo::major())
                  .arg(PicWorks::VersionInfo::minor())
                  .arg(PicWorks::VersionInfo::revision())
                  .arg(PicWorks::VersionInfo::build());
-}
-
-/*!
-  \internal
-  \brief Private destructor.
- */
-AppContext::~AppContext()
-{
-}
-
-/*!
-  \brief Gets the single instance of AppContext.
-  AppContext contains important global data using in PicWorks.
-  If these variables wants to be used, this function should be called
-  in order to get the only instance.
-  Also, PicWorks has a macro "AppCtx" canbe used for short.
-  \return singleton instance of AppContext
- */
-AppContext& AppContext::instance()
-{
-    static AppContext ctx;
-    return ctx;
 }

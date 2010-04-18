@@ -29,7 +29,7 @@
  */
 
 /*!
-  \namespace Global
+  \namespace Core
   \brief Namespace for global data, such as application context.
   Mainly in group Utilities.
  */
@@ -50,6 +50,12 @@
   \namespace View
   \brief Namespace for GUI components.
   Mainly in group View.
+ */
+
+/*!
+  \namespace Util
+  \brief Namespace for utilities.
+  Mainly in group Utilities
  */
 
 /*!

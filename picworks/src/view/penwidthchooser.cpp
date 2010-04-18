@@ -76,7 +76,7 @@ PenWidthChooser::PenWidthChooser(bool showLabel /* = true */, QWidget *parent /*
     }
     QSpinBox *penWidthBox = new QSpinBox(this);
     penWidthBox->setFixedWidth(45);
-    penWidthBox->setRange(1, AppCtx.maxPenWidth());
+    penWidthBox->setRange(1, appCtx->maxPenWidth());
     penWidthBox->setValue(1);
     layout->addWidget(penWidthBox);
 

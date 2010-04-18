@@ -20,7 +20,7 @@
   \file appcontext.h
   \ingroup Utilities
   \brief This file contains
-  - class Global::AppContext declaration
+  - class Core::AppContext declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-10-13 Created.
  */
@@ -35,10 +35,17 @@
 
 #include "../version.h"
 #include "appresource.h"
+#include "singleton.h"
+#include "actionmanager.h"
+#include "../view/mainwindow.h"
+
+#define appCtx Util::Singleton<Core::AppContext>::instance()
 
 class QColor;
 
-namespace Global {
+namespace Core {
+
+class ActionManager;
 
 class AppContext : public QObject
 {
@@ -46,9 +53,9 @@ class AppContext : public QObject
     typedef AppResource::Action Action;
 
 public:
-    #define AppCtx (Global::AppContext::instance())
+    AppContext();
 
-    static AppContext & instance();
+    ~AppContext() {}
 
     inline const QString & version() const { return appVersion; }
 
@@ -59,6 +66,17 @@ public:
     inline int penWidth() const { return pWidth; }
 
     inline int maxPenWidth() const { return maxPWidth; }
+
+    inline ActionManager * actionManager() const { return actMgr; }
+
+    inline View::MainWindow * mainWindow() const { return win; }
+
+    inline void setMainWindow(View::MainWindow * mw)
+    {
+        if(win != mw) {
+            win = mw;
+        }
+    }
 
 public slots:
     inline void setCurrentAction(const QVariant & data)
@@ -103,13 +121,13 @@ signals:
     void maxPenWidthChanged(int newValue, int oldValue);
 
 private:
-    AppContext();
-    ~AppContext();
     QString appVersion;
     Action currAction;
     QColor pColor;
     int pWidth;
     int maxPWidth;
+    View::MainWindow * win;
+    ActionManager *actMgr;
 
 }; // end of class
 

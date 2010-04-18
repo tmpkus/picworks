@@ -70,7 +70,7 @@ ProjectWindow::ProjectWindow(Data::Project *pro, QWidget *parent /* = 0 */)
 
     setAttribute(Qt::WA_DeleteOnClose);
 
-    setWindowIcon(AppRes.icon(Global::AppResource::ProjectIcon));
+    setWindowIcon(appRes->icon(Core::AppResource::ProjectIcon));
     setWindowTitle(project->name());
     setMinimumSize(200, 200);
 

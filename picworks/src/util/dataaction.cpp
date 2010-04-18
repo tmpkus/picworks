@@ -62,7 +62,7 @@ DataAction::DataAction(const QVariant &d, QObject * parent /* = 0 */)
     setData(d);
 
     connect(this, SIGNAL(triggered()), this, SLOT(actionTriggered()));
-    connect(this, SIGNAL(actionPerformed(const QVariant &)), &AppCtx, SLOT(setCurrentAction(const QVariant &)));
+    connect(this, SIGNAL(actionPerformed(const QVariant &)), appCtx, SLOT(setCurrentAction(const QVariant &)));
     connect(this, SIGNAL(actionPerformed(const QVariant &)), &View::CommonBar::instance(), SLOT(createCommonBar(const QVariant &)));
 }
 

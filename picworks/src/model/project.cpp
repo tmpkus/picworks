@@ -198,10 +198,10 @@ using namespace Data;
 Project::Project() : projectName(tr("untitled", "Init Project name.")),
                      projectWidth(800),
                      projectHeight(600),
-                     projectWidthUnit(Global::AppResource::pxMeasurementUnit),
-                     projectHeightUnit(Global::AppResource::pxMeasurementUnit),
+                     projectWidthUnit(Core::AppResource::pxMeasurementUnit),
+                     projectHeightUnit(Core::AppResource::pxMeasurementUnit),
                      projectDpi(72),
-                     projectDpiUnit(Global::AppResource::perInchDpiUnit),
+                     projectDpiUnit(Core::AppResource::perInchDpiUnit),
                      projectBackgroundColor(Qt::white)
 {
 }
@@ -223,9 +223,9 @@ QString Project::toString() const
 {
     return QString("Project: [name=%1;\n\twidth=%2 %3;\n\theight=%4 %5;\n\tDPI: %6 %7\n\tbackground color=RBGA(%8, %9, %10, %11)]")
             .arg(projectName)
-            .arg(projectWidth).arg(AppRes.measurementUnitName(projectWidthUnit))
-            .arg(projectHeight).arg(AppRes.measurementUnitName(projectHeightUnit))
-            .arg(projectDpi).arg(AppRes.dpiUnitName(projectDpiUnit))
+            .arg(projectWidth).arg(appRes->measurementUnitName(projectWidthUnit))
+            .arg(projectHeight).arg(appRes->measurementUnitName(projectHeightUnit))
+            .arg(projectDpi).arg(appRes->dpiUnitName(projectDpiUnit))
             .arg(projectBackgroundColor.red())
             .arg(projectBackgroundColor.green())
             .arg(projectBackgroundColor.blue())

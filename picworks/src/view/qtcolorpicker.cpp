@@ -363,7 +363,7 @@ void QtColorPicker::paintEvent(QPaintEvent *e)
 
         int w = pix.width();			// width of cell in pixels
         int h = pix.height();			// height of cell in pixels
-        p.setBrush(QBrush(AppRes.grayGridImage()));
+        p.setBrush(QBrush(appRes->grayGridImage()));
         p.drawRect(2, 2, w - 5, h - 5);
         p.setBrush(col);
         p.setPen(QPen(Qt::gray));
@@ -519,7 +519,7 @@ bool QtColorPicker::colorDialogEnabled() const
         void Drawer::mouseReleaseEvent(QMouseEvent *e)
         {
 	    if (e->button() & RightButton) {
-                QColor color = QtColorPicker::getColor(mapToGlobal(e->pos()));
+                QColor color = QtColorPicker::getColor(mapToCore(e->pos()));
             }
         }
     \endcode

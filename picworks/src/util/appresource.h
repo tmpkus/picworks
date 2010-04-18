@@ -20,7 +20,7 @@
   \file appresource.h
   \ingroup Utilities
   \brief This file contains
-  - class Global::AppResource declaration
+  - class Core::AppResource declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-10-13 Created.
  */
@@ -30,17 +30,17 @@
 
 #include <QObject>
 #include <QPixmap>
+#include "singleton.h"
 
-namespace Global {
+#define appRes Util::Singleton<Core::AppResource>::instance()
+
+namespace Core {
 
 class AppResource : public QObject
 {
     Q_OBJECT
 
 public:
-
-    #define AppRes (Global::AppResource::instance())
-
     enum Icon
     {
         ApplicationIcon = 0, //!< Icon for application icon on main window title bar.
@@ -99,7 +99,9 @@ public:
         DrawPolygonAction      //!< Draw a polygon.
     };
 
-    static AppResource& instance();
+    AppResource();
+
+    ~AppResource() {}
 
     inline const QString& measurementUnitName(MeasurementUnit unit) const
     {
@@ -127,8 +129,6 @@ public:
     }
 
 private:
-    AppResource();
-    ~AppResource();
     QString measurementUnitNames[2];
     QString dpiUnitNames[2];
 
