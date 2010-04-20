@@ -21,12 +21,42 @@
   \ingroup Utilities
   \brief This file contains
   - class Core::ActionContainer implemtation
+  - class Core::MenuActionContainer implemtation
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2010-4-19 Created.
  */
 
 #include "actioncontainer.h"
 
+/*!
+  \class Core::ActionContainer actioncontainer.h
+  \brief Base class of all action containers.
+  An action container maybe a UI component that actions can be added to,
+  such as a menu bar or tool box.
+  \version 0.0.1
+  \author Cheng Liang <chengliang.soft@gmail.com>
+  \date 2010-4-20 Created.
+ */
+
 Core::ActionContainer::ActionContainer()
 {
+}
+
+/*!
+  \class Core::MenuBarActionContainer actioncontainer.h
+  \brief The action container for menu bar.
+  \version 0.0.1
+  \author Cheng Liang <chengliang.soft@gmail.com>
+  \date 2010-4-20 Created.
+ */
+
+/*!
+  \fn QMenuBar * Core::MenuBarActionContainer::menuBar()
+  \brief Gets the menu bar managed by the container.
+  \return menu bar
+ */
+
+Core::MenuBarActionContainer::MenuBarActionContainer()
+{
+    mb = new QMenuBar;
 }

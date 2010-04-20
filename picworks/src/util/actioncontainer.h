@@ -21,6 +21,7 @@
   \ingroup Utilities
   \brief This file contains
   - class Core::ActionContainer declaration
+  - class Core::MenuBarActionContainer declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2010-4-19 Created.
  */
@@ -30,14 +31,33 @@
 
 #include <QObject>
 
+class QMenuBar;
+
 namespace Core {
 
 class ActionContainer : public QObject
 {
 public:
+    enum {
+        COMP_MENUBAR,
+        COMP_TOOLBOX
+    };
     ActionContainer();
-    ~ActionContainer() {}
-}; // end of class
+    virtual ~ActionContainer() {}
+
+}; // end of class ActionContainer
+
+class MenuBarActionContainer : public ActionContainer
+{
+public:
+    MenuBarActionContainer();
+    ~MenuBarActionContainer() {}
+
+    QMenuBar * menuBar() { return mb; }
+
+private:
+    QMenuBar *mb;
+}; // end of class MenuBarActionContainer
 
 } // end of namespace
 
