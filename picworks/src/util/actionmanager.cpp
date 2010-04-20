@@ -27,6 +27,7 @@
 
 #include "actionmanager.h"
 #include "actioncontainer.h"
+#include "idmanager.h"
 
 /*!
   \class Core::ActionManager actionmanager.h
@@ -40,11 +41,17 @@
  */
 
 /*!
-  \brief Creates menu bar with id.
-  \param id id for new menu bar
-  \return action container with the menu bar created
+  \brief Gets the action container related to given id.
+  \param id id of action container
+  \return action container with the given id
  */
-Core::ActionContainer * Core::ActionManager::createMenuBar(const QString &id)
+Core::ActionContainer * Core::ActionManager::actionContainer(const QString &id)
 {
-    return NULL;
+    int uid = idManager->uid(id);
+    const QHash<int, ActionContainer *>::const_iterator it = containerMap.constFind(uid);
+    if(it == containerMap.constEnd()) {
+        qWarning() << "ActionManager cannot find action container with id " << id << endl;
+        return NULL;
+    }
+    return it.value();
 }

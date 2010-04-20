@@ -17,38 +17,40 @@
 //
 
 /*!
-  \file singleton.h
+  \file idmanager.h
   \ingroup Utilities
   \brief This file contains
-  - class Core::Singleton declaration
+  - class Core::IdManager declaration
   \author Cheng Liang <changliang.soft@gmail.com>
-  \date 2010-4-17 Created.
+  \date 2010-4-20 Created.
  */
 
-#ifndef SINGLETON_H
-#define SINGLETON_H
+#ifndef IDMANAGER_H
+#define IDMANAGER_H
 
-namespace Util {
+#include <QHash>
+#include <QString>
 
-template <typename T>
+#include "singleton.h"
 
-class Singleton
+#define idManager (Util::Singleton<Core::IdManager>::instance())
+
+namespace Core {
+
+class IdManager
 {
 public:
-    static inline T * instance()
-    {
-        static T _instance;
-        return &_instance;
-    }
+    IdManager() {}
+    ~IdManager() {}
+
+    int uid(const QString &sid);
+    QString stringId(int uid);
+    bool containsStringId(const QString &sid);
 
 private:
-    Singleton();
-    ~Singleton();
-    Singleton(const Singleton<T> &);
-    Singleton<T>& operator=(const Singleton<T> &);
-
+    QHash<QString, int> idMap;
 }; // end of class
 
 } // end of namespace
 
-#endif // SINGLETON_H
+#endif // IDMANAGER_H

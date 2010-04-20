@@ -10,11 +10,13 @@ SOURCES += $$PWD/appresource.cpp \
     $$PWD/imageio.cpp \
     $$PWD/actionmanager.cpp \
     $$PWD/singleton.cpp \
-    $$PWD/actioncontainer.cpp
+    $$PWD/actioncontainer.cpp \
+    $$PWD/idmanager.cpp
 HEADERS += $$PWD/appresource.h \
     $$PWD/appcontext.h \
     $$PWD/dataaction.h \
     $$PWD/imageio.h \
     $$PWD/actionmanager.h \
     $$PWD/singleton.h \
-    $$PWD/actioncontainer.h
+    $$PWD/actioncontainer.h \
+    $$PWD/idmanager.h

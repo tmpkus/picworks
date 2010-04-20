@@ -29,18 +29,22 @@
 #define ACTIONMANAGER_H
 
 #include <QObject>
+#include <QHash>
 
 namespace Core {
 
 class ActionContainer;
 
-class ActionManager : public QObject
+class ActionManager
 {
 public:
-    ActionManager(QObject * parent = 0) : QObject(parent) {}
+    ActionManager() {}
     ~ActionManager() {}
 
-    ActionContainer * createMenuBar(const QString & id);
+    ActionContainer * actionContainer(const QString & id);
+
+private:
+    QHash<int, ActionContainer *> containerMap;
 
 }; // end of class
 

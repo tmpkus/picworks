@@ -91,7 +91,7 @@ QString PicWorks::VersionInfo::rivi = QString("0");
   \internal
   \brief Build version number.
  */
-QString PicWorks::VersionInfo::bu = QString("6");
+QString PicWorks::VersionInfo::bu = QString("1");
 
 /*!
   \internal

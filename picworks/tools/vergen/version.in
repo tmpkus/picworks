@@ -67,4 +67,4 @@
   \internal
   \brief PicWorks version control system URL.
  */
-QString PicWorks::VersionInfo::wcURL = QString("git://picworks.git.sourceforge.net/gitroot/picworks/picworks");
+QString PicWorks::VersionInfo::wcURL = QString("http://picworks.hg.sourceforge.net:8000/hgroot/picworks/picworks");
