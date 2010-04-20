@@ -38,7 +38,7 @@ class PenWidthChooser : public QWidget
 
 public:
     PenWidthChooser(bool showLabel = true, QWidget *parent = 0);
-    ~PenWidthChooser();
+    ~PenWidthChooser() {}
 
 public slots:
 

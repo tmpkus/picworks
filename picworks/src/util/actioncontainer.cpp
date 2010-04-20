@@ -27,8 +27,6 @@
 
 #include "actioncontainer.h"
 
-using namespace Core;
-
-ActionContainer::ActionContainer()
+Core::ActionContainer::ActionContainer()
 {
 }

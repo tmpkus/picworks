@@ -47,7 +47,7 @@ class TwoColorSelector : public QWidget
     Q_OBJECT
 public:
     explicit TwoColorSelector(QWidget *parent = 0);
-    virtual ~TwoColorSelector();
+    ~TwoColorSelector();
     QSize sizeHint() const;
     QSize minimumSizeHint() const;
 

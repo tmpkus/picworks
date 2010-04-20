@@ -26,6 +26,7 @@
  */
 
 #include "actionmanager.h"
+#include "actioncontainer.h"
 
 /*!
   \class Core::ActionManager actionmanager.h
@@ -37,3 +38,13 @@
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2009-10-14 Created.
  */
+
+/*!
+  \brief Creates menu bar with id.
+  \param id id for new menu bar
+  \return action container with the menu bar created
+ */
+Core::ActionContainer * Core::ActionManager::createMenuBar(const QString &id)
+{
+    return NULL;
+}

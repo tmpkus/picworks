@@ -27,8 +27,6 @@
 
 #include "imageio.h"
 
-using namespace IO;
-
-ImageIO::ImageIO()
+IO::ImageIO::ImageIO()
 {
 }

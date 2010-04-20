@@ -32,8 +32,6 @@
 
 #include "../view/commonbar.h"
 
-using namespace Action;
-
 /*!
   \class Action::DataAction dataaction.h
   \brief This is the action which contains data, such as \a AppResource::Action.
@@ -56,8 +54,8 @@ using namespace Action;
   \param d data related to this action
   \param parent parent object pointer, default is 0
  */
-DataAction::DataAction(const QVariant &d, QObject * parent /* = 0 */)
-        : QAction(parent)
+Action::DataAction::DataAction(const QVariant &d, QObject * parent /* = 0 */)
+    : QAction(parent)
 {
     setData(d);
 
@@ -69,7 +67,7 @@ DataAction::DataAction(const QVariant &d, QObject * parent /* = 0 */)
 /*!
   \brief Destructs this action.
  */
-DataAction::~DataAction()
+Action::DataAction::~DataAction()
 {
 }
 
@@ -77,7 +75,7 @@ DataAction::~DataAction()
   \brief When the action triggered, this function will be called.
   A signal \a actionPerformed will be emited if the action is triggered.
  */
-void DataAction::actionTriggered()
+void Action::DataAction::actionTriggered()
 {
     emit actionPerformed(data());
 }

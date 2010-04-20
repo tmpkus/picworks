@@ -30,8 +30,6 @@
 
 #include "preferencesdialog.h"
 
-using namespace View;
-
 /*!
   \class View::PreferencesDialog preferencesdialog.h
   \brief Preferences dialog in PicWorks.
@@ -47,16 +45,9 @@ using namespace View;
   Creates a new PreferencesDialog instance.
   \param parent parent widget of this dialog, default value is 0
  */
-PreferencesDialog::PreferencesDialog(QWidget *parent /* = 0 */)
+View::PreferencesDialog::PreferencesDialog(QWidget *parent /* = 0 */)
         : QDialog(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowTitle(tr("Preferences", "Preferences dialog title."));
-}
-
-/*!
-  \brief Destructs this dialog.
- */
-PreferencesDialog::~PreferencesDialog()
-{
 }

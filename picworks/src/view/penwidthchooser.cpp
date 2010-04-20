@@ -56,14 +56,12 @@
   \param w the new value of pen width
  */
 
-using namespace View;
-
 /*!
   \brief Constructs a chooser.
   \param showLabel \a true if show text label
   \param parent parent widget pointer
  */
-PenWidthChooser::PenWidthChooser(bool showLabel /* = true */, QWidget *parent /* = 0 */)
+View::PenWidthChooser::PenWidthChooser(bool showLabel /* = true */, QWidget *parent /* = 0 */)
     : QWidget(parent), pw(1)
 {
     QHBoxLayout *layout = new QHBoxLayout(this);
@@ -83,11 +81,4 @@ PenWidthChooser::PenWidthChooser(bool showLabel /* = true */, QWidget *parent /*
     setLayout(layout);
 
     connect(penWidthBox, SIGNAL(valueChanged(int)), this, SLOT(setPenWidth(int)));
-}
-
-/*!
-  \brief Destructs this chooser.
- */
-PenWidthChooser::~PenWidthChooser()
-{
 }

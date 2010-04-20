@@ -45,7 +45,7 @@ class ProjectView : public QGraphicsView
 {
 public:
     ProjectView(Data::Project *pro, QWidget *parent = 0);
-    virtual ~ProjectView();
+    ~ProjectView();
     QSize sizeHint() const;
 
 private:

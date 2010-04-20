@@ -32,8 +32,6 @@
 #include "line.h"
 #include "../view/projectscene.h"
 
-using namespace GraphicsItem;
-
 /*!
   \class GraphicsItem::Line line.h
   \brief Line model.
@@ -47,31 +45,31 @@ using namespace GraphicsItem;
   Constrats a line item.
   \param s pointer of the scene in which this line is
  */
-Line::Line(View::ProjectScene *s)
-        : AbstractShape(s)
+GraphicsItem::Line::Line(View::ProjectScene *s)
+        : GraphicsItem::AbstractShape(s)
 {
 }
 
 /*!
   \brief Destructor.
  */
-Line::~Line()
+GraphicsItem::Line::~Line()
 {
 }
 
-void Line::startDraw(QGraphicsSceneMouseEvent * event)
+void GraphicsItem::Line::startDraw(QGraphicsSceneMouseEvent * event)
 {
     emit isDrawing(true);
     setLine(QLineF(event->scenePos(), event->scenePos()));
 }
 
-void Line::drawing(QGraphicsSceneMouseEvent * event)
+void GraphicsItem::Line::drawing(QGraphicsSceneMouseEvent * event)
 {
     QLineF newLine(line().p1(), event->scenePos());
     setLine(newLine);
 }
 
-void Line::endDraw(QGraphicsSceneMouseEvent * event)
+void GraphicsItem::Line::endDraw(QGraphicsSceneMouseEvent * event)
 {
     emit isDrawing(false);
 }

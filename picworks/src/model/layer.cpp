@@ -27,8 +27,6 @@
 
 #include "layer.h"
 
-using namespace Data;
-
 /*!
   \class Data::Layer layer.h
   \brief Layer data of project in PicWorks.
@@ -75,7 +73,7 @@ using namespace Data;
   \brief Constructor.
   Creates a new layer.
  */
-Layer::Layer()
+Data::Layer::Layer()
 {
 }
 
@@ -83,6 +81,6 @@ Layer::Layer()
   \brief Destructor.
   Destructs a layer.
  */
-Layer::~Layer()
+Data::Layer::~Layer()
 {
 }

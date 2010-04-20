@@ -44,8 +44,6 @@
 #include "../model/project.h"
 #include "../util/appresource.h"
 
-using namespace View;
-
 /*!
   \class View::ProjectCreateDialog projectcreatedialog.h
   \brief Creator of project in PicWorks.
@@ -58,7 +56,7 @@ using namespace View;
 
 /*!
   \fn void View::ProjectCreateDialog::accept()
-  \brief Closes the dialog and emits projectCreated(Project&) signal.
+  \brief Closes the dialog and emits projectCreated(Data::Project&) signal.
  */
 
 /*!
@@ -66,8 +64,9 @@ using namespace View;
   Creates a new ProjectCreateDialog instance.
   \param parent parent widget of this dialog, default value is 0
  */
-ProjectCreateDialog::ProjectCreateDialog(QWidget *parent /* = 0 */, Qt::WindowFlags flags /* = 0 */)
-        : QDialog(parent, flags), backgroundColor(Qt::white)
+View::ProjectCreateDialog::ProjectCreateDialog(QWidget *parent /* = 0 */, Qt::WindowFlags flags /* = 0 */)
+        : QDialog(parent, flags),
+          backgroundColor(Qt::white)
 {
     // init locale attributes
     // Measurement unit for creating a new project. The sequence of this list must be the
@@ -169,18 +168,10 @@ ProjectCreateDialog::ProjectCreateDialog(QWidget *parent /* = 0 */, Qt::WindowFl
 }
 
 /*!
-  \brief Destructor.
-  Destructs this dialog.
- */
-ProjectCreateDialog::~ProjectCreateDialog()
-{
-}
-
-/*!
   \brief Gets the project data.
   \return pointer of project instance
  */
-Data::Project * ProjectCreateDialog::getProject()
+Data::Project * View::ProjectCreateDialog::getProject()
 {
     Data::Project *p = new Data::Project;
     p->setName(proNameEdit->text());

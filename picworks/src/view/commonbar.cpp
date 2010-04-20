@@ -33,8 +33,6 @@
 #include "penwidthchooser.h"
 #include "../util/appcontext.h"
 
-using namespace View;
-
 /*!
   \class View::CommonBar commonbar.h
   \brief This is the common bar of PicWorks.
@@ -53,7 +51,7 @@ using namespace View;
   Creates a new common bar instance.
   \param parent parent widget pointer, default value is 0
  */
-CommonBar::CommonBar(const QString &title /* = "CommonBar" */, QWidget *parent /* = 0 */)
+View::CommonBar::CommonBar(const QString &title /* = "CommonBar" */, QWidget *parent /* = 0 */)
 {
     bar = new QToolBar(title, parent);
     //bar->setContentsMargins(2, 2, 2, 2);
@@ -79,7 +77,7 @@ CommonBar::CommonBar(const QString &title /* = "CommonBar" */, QWidget *parent /
   \brief Destructor.
   Destructs the common bar.
  */
-CommonBar::~CommonBar()
+View::CommonBar::~CommonBar()
 {
 }
 
@@ -89,7 +87,7 @@ CommonBar::~CommonBar()
   \param parent pointer of parent widget, default is NULL
   \return the singleton instance of common bar.
  */
-CommonBar & CommonBar::instance(const QString &title /* = "CommonBar" */, QWidget *parent /* = 0 */)
+View::CommonBar & View::CommonBar::instance(const QString &title /* = "CommonBar" */, QWidget *parent /* = 0 */)
 {
     static CommonBar cb(title, parent);
     return cb;
@@ -99,7 +97,7 @@ CommonBar & CommonBar::instance(const QString &title /* = "CommonBar" */, QWidge
   \brief Gets different common bars according to current action.
   \param data current action
  */
-QToolBar * CommonBar::createCommonBar(const QVariant & data)
+QToolBar * View::CommonBar::createCommonBar(const QVariant & data)
 {
     if(data.canConvert(QVariant::Int)) {
         Core::AppResource::Action a = static_cast<Core::AppResource::Action>(data.toInt());

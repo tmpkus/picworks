@@ -38,13 +38,11 @@
   \date 2009-12-4 Created.
  */
 
-using namespace View;
-
 /*!
   \brief Constructs the panel that can preview layers.
   \param parent the parent widget pointer
  */
-LayerPreviewPanel::LayerPreviewPanel(QWidget *parent /* = 0 */)
+View::LayerPreviewPanel::LayerPreviewPanel(QWidget *parent /* = 0 */)
     : QWidget(parent)
 {
 }
@@ -52,6 +50,6 @@ LayerPreviewPanel::LayerPreviewPanel(QWidget *parent /* = 0 */)
 /*!
   \brief Destructor.
  */
-LayerPreviewPanel::~LayerPreviewPanel()
+View::LayerPreviewPanel::~LayerPreviewPanel()
 {
 }

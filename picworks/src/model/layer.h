@@ -39,7 +39,7 @@ class Layer : public QObject
 
 public:
     Layer();
-    virtual ~Layer();
+    ~Layer();
 
     inline void setName(const QString &name)
     {

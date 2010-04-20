@@ -28,8 +28,6 @@
 #include "appcontext.h"
 #include "actionmanager.h"
 
-using namespace Core;
-
 /*!
   \class Core::AppContext appcontext.h
   \brief Application context.
@@ -47,7 +45,7 @@ using namespace Core;
   \brief The abbrev for getting instance function.
   This is the abbrev for getting instance. It returns an instance not a pointer.
 
-  \fn void Core::AppContext::setCurrentAction(AppResource::Action a)
+  \fn void Core::AppContext::setCurrentAction(Core::AppResource::Action a)
   \brief Sets the current action code of PicWorks.
   If new action is different from the old one, \a currentActionChanged
   signal will be emited.
@@ -115,7 +113,7 @@ using namespace Core;
   \brief Gets global max pen width
   \return max pen width
 
-  \fn void Core::AppContext::currentActionChanged(const AppResource::Action & newCurrAction, const AppResource::Action & oldCurrAction)
+  \fn void Core::AppContext::currentActionChanged(const Core::AppResource::Action & newCurrAction, const Core::AppResource::Action & oldCurrAction)
   \brief Emits when current action changes.
   \param newCurrAction the new action code
   \param oldCurrAction the old action code
@@ -140,10 +138,9 @@ using namespace Core;
   \internal
   \brief Private constructor.
  */
-AppContext::AppContext()
-        : pColor(Qt::black),
-          maxPWidth(500),
-          actMgr(new ActionManager)
+Core::AppContext::AppContext() : pColor(Qt::black),
+                                 maxPWidth(500),
+                                 actMgr(new Core::ActionManager)
 {
     appVersion = QString("%1.%2.%3.%4")
                  .arg(PicWorks::VersionInfo::major())

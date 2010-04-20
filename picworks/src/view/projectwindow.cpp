@@ -44,8 +44,6 @@
 #include "../model/project.h"
 #include "../util/appresource.h"
 
-using namespace View;
-
 /*!
   \class View::ProjectWindow projectwindow.h
   \brief Project window in PicWorks.
@@ -62,8 +60,9 @@ using namespace View;
   \param pro project data to show, not null.
   \param parent parent widgets of this window, default value is 0.
  */
-ProjectWindow::ProjectWindow(Data::Project *pro, QWidget *parent /* = 0 */)
-        : QMdiSubWindow(parent), project(pro)
+View::ProjectWindow::ProjectWindow(Data::Project *pro, QWidget *parent /* = 0 */)
+        : QMdiSubWindow(parent),
+          project(pro)
 {
     // entry conditions
     Q_CHECK_PTR(pro);
@@ -107,7 +106,7 @@ ProjectWindow::ProjectWindow(Data::Project *pro, QWidget *parent /* = 0 */)
 /*!
   \brief Destructor.
  */
-ProjectWindow::~ProjectWindow()
+View::ProjectWindow::~ProjectWindow()
 {
 }
 
@@ -117,7 +116,7 @@ ProjectWindow::~ProjectWindow()
   the scroll bar.
   \return suitable size of this project window
  */
-QSize ProjectWindow::sizeHint() const
+QSize View::ProjectWindow::sizeHint() const
 {
     QStyle *style = qApp->style();
     int frameBorderWidth = style->pixelMetric(QStyle::PM_MdiSubWindowFrameWidth);

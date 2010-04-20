@@ -28,8 +28,6 @@
 
 #include "version.h"
 
-namespace PicWorks {
-
 /*!
   \class PicWorks::VersionInfo version.h
   \brief Version information of PicWorks.
@@ -69,36 +67,34 @@ namespace PicWorks {
   \internal
   \brief PicWorks version control system URL.
  */
-QString VersionInfo::wcURL = QString("git://picworks.git.sourceforge.net/gitroot/picworks/picworks");
+QString PicWorks::VersionInfo::wcURL = QString("git://picworks.git.sourceforge.net/gitroot/picworks/picworks");
 
 /*!
   \internal
   \brief Major version number.
  */
-QString VersionInfo::ma = QString("0");
+QString PicWorks::VersionInfo::ma = QString("0");
 
 /*!
   \internal
   \brief Minor version number.
  */
-QString VersionInfo::mi = QString("0");
+QString PicWorks::VersionInfo::mi = QString("0");
 
 /*!
   \internal
   \brief Revision version number.
  */
-QString VersionInfo::rivi = QString("0");
+QString PicWorks::VersionInfo::rivi = QString("0");
 
 /*!
   \internal
   \brief Build version number.
  */
-QString VersionInfo::bu = QString("1");
+QString PicWorks::VersionInfo::bu = QString("6");
 
 /*!
   \internal
   \brief Build date.
  */
-QString VersionInfo::bDate = QString("2010-4-19");
-
-}
+QString PicWorks::VersionInfo::bDate = QString("2010-4-20");

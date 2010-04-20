@@ -38,8 +38,6 @@
 #include "aboutdialog.h"
 #include "licensedialog.h"
 
-using namespace View;
-
 /*!
   \class View::AboutDialog aboutdialog.h
   \brief The about dialog of PicWorks.
@@ -56,7 +54,7 @@ using namespace View;
   Creates a new about dialog instance.
   \param parent parent widget of this window, default value is 0
  */
-AboutDialog::AboutDialog(QWidget *parent /* = 0 */)
+View::AboutDialog::AboutDialog(QWidget *parent /* = 0 */)
         : QDialog(parent)
 {
     setWindowFlags(Qt::FramelessWindowHint);
@@ -91,7 +89,7 @@ AboutDialog::AboutDialog(QWidget *parent /* = 0 */)
   \brief Destructor.
   Destructs the about dialog.
  */
-AboutDialog::~AboutDialog()
+View::AboutDialog::~AboutDialog()
 {
 }
 
@@ -99,7 +97,7 @@ AboutDialog::~AboutDialog()
   \internal
   \brief Adds image onto background.
  */
-void AboutDialog::paintEvent(QPaintEvent* event)
+void View::AboutDialog::paintEvent(QPaintEvent* event)
 {
     QPainter p(this);
     p.drawPixmap(0, 0, backgroundImage.width(), backgroundImage.height(), backgroundImage);
@@ -114,7 +112,7 @@ void AboutDialog::paintEvent(QPaintEvent* event)
   \internal
   \brief Closes the about dialog by pressing mouse on it.
  */
-void AboutDialog::mousePressEvent(QMouseEvent* event)
+void View::AboutDialog::mousePressEvent(QMouseEvent* event)
 {
     if(event->button() == Qt::LeftButton) {
         accept();
@@ -125,7 +123,7 @@ void AboutDialog::mousePressEvent(QMouseEvent* event)
   \internal
   \brief Shows license dialog. This will close the about dialog first.
  */
-void AboutDialog::showLicenseDialog()
+void View::AboutDialog::showLicenseDialog()
 {
     accept();
     LicenseDialog *ld = new LicenseDialog(this, Qt::WindowSystemMenuHint | Qt::WindowTitleHint);
@@ -136,7 +134,7 @@ void AboutDialog::showLicenseDialog()
   \internal
   \brief Shows about Qt dialog. This will close the about dialog first.
  */
-void AboutDialog::showAboutQtDialog()
+void View::AboutDialog::showAboutQtDialog()
 {
     accept();
     qApp->aboutQt();

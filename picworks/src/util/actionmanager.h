@@ -32,11 +32,15 @@
 
 namespace Core {
 
+class ActionContainer;
+
 class ActionManager : public QObject
 {
 public:
     ActionManager(QObject * parent = 0) : QObject(parent) {}
     ~ActionManager() {}
+
+    ActionContainer * createMenuBar(const QString & id);
 
 }; // end of class
 

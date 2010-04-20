@@ -49,7 +49,7 @@ public slots:
 
 private:
     CommonBar(const QString &title = "CommonBar", QWidget *parent = 0);
-    virtual ~CommonBar();
+    ~CommonBar();
     QToolBar *bar;
     QAction *penColorAction;
     QAction *penWidthAction;

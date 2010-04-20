@@ -72,33 +72,31 @@ int VersionNumberGenarator::genarate()
                 << "  \\internal" << endl
                 << "  \\brief Major version number." << endl
                 << " */" << endl
-                << QString("QString VersionInfo::ma = QString(\"%1\");").arg(args.at(2)) << endl
+                << QString("QString PicWorks::VersionInfo::ma = QString(\"%1\");").arg(args.at(2)) << endl
                 << endl
                 << "/*!" << endl
                 << "  \\internal" << endl
                 << "  \\brief Minor version number." << endl
                 << " */" << endl
-                << QString("QString VersionInfo::mi = QString(\"%1\");").arg(args.at(3)) << endl
+                << QString("QString PicWorks::VersionInfo::mi = QString(\"%1\");").arg(args.at(3)) << endl
                 << endl
                 << "/*!" << endl
                 << "  \\internal" << endl
                 << "  \\brief Revision version number." << endl
                 << " */" << endl
-                << QString("QString VersionInfo::rivi = QString(\"%1\");").arg(args.at(4)) << endl
+                << QString("QString PicWorks::VersionInfo::rivi = QString(\"%1\");").arg(args.at(4)) << endl
                 << endl
                 << "/*!" << endl
                 << "  \\internal" << endl
                 << "  \\brief Build version number." << endl
                 << " */" << endl
-                << QString("QString VersionInfo::bu = QString(\"%1\");").arg(buildNumber) << endl
+                << QString("QString PicWorks::VersionInfo::bu = QString(\"%1\");").arg(buildNumber) << endl
                 << endl
                 << "/*!" << endl
                 << "  \\internal" << endl
                 << "  \\brief Build date." << endl
                 << " */" << endl
-                << QString("QString VersionInfo::bDate = QString(\"%1-%2-%3\");").arg(QString::number(today.year()), QString::number(today.month()), QString::number(today.day())) << endl
-                << endl
-                << "}" << endl;
+                << QString("QString PicWorks::VersionInfo::bDate = QString(\"%1-%2-%3\");").arg(QString::number(today.year()), QString::number(today.month()), QString::number(today.day())) << endl;
     }
     cppFile.close();
     return 0;

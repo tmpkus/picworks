@@ -39,7 +39,7 @@
 #include "actionmanager.h"
 #include "../view/mainwindow.h"
 
-#define appCtx Util::Singleton<Core::AppContext>::instance()
+#define appCtx (Util::Singleton<Core::AppContext>::instance())
 
 class QColor;
 

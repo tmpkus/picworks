@@ -57,7 +57,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    virtual ~MainWindow();
+    ~MainWindow();
 
 protected:
     QMenu* createPopupMenu();

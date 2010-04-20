@@ -38,7 +38,7 @@ class LayerPreviewPanel : public QWidget
 
 public:
     explicit LayerPreviewPanel(QWidget *parent = 0);
-    virtual ~LayerPreviewPanel();
+    ~LayerPreviewPanel();
 
 signals:
 

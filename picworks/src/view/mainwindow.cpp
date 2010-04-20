@@ -58,8 +58,6 @@
 #include "commonbar.h"
 #include "layerpreviewpanel.h"
 
-using namespace View;
-
 /*!
   \class View::MainWindow mainwindow.h
   \brief Main window of PicWorks.
@@ -76,7 +74,7 @@ using namespace View;
   Creates a new MainWindow instance.
   \param parent parent widget of this window, default value is \a NULL
  */
-MainWindow::MainWindow(QWidget *parent /* = 0 */)
+View::MainWindow::MainWindow(QWidget *parent /* = 0 */)
     : QMainWindow(parent)
 {
     setWindowIcon(appRes->icon(Core::AppResource::ApplicationIcon));
@@ -101,14 +99,14 @@ MainWindow::MainWindow(QWidget *parent /* = 0 */)
   \brief Destructor.
   Destructs a main window.
  */
-MainWindow::~MainWindow()
+View::MainWindow::~MainWindow()
 {
 }
 
 /* [private]
  * Creates menus used in application.
  */
-void MainWindow::createMenus()
+void View::MainWindow::createMenus()
 {
     QMenuBar *mb = new QMenuBar;
     this->setMenuBar(mb);
@@ -154,7 +152,7 @@ void MainWindow::createMenus()
   \sa QMainWindow::createPopupMenu()
   \return application context menu
  */
-QMenu* MainWindow::createPopupMenu()
+QMenu* View::MainWindow::createPopupMenu()
 {
     QMenu* menu = QMainWindow::createPopupMenu();
     menu->addSeparator();
@@ -169,7 +167,7 @@ QMenu* MainWindow::createPopupMenu()
   - Save positions of tool boxes and tool bars;
   \param event the close event
  */
-void MainWindow::closeEvent(QCloseEvent *event)
+void View::MainWindow::closeEvent(QCloseEvent *event)
 {
     writeSettings();
 }
@@ -180,7 +178,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
   main window. Many panels such as layers and history operations will be added
   to this panel.
  */
-void MainWindow::createDockPanelsSet()
+void View::MainWindow::createDockPanelsSet()
 {
     dockPanelsSet = new QDockWidget(tr("Panels Set", "Title of panel set."));
     dockPanelsSet->setObjectName("DockPanelsSet");
@@ -201,7 +199,7 @@ void MainWindow::createDockPanelsSet()
   \internal
   \brief Creates tool bars used in application.
  */
-void MainWindow::createToolBars()
+void View::MainWindow::createToolBars()
 {
     // tool bar for commands
     toolBar = addToolBar(tr("Commands Bar", "Common bar title when floating."));
@@ -273,7 +271,7 @@ void MainWindow::createToolBars()
   This action will set as the default action instead of adding into its action list.
   @return the pointer to a QToolButton instance by "new" operation
  */
-QToolButton * MainWindow::createToolButton(QAction *action)
+QToolButton * View::MainWindow::createToolButton(QAction *action)
 {
     QToolButton *button = new QToolButton;
     button->setDefaultAction(action);
@@ -286,7 +284,7 @@ QToolButton * MainWindow::createToolButton(QAction *action)
   \internal
   \brief Creates status bars used in application.
  */
-void MainWindow::createStatusBar()
+void View::MainWindow::createStatusBar()
 {
     statusLabel = new QLabel(tr("Galaxy (C) PicWorks v%1", "Status bar startup label.").arg(appCtx->version()));
     statusLabel->setMinimumSize(statusLabel->sizeHint());
@@ -299,7 +297,7 @@ void MainWindow::createStatusBar()
   \internal
   \brief Creates actions used in application.
  */
-void MainWindow::createActions()
+void View::MainWindow::createActions()
 {
     // Common Actions
     newAction = new QAction(tr("&New...", "[New] action text."), this);
@@ -470,7 +468,7 @@ void MainWindow::createActions()
   \internal
   \brief Establishes all connections.
  */
-void MainWindow::establishConnections()
+void View::MainWindow::establishConnections()
 {
     connect(newAction, SIGNAL(triggered()), this, SLOT(showProjectCreateDialog()));
     connect(openAction, SIGNAL(triggered()), this, SLOT(showFileOpenDialog()));
@@ -486,7 +484,7 @@ void MainWindow::establishConnections()
   This slot will show a "new dialog" first, in order to get data from users
   and then try to construct a Project instance using \a getProject slot.
  */
-void MainWindow::showProjectCreateDialog()
+void View::MainWindow::showProjectCreateDialog()
 {
     ProjectCreateDialog *pcd = new ProjectCreateDialog(this);// Qt::WindowSystemMenuHint | Qt::WindowTitleHint
     // block...
@@ -504,7 +502,7 @@ void MainWindow::showProjectCreateDialog()
   \internal
   \brief Shows the about dialog.
  */
-void MainWindow::showAboutDialog()
+void View::MainWindow::showAboutDialog()
 {
     AboutDialog *ad = new AboutDialog(this);
     ad->exec();
@@ -514,7 +512,7 @@ void MainWindow::showAboutDialog()
   \internal
   \brief Shows preferences dialog.
  */
-void MainWindow::showPreferencesDialog()
+void View::MainWindow::showPreferencesDialog()
 {
     PreferencesDialog *pd = new PreferencesDialog(this);
     pd->exec();
@@ -524,7 +522,7 @@ void MainWindow::showPreferencesDialog()
   \internal
   \brief Shows file open dialog.
  */
-void MainWindow::showFileOpenDialog()
+void View::MainWindow::showFileOpenDialog()
 {
     QString path = QFileDialog::getOpenFileName(this, tr("Open File"), ".", tr("All support formats(*.jpg; *.png);;JPEG Files(*.jpg);;PNG Files(*.png)"));
     if(path.isEmpty()) {
@@ -540,7 +538,7 @@ void MainWindow::showFileOpenDialog()
   At last this slot will show a subwindow that is an instance of ProjectWindow.
   \param project project created by dialog
  */
-void MainWindow::getProject(Data::Project & project)
+void View::MainWindow::getProject(Data::Project & project)
 {
     ProjectWindow * pw = new ProjectWindow(&project);
     mdiArea->addSubWindow(pw);
@@ -551,7 +549,7 @@ void MainWindow::getProject(Data::Project & project)
   \internal
   \brief Writes settings of main window.
  */
-void MainWindow::writeSettings()
+void View::MainWindow::writeSettings()
 {
     QSettings settings(qApp->applicationDirPath().append("/PicWorks.ini"), QSettings::IniFormat);
     settings.beginGroup("MainWindow");
@@ -564,7 +562,7 @@ void MainWindow::writeSettings()
   \internal
   \brief Reads stored settings.
  */
-void MainWindow::readSettings()
+void View::MainWindow::readSettings()
 {
     QSettings settings(qApp->applicationDirPath().append("/PicWorks.ini"), QSettings::IniFormat);
     settings.beginGroup("MainWindow");

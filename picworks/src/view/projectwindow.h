@@ -49,7 +49,7 @@ class ProjectWindow : public QMdiSubWindow
 {
 public:
     ProjectWindow(Data::Project *pro, QWidget *parent = 0);
-    virtual ~ProjectWindow();
+    ~ProjectWindow();
     QSize sizeHint() const;
 
 private:

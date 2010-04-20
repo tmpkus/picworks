@@ -27,8 +27,6 @@
 
 #include "project.h"
 
-using namespace Data;
-
 /*!
   \brief Project data in PicWorks.
   This is the set of data used for PicWorks project. A project is usually an opened image
@@ -76,7 +74,7 @@ using namespace Data;
   is different from the old one.
   \param h new height of the project, positive integer, default value is 600
 
-  \fn void Data::Project::setWidthUnit(AppResource::MeasurementUnit wu)
+  \fn void Data::Project::setWidthUnit(Core::AppResource::MeasurementUnit wu)
   \brief Sets measure unit of width.
   \a projectWidthUnitChanged signal will be emited if new unit
   is different from the old one.
@@ -195,14 +193,15 @@ using namespace Data;
   \brief Constructor.
   Creates a new project.
  */
-Project::Project() : projectName(tr("untitled", "Init Project name.")),
-                     projectWidth(800),
-                     projectHeight(600),
-                     projectWidthUnit(Core::AppResource::pxMeasurementUnit),
-                     projectHeightUnit(Core::AppResource::pxMeasurementUnit),
-                     projectDpi(72),
-                     projectDpiUnit(Core::AppResource::perInchDpiUnit),
-                     projectBackgroundColor(Qt::white)
+Data::Project::Project()
+    : projectName(tr("untitled", "Init Project name.")),
+      projectWidth(800),
+      projectHeight(600),
+      projectWidthUnit(Core::AppResource::pxMeasurementUnit),
+      projectHeightUnit(Core::AppResource::pxMeasurementUnit),
+      projectDpi(72),
+      projectDpiUnit(Core::AppResource::perInchDpiUnit),
+      projectBackgroundColor(Qt::white)
 {
 }
 
@@ -210,7 +209,7 @@ Project::Project() : projectName(tr("untitled", "Init Project name.")),
   \brief Destructor.
   Destructs a project.
  */
-Project::~Project()
+Data::Project::~Project()
 {
 }
 
@@ -219,7 +218,7 @@ Project::~Project()
   This is useful for some debug text.
   \return projct data as a string
  */
-QString Project::toString() const
+QString Data::Project::toString() const
 {
     return QString("Project: [name=%1;\n\twidth=%2 %3;\n\theight=%4 %5;\n\tDPI: %6 %7\n\tbackground color=RBGA(%8, %9, %10, %11)]")
             .arg(projectName)

@@ -28,8 +28,6 @@
 #include "abstractshape.h"
 #include "../view/projectscene.h"
 
-using namespace GraphicsItem;
-
 /*!
   \class GraphicsItem::AbstractShape abstractshape.h
   \brief Abstract shape in PicWorks.
@@ -72,7 +70,7 @@ using namespace GraphicsItem;
   Constracts a shape item. This constructor will connect the shape to the scene.
   \param s the projet scene in which the shape is
  */
-AbstractShape::AbstractShape(View::ProjectScene *s)
+GraphicsItem::AbstractShape::AbstractShape(View::ProjectScene *s)
         : scene(s)
 {
     connect(this, SIGNAL(isDrawing(bool)), scene, SLOT(setProcessing(bool)));
@@ -82,6 +80,6 @@ AbstractShape::AbstractShape(View::ProjectScene *s)
   \brief Destructor.
   Destructs this shape.
  */
-AbstractShape::~AbstractShape()
+GraphicsItem::AbstractShape::~AbstractShape()
 {
 }

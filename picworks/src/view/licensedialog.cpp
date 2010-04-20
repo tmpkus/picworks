@@ -32,8 +32,6 @@
 
 #include "licensedialog.h"
 
-using namespace View;
-
 /*!
   \class View::LicenseDialog licensedialog.h
   \brief The license dialog of PicWorks.
@@ -48,7 +46,7 @@ using namespace View;
   Creates a new LicenseDialog instance.
   \param parent parent widget of this window, default value is 0
  */
-LicenseDialog::LicenseDialog(QWidget *parent /* = 0 */, Qt::WindowFlags flags /* = 0 */)
+View::LicenseDialog::LicenseDialog(QWidget *parent /* = 0 */, Qt::WindowFlags flags /* = 0 */)
         : QDialog(parent, flags)
 {
     setWindowTitle(tr("License", "License dialog title."));
@@ -690,12 +688,4 @@ LicenseDialog::LicenseDialog(QWidget *parent /* = 0 */, Qt::WindowFlags flags /*
     setLayout(layout);
 
     connect(okButton, SIGNAL(clicked()), this, SLOT(accept()));
-}
-
-/*!
-  \brief Destructor.
-  Destructs this license window.
- */
-LicenseDialog::~LicenseDialog()
-{
 }

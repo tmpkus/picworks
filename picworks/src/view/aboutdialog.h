@@ -42,7 +42,7 @@ class AboutDialog : public QDialog
 
 public:
     explicit AboutDialog(QWidget *parent = 0);
-    virtual ~AboutDialog();
+    ~AboutDialog();
 
 protected:
     void paintEvent(QPaintEvent* event);

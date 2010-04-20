@@ -42,7 +42,7 @@ public:
 
     DataAction(const QVariant &data, QObject * parent = 0);
 
-    virtual ~DataAction();
+    ~DataAction();
 
 signals:
 

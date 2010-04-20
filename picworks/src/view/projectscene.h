@@ -48,7 +48,7 @@ class ProjectScene : public QGraphicsScene
 
 public:
     ProjectScene(Data::Project *pro, QObject *parent = 0);
-    virtual ~ProjectScene();
+    ~ProjectScene();
 
 public slots:
 

@@ -38,8 +38,6 @@
 #include "../item/line.h"
 #include "../item/abstractshape.h"
 
-using namespace View;
-
 /*!
   \class View::ProjectScene projectscene.h
   \brief Project scene in PicWorks.
@@ -59,8 +57,10 @@ using namespace View;
   \param pro the project pointer, not null.
   \param parent parent widget of this dialog, default value is 0.
  */
-ProjectScene::ProjectScene(Data::Project *pro, QObject *parent /* = 0 */)
-        : QGraphicsScene(parent), project(pro), layerIndex(1)
+View::ProjectScene::ProjectScene(Data::Project *pro, QObject *parent /* = 0 */)
+        : QGraphicsScene(parent),
+          project(pro),
+          layerIndex(1)
 {
     // entry conditions
     Q_CHECK_PTR(pro);
@@ -74,7 +74,7 @@ ProjectScene::ProjectScene(Data::Project *pro, QObject *parent /* = 0 */)
   \brief Destructor.
   Destructs this scene.
  */
-ProjectScene::~ProjectScene()
+View::ProjectScene::~ProjectScene()
 {
 }
 
@@ -83,7 +83,7 @@ ProjectScene::~ProjectScene()
   \brief Override mouse press event.
   \param event the mouse event
  */
-void ProjectScene::mousePressEvent(QGraphicsSceneMouseEvent * event)
+void View::ProjectScene::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
     if(event->button() == Qt::LeftButton) {
         switch(appCtx->currentAction()) {
@@ -134,7 +134,7 @@ void ProjectScene::mousePressEvent(QGraphicsSceneMouseEvent * event)
   \brief Override mouse move event.
   \param event the mouse event
  */
-void ProjectScene::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
+void View::ProjectScene::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
 {
     if(processing && drawingShape) {
         drawingShape->drawing(event);
@@ -147,7 +147,7 @@ void ProjectScene::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
   \brief Override mouse release event.
   \param event the mouse event
  */
-void ProjectScene::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
+void View::ProjectScene::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
 {
     if(drawingShape) {
         drawingShape->endDraw(event);

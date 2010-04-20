@@ -32,7 +32,7 @@
 #include <QPixmap>
 #include "singleton.h"
 
-#define appRes Util::Singleton<Core::AppResource>::instance()
+#define appRes (Util::Singleton<Core::AppResource>::instance())
 
 namespace Core {
 

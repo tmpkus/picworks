@@ -43,7 +43,7 @@ class Line : public QGraphicsLineItem, public AbstractShape
 {
 public:
     Line(View::ProjectScene *s);
-    virtual ~Line();
+    ~Line();
     void startDraw(QGraphicsSceneMouseEvent * event);
     void drawing(QGraphicsSceneMouseEvent * event);
     void endDraw(QGraphicsSceneMouseEvent * event);

@@ -41,7 +41,7 @@ class Project : public QObject
 
 public:
     Project();
-    virtual ~Project();
+    ~Project();
     QString toString() const;
 
     inline const QString & name() const { return projectName; }

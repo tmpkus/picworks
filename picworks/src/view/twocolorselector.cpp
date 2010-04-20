@@ -45,8 +45,6 @@
 
 #include "twocolorselector.h"
 
-using namespace View;
-
 /*!
   \class PicWorks::TwoColorSelector twocolorselector.h
   \brief This is the class which can select background or foreground colors.
@@ -134,8 +132,10 @@ using namespace View;
   Creates a new TwoColorSelector instance.
   \param parent parent widget of this window, default value is 0
  */
-TwoColorSelector::TwoColorSelector(QWidget *parent /* = 0 */)
-        : QWidget(parent), fgColor(Qt::black), bgColor(Qt::white)
+View::TwoColorSelector::TwoColorSelector(QWidget *parent /* = 0 */)
+        : QWidget(parent),
+          fgColor(Qt::black),
+          bgColor(Qt::white)
 {
     inFgPoint = false;
     inBgPoint = false;
@@ -152,14 +152,14 @@ TwoColorSelector::TwoColorSelector(QWidget *parent /* = 0 */)
   \brief Destructor.
   Destructs the TwoColorSelector dialog.
  */
-TwoColorSelector::~TwoColorSelector()
+View::TwoColorSelector::~TwoColorSelector()
 {
 }
 
 /*!
   \internal
  */
-void TwoColorSelector::paintEvent(QPaintEvent *event)
+void View::TwoColorSelector::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     paintSection(&painter, backgroundColorRect(), bgColor);
@@ -171,7 +171,7 @@ void TwoColorSelector::paintEvent(QPaintEvent *event)
 /*!
   \internal
  */
-void TwoColorSelector::paintSection(QPainter * painter, const QRect & rect, const QColor & color)
+void View::TwoColorSelector::paintSection(QPainter * painter, const QRect & rect, const QColor & color)
 {
     QStyleOptionButton opt;
     opt.initFrom(this);
@@ -212,7 +212,7 @@ void TwoColorSelector::paintSection(QPainter * painter, const QRect & rect, cons
 /*!
   \internal
  */
-void TwoColorSelector::paintResetSection(QPainter * painter)
+void View::TwoColorSelector::paintResetSection(QPainter * painter)
 {
     painter->setRenderHint(QPainter::Antialiasing, false);
     painter->setBrush(Qt::white);
@@ -225,7 +225,7 @@ void TwoColorSelector::paintResetSection(QPainter * painter)
 /*!
   \internal
  */
-void TwoColorSelector::paintSwitchSection(QPainter * painter)
+void View::TwoColorSelector::paintSwitchSection(QPainter * painter)
 {
     painter->setRenderHint(QPainter::Antialiasing);
     QPen pen(Qt::black);
@@ -255,7 +255,7 @@ void TwoColorSelector::paintSwitchSection(QPainter * painter)
   \brief Gets suitable size.
   \return size hint
  */
-QSize TwoColorSelector::sizeHint() const
+QSize View::TwoColorSelector::sizeHint() const
 {
     return QSize(45, 45).expandedTo(QApplication::globalStrut() * 1.5);
 }
@@ -264,7 +264,7 @@ QSize TwoColorSelector::sizeHint() const
   \brief Gets minimum size.
   \return the minimum size hint
  */
-QSize TwoColorSelector::minimumSizeHint() const
+QSize View::TwoColorSelector::minimumSizeHint() const
 {
     return QSize(20, 20).expandedTo(QApplication::globalStrut());
 }
@@ -272,7 +272,7 @@ QSize TwoColorSelector::minimumSizeHint() const
 /*!
   \brief Swaps foreground and background colors.
  */
-void TwoColorSelector::switchColors() {
+void View::TwoColorSelector::switchColors() {
     if (fgColor == bgColor) {
         return;
     }
@@ -285,7 +285,7 @@ void TwoColorSelector::switchColors() {
 /*!
   \internal
  */
-void TwoColorSelector::mousePressEvent(QMouseEvent * event) {
+void View::TwoColorSelector::mousePressEvent(QMouseEvent * event) {
     pressPos = event->pos();
     if (event->button() == Qt::LeftButton) {
         if (foregroundColorRect().contains(event->pos())) {
@@ -311,7 +311,7 @@ void TwoColorSelector::mousePressEvent(QMouseEvent * event) {
 /*!
   \internal
  */
-void TwoColorSelector::mouseMoveEvent(QMouseEvent *event)
+void View::TwoColorSelector::mouseMoveEvent(QMouseEvent *event)
 {
     if (inFgPoint || inBgPoint) {
         if (dragEnabled() && (event->pos() - pressPos).manhattanLength()
@@ -331,7 +331,7 @@ void TwoColorSelector::mouseMoveEvent(QMouseEvent *event)
 /*!
   \internal
  */
-void TwoColorSelector::mouseReleaseEvent(QMouseEvent *event)
+void View::TwoColorSelector::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
         if (inFgPoint && foregroundColorRect().contains(event->pos())) {
@@ -365,7 +365,7 @@ void TwoColorSelector::mouseReleaseEvent(QMouseEvent *event)
 /*!
   \internal
  */
-void TwoColorSelector::dragEnterEvent(QDragEnterEvent *event)
+void View::TwoColorSelector::dragEnterEvent(QDragEnterEvent *event)
 {
     if (event->mimeData()->hasColor()) {
         QColor col(qvariant_cast<QColor>(event->mimeData()->colorData()));
@@ -386,7 +386,7 @@ void TwoColorSelector::dragEnterEvent(QDragEnterEvent *event)
 /*!
   \internal
  */
-void TwoColorSelector::dragMoveEvent(QDragMoveEvent *event)
+void View::TwoColorSelector::dragMoveEvent(QDragMoveEvent *event)
 {
     bool acc = false;
     if (event->mimeData()->hasColor()) {
@@ -416,7 +416,7 @@ void TwoColorSelector::dragMoveEvent(QDragMoveEvent *event)
 /*!
   \internal
  */
-void TwoColorSelector::dropEvent(QDropEvent *event)
+void View::TwoColorSelector::dropEvent(QDropEvent *event)
 {
     QColor col;
     if (event->mimeData()->hasColor()) {
@@ -438,7 +438,7 @@ void TwoColorSelector::dropEvent(QDropEvent *event)
   \param color source color
   \param name drag name
  */
-ColorDrag::ColorDrag(QWidget *source, const QColor &color, const QString &name)
+View::ColorDrag::ColorDrag(QWidget *source, const QColor &color, const QString &name)
         : QDrag(source)
 {
         int siz = source->style()->pixelMetric(QStyle::PM_ButtonIconSize, 0, source);

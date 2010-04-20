@@ -35,8 +35,6 @@
 #include "projectview.h"
 #include "projectscene.h"
 
-using namespace View;
-
 /*!
   \class View::ProjectView projectview.h
   \brief Project view in PicWorks.
@@ -58,7 +56,7 @@ using namespace View;
   \param pro project data to show, not null.
   \param parent parent widgets of this window, default value is 0.
  */
-ProjectView::ProjectView(Data::Project *pro, QWidget *parent /* = 0 */)
+View::ProjectView::ProjectView(Data::Project *pro, QWidget *parent /* = 0 */)
         : QGraphicsView(parent), project(pro)
 {
     // entry conditions
@@ -75,7 +73,7 @@ ProjectView::ProjectView(Data::Project *pro, QWidget *parent /* = 0 */)
 /*!
   \brief Destructor.
  */
-ProjectView::~ProjectView()
+View::ProjectView::~ProjectView()
 {
 }
 
@@ -85,7 +83,7 @@ ProjectView::~ProjectView()
   (project->width() + 2) * (project->height() + 2)
   for each side has 1px border
  */
-QSize ProjectView::sizeHint() const
+QSize View::ProjectView::sizeHint() const
 {
     return QSize(project->width() + 2, project->height() + 2);
 }

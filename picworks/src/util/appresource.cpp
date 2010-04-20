@@ -29,8 +29,6 @@
 
 #include "appresource.h"
 
-using namespace Core;
-
 /*!
   \class Core::AppResource appresource.h
   \brief Application resources.
@@ -77,7 +75,7 @@ using namespace Core;
   \param index the index of name to get
   \return DPI unit name with this index
 
-  \fn const QPixmap & Core::AppResource::icon(Icon iconCode) const
+  \fn const QPixmap & Core::AppResource::icon(Core::AppResource::Icon iconCode) const
   \brief Gets icon.
   Icons can be add to actions.
   \param iconCode the code defined in enum Icon
@@ -99,7 +97,7 @@ using namespace Core;
   \internal
   \brief Private constructor.
  */
-AppResource::AppResource()
+Core::AppResource::AppResource()
 {
     // measurement unit name
     measurementUnitNames[0] = tr("px", "px measurement unit name.");

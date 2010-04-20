@@ -36,7 +36,7 @@ class LicenseDialog : public QDialog
 {
 public:
     explicit LicenseDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
-    virtual ~LicenseDialog();
+    ~LicenseDialog() {}
 
 }; // end of class
 
