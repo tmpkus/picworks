@@ -16,25 +16,29 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "vng.h"
-
 /*!
-  \a VersionNumberGenerator
-  <br />
-  Command line: <br />
-  <pre>
-  vergen
-    update                  [whether update compile version file or not]
-    major_version_number    [Major version number]
-    minor_version_number    [Minor version number]
-    revision_version_number [Revision version number]
-    cpp_file_path           [The version.cpp path]
-    source_file_path        [The source file to copy]
-  </pre>
+  \file actioncontainer.h
+  \ingroup Utilities
+  \brief This file contains
+  - class Core::ActionContainer declaration
+  \author Cheng Liang <changliang.soft@gmail.com>
+  \date 2010-4-19 Created.
  */
 
-int main(int argc, char *argv[])
+#ifndef ACTIONCONTAINER_H
+#define ACTIONCONTAINER_H
+
+#include <QObject>
+
+namespace Core {
+
+class ActionContainer : public QObject
 {
-    VersionNumberGenarator gen(argc, argv);
-    return gen.genarate();
-}
+public:
+    ActionContainer();
+    ~ActionContainer() {}
+}; // end of class
+
+} // end of namespace
+
+#endif // ACTIONCONTAINER_H

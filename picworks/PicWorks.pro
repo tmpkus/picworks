@@ -13,6 +13,7 @@ precompile_header:!isEmpty(PRECOMPILED_HEADER):DEFINES += USING_PCH
 # platform-specific
 win32 { 
     # generate version number
+    UPDATE = false
     MAJOR = 0
     MINOR = 0
     REVISION = 0
@@ -20,6 +21,7 @@ win32 {
     IN = tools/vergen/version.in
     versiontarget.target = $$DEST
     versiontarget.commands = tools/vergen/vergen.exe \
+        $$UPDATE \
         $$MAJOR \
         $$MINOR \
         $$REVISION \

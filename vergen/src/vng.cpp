@@ -19,7 +19,6 @@
 #include <QDate>
 #include <QFile>
 #include <QTextStream>
-#include <QDataStream>
 #include <QStringList>
 
 #include "vng.h"
@@ -40,27 +39,32 @@ VersionNumberGenarator::VersionNumberGenarator(int argc, char *argv[])
  */
 int VersionNumberGenarator::genarate()
 {
-    QFile verFile("ver.dat");
-    quint32 localVer = 1;
-    if(verFile.open(QFile::ReadOnly)) { // file exists, read local version number
-        QDataStream verStream(&verFile);
-        verStream >> localVer;
+    QFile verFile("ver");
+    int localVer = 1;
+    if(!verFile.exists()) { // file does not exists, write 1
+        QTextStream stream(&verFile);
+        stream << localVer;
         verFile.close();
-        localVer++;
-    }
-    if(verFile.open(QFile::WriteOnly | QFile::Truncate)) { // write local version number
-        QDataStream verStream(&verFile);
-        verStream << localVer;
-        verFile.close();
+    } else { // file exists
+        if(verFile.open(QFile::ReadWrite | QFile::Text)) { // read local version number
+            QTextStream stream(&verFile);
+            stream >> localVer;
+            if(args[1] != "false") { // should update file
+                localVer++;
+                stream.seek(0);
+                stream << localVer;
+            }
+            verFile.close();
+        }
     }
 
     const QDate today(QDate::currentDate());
     int buildNumber = localVer;
-    if(QFile::exists(args.at(4))) {
-        QFile::remove(args.at(4));
+    if(QFile::exists(args.at(5))) {
+        QFile::remove(args.at(5));
     }
-    QFile::copy(args.at(5), args.at(4));
-    QFile cppFile(args.at(4));
+    QFile::copy(args.at(6), args.at(5));
+    QFile cppFile(args.at(5));
     if(cppFile.open(QFile::WriteOnly | QFile::Append | QFile::Text)) {
         QTextStream printer(&cppFile);
         printer << endl
@@ -68,19 +72,19 @@ int VersionNumberGenarator::genarate()
                 << "  \\internal" << endl
                 << "  \\brief Major version number." << endl
                 << " */" << endl
-                << QString("QString VersionInfo::ma = QString(\"%1\");").arg(args.at(1)) << endl
+                << QString("QString VersionInfo::ma = QString(\"%1\");").arg(args.at(2)) << endl
                 << endl
                 << "/*!" << endl
                 << "  \\internal" << endl
                 << "  \\brief Minor version number." << endl
                 << " */" << endl
-                << QString("QString VersionInfo::mi = QString(\"%1\");").arg(args.at(2)) << endl
+                << QString("QString VersionInfo::mi = QString(\"%1\");").arg(args.at(3)) << endl
                 << endl
                 << "/*!" << endl
                 << "  \\internal" << endl
                 << "  \\brief Revision version number." << endl
                 << " */" << endl
-                << QString("QString VersionInfo::rivi = QString(\"%1\");").arg(args.at(3)) << endl
+                << QString("QString VersionInfo::rivi = QString(\"%1\");").arg(args.at(4)) << endl
                 << endl
                 << "/*!" << endl
                 << "  \\internal" << endl

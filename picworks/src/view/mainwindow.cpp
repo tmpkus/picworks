@@ -110,7 +110,10 @@ MainWindow::~MainWindow()
  */
 void MainWindow::createMenus()
 {
-    fileMenu = menuBar()->addMenu(tr("&File", "[File] on menu bar."));
+    QMenuBar *mb = new QMenuBar;
+    this->setMenuBar(mb);
+
+    fileMenu = mb->addMenu(tr("&File", "[File] on menu bar."));
     fileMenu->addAction(newAction);
     fileMenu->addAction(openAction);
     fileMenu->addSeparator();
@@ -122,7 +125,7 @@ void MainWindow::createMenus()
     fileMenu->addSeparator();
     fileMenu->addAction(exitAction);
 
-    editMenu = menuBar()->addMenu(tr("&Edit", "[Edit] on menu bar."));
+    editMenu = mb->addMenu(tr("&Edit", "[Edit] on menu bar."));
     editMenu->addAction(undoAction);
     editMenu->addAction(redoAction);
     editMenu->addSeparator();
@@ -130,7 +133,7 @@ void MainWindow::createMenus()
     editMenu->addAction(copyAction);
     editMenu->addAction(pasteAction);
 
-    toolsMenu = menuBar()->addMenu(tr("&Tools", "[Tools] on menu bar."));
+    toolsMenu = mb->addMenu(tr("&Tools", "[Tools] on menu bar."));
     toolsMenu->addAction(preferencesAction);
 
     subwindowMenu = new QtWindowListMenu(menuBar());
@@ -141,7 +144,7 @@ void MainWindow::createMenus()
 
     menuBar()->addSeparator();
 
-    helpMenu = menuBar()->addMenu(tr("&Help", "[Help] on menu bar."));
+    helpMenu = mb->addMenu(tr("&Help", "[Help] on menu bar."));
     helpMenu->addAction(helpAction);
     helpMenu->addAction(aboutAction);
 }
