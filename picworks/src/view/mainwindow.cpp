@@ -47,6 +47,9 @@
 #include "../model/project.h"
 #include "../util/appresource.h"
 #include "../util/appcontext.h"
+#include "../util/actionmanager.h"
+#include "../util/actioncontainer.h"
+#include "../util/action.h"
 #include "../util/dataaction.h"
 #include "mainwindow.h"
 #include "projectwindow.h"
@@ -81,10 +84,12 @@ View::MainWindow::MainWindow(QWidget *parent /* = 0 */)
     setWindowTitle(tr("PicWorks v%1", "Main window title with version number.").arg(appCtx->version()));
     //setMinimumSize(800, 600);
 
+    actionManager = appCtx->actionManager();
     toolBoxActionGroup = new QActionGroup(this);
 
     mdiArea = new QMdiArea;
     setCentralWidget(mdiArea);
+
     createActions();
     establishConnections();
     createMenus();
@@ -108,8 +113,28 @@ View::MainWindow::~MainWindow()
  */
 void View::MainWindow::createMenus()
 {
-    QMenuBar *mb = new QMenuBar;
-    this->setMenuBar(mb);
+    Core::ActionContainer *menuBarContainer = actionManager->actionContainer(Core::AppResource::DEFAULT_MENUBAR);
+    QMenuBar *mb = menuBarContainer->menuBar();
+#ifndef Q_WS_MAC // System menu bar on Mac
+    setMenuBar(mb);
+#endif
+    Core::ActionContainer *mc = actionManager->addMenu(Core::AppResource::MENU_FILE, "cheng");
+    Core::Action *na = actionManager->registerAction(new QAction(this), Core::AppResource::MENU_ITEM_NEW);
+    na->setText("New");
+    mc->addAction(na);
+    Core::ActionContainer *mc0 = actionManager->addMenu(Core::AppResource::MENU_EDIT, "liang");
+    Core::ActionContainer *mc1 = actionManager->addMenu(Core::AppResource::MENU_TOOL, "tools");
+    menuBarContainer->addMenu(mc);
+    menuBarContainer->addMenu(mc0);
+    menuBarContainer->addMenu(mc1);
+
+    /*
+    // Common Actions
+    newAction = new QAction(tr("&New...", "[New] action text."), this);
+    newAction->setIcon(appRes->icon(Core::AppResource::NewIcon));
+    newAction->setShortcut(QKeySequence::New);
+    newAction->setStatusTip(tr("Create a new image file.", "[New] action tip on status bar."));
+    */
 
     fileMenu = mb->addMenu(tr("&File", "[File] on menu bar."));
     fileMenu->addAction(newAction);

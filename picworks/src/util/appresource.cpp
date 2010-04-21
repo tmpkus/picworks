@@ -121,3 +121,33 @@ Core::AppResource::AppResource()
     painter.fillRect(0, 0, 10, 10, Qt::gray);
     painter.fillRect(10, 10, 10, 10, Qt::gray);
 }
+
+/*!
+  \brief String id of default menu bar.
+ */
+const QString Core::AppResource::DEFAULT_MENUBAR = QString("comp_menu_bar");
+
+/*!
+  \brief String id of menu [File].
+ */
+const QString Core::AppResource::MENU_FILE = QString("menu_file");
+
+/*!
+  \brief String id of menu [Edit].
+ */
+const QString Core::AppResource::MENU_EDIT = QString("menu_edit");
+
+/*!
+  \brief String id of menu [Tool].
+ */
+const QString Core::AppResource::MENU_TOOL = QString("menu_tool");
+
+/*!
+  \brief String id of menu item [File-New].
+ */
+const QString Core::AppResource::MENU_ITEM_NEW = QString("menu_item_new");
+
+/*!
+  \brief String id of menu item [File-Open].
+ */
+const QString Core::AppResource::MENU_ITEM_OPEN = QString("menu_item_open");

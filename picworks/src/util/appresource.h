@@ -99,6 +99,19 @@ public:
         DrawPolygonAction      //!< Draw a polygon.
     };
 
+    typedef struct constants {
+        int i;
+    } Constant;
+
+    static const QString DEFAULT_MENUBAR;
+
+    static const QString MENU_FILE;
+    static const QString MENU_EDIT;
+    static const QString MENU_TOOL;
+
+    static const QString MENU_ITEM_NEW;
+    static const QString MENU_ITEM_OPEN;
+
     AppResource();
 
     ~AppResource() {}

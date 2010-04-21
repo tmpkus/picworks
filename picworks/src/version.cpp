@@ -67,7 +67,7 @@
   \internal
   \brief PicWorks version control system URL.
  */
-QString PicWorks::VersionInfo::wcURL = QString("git://picworks.git.sourceforge.net/gitroot/picworks/picworks");
+QString PicWorks::VersionInfo::wcURL = QString("http://picworks.hg.sourceforge.net:8000/hgroot/picworks/picworks");
 
 /*!
   \internal
@@ -91,10 +91,10 @@ QString PicWorks::VersionInfo::rivi = QString("0");
   \internal
   \brief Build version number.
  */
-QString PicWorks::VersionInfo::bu = QString("1");
+QString PicWorks::VersionInfo::bu = QString("6");
 
 /*!
   \internal
   \brief Build date.
  */
-QString PicWorks::VersionInfo::bDate = QString("2010-4-20");
+QString PicWorks::VersionInfo::bDate = QString("2010-4-21");

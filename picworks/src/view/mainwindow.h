@@ -49,6 +49,10 @@ namespace Action {
     class DataAction;
 };
 
+namespace Core {
+    class ActionManager;
+};
+
 namespace View {
 
 class MainWindow : public QMainWindow
@@ -113,6 +117,8 @@ private:
     QDockWidget *dockPanelsSet;
 
     QMdiArea *mdiArea;
+
+    Core::ActionManager *actionManager;
 
     void createActions();
     void createMenus();

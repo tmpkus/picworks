@@ -17,43 +17,44 @@
 //
 
 /*!
-  \file actionmanager.h
+  \file action.h
   \ingroup Utilities
   \brief This file contains
-  - class Core::ActionManager declaration
+  - class Core::Action declaration
   \author Cheng Liang <changliang.soft@gmail.com>
-  \date 2010-4-18 Created.
+  \date 2010-4-21 Created.
  */
 
-#ifndef ACTIONMANAGER_H
-#define ACTIONMANAGER_H
+#ifndef ACTION_H
+#define ACTION_H
 
-#include <QHash>
-#include <QString>
+#include <QObject>
+#include <QAction>
 
-class QAction;
+class QVariant;
 
 namespace Core {
 
-class ActionContainer;
-class Action;
-
-class ActionManager
+class Action : public QObject
 {
 public:
-    ActionManager();
-    ~ActionManager() {}
+    Action(QAction *a = 0);
+    ~Action();
 
-    ActionContainer * actionContainer(const QString & id);
-    ActionContainer * addMenu(const QString &sid, const QString &text = QString());
-    Core::Action* registerAction(QAction *a, const QString &id);
+    inline QAction* action() const { return qa; }
+
+    inline void setAction(QAction *a) { qa = a; }
+
+    inline QVariant data() { return qa->data(); }
+
+    inline void setData(const QVariant &d) { qa->setData(d); }
+
+    inline void setText(const QString &text) { qa->setText(text); }
 
 private:
-    QHash<int, ActionContainer *> containerMap;
-    QHash<int, Action *> actionMap;
-
+    QAction *qa;
 }; // end of class
 
 } // end of namespace
 
-#endif // ACTIONMANAGER_H
+#endif // ACTION_H

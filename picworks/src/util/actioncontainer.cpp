@@ -26,6 +26,10 @@
   \date 2010-4-19 Created.
  */
 
+#include <QMenu>
+#include <QMenuBar>
+
+#include "action.h"
 #include "actioncontainer.h"
 
 /*!
@@ -36,10 +40,80 @@
   \version 0.0.1
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2010-4-20 Created.
+
+  \fn virtual void Core::ActionContainer::addAction(Core::Action *a) = 0
+  \brief Adds an action into this container.
+  \param a action to be added
+
+  \fn virtual void Core::ActionContainer::addMenu(ActionContainer * c, Core::Action *a = NULL) = 0
+  \brief Adds menu into menu bar.
+  \param c action container added
+
+  \fn virtual void Core::ActionContainer::setText(const QString &text) = 0;
+  \brief Sets the text displayed on menu.
+  \param text text displayed
+
+  \fn virtual QMenu * Core::ActionContainer::menu() = 0;
+  \brief Gets menu wrapped.
+  \return the menu wrapped inside
+
+  \fn virtual QMenuBar * Core::ActionContainer::menuBar() = 0
+  \brief Gets menu bar wrapped.
+  \return the menu bar wrapped inside
  */
 
 Core::ActionContainer::ActionContainer()
 {
+}
+
+/*!
+  \class Core::MenuActionContainer actioncontainer.h
+  \brief The action container for menu.
+  \version 0.0.1
+  \author Cheng Liang <chengliang.soft@gmail.com>
+  \date 2010-4-20 Created.
+ */
+
+/*!
+  \fn QMenu * Core::MenuActionContainer::menu()
+  \brief Gets the menu managed by the container.
+  \return menu
+ */
+
+Core::MenuActionContainer::MenuActionContainer()
+{
+    m = new QMenu;
+}
+
+/*!
+  \brief Adds action to menu.
+  \param a action
+ */
+void Core::MenuActionContainer::addAction(Core::Action *a)
+{
+    m->addAction(a->action());
+}
+
+/*!
+  \brief Adds submenu to menu.
+  Menu can be added only if the action container is a MenuActionContainer.
+  \param c action container
+ */
+void Core::MenuActionContainer::addMenu(ActionContainer *c, Core::Action *a /* = NULL */)
+{
+    Core::MenuActionContainer *mc = dynamic_cast<Core::MenuActionContainer *>(c);
+    if(mc) {
+        m->addMenu(mc->menu());
+    }
+}
+
+/*!
+  \brief Sets the text of the menu.
+  \param text text displayed on menu
+ */
+void Core::MenuActionContainer::setText(const QString &text)
+{
+    m->setTitle(text);
 }
 
 /*!
@@ -59,4 +133,21 @@ Core::ActionContainer::ActionContainer()
 Core::MenuBarActionContainer::MenuBarActionContainer()
 {
     mb = new QMenuBar;
+}
+
+/*!
+  \brief Adds menu to menu bar.
+  Menu can be added only if the action container is a MenuActionContainer.
+  \param c action container
+ */
+void Core::MenuBarActionContainer::addMenu(ActionContainer *c, Core::Action *a /* = NULL */)
+{
+    Core::MenuActionContainer *mc = dynamic_cast<Core::MenuActionContainer *>(c);
+    if(mc) {
+        if(a) {
+            mb->insertMenu(a->action(), mc->menu());
+        } else {
+            mb->addMenu(mc->menu());
+        }
+    }
 }

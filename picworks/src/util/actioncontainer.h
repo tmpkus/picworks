@@ -21,6 +21,7 @@
   \ingroup Utilities
   \brief This file contains
   - class Core::ActionContainer declaration
+  - class Core::MenuActionContainer declaration
   - class Core::MenuBarActionContainer declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2010-4-19 Created.
@@ -32,20 +33,45 @@
 #include <QObject>
 
 class QMenuBar;
+class QMenu;
 
 namespace Core {
+
+class Action;
 
 class ActionContainer : public QObject
 {
 public:
-    enum {
-        COMP_MENUBAR,
-        COMP_TOOLBOX
-    };
     ActionContainer();
     virtual ~ActionContainer() {}
 
+    virtual void addAction(Core::Action *a) = 0;
+    virtual void addMenu(ActionContainer * c, Core::Action *a = NULL) = 0;
+    virtual void setText(const QString &text) = 0;
+    virtual QMenu * menu() = 0;
+    virtual QMenuBar * menuBar() = 0;
 }; // end of class ActionContainer
+
+class MenuActionContainer : public ActionContainer
+{
+public:
+    MenuActionContainer();
+    ~MenuActionContainer() {}
+
+    QMenu * menu() { return m; }
+    void addAction(Core::Action *a);
+    void setText(const QString &text);
+
+    void addMenu(ActionContainer * c, Core::Action *a = NULL);
+
+    QMenuBar * menuBar()
+    {
+        qDebug() << "This class does not support menuBar().";
+        return NULL;
+    }
+private:
+    QMenu *m;
+}; // end of class MenuActionContainer
 
 class MenuBarActionContainer : public ActionContainer
 {
@@ -54,7 +80,23 @@ public:
     ~MenuBarActionContainer() {}
 
     QMenuBar * menuBar() { return mb; }
+    void addMenu(ActionContainer * c, Core::Action *a = NULL);
 
+    void addAction(Core::Action *a)
+    {
+        qDebug() << "This class does not support setText(Core::Action *).";
+    }
+
+    void setText(const QString &text)
+    {
+        qDebug() << "This class does not support setText(const QString &).";
+    }
+
+    QMenu * menu()
+    {
+        qDebug() << "This class does not support menu().";
+        return NULL;
+    }
 private:
     QMenuBar *mb;
 }; // end of class MenuBarActionContainer

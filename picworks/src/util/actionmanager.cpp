@@ -25,9 +25,13 @@
   \date 2010-4-17 Created.
  */
 
+#include <QAction>
+
 #include "actionmanager.h"
 #include "actioncontainer.h"
+#include "appresource.h"
 #include "idmanager.h"
+#include "action.h"
 
 /*!
   \class Core::ActionManager actionmanager.h
@@ -40,6 +44,13 @@
   \date 2009-10-14 Created.
  */
 
+Core::ActionManager::ActionManager()
+{
+    // insert menu bar
+    int uid = idManager->uid(Core::AppResource::DEFAULT_MENUBAR);
+    containerMap.insert(uid, new Core::MenuBarActionContainer);
+}
+
 /*!
   \brief Gets the action container related to given id.
   \param id id of action container
@@ -50,8 +61,44 @@ Core::ActionContainer * Core::ActionManager::actionContainer(const QString &id)
     int uid = idManager->uid(id);
     const QHash<int, ActionContainer *>::const_iterator it = containerMap.constFind(uid);
     if(it == containerMap.constEnd()) {
-        qWarning() << "ActionManager cannot find action container with id " << id << endl;
+        qDebug() << "ActionManager cannot find action container with id " << id;
         return NULL;
     }
     return it.value();
+}
+
+/*!
+  \brief Adds menu into this container.
+  \param sid string id of this menu
+  \return menu action container added
+ */
+Core::ActionContainer * Core::ActionManager::addMenu(const QString &sid, const QString &text /* = QString() */)
+{
+    Core::ActionContainer *mc = actionContainer(sid);
+    if(!mc) {
+        int uid = idManager->uid(sid);
+        mc = new Core::MenuActionContainer;
+        mc->setText(text);
+        containerMap.insert(uid, mc);
+    }
+    // Core::ActionContainer *mbc = actionContainer(Core::AppResource::DEFAULT_MENUBAR);
+    // mbc->addMenu(mc);
+    return mc;
+}
+
+/*!
+  \brief Register action into action manager.
+  \param a action
+  \param id string id related this action
+  \return action wrapper
+ */
+Core::Action* Core::ActionManager::registerAction(QAction *a, const QString &id)
+{
+    int uid = idManager->uid(id);
+    Core::Action *action = actionMap.value(uid, 0);
+    if(!action) {
+        action = new Core::Action(a);
+        actionMap.insert(uid, action);
+    }
+    return action;
 }

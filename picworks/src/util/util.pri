@@ -11,7 +11,8 @@ SOURCES += $$PWD/appresource.cpp \
     $$PWD/actionmanager.cpp \
     $$PWD/singleton.cpp \
     $$PWD/actioncontainer.cpp \
-    $$PWD/idmanager.cpp
+    $$PWD/idmanager.cpp \
+    $$PWD/action.cpp
 HEADERS += $$PWD/appresource.h \
     $$PWD/appcontext.h \
     $$PWD/dataaction.h \
@@ -19,4 +20,5 @@ HEADERS += $$PWD/appresource.h \
     $$PWD/actionmanager.h \
     $$PWD/singleton.h \
     $$PWD/actioncontainer.h \
-    $$PWD/idmanager.h
+    $$PWD/idmanager.h \
+    $$PWD/action.h
