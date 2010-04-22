@@ -45,7 +45,7 @@
   \brief Adds an action into this container.
   \param a action to be added
 
-  \fn virtual void Core::ActionContainer::addMenu(ActionContainer * c, Core::Action *a = NULL) = 0
+  \fn virtual Core::Action* Core::ActionContainer::addMenu(ActionContainer * c, Core::Action *a = NULL) = 0
   \brief Adds menu into menu bar.
   \param c action container added
 
@@ -99,12 +99,14 @@ void Core::MenuActionContainer::addAction(Core::Action *a)
   Menu can be added only if the action container is a MenuActionContainer.
   \param c action container
  */
-void Core::MenuActionContainer::addMenu(ActionContainer *c, Core::Action *a /* = NULL */)
+Core::Action* Core::MenuActionContainer::addMenu(ActionContainer *c, Core::Action *a /* = NULL */)
 {
     Core::MenuActionContainer *mc = dynamic_cast<Core::MenuActionContainer *>(c);
+    QAction *qa = NULL;
     if(mc) {
-        m->addMenu(mc->menu());
+        qa = m->addMenu(mc->menu());
     }
+    return new Core::Action(qa);
 }
 
 /*!
@@ -140,14 +142,16 @@ Core::MenuBarActionContainer::MenuBarActionContainer()
   Menu can be added only if the action container is a MenuActionContainer.
   \param c action container
  */
-void Core::MenuBarActionContainer::addMenu(ActionContainer *c, Core::Action *a /* = NULL */)
+Core::Action* Core::MenuBarActionContainer::addMenu(ActionContainer *c, Core::Action *a /* = NULL */)
 {
     Core::MenuActionContainer *mc = dynamic_cast<Core::MenuActionContainer *>(c);
+    QAction *qa = NULL;
     if(mc) {
-        if(a) {
-            mb->insertMenu(a->action(), mc->menu());
+        if(qa) {
+            qa = mb->insertMenu(a->action(), mc->menu());
         } else {
-            mb->addMenu(mc->menu());
+            qa = mb->addMenu(mc->menu());
         }
     }
+    return new Core::Action(qa);
 }

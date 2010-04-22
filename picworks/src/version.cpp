@@ -97,4 +97,4 @@ QString PicWorks::VersionInfo::bu = QString("6");
   \internal
   \brief Build date.
  */
-QString PicWorks::VersionInfo::bDate = QString("2010-4-21");
+QString PicWorks::VersionInfo::bDate = QString("2010-4-22");

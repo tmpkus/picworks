@@ -46,7 +46,7 @@ public:
     virtual ~ActionContainer() {}
 
     virtual void addAction(Core::Action *a) = 0;
-    virtual void addMenu(ActionContainer * c, Core::Action *a = NULL) = 0;
+    virtual Core::Action* addMenu(ActionContainer * c, Core::Action *a = NULL) = 0;
     virtual void setText(const QString &text) = 0;
     virtual QMenu * menu() = 0;
     virtual QMenuBar * menuBar() = 0;
@@ -62,7 +62,7 @@ public:
     void addAction(Core::Action *a);
     void setText(const QString &text);
 
-    void addMenu(ActionContainer * c, Core::Action *a = NULL);
+    Core::Action* addMenu(ActionContainer * c, Core::Action *a = NULL);
 
     QMenuBar * menuBar()
     {
@@ -80,7 +80,7 @@ public:
     ~MenuBarActionContainer() {}
 
     QMenuBar * menuBar() { return mb; }
-    void addMenu(ActionContainer * c, Core::Action *a = NULL);
+    Core::Action* addMenu(ActionContainer * c, Core::Action *a = NULL);
 
     void addAction(Core::Action *a)
     {

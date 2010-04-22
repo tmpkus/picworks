@@ -36,9 +36,24 @@
 /*!
   \class Core::ActionManager actionmanager.h
   \brief Application action manager.
-  Actions used in PicWorks should be added into this manager. This manager
+  <p>Actions used in PicWorks should be added into this manager. This manager
   should not get instance by using new operater, call
-  \a Core::AppContext::instance().actionManager() instead.
+  \a appCtx.actionManager() instead.
+  Almost all actions that can be added into main window should be managed by
+  this manager.</p>
+  <p>If you want to add menus into menu bar, you can follow this code.
+  \code
+  // use ActionManager to get menu bar instance
+  ActionContainer *mbc = actionManager->actionContainer(Core::AppResource::DEFAULT_MENUBAR);
+  // register actions
+  Core::Action *a = actionManager->registerAction(Core::AppResource::MENU_ITEM_NEW, new QAction);
+  // register menus
+  Core::ActionContainer *mc = actionManager->registerMenu(Core::AppResource::MENU_FILE, tr("&File"));
+  // add actions to menus
+  mc->addAction(a);
+  // add menus to menu bar
+  mbc->addMenu(mc);
+  \endcode</p>
   \version 0.0.1
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2009-10-14 Created.
@@ -68,11 +83,11 @@ Core::ActionContainer * Core::ActionManager::actionContainer(const QString &id)
 }
 
 /*!
-  \brief Adds menu into this container.
+  \brief Register menu into this container.
   \param sid string id of this menu
   \return menu action container added
  */
-Core::ActionContainer * Core::ActionManager::addMenu(const QString &sid, const QString &text /* = QString() */)
+Core::ActionContainer * Core::ActionManager::registerMenu(const QString &sid, const QString &text /* = QString() */)
 {
     Core::ActionContainer *mc = actionContainer(sid);
     if(!mc) {
@@ -88,11 +103,11 @@ Core::ActionContainer * Core::ActionManager::addMenu(const QString &sid, const Q
 
 /*!
   \brief Register action into action manager.
-  \param a action
   \param id string id related this action
+  \param a action
   \return action wrapper
  */
-Core::Action* Core::ActionManager::registerAction(QAction *a, const QString &id)
+Core::Action* Core::ActionManager::registerAction(const QString &id, QAction *a)
 {
     int uid = idManager->uid(id);
     Core::Action *action = actionMap.value(uid, 0);
