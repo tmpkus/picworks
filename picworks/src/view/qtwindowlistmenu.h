@@ -73,6 +73,8 @@ class QMenuBar;
 #  define QT_QTWINDOWLISTMENU_EXPORT
 #endif
 
+namespace Ext {
+
 class QT_QTWINDOWLISTMENU_EXPORT QtWindowListMenu : public QMenu
 {
     Q_OBJECT
@@ -119,5 +121,7 @@ private:
     QMap<const QMdiSubWindow *, QIcon> iconMap;
     QIcon defIcon;
 };
+
+} // end of namespace
 
 #endif

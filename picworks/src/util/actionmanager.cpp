@@ -41,7 +41,7 @@
   \a appCtx.actionManager() instead.
   Almost all actions that can be added into main window should be managed by
   this manager.</p>
-  <p>If you want to add menus into menu bar, you can follow this code.
+  <p>If you want to add menus into menu bar, you can follow code shown below.
   \code
   // use ActionManager to get menu bar instance
   ActionContainer *mbc = actionManager->actionContainer(Core::AppResource::DEFAULT_MENUBAR);

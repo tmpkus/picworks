@@ -70,9 +70,9 @@
 #  define QT_QTCOLORPICKER_EXPORT
 #endif
 
-class ColorPickerPopup;
+namespace Ext {
 
-namespace View {
+class ColorPickerPopup;
 
 class QT_QTCOLORPICKER_EXPORT QtColorPicker : public QPushButton
 {
@@ -114,7 +114,7 @@ private Q_SLOTS:
     void popupClosed();
 
 private:
-    ColorPickerPopup *popup;
+    Ext::ColorPickerPopup *popup;
     QColor col;
     bool withColorDialog;
     bool dirty;

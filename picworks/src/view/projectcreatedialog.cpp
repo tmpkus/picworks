@@ -132,7 +132,7 @@ View::ProjectCreateDialog::ProjectCreateDialog(QWidget *parent /* = 0 */, Qt::Wi
     backgroundColorLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     backgroundColorLabel->setFixedWidth(backgroundColorLabel->sizeHint().width());
     backgroundColorLabel->setWhatsThis(tr("Click the following button to choose a background color.", "Project background color help context."));
-    proBackgroundColorPicker = new QtColorPicker(this);
+    proBackgroundColorPicker = new Ext::QtColorPicker(this);
     proBackgroundColorPicker->setStandardColors();
     proBackgroundColorPicker->setCurrentColor(Qt::white);
     backgroundColorLabel->setBuddy(proBackgroundColorPicker);

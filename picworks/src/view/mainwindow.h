@@ -37,7 +37,6 @@ class QToolBar;
 class QLabel;
 class QMdiArea;
 class QToolButton;
-class QtWindowListMenu;
 class QDockWidget;
 class QCloseEvent;
 
@@ -51,6 +50,10 @@ namespace Action {
 
 namespace Core {
     class ActionManager;
+};
+
+namespace Ext {
+    class QtWindowListMenu;
 };
 
 namespace View {
@@ -103,7 +106,7 @@ private:
     QMenu *fileMenu;
     QMenu *editMenu;
     QMenu *toolsMenu;
-    QtWindowListMenu *subwindowMenu;
+    Ext::QtWindowListMenu *subwindowMenu;
     QMenu *helpMenu;
 
     QActionGroup *toolBoxActionGroup;

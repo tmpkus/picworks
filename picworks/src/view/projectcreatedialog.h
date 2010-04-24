@@ -38,10 +38,13 @@ class QSpinBox;
 class QPixmap;
 class QStringList;
 class QPaintEvent;
-class QtColorPicker;
 
 namespace Data {
     class Project;
+};
+
+namespace Ext {
+    class QtColorPicker;
 };
 
 namespace View {
@@ -62,7 +65,7 @@ private:
     QComboBox *proHeightUnitBox;
     QSpinBox *proDpiBox;
     QComboBox *proDpiUnitBox;
-    QtColorPicker *proBackgroundColorPicker;
+    Ext::QtColorPicker *proBackgroundColorPicker;
     QDialogButtonBox *buttonBox;
     QColor backgroundColor;
 

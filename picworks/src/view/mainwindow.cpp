@@ -159,7 +159,7 @@ void View::MainWindow::createMenus()
     toolsMenu = mb->addMenu(tr("&Tools", "[Tools] on menu bar."));
     toolsMenu->addAction(preferencesAction);
 
-    subwindowMenu = new QtWindowListMenu(menuBar());
+    subwindowMenu = new Ext::QtWindowListMenu(menuBar());
     subwindowMenu->attachToMdiArea(mdiArea);
     subwindowMenu->setCascadeIcon(appRes->icon(Core::AppResource::CascadeIcon));
     subwindowMenu->setTileIcon(appRes->icon(Core::AppResource::TileIcon));

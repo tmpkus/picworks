@@ -56,7 +56,7 @@ View::CommonBar::CommonBar(const QString &title /* = "CommonBar" */, QWidget *pa
     bar = new QToolBar(title, parent);
     //bar->setContentsMargins(2, 2, 2, 2);
 
-    QtColorPicker *penColorPicker = new QtColorPicker(bar, -1, true, false);
+    Ext::QtColorPicker *penColorPicker = new Ext::QtColorPicker(bar, -1, true, false);
     penColorPicker->setStandardColors();
     penColorPicker->setCurrentColor(appCtx->penColor());
     penColorPicker->setMaximumSize(20, 20);

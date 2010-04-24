@@ -117,7 +117,7 @@
     reparenting. The container is normally the natural choice for \a parent.
 */
 
-QtWindowListMenu::QtWindowListMenu(QWidget *parent)
+Ext::QtWindowListMenu::QtWindowListMenu(QWidget *parent)
     : QMenu(parent)
 {
     mdi = 0;
@@ -175,7 +175,7 @@ QtWindowListMenu::QtWindowListMenu(QWidget *parent)
   class description.
 */
 
-void QtWindowListMenu::attachToMdiArea(QMdiArea* mdiArea)
+void Ext::QtWindowListMenu::attachToMdiArea(QMdiArea* mdiArea)
 {
     const QList<QAction *> acts = stdGroup->actions();
     if (mdi) {                   // i.e. we have previously been attached
@@ -191,7 +191,7 @@ void QtWindowListMenu::attachToMdiArea(QMdiArea* mdiArea)
 
     mdi = mdiArea;
     if (!mdi) {
-        qWarning("QtWindowListMenu::attachToMdiArea(): mdiArea is 0; menu will be empty.");
+        qWarning("Ext::QtWindowListMenu::attachToMdiArea(): mdiArea is 0; menu will be empty.");
         return;
     }
 
@@ -212,7 +212,7 @@ void QtWindowListMenu::attachToMdiArea(QMdiArea* mdiArea)
   \sa attachToMdiArea()
 */
 
-QMdiArea *QtWindowListMenu::attachedMdiArea() const
+QMdiArea *Ext::QtWindowListMenu::attachedMdiArea() const
 {
     return mdi;
 }
@@ -224,7 +224,7 @@ QMdiArea *QtWindowListMenu::attachedMdiArea() const
   and this method will find it.
 */
 
-bool QtWindowListMenu::attachToClosestMdiAreaObject()
+bool Ext::QtWindowListMenu::attachToClosestMdiAreaObject()
 {
     if (mdi)
         return true;
@@ -251,7 +251,7 @@ bool QtWindowListMenu::attachToClosestMdiAreaObject()
   ones according to the current state of the attached QMdiArea.
 */
 
-void QtWindowListMenu::syncWithMdiArea()
+void Ext::QtWindowListMenu::syncWithMdiArea()
 {
     if (!mdi && !attachToClosestMdiAreaObject())
         return;
@@ -293,7 +293,7 @@ void QtWindowListMenu::syncWithMdiArea()
 */
 
 
-void QtWindowListMenu::activateWindow(QAction *act)
+void Ext::QtWindowListMenu::activateWindow(QAction *act)
 {
     if (!mdi && !attachToClosestMdiAreaObject())
         return;
@@ -306,7 +306,7 @@ void QtWindowListMenu::activateWindow(QAction *act)
   QMdiArea, for which an icon has been, is deleted. It clears that icon.
 */
 
-void QtWindowListMenu::windowDestroyed(QObject* obj)
+void Ext::QtWindowListMenu::windowDestroyed(QObject* obj)
 {
     iconMap.remove(static_cast<QMdiSubWindow *>(obj));
 }
@@ -319,7 +319,7 @@ void QtWindowListMenu::windowDestroyed(QObject* obj)
 
   \sa windowIcon()
 */
-void QtWindowListMenu::setWindowIcon(const QMdiSubWindow *window, const QIcon &icon)
+void Ext::QtWindowListMenu::setWindowIcon(const QMdiSubWindow *window, const QIcon &icon)
 {
     if (!window)
         return;
@@ -340,7 +340,7 @@ void QtWindowListMenu::setWindowIcon(const QMdiSubWindow *window, const QIcon &i
 
   \sa setWindowIcon()
 */
-QIcon QtWindowListMenu::windowIcon(const QMdiSubWindow *window) const
+QIcon Ext::QtWindowListMenu::windowIcon(const QMdiSubWindow *window) const
 {
     return iconMap.value(window);
 }
@@ -353,7 +353,7 @@ QIcon QtWindowListMenu::windowIcon(const QMdiSubWindow *window) const
 
   \sa defaultIcon()
 */
-void QtWindowListMenu::setDefaultIcon(const QIcon &icon)
+void Ext::QtWindowListMenu::setDefaultIcon(const QIcon &icon)
 {
     defIcon = icon;
 }
@@ -367,7 +367,7 @@ void QtWindowListMenu::setDefaultIcon(const QIcon &icon)
   \sa setDefaultIcon()
 */
 
-QIcon QtWindowListMenu::defaultIcon() const
+QIcon Ext::QtWindowListMenu::defaultIcon() const
 {
     return defIcon;
 }
@@ -384,7 +384,7 @@ QIcon QtWindowListMenu::defaultIcon() const
   set its "visible" property to false.
 */
 
-QAction *QtWindowListMenu::standardAction(StandardAction item) const
+QAction *Ext::QtWindowListMenu::standardAction(StandardAction item) const
 {
     return stdGroup->actions().value(item);
 }
@@ -393,7 +393,7 @@ QAction *QtWindowListMenu::standardAction(StandardAction item) const
 /*!
   \obsolete
 */
-void QtWindowListMenu::setCloseIcon(const QIcon &icon)
+void Ext::QtWindowListMenu::setCloseIcon(const QIcon &icon)
 {
     standardAction(CloseAction)->setIcon(icon);
 }
@@ -401,7 +401,7 @@ void QtWindowListMenu::setCloseIcon(const QIcon &icon)
 /*!
   \obsolete
 */
-void QtWindowListMenu::setCascadeIcon(const QIcon &icon)
+void Ext::QtWindowListMenu::setCascadeIcon(const QIcon &icon)
 {
     standardAction(CascadeAction)->setIcon(icon);
 }
@@ -409,7 +409,7 @@ void QtWindowListMenu::setCascadeIcon(const QIcon &icon)
 /*!
   \obsolete
 */
-void QtWindowListMenu::setTileIcon(const QIcon &icon)
+void Ext::QtWindowListMenu::setTileIcon(const QIcon &icon)
 {
     standardAction(TileAction)->setIcon(icon);
 }
@@ -417,7 +417,7 @@ void QtWindowListMenu::setTileIcon(const QIcon &icon)
 /*!
   \obsolete
 */
-void QtWindowListMenu::setCloseAllIcon(const QIcon &icon)
+void Ext::QtWindowListMenu::setCloseAllIcon(const QIcon &icon)
 {
     standardAction(CloseAllAction)->setIcon(icon);
 }
@@ -427,7 +427,7 @@ void QtWindowListMenu::setCloseAllIcon(const QIcon &icon)
   \obsolete
 */
 
-QAction *QtWindowListMenu::addTo(const QString &text, QMenuBar *menubar, int idx)
+QAction *Ext::QtWindowListMenu::addTo(const QString &text, QMenuBar *menubar, int idx)
 {
     if (!menubar)
     	return 0;
