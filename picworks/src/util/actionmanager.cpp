@@ -48,7 +48,7 @@
   // register actions
   Core::Action *a = actionManager->registerAction(Core::AppResource::MENU_ITEM_NEW, new QAction);
   // register menus
-  Core::ActionContainer *mc = actionManager->registerMenu(Core::AppResource::MENU_FILE, tr("&File"));
+  Core::ActionContainer *mc = actionManager->createMenu(Core::AppResource::MENU_FILE, tr("&File"));
   // add actions to menus
   mc->addAction(a);
   // add menus to menu bar
@@ -87,7 +87,8 @@ Core::ActionContainer * Core::ActionManager::actionContainer(const QString &id)
   \param sid string id of this menu
   \return menu action container added
  */
-Core::ActionContainer * Core::ActionManager::registerMenu(const QString &sid, const QString &text /* = QString() */)
+Core::ActionContainer * Core::ActionManager::createMenu(const QString &sid,
+                                                        const QString &text /* = QString() */)
 {
     Core::ActionContainer *mc = actionContainer(sid);
     if(!mc) {
@@ -96,8 +97,6 @@ Core::ActionContainer * Core::ActionManager::registerMenu(const QString &sid, co
         mc->setText(text);
         containerMap.insert(uid, mc);
     }
-    // Core::ActionContainer *mbc = actionContainer(Core::AppResource::DEFAULT_MENUBAR);
-    // mbc->addMenu(mc);
     return mc;
 }
 

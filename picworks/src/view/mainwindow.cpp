@@ -118,12 +118,14 @@ void View::MainWindow::createMenus()
 #ifndef Q_WS_MAC // System menu bar on Mac
     setMenuBar(mb);
 #endif
-    Core::ActionContainer *mc = actionManager->registerMenu(Core::AppResource::MENU_FILE, "cheng");
+    Core::ActionContainer *mc = actionManager->createMenu(Core::AppResource::MENU_FILE, "cheng");
     Core::Action *na = actionManager->registerAction(Core::AppResource::MENU_ITEM_NEW, new QAction(this));
     na->setText("New");
     mc->addAction(na);
-    Core::ActionContainer *mc0 = actionManager->registerMenu(Core::AppResource::MENU_EDIT, "liang");
-    Core::ActionContainer *mc1 = actionManager->registerMenu(Core::AppResource::MENU_TOOL, "tools");
+
+    Core::ActionContainer *mc0 = actionManager->createMenu(Core::AppResource::MENU_EDIT, "liang");
+    Core::ActionContainer *mc1 = actionManager->createMenu(Core::AppResource::MENU_TOOL, "tools");
+
     Core::Action *a = menuBarContainer->addMenu(mc);
     menuBarContainer->addMenu(mc0);
     menuBarContainer->addMenu(mc1, a);

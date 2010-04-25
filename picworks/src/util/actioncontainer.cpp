@@ -48,6 +48,7 @@
   \fn virtual Core::Action* Core::ActionContainer::addMenu(ActionContainer * c, Core::Action *a = NULL) = 0
   \brief Adds menu into menu bar.
   \param c action container added
+  \param a insert container before action \a a
 
   \fn virtual void Core::ActionContainer::setText(const QString &text) = 0;
   \brief Sets the text displayed on menu.
@@ -98,13 +99,15 @@ void Core::MenuActionContainer::addAction(Core::Action *a)
   \brief Adds submenu to menu.
   Menu can be added only if the action container is a MenuActionContainer.
   \param c action container
+  \param before insert container before action \a before
  */
-Core::Action* Core::MenuActionContainer::addMenu(ActionContainer *c, Core::Action *a /* = NULL */)
+Core::Action* Core::MenuActionContainer::addMenu(ActionContainer *c,
+                                                 Core::Action *before /* = NULL */)
 {
     Core::MenuActionContainer *mc = dynamic_cast<Core::MenuActionContainer *>(c);
     QAction *qa = NULL;
     if(mc) {
-        qa = m->addMenu(mc->menu());
+        qa = before ? m->insertMenu(before, mc->menu()) : m->addMenu(mc->menu());
     }
     return new Core::Action(qa);
 }
@@ -141,17 +144,15 @@ Core::MenuBarActionContainer::MenuBarActionContainer()
   \brief Adds menu to menu bar.
   Menu can be added only if the action container is a MenuActionContainer.
   \param c action container
+  \param before insert this contanier before action \a before
  */
-Core::Action* Core::MenuBarActionContainer::addMenu(ActionContainer *c, Core::Action *a /* = NULL */)
+Core::Action* Core::MenuBarActionContainer::addMenu(ActionContainer *c,
+                                                    Core::Action *before /* = NULL */)
 {
     Core::MenuActionContainer *mc = dynamic_cast<Core::MenuActionContainer *>(c);
     QAction *qa = NULL;
     if(mc) {
-        if(qa) {
-            qa = mb->insertMenu(a->action(), mc->menu());
-        } else {
-            qa = mb->addMenu(mc->menu());
-        }
+        qa = before ? m->insertMenu(before, mc->menu()) : m->addMenu(mc->menu());
     }
     return new Core::Action(qa);
 }
