@@ -1,5 +1,5 @@
 # -------------------------------------------------
-# PicWorks Common
+# PicWorks Application
 # Subproject file
 # by Galaxy.org
 # 2010-1-8

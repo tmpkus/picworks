@@ -39,7 +39,7 @@
 #include <QPainter>
 #include <QBrush>
 
-#include "qtcolorpicker.h"
+#include "../extern/qtcolorpicker/qtcolorpicker.h"
 #include "projectcreatedialog.h"
 #include "../model/project.h"
 #include "../util/appresource.h"
@@ -132,7 +132,7 @@ View::ProjectCreateDialog::ProjectCreateDialog(QWidget *parent /* = 0 */, Qt::Wi
     backgroundColorLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     backgroundColorLabel->setFixedWidth(backgroundColorLabel->sizeHint().width());
     backgroundColorLabel->setWhatsThis(tr("Click the following button to choose a background color.", "Project background color help context."));
-    proBackgroundColorPicker = new Ext::QtColorPicker(this);
+    proBackgroundColorPicker = new QtColorPicker(this);
     proBackgroundColorPicker->setStandardColors();
     proBackgroundColorPicker->setCurrentColor(Qt::white);
     backgroundColorLabel->setBuddy(proBackgroundColorPicker);

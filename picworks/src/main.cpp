@@ -35,7 +35,7 @@
 
 int main(int argc, char *argv[])
 {
-    Ext::QtSingleApplication app(argc, argv);
+    QtSingleApplication app(argc, argv);
     QCoreApplication::setOrganizationName("galaxy");
     QCoreApplication::setOrganizationDomain("galaxy");
     QCoreApplication::setApplicationName("PicWorks");

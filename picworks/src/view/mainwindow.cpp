@@ -125,7 +125,7 @@ void View::MainWindow::createMenus()
     Core::ActionContainer *mc0 = actionManager->registerMenu(Core::AppResource::MENU_EDIT, "liang");
     Core::ActionContainer *mc1 = actionManager->registerMenu(Core::AppResource::MENU_TOOL, "tools");
     Core::Action *a = menuBarContainer->addMenu(mc);
-    Core::Action *a0 = menuBarContainer->addMenu(mc0);
+    menuBarContainer->addMenu(mc0);
     menuBarContainer->addMenu(mc1, a);
 
     /*

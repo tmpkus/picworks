@@ -53,8 +53,8 @@ unix {
     QMAKE_EXTRA_TARGETS += versiontarget
 }
 
-# submodel common, common files in PicWorks
-include (src/common.pri)
+# submodel app, application files in PicWorks
+include (src/app.pri)
 
 # submodel view, most are UI component
 include (src/view/view.pri)
@@ -68,8 +68,9 @@ include (src/item/item.pri)
 # submodel util, useful utilities in PicWorks
 include (src/util/util.pri)
 
-# submodel QtSingleApplication
+# extral QtSolutions
 include (src/extern/qtsingleapplication/qtsingleapplication.pri)
+
 debug_and_release { 
     CONFIG -= debug_and_release
     CONFIG += debug_and_release

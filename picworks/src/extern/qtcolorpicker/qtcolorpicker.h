@@ -1,11 +1,11 @@
 /****************************************************************************
-**
-** This file is part of a Qt Solutions component.
 ** 
 ** Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
 ** 
-** Contact:  Qt Software Information (qt-info@nokia.com)
-** 
+** This file is part of a Qt Solutions component.
+**
 ** Commercial Usage  
 ** Licensees holding valid Qt Commercial licenses may use this file in
 ** accordance with the Qt Solutions Commercial License Agreement provided
@@ -22,7 +22,7 @@
 ** 
 ** In addition, as a special exception, Nokia gives you certain
 ** additional rights. These rights are described in the Nokia Qt LGPL
-** Exception version 1.0, included in the file LGPL_EXCEPTION.txt in this
+** Exception version 1.1, included in the file LGPL_EXCEPTION.txt in this
 ** package.
 ** 
 ** GNU General Public License Usage 
@@ -40,7 +40,7 @@
 ** Party Software they are using.
 ** 
 ** If you are unsure which license is appropriate for your use, please
-** contact the sales department at qt-sales@nokia.com.
+** contact Nokia at qt-info@nokia.com.
 ** 
 ****************************************************************************/
 
@@ -70,8 +70,6 @@
 #  define QT_QTCOLORPICKER_EXPORT
 #endif
 
-namespace Ext {
-
 class ColorPickerPopup;
 
 class QT_QTCOLORPICKER_EXPORT QtColorPicker : public QPushButton
@@ -92,6 +90,9 @@ public:
 
     QColor color(int index) const;
 
+    inline void setShowText(bool s) { st = s; }
+    inline bool showText() const { return st; }
+
     void setColorDialogEnabled(bool enabled);
     bool colorDialogEnabled() const;
 
@@ -101,7 +102,6 @@ public:
 
 public Q_SLOTS:
     void setCurrentColor(const QColor &col);
-    void showText(bool show);
 
 Q_SIGNALS:
     void colorChanged(const QColor &);
@@ -114,14 +114,12 @@ private Q_SLOTS:
     void popupClosed();
 
 private:
-    Ext::ColorPickerPopup *popup;
+    ColorPickerPopup *popup;
     QColor col;
     bool withColorDialog;
     bool dirty;
     bool firstInserted;
-    bool showTxt;
+    bool st;
 };
-
-} // end of namespace
 
 #endif

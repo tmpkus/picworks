@@ -1,11 +1,11 @@
 /****************************************************************************
-**
-** This file is part of a Qt Solutions component.
 ** 
 ** Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
 ** 
-** Contact:  Qt Software Information (qt-info@nokia.com)
-** 
+** This file is part of a Qt Solutions component.
+**
 ** Commercial Usage  
 ** Licensees holding valid Qt Commercial licenses may use this file in
 ** accordance with the Qt Solutions Commercial License Agreement provided
@@ -22,7 +22,7 @@
 ** 
 ** In addition, as a special exception, Nokia gives you certain
 ** additional rights. These rights are described in the Nokia Qt LGPL
-** Exception version 1.0, included in the file LGPL_EXCEPTION.txt in this
+** Exception version 1.1, included in the file LGPL_EXCEPTION.txt in this
 ** package.
 ** 
 ** GNU General Public License Usage 
@@ -40,12 +40,10 @@
 ** Party Software they are using.
 ** 
 ** If you are unsure which license is appropriate for your use, please
-** contact the sales department at qt-sales@nokia.com.
+** contact Nokia at qt-info@nokia.com.
 ** 
 ****************************************************************************/
 
-#include <QDebug>
-#include <QBrush>
 #include <QtGui/QApplication>
 #include <QtGui/QDesktopWidget>
 #include <QtGui/QPainter>
@@ -67,7 +65,7 @@
 #include <math.h>
 
 #include "qtcolorpicker.h"
-#include "../util/appresource.h"
+#include "../../util/appresource.h"
 
 /*! \class QtColorPicker
 
@@ -142,9 +140,6 @@
     mouseRelease, even if the mouse button was  not pressed inside the
     widget.
 */
-
-namespace Ext {
-
 class ColorPickerButton : public QFrame
 {
     Q_OBJECT
@@ -254,8 +249,6 @@ private:
     QColor lastSel;
 };
 
-} // end of namespace
-
 /*!
     Constructs a QtColorPicker widget. The popup will display a grid
     with \a cols columns, or if \a cols is -1, the number of columns
@@ -265,8 +258,6 @@ private:
     button (signified by an ellipsis "...") that presents a
     QColorDialog when clicked.
 
-    If \showText is true, the button will show color's name.
-
     After constructing a QtColorPicker, call insertColor() to add
     individual colors to the popup grid, or call setStandardColors()
     to add all the standard colors in one go.
@@ -275,9 +266,9 @@ private:
 
     \sa QFrame
 */
-Ext::QtColorPicker::QtColorPicker(QWidget *parent,
-                             int cols, bool enableColorDialog, bool showText)
-    : QPushButton(parent), popup(0), withColorDialog(enableColorDialog), showTxt(showText)
+QtColorPicker::QtColorPicker(QWidget *parent,
+			     int cols, bool enableColorDialog, bool showText)
+    : QPushButton(parent), popup(0), withColorDialog(enableColorDialog), st(showText)
 {
     setFocusPolicy(Qt::StrongFocus);
     setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
@@ -286,7 +277,7 @@ Ext::QtColorPicker::QtColorPicker(QWidget *parent,
     setCheckable(true);
 
     // Set text
-    if(showTxt) {
+    if(st) {
         setText(tr("Black"));
     }
     firstInserted = false;
@@ -308,7 +299,7 @@ Ext::QtColorPicker::QtColorPicker(QWidget *parent,
 /*!
     Destructs the QtColorPicker.
 */
-Ext::QtColorPicker::~QtColorPicker()
+QtColorPicker::~QtColorPicker()
 {
 }
 
@@ -317,7 +308,7 @@ Ext::QtColorPicker::~QtColorPicker()
     Pops up the color grid, and makes sure the status of
     QtColorPicker's button is right.
 */
-void Ext::QtColorPicker::buttonPressed(bool toggled)
+void QtColorPicker::buttonPressed(bool toggled)
 {
     if (!toggled)
         return;
@@ -355,7 +346,7 @@ void Ext::QtColorPicker::buttonPressed(bool toggled)
 /*!
     \internal
 */
-void Ext::QtColorPicker::paintEvent(QPaintEvent *e)
+void QtColorPicker::paintEvent(QPaintEvent *e)
 {
     if (dirty) {
         int iconSize = style()->pixelMetric(QStyle::PM_LargeIconSize);
@@ -382,7 +373,7 @@ void Ext::QtColorPicker::paintEvent(QPaintEvent *e)
 
     Makes sure the button isn't pressed when the popup hides.
 */
-void Ext::QtColorPicker::popupClosed()
+void QtColorPicker::popupClosed()
 {
     setChecked(false);
     setFocus();
@@ -393,7 +384,7 @@ void Ext::QtColorPicker::popupClosed()
 
     \sa text()
 */
-QColor Ext::QtColorPicker::currentColor() const
+QColor QtColorPicker::currentColor() const
 {
     return col;
 }
@@ -401,7 +392,7 @@ QColor Ext::QtColorPicker::currentColor() const
 /*!
     Returns the color at position \a index.
 */
-QColor Ext::QtColorPicker::color(int index) const
+QColor QtColorPicker::color(int index) const
 {
     return popup->color(index);
 }
@@ -414,7 +405,7 @@ QColor Ext::QtColorPicker::color(int index) const
 
     \sa insertColor()
 */
-void Ext::QtColorPicker::setStandardColors()
+void QtColorPicker::setStandardColors()
 {
     insertColor(Qt::black, tr("Black"));
     insertColor(Qt::white, tr("White"));
@@ -443,21 +434,22 @@ void Ext::QtColorPicker::setStandardColors()
     This function emits the colorChanged() signal if the new color is
     valid, and different from the old one.
 */
-void Ext::QtColorPicker::setCurrentColor(const QColor &color)
+void QtColorPicker::setCurrentColor(const QColor &color)
 {
     if (col == color || !color.isValid())
 	return;
 
-    Ext::ColorPickerItem *item = popup->find(color);
+    ColorPickerItem *item = popup->find(color);
     if (!item) {
 	insertColor(color, tr("Custom"));
 	item = popup->find(color);
     }
 
     col = color;
-    if(showTxt) {
+    if(st) {
         setText(item->text());
     }
+
     dirty = true;
 
     popup->hide();
@@ -468,28 +460,19 @@ void Ext::QtColorPicker::setCurrentColor(const QColor &color)
 }
 
 /*!
-  \brief Whether tp show color name as button label or not.
-  \param show \a true if wants to show name
- */
-void Ext::QtColorPicker::showText(bool show)
-{
-    showTxt = show;
-}
-
-/*!
     Adds the color \a color with the name \a text to the color grid,
     at position \a index. If index is -1, the color is assigned
     automatically assigned a position, starting from left to right,
     top to bottom.
 */
-void Ext::QtColorPicker::insertColor(const QColor &color, const QString &text, int index)
+void QtColorPicker::insertColor(const QColor &color, const QString &text, int index)
 {
     popup->insertColor(color, text, index);
     if (!firstInserted) {
 	col = color;
-        if(showTxt) {
-            setText(text);
-        }
+	if(st) {
+        setText(text);
+    }
 	firstInserted = true;
     }
 }
@@ -502,11 +485,11 @@ void Ext::QtColorPicker::insertColor(const QColor &color, const QString &text, i
     QColorDialog when clicked. The user will then be able to select
     any custom color they like.
 */
-void Ext::QtColorPicker::setColorDialogEnabled(bool enabled)
+void QtColorPicker::setColorDialogEnabled(bool enabled)
 {
     withColorDialog = enabled;
 }
-bool Ext::QtColorPicker::colorDialogEnabled() const
+bool QtColorPicker::colorDialogEnabled() const
 {
     return withColorDialog;
 }
@@ -522,14 +505,14 @@ bool Ext::QtColorPicker::colorDialogEnabled() const
         void Drawer::mouseReleaseEvent(QMouseEvent *e)
         {
 	    if (e->button() & RightButton) {
-                QColor color = QtColorPicker::getColor(mapToCore(e->pos()));
+                QColor color = QtColorPicker::getColor(mapToGlobal(e->pos()));
             }
         }
     \endcode
 */
-QColor Ext::QtColorPicker::getColor(const QPoint &point, bool allowCustomColors)
+QColor QtColorPicker::getColor(const QPoint &point, bool allowCustomColors)
 {
-    Ext::ColorPickerPopup popup(-1, allowCustomColors);
+    ColorPickerPopup popup(-1, allowCustomColors);
 
     popup.insertColor(Qt::black, tr("Black"), 0);
     popup.insertColor(Qt::white, tr("White"), 1);
@@ -558,8 +541,8 @@ QColor Ext::QtColorPicker::getColor(const QPoint &point, bool allowCustomColors)
 
     Constructs the popup widget.
 */
-Ext::ColorPickerPopup::ColorPickerPopup(int width, bool withColorDialog,
-                                        QWidget *parent)
+ColorPickerPopup::ColorPickerPopup(int width, bool withColorDialog,
+				       QWidget *parent)
     : QFrame(parent, Qt::Popup)
 {
     setFrameStyle(QFrame::StyledPanel);
@@ -589,7 +572,7 @@ Ext::ColorPickerPopup::ColorPickerPopup(int width, bool withColorDialog,
 
     Destructs the popup widget.
 */
-Ext::ColorPickerPopup::~ColorPickerPopup()
+ColorPickerPopup::~ColorPickerPopup()
 {
     if (eventLoop)
         eventLoop->exit();
@@ -600,7 +583,7 @@ Ext::ColorPickerPopup::~ColorPickerPopup()
     If there is an item whole color is equal to \a col, returns a
     pointer to this item; otherwise returns 0.
 */
-Ext::ColorPickerItem *Ext::ColorPickerPopup::find(const QColor &col) const
+ColorPickerItem *ColorPickerPopup::find(const QColor &col) const
 {
     for (int i = 0; i < items.size(); ++i) {
 	if (items.at(i) && items.at(i)->color() == col)
@@ -615,11 +598,11 @@ Ext::ColorPickerItem *Ext::ColorPickerPopup::find(const QColor &col) const
     Adds \a item to the grid. The items are added from top-left to
     bottom-right.
 */
-void Ext::ColorPickerPopup::insertColor(const QColor &col, const QString &text, int index)
+void ColorPickerPopup::insertColor(const QColor &col, const QString &text, int index)
 {
     // Don't add colors that we have already.
-    Ext::ColorPickerItem *existingItem = find(col);
-    Ext::ColorPickerItem *lastSelectedItem = find(lastSelected());
+    ColorPickerItem *existingItem = find(col);
+    ColorPickerItem *lastSelectedItem = find(lastSelected());
 
     if (existingItem) {
         if (lastSelectedItem && existingItem != lastSelectedItem)
@@ -629,7 +612,7 @@ void Ext::ColorPickerPopup::insertColor(const QColor &col, const QString &text, 
         return;
     }
 
-    Ext::ColorPickerItem *item = new ColorPickerItem(col, text, this);
+    ColorPickerItem *item = new ColorPickerItem(col, text, this);
 
     if (lastSelectedItem) {
         lastSelectedItem->setSelected(false);
@@ -654,19 +637,19 @@ void Ext::ColorPickerPopup::insertColor(const QColor &col, const QString &text, 
 /*! \internal
 
 */
-QColor Ext::ColorPickerPopup::color(int index) const
+QColor ColorPickerPopup::color(int index) const
 {
-    if (index < 0 || index > ((int) items.count()) - 1)
+    if (index < 0 || index > (int) items.count() - 1)
         return QColor();
 
-    Ext::ColorPickerPopup *that = (ColorPickerPopup *)this;
+    ColorPickerPopup *that = (ColorPickerPopup *)this;
     return that->items.at(index)->color();
 }
 
 /*! \internal
 
 */
-void Ext::ColorPickerPopup::exec()
+void ColorPickerPopup::exec()
 {
     show();
 
@@ -679,14 +662,14 @@ void Ext::ColorPickerPopup::exec()
 /*! \internal
 
 */
-void Ext::ColorPickerPopup::updateSelected()
+void ColorPickerPopup::updateSelected()
 {
     QLayoutItem *layoutItem;
     int i = 0;
     while ((layoutItem = grid->itemAt(i)) != 0) {
 	QWidget *w = layoutItem->widget();
 	if (w && w->inherits("ColorPickerItem")) {
-            Ext::ColorPickerItem *litem = reinterpret_cast<Ext::ColorPickerItem *>(layoutItem->widget());
+	    ColorPickerItem *litem = reinterpret_cast<ColorPickerItem *>(layoutItem->widget());
 	    if (litem != sender())
 		litem->setSelected(false);
 	}
@@ -694,7 +677,7 @@ void Ext::ColorPickerPopup::updateSelected()
     }
 
     if (sender() && sender()->inherits("ColorPickerItem")) {
-        Ext::ColorPickerItem *item = (Ext::ColorPickerItem *)sender();
+	ColorPickerItem *item = (ColorPickerItem *)sender();
 	lastSel = item->color();
 	emit selected(item->color());
     }
@@ -705,7 +688,7 @@ void Ext::ColorPickerPopup::updateSelected()
 /*! \internal
 
 */
-void Ext::ColorPickerPopup::mouseReleaseEvent(QMouseEvent *e)
+void ColorPickerPopup::mouseReleaseEvent(QMouseEvent *e)
 {
     if (!rect().contains(e->pos()))
 	hide();
@@ -715,7 +698,7 @@ void Ext::ColorPickerPopup::mouseReleaseEvent(QMouseEvent *e)
 
     Controls keyboard navigation and selection on the color grid.
 */
-void Ext::ColorPickerPopup::keyPressEvent(QKeyEvent *e)
+void ColorPickerPopup::keyPressEvent(QKeyEvent *e)
 {
     int curRow = 0;
     int curCol = 0;
@@ -764,7 +747,7 @@ void Ext::ColorPickerPopup::keyPressEvent(QKeyEvent *e)
 	case Qt::Key_Enter: {
 	    QWidget *w = widgetAt[curRow][curCol];
 	    if (w && w->inherits("ColorPickerItem")) {
-                Ext::ColorPickerItem *wi = reinterpret_cast<Ext::ColorPickerItem *>(w);
+		ColorPickerItem *wi = reinterpret_cast<ColorPickerItem *>(w);
 		wi->setSelected(true);
 
 		QLayoutItem *layoutItem;
@@ -772,8 +755,8 @@ void Ext::ColorPickerPopup::keyPressEvent(QKeyEvent *e)
 		while ((layoutItem = grid->itemAt(i)) != 0) {
 		    QWidget *w = layoutItem->widget();
 		    if (w && w->inherits("ColorPickerItem")) {
-                        Ext::ColorPickerItem *litem
-                            = reinterpret_cast<Ext::ColorPickerItem *>(layoutItem->widget());
+			ColorPickerItem *litem
+			    = reinterpret_cast<ColorPickerItem *>(layoutItem->widget());
 			if (litem != wi)
 			    litem->setSelected(false);
 		    }
@@ -784,7 +767,7 @@ void Ext::ColorPickerPopup::keyPressEvent(QKeyEvent *e)
 		emit selected(wi->color());
 		hide();
 	    } else if (w && w->inherits("QPushButton")) {
-                Ext::ColorPickerItem *wi = reinterpret_cast<Ext::ColorPickerItem *>(w);
+		ColorPickerItem *wi = reinterpret_cast<ColorPickerItem *>(w);
 		wi->setSelected(true);
 
 		QLayoutItem *layoutItem;
@@ -792,8 +775,8 @@ void Ext::ColorPickerPopup::keyPressEvent(QKeyEvent *e)
 		while ((layoutItem = grid->itemAt(i)) != 0) {
 		    QWidget *w = layoutItem->widget();
 		    if (w && w->inherits("ColorPickerItem")) {
-                        Ext::ColorPickerItem *litem
-                            = reinterpret_cast<Ext::ColorPickerItem *>(layoutItem->widget());
+			ColorPickerItem *litem
+			    = reinterpret_cast<ColorPickerItem *>(layoutItem->widget());
 			if (litem != wi)
 			    litem->setSelected(false);
 		    }
@@ -820,7 +803,7 @@ void Ext::ColorPickerPopup::keyPressEvent(QKeyEvent *e)
 /*! \internal
 
 */
-void Ext::ColorPickerPopup::hideEvent(QHideEvent *e)
+void ColorPickerPopup::hideEvent(QHideEvent *e)
 {
     if (eventLoop) {
 	eventLoop->exit();
@@ -835,7 +818,7 @@ void Ext::ColorPickerPopup::hideEvent(QHideEvent *e)
 /*! \internal
 
 */
-QColor Ext::ColorPickerPopup::lastSelected() const
+QColor ColorPickerPopup::lastSelected() const
 {
     return lastSel;
 }
@@ -845,14 +828,14 @@ QColor Ext::ColorPickerPopup::lastSelected() const
     Sets focus on the popup to enable keyboard navigation. Draws
     focusRect and selection rect.
 */
-void Ext::ColorPickerPopup::showEvent(QShowEvent *)
+void ColorPickerPopup::showEvent(QShowEvent *)
 {
     bool foundSelected = false;
     for (int i = 0; i < grid->columnCount(); ++i) {
 	for (int j = 0; j < grid->rowCount(); ++j) {
 	    QWidget *w = widgetAt[j][i];
 	    if (w && w->inherits("ColorPickerItem")) {
-                if (((Ext::ColorPickerItem *)w)->isSelected()) {
+		if (((ColorPickerItem *)w)->isSelected()) {
 		    w->setFocus();
 		    foundSelected = true;
 		    break;
@@ -872,7 +855,7 @@ void Ext::ColorPickerPopup::showEvent(QShowEvent *)
 /*!
 
 */
-void Ext::ColorPickerPopup::regenerateGrid()
+void ColorPickerPopup::regenerateGrid()
 {
     widgetAt.clear();
 
@@ -912,7 +895,7 @@ void Ext::ColorPickerPopup::regenerateGrid()
     Copies the color dialog's currently selected item and emits
     itemSelected().
 */
-void Ext::ColorPickerPopup::getColorFromDialog()
+void ColorPickerPopup::getColorFromDialog()
 {
     bool ok;
     QRgb rgb = QColorDialog::getRgba(lastSel.rgba(), &ok, parentWidget());
@@ -929,7 +912,7 @@ void Ext::ColorPickerPopup::getColorFromDialog()
     Constructs a ColorPickerItem whose color is set to \a color, and
     whose name is set to \a text.
 */
-Ext::ColorPickerItem::ColorPickerItem(const QColor &color, const QString &text,
+ColorPickerItem::ColorPickerItem(const QColor &color, const QString &text,
 				     QWidget *parent)
     : QFrame(parent), c(color), t(text), sel(false)
 {
@@ -941,7 +924,7 @@ Ext::ColorPickerItem::ColorPickerItem(const QColor &color, const QString &text,
 /*!
     Destructs a ColorPickerItem.
  */
-Ext::ColorPickerItem::~ColorPickerItem()
+ColorPickerItem::~ColorPickerItem()
 {
 }
 
@@ -950,7 +933,7 @@ Ext::ColorPickerItem::~ColorPickerItem()
 
     \sa text()
 */
-QColor Ext::ColorPickerItem::color() const
+QColor ColorPickerItem::color() const
 {
     return c;
 }
@@ -960,7 +943,7 @@ QColor Ext::ColorPickerItem::color() const
 
     \sa color()
 */
-QString Ext::ColorPickerItem::text() const
+QString ColorPickerItem::text() const
 {
     return t;
 }
@@ -968,7 +951,7 @@ QString Ext::ColorPickerItem::text() const
 /*!
 
 */
-bool Ext::ColorPickerItem::isSelected() const
+bool ColorPickerItem::isSelected() const
 {
     return sel;
 }
@@ -976,7 +959,7 @@ bool Ext::ColorPickerItem::isSelected() const
 /*!
 
 */
-void Ext::ColorPickerItem::setSelected(bool selected)
+void ColorPickerItem::setSelected(bool selected)
 {
     sel = selected;
     update();
@@ -985,7 +968,7 @@ void Ext::ColorPickerItem::setSelected(bool selected)
 /*!
     Sets the item's color to \a color, and its name to \a text.
 */
-void Ext::ColorPickerItem::setColor(const QColor &color, const QString &text)
+void ColorPickerItem::setColor(const QColor &color, const QString &text)
 {
     c = color;
     t = text;
@@ -996,7 +979,7 @@ void Ext::ColorPickerItem::setColor(const QColor &color, const QString &text)
 /*!
 
 */
-void Ext::ColorPickerItem::mouseMoveEvent(QMouseEvent *)
+void ColorPickerItem::mouseMoveEvent(QMouseEvent *)
 {
     setFocus();
     update();
@@ -1005,7 +988,7 @@ void Ext::ColorPickerItem::mouseMoveEvent(QMouseEvent *)
 /*!
 
 */
-void Ext::ColorPickerItem::mouseReleaseEvent(QMouseEvent *)
+void ColorPickerItem::mouseReleaseEvent(QMouseEvent *)
 {
     sel = true;
     emit selected();
@@ -1014,7 +997,7 @@ void Ext::ColorPickerItem::mouseReleaseEvent(QMouseEvent *)
 /*!
 
 */
-void Ext::ColorPickerItem::mousePressEvent(QMouseEvent *)
+void ColorPickerItem::mousePressEvent(QMouseEvent *)
 {
     setFocus();
     update();
@@ -1023,7 +1006,7 @@ void Ext::ColorPickerItem::mousePressEvent(QMouseEvent *)
 /*!
 
 */
-void Ext::ColorPickerItem::paintEvent(QPaintEvent *)
+void ColorPickerItem::paintEvent(QPaintEvent *)
 {
     QPainter p(this);
     int w = width();			// width of cell in pixels
@@ -1045,7 +1028,7 @@ void Ext::ColorPickerItem::paintEvent(QPaintEvent *)
 /*!
 
 */
-Ext::ColorPickerButton::ColorPickerButton(QWidget *parent)
+ColorPickerButton::ColorPickerButton(QWidget *parent)
     : QFrame(parent)
 {
     setFrameStyle(StyledPanel);
@@ -1054,7 +1037,7 @@ Ext::ColorPickerButton::ColorPickerButton(QWidget *parent)
 /*!
 
 */
-void Ext::ColorPickerButton::mousePressEvent(QMouseEvent *)
+void ColorPickerButton::mousePressEvent(QMouseEvent *)
 {
     setFrameShadow(Sunken);
     update();
@@ -1063,7 +1046,7 @@ void Ext::ColorPickerButton::mousePressEvent(QMouseEvent *)
 /*!
 
 */
-void Ext::ColorPickerButton::mouseMoveEvent(QMouseEvent *)
+void ColorPickerButton::mouseMoveEvent(QMouseEvent *)
 {
     setFocus();
     update();
@@ -1072,7 +1055,7 @@ void Ext::ColorPickerButton::mouseMoveEvent(QMouseEvent *)
 /*!
 
 */
-void Ext::ColorPickerButton::mouseReleaseEvent(QMouseEvent *)
+void ColorPickerButton::mouseReleaseEvent(QMouseEvent *)
 {
     setFrameShadow(Raised);
     repaint();
@@ -1082,7 +1065,7 @@ void Ext::ColorPickerButton::mouseReleaseEvent(QMouseEvent *)
 /*!
 
 */
-void Ext::ColorPickerButton::keyPressEvent(QKeyEvent *e)
+void ColorPickerButton::keyPressEvent(QKeyEvent *e)
 {
     if (e->key() == Qt::Key_Up
 	|| e->key() == Qt::Key_Down
@@ -1100,7 +1083,7 @@ void Ext::ColorPickerButton::keyPressEvent(QKeyEvent *e)
 /*!
 
 */
-void Ext::ColorPickerButton::keyReleaseEvent(QKeyEvent *e)
+void ColorPickerButton::keyReleaseEvent(QKeyEvent *e)
 {
     if (e->key() == Qt::Key_Up
 	|| e->key() == Qt::Key_Down
@@ -1120,7 +1103,7 @@ void Ext::ColorPickerButton::keyReleaseEvent(QKeyEvent *e)
 /*!
 
 */
-void Ext::ColorPickerButton::focusInEvent(QFocusEvent *e)
+void ColorPickerButton::focusInEvent(QFocusEvent *e)
 {
     setFrameShadow(Raised);
     update();
@@ -1130,7 +1113,7 @@ void Ext::ColorPickerButton::focusInEvent(QFocusEvent *e)
 /*!
 
 */
-void Ext::ColorPickerButton::focusOutEvent(QFocusEvent *e)
+void ColorPickerButton::focusOutEvent(QFocusEvent *e)
 {
     setFrameShadow(Raised);
     update();
@@ -1140,7 +1123,7 @@ void Ext::ColorPickerButton::focusOutEvent(QFocusEvent *e)
 /*!
 
 */
-void Ext::ColorPickerButton::paintEvent(QPaintEvent *e)
+void ColorPickerButton::paintEvent(QPaintEvent *e)
 {
     QFrame::paintEvent(e);
 

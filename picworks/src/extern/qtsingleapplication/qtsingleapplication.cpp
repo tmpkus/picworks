@@ -138,7 +138,6 @@
     \sa QtSingleCoreApplication
 */
 
-using namespace Ext;
 
 void QtSingleApplication::sysInit(const QString &appId)
 {

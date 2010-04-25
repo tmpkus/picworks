@@ -8,7 +8,7 @@
   \namespace PicWorks
   \brief Namespace for classes that do not included by other namespaces,
   such as main() and so on.
-  Mainly in group Common.
+  Mainly in group App.
  */
 
 /*!
@@ -59,7 +59,7 @@
  */
 
 /*!
-  \defgroup Common
+  \defgroup App
   \brief This is the group for common usage.
   Files that contains \a main() function and version numbers should be
   added in this group.

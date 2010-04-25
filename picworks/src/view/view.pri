@@ -4,7 +4,6 @@
 # by Galaxy.org
 # 2009-9-5
 # -------------------------------------------------
-
 SOURCES += $$PWD/mainwindow.cpp \
     $$PWD/projectcreatedialog.cpp \
     $$PWD/projectview.cpp \
@@ -13,13 +12,12 @@ SOURCES += $$PWD/mainwindow.cpp \
     $$PWD/projectscene.cpp \
     $$PWD/preferencesdialog.cpp \
     $$PWD/licensedialog.cpp \
-    $$PWD/qtcolorpicker.cpp \
     $$PWD/qtwindowlistmenu.cpp \
     $$PWD/twocolorselector.cpp \
     $$PWD/commonbar.cpp \
     $$PWD/layerpreviewpanel.cpp \
-    $$PWD/penwidthchooser.cpp
-
+    $$PWD/penwidthchooser.cpp \
+    $$PWD/../extern/qtcolorpicker/qtcolorpicker.cpp
 HEADERS += $$PWD/mainwindow.h \
     $$PWD/projectcreatedialog.h \
     $$PWD/projectview.h \
@@ -28,9 +26,9 @@ HEADERS += $$PWD/mainwindow.h \
     $$PWD/projectscene.h \
     $$PWD/preferencesdialog.h \
     $$PWD/licensedialog.h \
-    $$PWD/qtcolorpicker.h \
     $$PWD/qtwindowlistmenu.h \
     $$PWD/twocolorselector.h \
     $$PWD/commonbar.h \
     $$PWD/layerpreviewpanel.h \
-    $$PWD/penwidthchooser.h
+    $$PWD/penwidthchooser.h \
+    $$PWD/../extern/qtcolorpicker/qtcolorpicker.h
