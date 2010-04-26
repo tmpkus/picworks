@@ -107,7 +107,7 @@ Core::Action* Core::MenuActionContainer::addMenu(ActionContainer *c,
     Core::MenuActionContainer *mc = dynamic_cast<Core::MenuActionContainer *>(c);
     QAction *qa = NULL;
     if(mc) {
-        qa = before ? m->insertMenu(before, mc->menu()) : m->addMenu(mc->menu());
+        qa = before ? m->insertMenu(before->action(), mc->menu()) : m->addMenu(mc->menu());
     }
     return new Core::Action(qa);
 }
@@ -152,7 +152,7 @@ Core::Action* Core::MenuBarActionContainer::addMenu(ActionContainer *c,
     Core::MenuActionContainer *mc = dynamic_cast<Core::MenuActionContainer *>(c);
     QAction *qa = NULL;
     if(mc) {
-        qa = before ? m->insertMenu(before, mc->menu()) : m->addMenu(mc->menu());
+        qa = before ? mb->insertMenu(before->action(), mc->menu()) : mb->addMenu(mc->menu());
     }
     return new Core::Action(qa);
 }

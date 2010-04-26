@@ -91,10 +91,10 @@ QString PicWorks::VersionInfo::rivi = QString("0");
   \internal
   \brief Build version number.
  */
-QString PicWorks::VersionInfo::bu = QString("1");
+QString PicWorks::VersionInfo::bu = QString("6");
 
 /*!
   \internal
   \brief Build date.
  */
-QString PicWorks::VersionInfo::bDate = QString("2010-4-25");
+QString PicWorks::VersionInfo::bDate = QString("2010-4-26");

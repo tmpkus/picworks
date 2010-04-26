@@ -119,9 +119,11 @@ void View::MainWindow::createMenus()
     setMenuBar(mb);
 #endif
     Core::ActionContainer *mc = actionManager->createMenu(Core::AppResource::MENU_FILE, "cheng");
+    Core::ActionContainer *mcs = actionManager->createMenu(Core::AppResource::MENU_FILE, "sub cheng");
     Core::Action *na = actionManager->registerAction(Core::AppResource::MENU_ITEM_NEW, new QAction(this));
     na->setText("New");
     mc->addAction(na);
+    mc->addMenu(mcs, na);
 
     Core::ActionContainer *mc0 = actionManager->createMenu(Core::AppResource::MENU_EDIT, "liang");
     Core::ActionContainer *mc1 = actionManager->createMenu(Core::AppResource::MENU_TOOL, "tools");
