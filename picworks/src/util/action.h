@@ -37,13 +37,22 @@ namespace Core {
 
 class Action : public QObject
 {
+    Q_OBJECT
+
 public:
-    Action(QAction *a = 0);
+    enum Type {
+        ACTION,
+        SEPARATOR
+    };
+
+    Action(Type type = ACTION, QAction *a = NULL);
     ~Action();
 
     inline QAction* action() const { return qa; }
 
     inline void setAction(QAction *a) { qa = a; }
+
+    inline int type() const { return t; }
 
     inline QVariant data() { return qa->data(); }
 
@@ -51,8 +60,12 @@ public:
 
     inline void setText(const QString &text) { qa->setText(text); }
 
+signals:
+    void triggered();
+
 private:
     QAction *qa;
+    Type t;
 }; // end of class
 
 } // end of namespace

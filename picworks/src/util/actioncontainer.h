@@ -42,12 +42,18 @@ class Action;
 class ActionContainer : public QObject
 {
 public:
+    enum {
+        ACTION,
+        SEPERATOR
+    };
+    
     ActionContainer();
     virtual ~ActionContainer() {}
 
     virtual void addAction(Core::Action *a) = 0;
     virtual Core::Action* addMenu(ActionContainer * c, Core::Action *a = NULL) = 0;
     virtual void setText(const QString &text) = 0;
+    virtual void addSeparator() = 0;
     virtual QMenu * menu() = 0;
     virtual QMenuBar * menuBar() = 0;
 }; // end of class ActionContainer
@@ -100,6 +106,11 @@ public:
 private:
     QMenuBar *mb;
 }; // end of class MenuBarActionContainer
+
+class ToolBarActionContainer : public ActionContainer
+{
+
+};
 
 } // end of namespace
 

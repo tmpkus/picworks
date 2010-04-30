@@ -88,11 +88,18 @@ Core::MenuActionContainer::MenuActionContainer()
 
 /*!
   \brief Adds action to menu.
+  If the type of this action is \a Core::Action::SEPARATOR, a separator
+  will be added.
   \param a action
  */
 void Core::MenuActionContainer::addAction(Core::Action *a)
 {
-    m->addAction(a->action());
+    int type = a->type();
+    if(type == Core::Action::ACTION) {
+        m->addAction(a->action());
+    } else if(type == Core::Action::SEPARATOR) {
+        m->addSeparator();
+    }
 }
 
 /*!
@@ -102,14 +109,14 @@ void Core::MenuActionContainer::addAction(Core::Action *a)
   \param before insert container before action \a before
  */
 Core::Action* Core::MenuActionContainer::addMenu(ActionContainer *c,
-                                                 Core::Action *before /* = NULL */)
+                                                 Core::Action *before/* = NULL */)
 {
     Core::MenuActionContainer *mc = dynamic_cast<Core::MenuActionContainer *>(c);
     QAction *qa = NULL;
     if(mc) {
         qa = before ? m->insertMenu(before->action(), mc->menu()) : m->addMenu(mc->menu());
     }
-    return new Core::Action(qa);
+    return new Core::Action(Core::Action::ACTION, qa);
 }
 
 /*!
@@ -154,5 +161,5 @@ Core::Action* Core::MenuBarActionContainer::addMenu(ActionContainer *c,
     if(mc) {
         qa = before ? mb->insertMenu(before->action(), mc->menu()) : mb->addMenu(mc->menu());
     }
-    return new Core::Action(qa);
+    return new Core::Action(Core::Action::ACTION, qa);
 }

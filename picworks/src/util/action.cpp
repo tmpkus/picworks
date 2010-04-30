@@ -57,9 +57,21 @@
   \param text text to be set
  */
 
-Core::Action::Action(QAction *a /* = 0 */)
-    : qa(a)
+/*!
+  \brief Created an action.
+  \param type type of this action. Its value maybe
+  <ul>
+    <li>Core::Action::ACTION: This is the default value. Action with this type is a normal action wrapper.</li>
+    <li>Core::Action::SEPARATOR: Action with this type will be added into menus as a separator. If its type is this value, the return value of action() function is no sense.</li>
+  </ul>
+  \param a action which wrapped in this action. Note that this may be no sense when its type is \a Core::Action::SEPARATOR.
+ */
+Core::Action::Action(Type type /* = ACTION */, QAction *a /* = NULL */)
+    : qa(a), t(type)
 {
+    if(qa) {
+        connect(qa, SIGNAL(triggered()), this, SIGNAL(triggered()));
+    }
 }
 
 Core::Action::~Action()

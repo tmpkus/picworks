@@ -30,6 +30,8 @@
 
 #include <QMainWindow>
 
+#include "../util/appresource.h"
+
 class QAction;
 class QActionGroup;
 class QMenu;
@@ -71,43 +73,18 @@ protected:
     void closeEvent(QCloseEvent * event);
 
 private:
-    QAction *newAction;
-    QAction *openAction;
-    QAction *saveAction;
-    QAction *saveAsAction;
-    QAction *saveAllAction;
-    QAction *printAction;
-    QAction *exitAction;
-
-    QAction *undoAction;
-    QAction *redoAction;
-    QAction *cutAction;
-    QAction *copyAction;
-    QAction *pasteAction;
-
-    QAction *preferencesAction;
-
-    QAction *helpAction;
-    QAction *aboutAction;
-
-    QAction *selectToolAction;
-    QAction *moveToolAction;
-    QAction *brushToolAction;
-    QAction *eraserToolAction;
-    QAction *paintCanToolAction;
-    QAction *textToolAction;
-    Action::DataAction *lineToolAction;
-    Action::DataAction *curveToolAction;
-    Action::DataAction *ellipseToolAction;
-    Action::DataAction *polygonToolAction;
-    Action::DataAction *rectangleToolAction;
-    Action::DataAction *roundRectangleToolAction;
-
-    QMenu *fileMenu;
-    QMenu *editMenu;
-    QMenu *toolsMenu;
-    Ext::QtWindowListMenu *subwindowMenu;
-    QMenu *helpMenu;
+//    QAction *selectToolAction;
+//    QAction *moveToolAction;
+//    QAction *brushToolAction;
+//    QAction *eraserToolAction;
+//    QAction *paintCanToolAction;
+//    QAction *textToolAction;
+//    Action::DataAction *lineToolAction;
+//    Action::DataAction *curveToolAction;
+//    Action::DataAction *ellipseToolAction;
+//    Action::DataAction *polygonToolAction;
+//    Action::DataAction *rectangleToolAction;
+//    Action::DataAction *roundRectangleToolAction;
 
     QActionGroup *toolBoxActionGroup;
 

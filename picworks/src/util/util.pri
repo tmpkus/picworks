@@ -8,17 +8,19 @@ SOURCES += $$PWD/appresource.cpp \
     $$PWD/appcontext.cpp \
     $$PWD/dataaction.cpp \
     $$PWD/imageio.cpp \
+    $$PWD/action.cpp \
     $$PWD/actionmanager.cpp \
     $$PWD/singleton.cpp \
     $$PWD/actioncontainer.cpp \
     $$PWD/idmanager.cpp \
-    $$PWD/action.cpp
+    $$PWD/constants.cpp
 HEADERS += $$PWD/appresource.h \
     $$PWD/appcontext.h \
     $$PWD/dataaction.h \
     $$PWD/imageio.h \
+    $$PWD/action.h \
     $$PWD/actionmanager.h \
     $$PWD/singleton.h \
     $$PWD/actioncontainer.h \
     $$PWD/idmanager.h \
-    $$PWD/action.h
+    $$PWD/constants.h

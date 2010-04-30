@@ -111,8 +111,18 @@ Core::Action* Core::ActionManager::registerAction(const QString &id, QAction *a)
     int uid = idManager->uid(id);
     Core::Action *action = actionMap.value(uid, 0);
     if(!action) {
-        action = new Core::Action(a);
+        action = new Core::Action(Core::Action::ACTION, a);
         actionMap.insert(uid, action);
     }
     return action;
+}
+
+/*!
+  \brief Gets registered action with string id \a id.
+  \param id string id of this action
+  \return action, NULL if 
+ */
+Core::Action* Core::ActionManager::action(const QString &id)
+{
+    return actionMap.value(idManager->uid(id), NULL);
 }

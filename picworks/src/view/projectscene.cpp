@@ -86,42 +86,42 @@ View::ProjectScene::~ProjectScene()
 void View::ProjectScene::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
     if(event->button() == Qt::LeftButton) {
-        switch(appCtx->currentAction()) {
-        case Core::AppResource::DrawLineAction:
-            {
-                GraphicsItem::Line *drawingLine = new GraphicsItem::Line(this);
-                drawingLine->setPen(QPen(QBrush(appCtx->penColor(), Qt::SolidPattern), appCtx->penWidth()));
-                drawingLine->setZValue(layerIndex);
-                addItem(drawingLine);
-                drawingShape = drawingLine;
-                break;
-            }
-        case Core::AppResource::DrawCurveAction:
-            {
-                break;
-            }
-        case Core::AppResource::DrawRectAction:
-            {
-                break;
-            }
-        case Core::AppResource::DrawRoundRectAction:
-            {
-                break;
-            }
-        case Core::AppResource::DrawEllipseAction:
-            {
-                break;
-            }
-        case Core::AppResource::DrawPolygonAction:
-            {
-                break;
-            }
-        default:
-            {
-                // not a drawable item, do nothing
-                break;
-            }
-        }
+//        switch(appCtx->currentAction()) {
+//        case Core::AppResource::DrawLineAction:
+//            {
+//                GraphicsItem::Line *drawingLine = new GraphicsItem::Line(this);
+//                drawingLine->setPen(QPen(QBrush(appCtx->penColor(), Qt::SolidPattern), appCtx->penWidth()));
+//                drawingLine->setZValue(layerIndex);
+//                addItem(drawingLine);
+//                drawingShape = drawingLine;
+//                break;
+//            }
+//        case Core::AppResource::DrawCurveAction:
+//            {
+//                break;
+//            }
+//        case Core::AppResource::DrawRectAction:
+//            {
+//                break;
+//            }
+//        case Core::AppResource::DrawRoundRectAction:
+//            {
+//                break;
+//            }
+//        case Core::AppResource::DrawEllipseAction:
+//            {
+//                break;
+//            }
+//        case Core::AppResource::DrawPolygonAction:
+//            {
+//                break;
+//            }
+//        default:
+//            {
+//                // not a drawable item, do nothing
+//                break;
+//            }
+//        }
         if(drawingShape) {
             drawingShape->startDraw(event);
         }

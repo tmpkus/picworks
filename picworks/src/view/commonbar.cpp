@@ -100,21 +100,21 @@ View::CommonBar & View::CommonBar::instance(const QString &title /* = "CommonBar
 QToolBar * View::CommonBar::createCommonBar(const QVariant & data)
 {
     if(data.canConvert(QVariant::Int)) {
-        Core::AppResource::Action a = static_cast<Core::AppResource::Action>(data.toInt());
-        switch(a) {
-        case Core::AppResource::DrawLineAction:
-            {
-                penColorAction->setVisible(true);
-                penWidthAction->setVisible(true);
-                break;
-            }
-        default:
-            {
-                penColorAction->setVisible(false);
-                penWidthAction->setVisible(false);
-                break;
-            }
-        }
+//        Core::AppResource::Action a = static_cast<Core::AppResource::Action>(data.toInt());
+//        switch(a) {
+//        case Core::AppResource::DrawLineAction:
+//            {
+//                penColorAction->setVisible(true);
+//                penWidthAction->setVisible(true);
+//                break;
+//            }
+//        default:
+//            {
+//                penColorAction->setVisible(false);
+//                penWidthAction->setVisible(false);
+//                break;
+//            }
+//        }
     }
     return bar;
 }
