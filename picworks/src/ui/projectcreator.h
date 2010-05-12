@@ -18,9 +18,9 @@
 
 /*!
   \file projectcreatedialog.h
-  \ingroup View
+  \ingroup Ui
   \brief This file contains
-  - class View::ProjectCreateDialog declaration
+  - class Ui::ProjectCreator declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-9-5 Created.
  */
@@ -31,28 +31,24 @@
 #include <QDialog>
 
 class QComboBox;
-class QColor;
 class QDialogButtonBox;
 class QLineEdit;
 class QSpinBox;
-class QPixmap;
-class QStringList;
-class QPaintEvent;
 class QtColorPicker;
 
-namespace Data {
-    class Project;
+namespace Core {
+    class GpwDat;
 };
 
-namespace View {
+namespace Ui {
 
-class ProjectCreateDialog : public QDialog
+class ProjectCreator : public QDialog
 {
     Q_OBJECT
 public:
-    ProjectCreateDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
-    ~ProjectCreateDialog() {}
-    Data::Project * getProject();
+    ProjectCreator(QWidget *parent = 0, Qt::WindowFlags flags = 0);
+    ~ProjectCreator();
+    Core ::GpwDat* dat();
 
 private:
     QLineEdit *proNameEdit;
@@ -64,7 +60,6 @@ private:
     QComboBox *proDpiUnitBox;
     QtColorPicker *proBackgroundColorPicker;
     QDialogButtonBox *buttonBox;
-    QColor backgroundColor;
 
 }; // end of class
 

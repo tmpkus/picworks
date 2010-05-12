@@ -42,6 +42,8 @@
 #include "mainwindow.h"
 #include "constants.h"
 #include "actioncontainer.h"
+#include "projectcreator.h"
+#include "action.h"
 
 /*!
   \brief Constructor.
@@ -301,14 +303,14 @@ void Ui::MainWindow::establishConnections()
  */
 void Ui::MainWindow::showProjectCreateDialog()
 {
-    ProjectCreateDialog *pcd = new ProjectCreateDialog(this); // Qt::WindowSystemMenuHint | Qt::WindowTitleHint
+    ProjectCreator *pcd = new ProjectCreator(this); // Qt::WindowSystemMenuHint | Qt::WindowTitleHint
     // block...
     int rtn = pcd->exec();
     // get project
     if(rtn == QDialog::Accepted) {
-        ProjectWindow * pw = new ProjectWindow(pcd->getProject());
-        mdiArea->addSubWindow(pw);
-        pw->show();
+        //ProjectWindow * pw = new ProjectWindow(pcd->getProject());
+        //mdiArea->addSubWindow(pw);
+        //pw->show();
     }
     delete pcd;
 }

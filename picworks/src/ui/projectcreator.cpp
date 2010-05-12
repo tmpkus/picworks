@@ -18,9 +18,9 @@
 
 /*!
   \file projectcreatedialog.cpp
-  \ingroup View
+  \ingroup Ui
   \brief This file contains
-  - class View::ProjectCreateDialog implemtation
+  - class Ui::ProjectCreator implemtation
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-9-5 Created.
  */
@@ -39,15 +39,15 @@
 #include <QPainter>
 #include <QBrush>
 
-#include "../extern/qtcolorpicker/qtcolorpicker.h"
-#include "projectcreatedialog.h"
-#include "../model/project.h"
-#include "../util/appresource.h"
+#include "qtcolorpicker.h"
+#include "projectcreator.h"
+#include "gpwdat.h"
+#include "appresource.h"
 
 /*!
-  \class View::ProjectCreateDialog projectcreatedialog.h
+  \class Ui::ProjectCreator projectcreator.h
   \brief Creator of project in PicWorks.
-  ProjectCreateDialog is a dialog when the action "new" is actived.
+  ProjectCreator is a dialog when the action "new" is actived.
   The dialog is used for collecting data from user in order to construct a new project.
   \version 0.0.1
   \author Cheng Liang <chengliang.soft@gmail.com>
@@ -55,37 +55,32 @@
  */
 
 /*!
-  \fn void View::ProjectCreateDialog::accept()
-  \brief Closes the dialog and emits projectCreated(Data::Project&) signal.
- */
-
-/*!
   \brief Constructor.
-  Creates a new ProjectCreateDialog instance.
+  Creates a new ProjectCreator instance.
   \param parent parent widget of this dialog, default value is 0
+  \param flags window flags for this dialog
  */
-View::ProjectCreateDialog::ProjectCreateDialog(QWidget *parent /* = 0 */, Qt::WindowFlags flags /* = 0 */)
-        : QDialog(parent, flags),
-          backgroundColor(Qt::white)
+Ui::ProjectCreator::ProjectCreator(QWidget *parent /* = 0 */, Qt::WindowFlags flags /* = 0 */)
+        : QDialog(parent, flags)
 {
     // init locale attributes
     // Measurement unit for creating a new project. The sequence of this list must be the
     // same as enum MeasureUnitEnum which defines in global.h.
     QStringList unitList;
-    unitList<<appRes->measurementUnitName(Core::AppResource::pxMeasurementUnit)
-            <<appRes->measurementUnitName(Core::AppResource::cmMeasurementUnit);
+    unitList<<appRes->measurementUnitName(Core::AppResource::px)
+            <<appRes->measurementUnitName(Core::AppResource::cm);
     // DPI unit for creating a new project. The sequence of this list must be the
     // same as enum DpiUnit which defines in global.h.
     QStringList dpiList;
-    dpiList<<appRes->dpiUnitName(Core::AppResource::perInchDpiUnit)
-           <<appRes->dpiUnitName(Core::AppResource::perCmDpiUnit);
+    dpiList<<appRes->dpiUnitName(Core::AppResource::perInch)
+           <<appRes->dpiUnitName(Core::AppResource::perCm);
 
-    setWindowTitle(tr("New", "Project creating dialog title."));
+    setWindowTitle(tr("New", "Project creator title."));
     setWindowIcon(appRes->icon(Core::AppResource::ApplicationIcon));
     setFixedSize(260, 240);
 
     // project name
-    QLabel *nameLabel = new QLabel(tr("Project &Name:", "Project name text on Project creating dialog."));
+    QLabel *nameLabel = new QLabel(tr("&Name:", "Project name text on Project creating dialog."));
     nameLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     nameLabel->setFixedWidth(nameLabel->sizeHint().width());
     proNameEdit = new QLineEdit(tr("untitled", "Default project name."));
@@ -168,12 +163,28 @@ View::ProjectCreateDialog::ProjectCreateDialog(QWidget *parent /* = 0 */, Qt::Wi
 }
 
 /*!
+  \brief Destructor.
+ */
+Ui::ProjectCreator::~ProjectCreator()
+{
+    delete proNameEdit;
+    delete proWidthBox;
+    delete proHeightBox;
+    delete proWidthUnitBox;
+    delete proHeightUnitBox;
+    delete proDpiBox;
+    delete proDpiUnitBox;
+    delete proBackgroundColorPicker;
+    delete buttonBox;
+}
+
+/*!
   \brief Gets the project data.
   \return pointer of project instance
  */
-Data::Project * View::ProjectCreateDialog::getProject()
+Core::GpwDat * Ui::ProjectCreator::dat()
 {
-    Data::Project *p = new Data::Project;
+    Core::GpwDat *p = new Core::GpwDat;
     p->setName(proNameEdit->text());
     p->setWidth(proWidthBox->value());
     p->setHeight(proHeightBox->value());

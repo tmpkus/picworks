@@ -33,11 +33,14 @@ CONFIG(release, debug|release) {
 SOURCES += mainwindow.cpp \
     aboutdialog.cpp \
     licensedialog.cpp \
-    projectcreator.cpp
+    projectcreator.cpp \
+    ../share/qtcolorpicker/qtcolorpicker.cpp
 HEADERS += ui_global.h \
     mainwindow.h \
     aboutdialog.h \
     licensedialog.h \
-    projectcreator.h
+    projectcreator.h \
+    ../share/qtcolorpicker/qtcolorpicker.h
 INCLUDEPATH += ../core \
-    ../share/qtwindowlistmenu
+    ../share/qtwindowlistmenu \
+    ../share/qtcolorpicker
