@@ -8,6 +8,7 @@ TARGET = core
 TEMPLATE = lib
 DEFINES += UTIL_LIBRARY
 include(../config.pri)
+include(../share/qtsingleapplication/qtsingleapplication.pri)
 CONFIG(debug, debug|release) { 
     mac:TARGET = $$join(TARGET,,,_debug)
     win32:TARGET = $$join(TARGET,,,d)

@@ -17,7 +17,6 @@ INCLUDEPATH += ../share/qtsingleapplication \
 include(../config.pri)
 CONFIG(debug, debug|release) { 
     LIBS += -L../../lib \
-        -lQtSolutions_SingleApplication-2.6d \
         -luid \
         -lcored
     UI_DIR = ../../debug/ui
@@ -28,7 +27,6 @@ CONFIG(debug, debug|release) {
 }
 CONFIG(release, debug|release) { 
     LIBS += -L../../lib \
-        -lQtSolutions_SingleApplication-2.6 \
         -lui \
         -lcore
     UI_DIR = ../../release/ui

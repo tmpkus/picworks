@@ -66,6 +66,7 @@ Ui::MainWindow::MainWindow(QWidget *parent /* = NULL */)
     createStatusBar();
     createDockPanels();
     createToolBar();
+    establishConnections();
 }
 
 /*!
