@@ -17,21 +17,21 @@
 //
 
 /*!
-  \file gpwdat.cpp
+  \file project.cpp
   \ingroup Core
   \brief This file contains
-  - class Core::GpwDat implemtation
+  - class Core::Project implemtation
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2010-5-6 Created.
  */
 
-#include "gpwdat.h"
+#include "project.h"
 
 /*!
   \brief Project unit data in PicWorks.
   This is the set of data used for PicWorks project. A project is usually an opened image
   file or empty file created by PicWorks itself. The "gpw" format, which can be generated
-  by PicWorks, is saved according to the data stored in PwsDat class.
+  by PicWorks, is saved according to the data stored in Project class.
   All data of a single project is saved here. Each project should include these data.
   Views to show project can be created by this class. Each setter function will emit a signal.
   Note the data of project has default values:
@@ -181,7 +181,7 @@
   \param oldColor old project background color
  */
 
-Core::GpwDat::GpwDat()
+Core::Project::Project()
     : dName(tr("untitled", "Init Project name.")),
       w(800),
       h(600),

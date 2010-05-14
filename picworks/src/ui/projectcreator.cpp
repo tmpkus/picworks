@@ -41,7 +41,7 @@
 
 #include "qtcolorpicker.h"
 #include "projectcreator.h"
-#include "gpwdat.h"
+#include "project.h"
 #include "appresource.h"
 
 /*!
@@ -182,9 +182,9 @@ Ui::ProjectCreator::~ProjectCreator()
   \brief Gets the project data.
   \return pointer of project instance
  */
-Core::GpwDat * Ui::ProjectCreator::dat()
+Core::Project * Ui::ProjectCreator::project()
 {
-    Core::GpwDat *p = new Core::GpwDat;
+    Core::Project *p = new Core::Project;
     p->setName(proNameEdit->text());
     p->setWidth(proWidthBox->value());
     p->setHeight(proHeightBox->value());

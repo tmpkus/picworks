@@ -62,6 +62,7 @@ private:
 
 private slots:
     void showProjectCreateDialog();
+    void showAboutDialog();
 };
 
 }

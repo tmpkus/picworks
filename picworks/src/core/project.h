@@ -17,16 +17,16 @@
 //
 
 /*!
-  \file gpwdat.h
+  \file project.h
   \ingroup Core
   \brief This file contains
-  - class Core::GpwDat declaration
+  - class Core::Project declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2010-5-6 Created.
  */
 
-#ifndef GPWDAT_H
-#define GPWDAT_H
+#ifndef PROJECT_H
+#define PROJECT_H
 
 #include <QObject>
 
@@ -39,7 +39,7 @@ namespace Core {
 
 class AppResource;
 
-class CORESHARED_EXPORT GpwDat : public QObject
+class CORESHARED_EXPORT Project : public QObject
 {
     Q_OBJECT
 
@@ -47,8 +47,8 @@ class CORESHARED_EXPORT GpwDat : public QObject
     typedef AppResource::DpiUnit DUnit;
 
 public:
-    GpwDat();
-    ~GpwDat() {}
+    Project();
+    ~Project() {}
 
     inline QString name() const
     {
@@ -182,4 +182,4 @@ private:
 
 } // end of namespace
 
-#endif // GPWDAT_H
+#endif // PROJECT_H

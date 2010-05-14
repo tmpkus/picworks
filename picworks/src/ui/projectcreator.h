@@ -37,7 +37,7 @@ class QSpinBox;
 class QtColorPicker;
 
 namespace Core {
-    class GpwDat;
+    class Project;
 };
 
 namespace Ui {
@@ -48,7 +48,7 @@ class ProjectCreator : public QDialog
 public:
     ProjectCreator(QWidget *parent = 0, Qt::WindowFlags flags = 0);
     ~ProjectCreator();
-    Core ::GpwDat* dat();
+    Core ::Project* project();
 
 private:
     QLineEdit *proNameEdit;

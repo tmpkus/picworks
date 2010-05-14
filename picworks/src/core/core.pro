@@ -36,7 +36,7 @@ HEADERS += action.h \
     imageio.h \
     singleton.h \
     version.h \
-    gpwdat.h
+    project.h
 SOURCES += action.cpp \
     actioncontainer.cpp \
     actionmanager.cpp \
@@ -47,6 +47,6 @@ SOURCES += action.cpp \
     singleton.cpp \
     version.cpp \
     constants.cpp \
-    gpwdat.cpp
+    project.cpp
 INCLUDEPATH += ../ui
 RESOURCES += ../../res/pwrc.qrc

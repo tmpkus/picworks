@@ -44,6 +44,7 @@
 #include "actioncontainer.h"
 #include "projectcreator.h"
 #include "action.h"
+#include "aboutdialog.h"
 
 /*!
   \brief Constructor.
@@ -291,7 +292,7 @@ void Ui::MainWindow::establishConnections()
     connect(actionManager->action(ID->actionNew())->action(), SIGNAL(triggered()), this, SLOT(showProjectCreateDialog()));
     //connect(actionManager->action(ID->actionOpen())->action(), SIGNAL(triggered()), this, SLOT(showFileOpenDialog()));
     //connect(actionManager->action(Core::ID::Action::NEW), SIGNAL(triggered()), this, SLOT(showPreferencesDialog()));
-    //connect(actionManager->action(Core::ID::Action::ABOUT), SIGNAL(triggered()), this, SLOT(showAboutDialog()));
+    connect(actionManager->action(ID->actionOpenAbout())->action(), SIGNAL(triggered()), this, SLOT(showAboutDialog()));
 
     // connect(lineToolAction, SIGNAL(triggered()), AppCtx, SLOT(setCurrentAction()));
 }
@@ -314,4 +315,14 @@ void Ui::MainWindow::showProjectCreateDialog()
         //pw->show();
     }
     delete pcd;
+}
+
+/*!
+  \internal
+  \brief Shows the about dialog.
+ */
+void Ui::MainWindow::showAboutDialog()
+{
+    AboutDialog *ad = new AboutDialog(this);
+    ad->exec();
 }
