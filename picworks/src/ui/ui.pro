@@ -12,7 +12,8 @@ CONFIG(debug, debug|release) {
     mac:TARGET = $$join(TARGET,,,_debug)
     win32:TARGET = $$join(TARGET,,,d)
     LIBS += -L../../lib \
-        -lcored
+        -lcored \
+        -lgraphicsd
     UI_DIR = ../../lib/debug/ui
     MOC_DIR = ../../lib/debug/moc
     OBJECTS_DIR = ../../lib/debug/obj
@@ -21,7 +22,8 @@ CONFIG(debug, debug|release) {
 }
 CONFIG(release, debug|release) { 
     LIBS += -L../../lib \
-        -lcore
+        -lcore \
+        -lgraphics
     UI_DIR = ../../lib/release/ui
     MOC_DIR = ../../lib/release/moc
     OBJECTS_DIR = ../../lib/release/obj
@@ -33,14 +35,17 @@ SOURCES += mainwindow.cpp \
     licensedialog.cpp \
     projectcreator.cpp \
     ../share/qtcolorpicker/qtcolorpicker.cpp \
-    ../share/qtwindowlistmenu/qtwindowlistmenu.cpp
+    ../share/qtwindowlistmenu/qtwindowlistmenu.cpp \
+    projectscene.cpp
 HEADERS += ui_global.h \
     mainwindow.h \
     aboutdialog.h \
     licensedialog.h \
     projectcreator.h \
     ../share/qtcolorpicker/qtcolorpicker.h \
-    ../share/qtwindowlistmenu/qtwindowlistmenu.h
+    ../share/qtwindowlistmenu/qtwindowlistmenu.h \
+    projectscene.h
 INCLUDEPATH += ../core \
+    ../graphics \
     ../share/qtwindowlistmenu \
     ../share/qtcolorpicker

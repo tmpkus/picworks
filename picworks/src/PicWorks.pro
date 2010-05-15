@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS += core ui app
+SUBDIRS += core graphics ui app

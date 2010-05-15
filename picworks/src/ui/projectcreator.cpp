@@ -17,7 +17,7 @@
 //
 
 /*!
-  \file projectcreatedialog.cpp
+  \file projectcreator.cpp
   \ingroup Ui
   \brief This file contains
   - class Ui::ProjectCreator implemtation

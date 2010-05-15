@@ -23,6 +23,11 @@ picworks/src/core/*.user
 picworks/src/core/*.Debug
 picworks/src/core/*.Release
 
+picworks/src/graphics/Makefile
+picworks/src/graphics/*.user
+picworks/src/graphics/*.Debug
+picworks/src/graphics/*.Release
+
 picworks/src/ui/Makefile
 picworks/src/ui/*.user
 picworks/src/ui/*.Debug
