@@ -110,6 +110,8 @@ void Ui::MainWindow::createMenus()
     mb->addMenu(editMenu->menu());
 
     Core::ActionContainer *toolMenu = actionManager->createMenu(ID->menuTool(), tr("&Tools", "[Tools] on menu bar."));
+    Core::ActionContainer *langMenu = actionManager->createMenu(ID->menuLang(), tr("Languages", "[Language] under menu [Tool]"));
+    toolMenu->addMenu(langMenu);
     toolMenu->addAction(actionManager->action(ID->actionOpenReference()));
     mb->addMenu(toolMenu->menu());
 

@@ -62,6 +62,7 @@ Core::ConstId::ConstId()
       mnFile("mnFile"),
       mnEdit("mnEdit"),
       mnTool("mnTool"),
+      mnLang("mnLang"),
       mnHelp("mnHelp"),
       mb("mb"),
       tb("tb")

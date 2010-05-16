@@ -185,6 +185,12 @@ public:
     QString menuTool() const { return mnTool; }
 
     /*!
+      \brief String id of menu <i>Languages</i>.
+      \return menu <i>Languages</i> string id
+     */
+    QString menuLang() const { return mnLang; }
+
+    /*!
       \brief String id of menu <i>Help</i>.
       \return menu <i>Help</i> string id
      */
@@ -227,6 +233,7 @@ private:
     QString mnFile;
     QString mnEdit;
     QString mnTool;
+    QString mnLang;
     QString mnHelp;
     QString mb;
     QString tb;
