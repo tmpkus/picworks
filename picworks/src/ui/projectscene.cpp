@@ -69,20 +69,6 @@ Ui::ProjectScene::ProjectScene(Core::Project *pro, QObject *parent /* = 0 */)
 }
 
 /*!
-  \brief Destructor.
-  Destructs this scene.
- */
-Ui::ProjectScene::~ProjectScene()
-{
-    if(project) {
-        delete project;
-    }
-    if(drawingShape) {
-        delete drawingShape;
-    }
-}
-
-/*!
   \internal
  */
 void Ui::ProjectScene::mousePressEvent(QGraphicsSceneMouseEvent * event)

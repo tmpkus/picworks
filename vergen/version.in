@@ -67,12 +67,12 @@
  */
 
 Core::VersionInfo::VersionInfo()
-    : wcURL("http://picworks.hg.sourceforge.net:8000/hgroot/picworks/picworks"),
-      bDate("2010-5-16"),
-      rivi("0"),
-      ma("0"),
-      mi("0"),
-      bu("1")
+    : wcURL("$$workcopy_url$$"),
+      bDate("$$build_date$$"),
+      rivi("$$rivision$$"),
+      ma("$$major_version$$"),
+      mi("$$minor_version$$"),
+      bu("$$build_version$$")
 {
 
 }

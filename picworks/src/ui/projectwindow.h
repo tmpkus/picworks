@@ -17,55 +17,49 @@
 //
 
 /*!
-  \file projectscene.h
+  \file projectwindow.h
   \ingroup Ui
   \brief This file contains
-  - class Ui::ProjectScene declaration
+  - class Ui::ProjectWindow declaration
+  \version 0.0.1
   \author Cheng Liang <changliang.soft@gmail.com>
-  \date 2009-10-12 Created.
+  \date 2009-9-5 Created.
  */
 
-#ifndef PROJECTSCENE_H
-#define PROJECTSCENE_H
+#ifndef PROJECTWINDOW_H
+#define PROJECTWINDOW_H
 
-#include <QGraphicsScene>
+#include <QMdiSubWindow>
 
-class QGraphicsSceneMouseEvent;
+class QPaintEvent;
+class QSize;
+class QAction;
+class QStatusBar;
 
 namespace Core {
     class Project;
 };
 
-namespace Graphics {
-    class Shape;
-};
-
 namespace Ui {
 
-class ProjectScene : public QGraphicsScene
+class ProjectView;
+class ProjectScene;
+
+class ProjectWindow : public QMdiSubWindow
 {
-    Q_OBJECT
-
 public:
-    ProjectScene(Core::Project *pro, QObject *parent = 0);
-    ~ProjectScene() {}
-
-public slots:
-    void setProcessing(bool p) { processing = p; }
-
-protected:
-    void mousePressEvent(QGraphicsSceneMouseEvent * event);
-    void mouseMoveEvent(QGraphicsSceneMouseEvent * event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent * event);
+    ProjectWindow(Core::Project *pro, QWidget *parent = 0);
+    ~ProjectWindow() {}
+    QSize sizeHint() const;
 
 private:
     Core::Project *project;
-    Graphics::Shape *drawingShape;
-    bool processing;
-    int layerIndex;
+    ProjectView *view;
+    ProjectScene *scene;
+    QStatusBar *statusBar;
 
-}; // end of class
+}; // end of class ProjectWindow
 
 } // end of namespace
 
-#endif // PROJECTSCENE_H
+#endif // PROJECTWINDOW_H

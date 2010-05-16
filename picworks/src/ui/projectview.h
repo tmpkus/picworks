@@ -16,19 +16,37 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef VERIONNUMBERGENARATOR_H
-#define VERIONNUMBERGENARATOR_H
+/*!
+  \file projectview.h
+  \ingroup Ui
+  \brief This file contains
+  - class Ui::ProjectView declaration
+  \version 0.0.1
+  \author Cheng Liang <changliang.soft@gmail.com>
+  \date 2009-9-19 Created.
+ */
 
-#include <QStringList>
+#ifndef PROJECTVIEW_H
+#define PROJECTVIEW_H
 
-class VersionNumberGenarator
+#include <QGraphicsView>
+
+class QSize;
+class QGraphicsScene;
+
+namespace Ui {
+
+class ProjectScene;
+
+class ProjectView : public QGraphicsView
 {
 public:
-    VersionNumberGenarator(int argc, char *argv[]);
-    int genarate();
+    ProjectView(QWidget *parent = 0);
+    ~ProjectView() {}
+    QSize sizeHint() const;
 
-private:
-    QStringList args;
-};
+}; // end of class
 
-#endif // VERIONNUMBERGENARATOR_H
+} // end of namespace
+
+#endif // PROJECTVIEW_H

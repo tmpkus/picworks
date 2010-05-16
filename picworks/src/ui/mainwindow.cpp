@@ -45,6 +45,7 @@
 #include "projectcreator.h"
 #include "action.h"
 #include "aboutdialog.h"
+#include "projectwindow.h"
 
 /*!
   \brief Constructor.
@@ -310,9 +311,9 @@ void Ui::MainWindow::showProjectCreateDialog()
     int rtn = pcd->exec();
     // get project
     if(rtn == QDialog::Accepted) {
-        //ProjectWindow * pw = new ProjectWindow(pcd->getProject());
-        //mdiArea->addSubWindow(pw);
-        //pw->show();
+        ProjectWindow * pw = new ProjectWindow(pcd->project());
+        mdiArea->addSubWindow(pw);
+        pw->show();
     }
     delete pcd;
 }

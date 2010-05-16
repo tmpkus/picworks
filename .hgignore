@@ -38,14 +38,10 @@ picworks/src/ui/*.Release
 picworks/PicWorks # executable on Linux
 picworks/lib # generated libraries
 
-vergen/.cproject
-vergen/.project
-vergen/*.user
-vergen/*.Debug
-vergen/*.Release
-vergen/*.ini
-vergen/*.o
+vergen/src/*.user
+vergen/src/*.Debug
+vergen/src/*.Release
+vergen/src/Makefile
 vergen/debug/*
 vergen/release/*
-vergen/Makefile
 vergen/vergen

@@ -36,7 +36,9 @@ SOURCES += mainwindow.cpp \
     projectcreator.cpp \
     ../share/qtcolorpicker/qtcolorpicker.cpp \
     ../share/qtwindowlistmenu/qtwindowlistmenu.cpp \
-    projectscene.cpp
+    projectscene.cpp \
+    projectview.cpp \
+    projectwindow.cpp
 HEADERS += ui_global.h \
     mainwindow.h \
     aboutdialog.h \
@@ -44,7 +46,9 @@ HEADERS += ui_global.h \
     projectcreator.h \
     ../share/qtcolorpicker/qtcolorpicker.h \
     ../share/qtwindowlistmenu/qtwindowlistmenu.h \
-    projectscene.h
+    projectscene.h \
+    projectview.h \
+    projectwindow.h
 INCLUDEPATH += ../core \
     ../graphics \
     ../share/qtwindowlistmenu \
