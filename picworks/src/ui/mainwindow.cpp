@@ -136,92 +136,92 @@ void Ui::MainWindow::createMenus()
 void Ui::MainWindow::createActions()
 {
     // Common Actions
-    QAction *newAction = new QAction(tr("&New...", "[New] action text."), this);
-    newAction->setIcon(appRes->icon(Core::AppResource::NewIcon));
-    newAction->setShortcut(QKeySequence::New);
-    newAction->setStatusTip(tr("Create a new image file.", "[New] action tip on status bar."));
-    actionManager->registerAction(ID->actionNew(), newAction);
+    QAction *newQAction = new QAction(tr("&New...", "[New] action text."), this);
+    newQAction->setIcon(appRes->icon(Core::AppResource::NewIcon));
+    newQAction->setShortcut(QKeySequence::New);
+    newQAction->setStatusTip(tr("Create a new image file.", "[New] action tip on status bar."));
+    newAction = actionManager->registerAction(ID->actionNew(), newQAction);
 
-    QAction *openAction = new QAction(tr("&Open...", "[Open] action text."), this);
-    openAction->setIcon(appRes->icon(Core::AppResource::OpenIcon));
-    openAction->setShortcut(QKeySequence::Open);
-    openAction->setStatusTip(tr("Open an image file.", "[Open] action tip on status bar."));
-    actionManager->registerAction(ID->actionOpen(), openAction);
+    QAction *openQAction = new QAction(tr("&Open...", "[Open] action text."), this);
+    openQAction->setIcon(appRes->icon(Core::AppResource::OpenIcon));
+    openQAction->setShortcut(QKeySequence::Open);
+    openQAction->setStatusTip(tr("Open an image file.", "[Open] action tip on status bar."));
+    openAction = actionManager->registerAction(ID->actionOpen(), openQAction);
 
-    QAction *saveAction = new QAction(tr("&Save", "[Save] action text."), this);
-    saveAction->setIcon(appRes->icon(Core::AppResource::SaveIcon));
-    saveAction->setShortcut(QKeySequence::Save);
-    saveAction->setStatusTip(tr("Save the project into a file.", "[Save] action tip on status bar."));
-    actionManager->registerAction(ID->actionSave(), saveAction);
+    QAction *saveQAction = new QAction(tr("&Save", "[Save] action text."), this);
+    saveQAction->setIcon(appRes->icon(Core::AppResource::SaveIcon));
+    saveQAction->setShortcut(QKeySequence::Save);
+    saveQAction->setStatusTip(tr("Save the project into a file.", "[Save] action tip on status bar."));
+    saveAction = actionManager->registerAction(ID->actionSave(), saveQAction);
 
-    QAction *saveAsAction = new QAction(tr("Save &As...", "[Save As] action text."), this);
-    saveAsAction->setIcon(appRes->icon(Core::AppResource::SaveAsIcon));
-    saveAsAction->setShortcut(QKeySequence::SaveAs);
-    saveAsAction->setStatusTip(tr("Save the project as another file.", "[Save As] action tip on status bar."));
-    actionManager->registerAction(ID->actionSaveAs(), saveAsAction);
+    QAction *saveAsQAction = new QAction(tr("Save &As...", "[Save As] action text."), this);
+    saveAsQAction->setIcon(appRes->icon(Core::AppResource::SaveAsIcon));
+    saveAsQAction->setShortcut(QKeySequence::SaveAs);
+    saveAsQAction->setStatusTip(tr("Save the project as another file.", "[Save As] action tip on status bar."));
+    saveAsAction = actionManager->registerAction(ID->actionSaveAs(), saveAsQAction);
 
-    QAction *saveAllAction = new QAction(tr("Save &All", "[Save All] action text."), this);
-    saveAllAction->setIcon(appRes->icon(Core::AppResource::SaveAllIcon));
-    saveAllAction->setStatusTip(tr("Save all the projects.", "[Save All] action tip on status bar."));
-    actionManager->registerAction(ID->actionSaveAll(), saveAllAction);
+    QAction *saveAllQAction = new QAction(tr("Save &All", "[Save All] action text."), this);
+    saveAllQAction->setIcon(appRes->icon(Core::AppResource::SaveAllIcon));
+    saveAllQAction->setStatusTip(tr("Save all the projects.", "[Save All] action tip on status bar."));
+    saveAllAction = actionManager->registerAction(ID->actionSaveAll(), saveAllQAction);
 
-    QAction *printAction = new QAction(tr("&Print...", "[Print] action text."), this);
-    printAction->setIcon(appRes->icon(Core::AppResource::PrintIcon));
-    printAction->setShortcut(QKeySequence::Print);
-    printAction->setStatusTip(tr("Print the project.", "[Print] action tip on status bar."));
-    actionManager->registerAction(ID->actionPrint(), printAction);
+    QAction *printQAction = new QAction(tr("&Print...", "[Print] action text."), this);
+    printQAction->setIcon(appRes->icon(Core::AppResource::PrintIcon));
+    printQAction->setShortcut(QKeySequence::Print);
+    printQAction->setStatusTip(tr("Print the project.", "[Print] action tip on status bar."));
+    printAction = actionManager->registerAction(ID->actionPrint(), printQAction);
 
-    QAction *exitAction = new QAction(tr("E&xit", "[Exit] action text."), this);
-    exitAction->setIcon(appRes->icon(Core::AppResource::ExitIcon));
-    exitAction->setShortcut(tr("Ctrl+Q", "[Exit] action shortcut."));
-    exitAction->setStatusTip(tr("Exit PicWorks.", "[Exit] action tip on status bar."));
-    actionManager->registerAction(ID->actionExit(), exitAction);
+    QAction *exitQAction = new QAction(tr("E&xit", "[Exit] action text."), this);
+    exitQAction->setIcon(appRes->icon(Core::AppResource::ExitIcon));
+    exitQAction->setShortcut(tr("Ctrl+Q", "[Exit] action shortcut."));
+    exitQAction->setStatusTip(tr("Exit PicWorks.", "[Exit] action tip on status bar."));
+    exitAction = actionManager->registerAction(ID->actionExit(), exitQAction);
 
-    QAction *undoAction = new QAction(tr("&Undo", "[Undo] action text."), this);
-    undoAction->setIcon(appRes->icon(Core::AppResource::UndoIcon));
-    undoAction->setShortcut(QKeySequence::Undo);
-    undoAction->setStatusTip(tr("Undo the last action.", "[Undo] action tip on status bar."));
-    actionManager->registerAction(ID->actionUndo(), undoAction);
+    QAction *undoQAction = new QAction(tr("&Undo", "[Undo] action text."), this);
+    undoQAction->setIcon(appRes->icon(Core::AppResource::UndoIcon));
+    undoQAction->setShortcut(QKeySequence::Undo);
+    undoQAction->setStatusTip(tr("Undo the last action.", "[Undo] action tip on status bar."));
+    undoAction = actionManager->registerAction(ID->actionUndo(), undoQAction);
 
-    QAction *redoAction = new QAction(tr("&Redo", "[Redo] action text."), this);
-    redoAction->setIcon(appRes->icon(Core::AppResource::RedoIcon));
-    redoAction->setShortcut(QKeySequence::Redo);
-    redoAction->setStatusTip(tr("Redo the next action.", "[Redo] action tip on status bar."));
-    actionManager->registerAction(ID->actionRedo(), redoAction);
+    QAction *redoQAction = new QAction(tr("&Redo", "[Redo] action text."), this);
+    redoQAction->setIcon(appRes->icon(Core::AppResource::RedoIcon));
+    redoQAction->setShortcut(QKeySequence::Redo);
+    redoQAction->setStatusTip(tr("Redo the next action.", "[Redo] action tip on status bar."));
+    redoAction = actionManager->registerAction(ID->actionRedo(), redoQAction);
 
-    QAction *cutAction = new QAction(tr("Cu&t", "[Cut] action text."), this);
-    cutAction->setIcon(appRes->icon(Core::AppResource::CutIcon));
-    cutAction->setShortcut(QKeySequence::Cut);
-    cutAction->setStatusTip(tr("Cut selected area.", "[Cut] action tip on status bar."));
-    actionManager->registerAction(ID->actionCut(), cutAction);
+    QAction *cutQAction = new QAction(tr("Cu&t", "[Cut] action text."), this);
+    cutQAction->setIcon(appRes->icon(Core::AppResource::CutIcon));
+    cutQAction->setShortcut(QKeySequence::Cut);
+    cutQAction->setStatusTip(tr("Cut selected area.", "[Cut] action tip on status bar."));
+    cutAction = actionManager->registerAction(ID->actionCut(), cutQAction);
 
-    QAction *copyAction = new QAction(tr("&Copy", "[Copy] action text."), this);
-    copyAction->setIcon(appRes->icon(Core::AppResource::CopyIcon));
-    copyAction->setShortcut(QKeySequence::Copy);
-    copyAction->setStatusTip(tr("Copy selected area.", "[Copy] action tip on status bar."));
-    actionManager->registerAction(ID->actionCopy(), copyAction);
+    QAction *copyQAction = new QAction(tr("&Copy", "[Copy] action text."), this);
+    copyQAction->setIcon(appRes->icon(Core::AppResource::CopyIcon));
+    copyQAction->setShortcut(QKeySequence::Copy);
+    copyQAction->setStatusTip(tr("Copy selected area.", "[Copy] action tip on status bar."));
+    copyAction = actionManager->registerAction(ID->actionCopy(), copyQAction);
 
-    QAction *pasteAction = new QAction(tr("&Paste", "[Paste] action text."), this);
-    pasteAction->setIcon(appRes->icon(Core::AppResource::PasteIcon));
-    pasteAction->setShortcut(QKeySequence::Paste);
-    pasteAction->setStatusTip(tr("Paste the cut or copied area.", "[Paste] action tip on status bar."));
-    actionManager->registerAction(ID->actionPaste(), pasteAction);
+    QAction *pasteQAction = new QAction(tr("&Paste", "[Paste] action text."), this);
+    pasteQAction->setIcon(appRes->icon(Core::AppResource::PasteIcon));
+    pasteQAction->setShortcut(QKeySequence::Paste);
+    pasteQAction->setStatusTip(tr("Paste the cut or copied area.", "[Paste] action tip on status bar."));
+    pasteAction = actionManager->registerAction(ID->actionPaste(), pasteQAction);
 
-    QAction *preferencesAction = new QAction(tr("&Preferences...", "[Preferences] action text."), this);
-    preferencesAction->setIcon(appRes->icon(Core::AppResource::PreferencesIcon));
-    preferencesAction->setStatusTip(tr("Open preferences dialog.", "[Preferences] action tip on status bar."));
-    actionManager->registerAction(ID->actionOpenReference(), preferencesAction);
+    QAction *preferencesQAction = new QAction(tr("&Preferences...", "[Preferences] action text."), this);
+    preferencesQAction->setIcon(appRes->icon(Core::AppResource::PreferencesIcon));
+    preferencesQAction->setStatusTip(tr("Open preferences dialog.", "[Preferences] action tip on status bar."));
+    preferencesAction = actionManager->registerAction(ID->actionOpenReference(), preferencesQAction);
 
-    QAction *helpAction = new QAction(tr("&Help...", "[Help] action text."), this);
-    helpAction->setIcon(appRes->icon(Core::AppResource::HelpIcon));
-    helpAction->setShortcut(QKeySequence::HelpContents);
-    helpAction->setStatusTip(tr("Open help contents.", "[Help] action tip on status bar."));
-    actionManager->registerAction(ID->actionOpenHelp(), helpAction);
+    QAction *helpQAction = new QAction(tr("&Help...", "[Help] action text."), this);
+    helpQAction->setIcon(appRes->icon(Core::AppResource::HelpIcon));
+    helpQAction->setShortcut(QKeySequence::HelpContents);
+    helpQAction->setStatusTip(tr("Open help contents.", "[Help] action tip on status bar."));
+    helpAction = actionManager->registerAction(ID->actionOpenHelp(), helpQAction);
 
-    QAction *aboutAction = new QAction(tr("&About...", "[About] action text."), this);
-    aboutAction->setIcon(appRes->icon(Core::AppResource::AboutIcon));
-    aboutAction->setStatusTip(tr("About PicWorks.", "[About] action tip on status bar."));
-    actionManager->registerAction(ID->actionOpenAbout(), aboutAction);
+    QAction *aboutQAction = new QAction(tr("&About...", "[About] action text."), this);
+    aboutQAction->setIcon(appRes->icon(Core::AppResource::AboutIcon));
+    aboutQAction->setStatusTip(tr("About PicWorks.", "[About] action tip on status bar."));
+    aboutAction = actionManager->registerAction(ID->actionOpenAbout(), aboutQAction);
 }
 
 /*!
@@ -292,10 +292,10 @@ void Ui::MainWindow::createToolBar()
  */
 void Ui::MainWindow::establishConnections()
 {
-    connect(actionManager->action(ID->actionNew())->action(), SIGNAL(triggered()), this, SLOT(showProjectCreateDialog()));
+    connect(newAction->action(), SIGNAL(triggered()), this, SLOT(showProjectCreateDialog()));
     //connect(actionManager->action(ID->actionOpen())->action(), SIGNAL(triggered()), this, SLOT(showFileOpenDialog()));
     //connect(actionManager->action(Core::ID::Action::NEW), SIGNAL(triggered()), this, SLOT(showPreferencesDialog()));
-    connect(actionManager->action(ID->actionOpenAbout())->action(), SIGNAL(triggered()), this, SLOT(showAboutDialog()));
+    connect(aboutAction->action(), SIGNAL(triggered()), this, SLOT(showAboutDialog()));
 
     // connect(lineToolAction, SIGNAL(triggered()), AppCtx, SLOT(setCurrentAction()));
 }

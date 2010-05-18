@@ -65,6 +65,7 @@ Core::ConstId::ConstId()
       mnLang("mnLang"),
       mnHelp("mnHelp"),
       mb("mb"),
-      tb("tb")
+      tb("tb"),
+      tbx("tbx")
 {
 }

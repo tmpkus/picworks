@@ -208,6 +208,12 @@ public:
      */
     QString compToolBar() const { return tb; }
 
+    /*!
+      \brief String id of tool box.
+      \return tool box string id
+     */
+    QString compToolBox() const { return tbx; }
+
 private:
     QString actNew;
     QString actOpen;
@@ -237,6 +243,7 @@ private:
     QString mnHelp;
     QString mb;
     QString tb;
+    QString tbx;
 };
 
 };

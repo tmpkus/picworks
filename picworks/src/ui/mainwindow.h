@@ -28,6 +28,7 @@ class QLabel;
 class QDockWidget;
 
 namespace Core {
+    class Action;
     class ActionManager;
 };
 
@@ -49,6 +50,22 @@ private:
     QMdiArea *mdiArea;
     QLabel *statusLabel;
     QDockWidget *dockSet;
+
+    Core::Action *newAction;
+    Core::Action *openAction;
+    Core::Action *saveAction;
+    Core::Action *saveAsAction;
+    Core::Action *saveAllAction;
+    Core::Action *printAction;
+    Core::Action *exitAction;
+    Core::Action *undoAction;
+    Core::Action *redoAction;
+    Core::Action *cutAction;
+    Core::Action *copyAction;
+    Core::Action *pasteAction;
+    Core::Action *preferencesAction;
+    Core::Action *helpAction;
+    Core::Action *aboutAction;
 
     //------------------------------
     // private functions
