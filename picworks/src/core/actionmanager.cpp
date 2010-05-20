@@ -119,13 +119,3 @@ Core::Action* Core::ActionManager::registerAction(const QString &id, QAction *a)
     }
     return action;
 }
-
-/*!
-  \brief Gets registered action with string id \a id.
-  \param id string id of this action
-  \return action, NULL if
- */
-Core::Action* Core::ActionManager::action(const QString &id)
-{
-    return actionMap.value(idManager->uid(id), NULL);
-}

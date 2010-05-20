@@ -88,31 +88,31 @@ void Ui::MainWindow::createMenus()
     setMenuBar(mb);
 #endif
     Core::ActionContainer *fileMenu = actionManager->createMenu(ID->menuFile(), tr("&File", "[File] on menu bar."));
-    fileMenu->addAction(actionManager->action(ID->actionNew()));
-    fileMenu->addAction(actionManager->action(ID->actionOpen()));
+    fileMenu->addAction(newAction);
+    fileMenu->addAction(openAction);
     fileMenu->addSeparator();
-    fileMenu->addAction(actionManager->action(ID->actionSave()));
-    fileMenu->addAction(actionManager->action(ID->actionSaveAs()));
-    fileMenu->addAction(actionManager->action(ID->actionSaveAll()));
+    fileMenu->addAction(saveAction);
+    fileMenu->addAction(saveAsAction);
+    fileMenu->addAction(saveAllAction);
     fileMenu->addSeparator();
-    fileMenu->addAction(actionManager->action(ID->actionPrint()));
+    fileMenu->addAction(printAction);
     fileMenu->addSeparator();
-    fileMenu->addAction(actionManager->action(ID->actionExit()));
+    fileMenu->addAction(exitAction);
     mb->addMenu(fileMenu->menu());
 
     Core::ActionContainer *editMenu = actionManager->createMenu(ID->menuEdit(), tr("&Edit", "[Edit] on menu bar."));
-    editMenu->addAction(actionManager->action(ID->actionUndo()));
-    editMenu->addAction(actionManager->action(ID->actionRedo()));
+    editMenu->addAction(undoAction);
+    editMenu->addAction(redoAction);
     editMenu->addSeparator();
-    editMenu->addAction(actionManager->action(ID->actionCut()));
-    editMenu->addAction(actionManager->action(ID->actionCopy()));
-    editMenu->addAction(actionManager->action(ID->actionPaste()));
+    editMenu->addAction(cutAction);
+    editMenu->addAction(copyAction);
+    editMenu->addAction(pasteAction);
     mb->addMenu(editMenu->menu());
 
     Core::ActionContainer *toolMenu = actionManager->createMenu(ID->menuTool(), tr("&Tools", "[Tools] on menu bar."));
     Core::ActionContainer *langMenu = actionManager->createMenu(ID->menuLang(), tr("Languages", "[Language] under menu [Tool]"));
     toolMenu->addMenu(langMenu);
-    toolMenu->addAction(actionManager->action(ID->actionOpenReference()));
+    toolMenu->addAction(preferencesAction);
     mb->addMenu(toolMenu->menu());
 
     QtWindowListMenu *subwindowMenu = new QtWindowListMenu;
@@ -124,8 +124,8 @@ void Ui::MainWindow::createMenus()
     mb->addSeparator();
 
     Core::ActionContainer *helpMenu = actionManager->createMenu(ID->menuHelp(), tr("&Help", "[Help] on menu bar."));
-    helpMenu->addAction(actionManager->action(ID->actionOpenHelp()));
-    helpMenu->addAction(actionManager->action(ID->actionOpenAbout()));
+    helpMenu->addAction(helpAction);
+    helpMenu->addAction(aboutAction);
     mb->addMenu(helpMenu->menu());
 }
 
@@ -270,18 +270,18 @@ void Ui::MainWindow::createToolBar()
     toolBar->setObjectName("ToolBar");
     addToolBar(toolBar);
 
-    toolBarContainer->addAction(actionManager->action(ID->actionNew()));
-    toolBarContainer->addAction(actionManager->action(ID->actionOpen()));
-    toolBarContainer->addAction(actionManager->action(ID->actionSave()));
+    toolBarContainer->addAction(newAction);
+    toolBarContainer->addAction(openAction);
+    toolBarContainer->addAction(saveAction);
     toolBarContainer->addSeparator();
-    toolBarContainer->addAction(actionManager->action(ID->actionUndo()));
-    toolBarContainer->addAction(actionManager->action(ID->actionRedo()));
+    toolBarContainer->addAction(undoAction);
+    toolBarContainer->addAction(redoAction);
     toolBarContainer->addSeparator();
-    toolBarContainer->addAction(actionManager->action(ID->actionCut()));
-    toolBarContainer->addAction(actionManager->action(ID->actionCopy()));
-    toolBarContainer->addAction(actionManager->action(ID->actionPaste()));
+    toolBarContainer->addAction(cutAction);
+    toolBarContainer->addAction(copyAction);
+    toolBarContainer->addAction(pasteAction);
     toolBarContainer->addSeparator();
-    toolBarContainer->addAction(actionManager->action(ID->actionOpenReference()));
+    toolBarContainer->addAction(preferencesAction);
     toolBar->setIconSize(QSize(16, 16));
     addToolBarBreak();
 }

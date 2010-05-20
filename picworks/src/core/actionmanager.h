@@ -49,7 +49,6 @@ public:
     ActionContainer * actionContainer(const QString & id);
     ActionContainer * createMenu(const QString &sid, const QString &text = QString());
     Core::Action* registerAction(const QString &id, QAction *a);
-    Core::Action* action(const QString &sid);
 
 private:
     QHash<int, ActionContainer *> containerMap;
