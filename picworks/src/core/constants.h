@@ -131,6 +131,42 @@ public:
     QString actionOpenAbout() const { return actOpenAbout; }
 
     /*!
+      \brief String id of action <i>select</i>.
+      \return action <i>select</i> string id
+     */
+    QString actionSelect() const { return actSelect; }
+
+    /*!
+      \brief String id of action <i>move</i>.
+      \return action <i>move</i> string id
+     */
+    QString actionMove() const { return actMove; }
+
+    /*!
+      \brief String id of action <i>brush</i>.
+      \return action <i>brush</i> string id
+     */
+    QString actionBrush() const { return actBrush; }
+
+    /*!
+      \brief String id of action <i>eraser</i>.
+      \return action <i>eraser</i> string id
+     */
+    QString actionEraser() const { return actEraser; }
+
+    /*!
+      \brief String id of action <i>paint can</i>.
+      \return action <i>paint can</i> string id
+     */
+    QString actionPaintCan() const { return actPaintCan; }
+
+    /*!
+      \brief String id of action <i>draw text</i>.
+      \return action <i>draw text</i> string id
+     */
+    QString actionDrawText() const { return actDrawText; }
+
+    /*!
       \brief String id of action <i>draw line</i>.
       \return action <i>draw line</i> string id
      */
@@ -230,6 +266,12 @@ private:
     QString actOpenReference;
     QString actOpenHelp;
     QString actOpenAbout;
+    QString actSelect;
+    QString actMove;
+    QString actBrush;
+    QString actEraser;
+    QString actPaintCan;
+    QString actDrawText;
     QString actDrawLine;
     QString actDrawCurve;
     QString actDrawEllipse;

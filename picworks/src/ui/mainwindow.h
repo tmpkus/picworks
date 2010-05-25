@@ -26,6 +26,7 @@
 class QMdiArea;
 class QLabel;
 class QDockWidget;
+class QToolButton;
 
 namespace Core {
     class Action;
@@ -66,6 +67,18 @@ private:
     Core::Action *preferencesAction;
     Core::Action *helpAction;
     Core::Action *aboutAction;
+    Core::Action *selectToolAction;
+    Core::Action *moveToolAction;
+    Core::Action *brushToolAction;
+    Core::Action *eraserToolAction;
+    Core::Action *paintCanToolAction;
+    Core::Action *textToolAction;
+    Core::Action *lineToolAction;
+    Core::Action *curveToolAction;
+    Core::Action *ellipseToolAction;
+    Core::Action *polygonToolAction;
+    Core::Action *rectangleToolAction;
+    Core::Action *roundRectangleToolAction;
 
     //------------------------------
     // private functions
@@ -75,7 +88,9 @@ private:
     void createStatusBar();
     void createDockPanels();
     void createToolBar();
+    void createToolBox();
     void establishConnections();
+    QToolButton * createToolButton(Core::Action *action, QWidget *parent = 0);
 
 private slots:
     void showProjectCreateDialog();
