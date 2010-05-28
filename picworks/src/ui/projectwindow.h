@@ -34,7 +34,6 @@
 class QPaintEvent;
 class QSize;
 class QAction;
-class QStatusBar;
 
 namespace Core {
     class Project;
@@ -56,7 +55,7 @@ private:
     Core::Project *project;
     ProjectView *view;
     ProjectScene *scene;
-    QStatusBar *statusBar;
+    QWidget *statusBar;
 
 }; // end of class ProjectWindow
 

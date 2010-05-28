@@ -711,7 +711,7 @@ Ui::LicenseDialog::LicenseDialog(QWidget *parent /* = 0 */, Qt::WindowFlags flag
 "notice like this when it starts in an interactive mode:\n"
 "\n"
 "    <program>  Copyright (C) <year>  <name of author>\n"
-"    This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.\n"
+"    This program comes with ABSOLUTELY NO WARRANTY; for details type 'show w'.\n"
 "    This is free software, and you are welcome to redistribute it\n"
 "    under certain conditions; type `show c' for details.\n"
 "\n"

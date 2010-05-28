@@ -37,6 +37,7 @@
 #include <QPaintEvent>
 #include <QPainter>
 #include <QBrush>
+#include <QScrollBar>
 
 #include "projectwindow.h"
 #include "projectview.h"
@@ -78,26 +79,33 @@ Ui::ProjectWindow::ProjectWindow(Core::Project *pro, QWidget *parent /* = 0 */)
     scene = new ProjectScene(project, this);
     view->setScene(scene);
     view->setSceneRect(0, 0, project->width(), project->height());
-    QScrollArea* centerPanel = new QScrollArea;
+    QScrollArea* centerPanel = new QScrollArea(this);
+    centerPanel->viewport()->setStyleSheet(QString("background-color:#C0C0C0"));
     centerPanel->setAlignment(Qt::AlignCenter);
     centerPanel->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-    centerPanel->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    centerPanel->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     centerPanel->setWidget(view);
 
     // status bar
-    statusBar = new QStatusBar(this);
-    statusBar->setStyleSheet(QString("QStatusBar::item{border: 0px}"));
-    QLineEdit* percentInput = new QLineEdit;
+    statusBar = new QWidget(this);
+    QHBoxLayout *statusLayout = new QHBoxLayout(statusBar);
+    statusLayout->setMargin(0);
+    statusBar->setLayout(statusLayout);
+    QLineEdit* percentInput = new QLineEdit(statusBar);
     percentInput->setText("100");
     percentInput->setFixedSize(40, 18);
-    QLabel *msgLabel = new QLabel;
+    QLabel *msgLabel = new QLabel(statusBar);
     msgLabel->setText("%");
     msgLabel->setFixedWidth(8);
-    statusBar->addWidget(percentInput);
-    statusBar->addWidget(msgLabel);
+    QLabel *ctrlLabel = new QLabel(statusBar);
+    ctrlLabel->setFixedWidth(qApp->style()->pixelMetric(QStyle::PM_ScrollBarExtent) - 6);
+    statusLayout->addWidget(percentInput);
+    statusLayout->addWidget(msgLabel);
+    statusLayout->addWidget(centerPanel->horizontalScrollBar(), 100);
+    statusLayout->addWidget(ctrlLabel);
 
-    QWidget *mainPanel = new QWidget;
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    QWidget *mainPanel = new QWidget(this);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setMargin(0);
     mainLayout->setSpacing(0);
     mainLayout->addWidget(centerPanel);
@@ -119,5 +127,5 @@ QSize Ui::ProjectWindow::sizeHint() const
     int frameTitleHeight = style->pixelMetric(QStyle::PM_TitleBarHeight);
     int scrollBarWidth = style->pixelMetric(QStyle::PM_ScrollBarExtent);
     return QSize(view->width() + (frameBorderWidth << 1) + scrollBarWidth + 2,
-                 view->height() + frameTitleHeight + frameBorderWidth + scrollBarWidth + statusBar->height() - 4);
+                 view->height() + frameTitleHeight + frameBorderWidth + statusBar->height() - 10);
 }
