@@ -28,264 +28,49 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#define ID (Core::Singleton<Core::ConstId>::instance())
-
-#include <QString>
-
 #include "core_global.h"
+
+class QString;
 
 namespace Core {
 
-class CORESHARED_EXPORT ConstId {
+class CORESHARED_EXPORT ID {
 public:
-    ConstId();
-
-    /*!
-      \brief String id of action <i>new</i>.
-      \return action <i>new</i> string id
-     */
-    QString actionNew() const { return actNew; }
-
-    /*!
-      \brief String id of action <i>open</i>.
-      \return action <i>open</i> string id
-     */
-    QString actionOpen() const { return actOpen; }
-
-    /*!
-      \brief String id of action <i>save</i>.
-      \return action <i>save</i> string id
-     */
-    QString actionSave() const { return actSave; }
-
-    /*!
-      \brief String id of action <i>save as</i>.
-      \return action <i>save as</i> string id
-     */
-    QString actionSaveAs() const { return actSaveAs; }
-
-    /*!
-      \brief String id of action <i>save all</i>.
-      \return action <i>save all</i> string id
-     */
-    QString actionSaveAll() const { return actSaveAll; }
-
-    /*!
-      \brief String id of action <i>print</i>.
-      \return action <i>print</i> string id
-     */
-    QString actionPrint() const { return actPrint; }
-
-    /*!
-      \brief String id of action <i>exit</i>.
-      \return action <i>exit</i> string id
-     */
-    QString actionExit() const { return actExit; }
-
-    /*!
-      \brief String id of action <i>undo</i>.
-      \return action <i>undo</i> string id
-     */
-    QString actionUndo() const { return actUndo; }
-
-    /*!
-      \brief String id of action <i>redo</i>.
-      \return action <i>redo</i> string id
-     */
-    QString actionRedo() const { return actRedo; }
-
-    /*!
-      \brief String id of action <i>cut</i>.
-      \return action <i>cut</i> string id
-     */
-    QString actionCut() const { return actCut; }
-
-    /*!
-      \brief String id of action <i>copy</i>.
-      \return action <i>copy</i> string id
-     */
-    QString actionCopy() const { return actCopy; }
-
-    /*!
-      \brief String id of action <i>paste</i>.
-      \return action <i>paste</i> string id
-     */
-    QString actionPaste() const { return actPaste; }
-
-    /*!
-      \brief String id of action <i>open reference dailog</i>.
-      \return action <i>open reference dialog</i> string id
-     */
-    QString actionOpenReference() const { return actOpenReference; }
-
-    /*!
-      \brief String id of action <i>open help document</i>.
-      \return action <i>open help document</i> string id
-     */
-    QString actionOpenHelp() const { return actOpenHelp; }
-
-    /*!
-      \brief String id of action <i>open about dialog</i>.
-      \return action <i>open about dialog</i> string id
-     */
-    QString actionOpenAbout() const { return actOpenAbout; }
-
-    /*!
-      \brief String id of action <i>select</i>.
-      \return action <i>select</i> string id
-     */
-    QString actionSelect() const { return actSelect; }
-
-    /*!
-      \brief String id of action <i>move</i>.
-      \return action <i>move</i> string id
-     */
-    QString actionMove() const { return actMove; }
-
-    /*!
-      \brief String id of action <i>brush</i>.
-      \return action <i>brush</i> string id
-     */
-    QString actionBrush() const { return actBrush; }
-
-    /*!
-      \brief String id of action <i>eraser</i>.
-      \return action <i>eraser</i> string id
-     */
-    QString actionEraser() const { return actEraser; }
-
-    /*!
-      \brief String id of action <i>paint can</i>.
-      \return action <i>paint can</i> string id
-     */
-    QString actionPaintCan() const { return actPaintCan; }
-
-    /*!
-      \brief String id of action <i>draw text</i>.
-      \return action <i>draw text</i> string id
-     */
-    QString actionDrawText() const { return actDrawText; }
-
-    /*!
-      \brief String id of action <i>draw line</i>.
-      \return action <i>draw line</i> string id
-     */
-    QString actionDrawLine() const { return actDrawLine; }
-
-    /*!
-      \brief String id of action <i>draw curve</i>.
-      \return action <i>draw curve</i> string id
-     */
-    QString actionDrawCurve() const { return actDrawCurve; }
-
-    /*!
-      \brief String id of action <i>draw ellipse</i>.
-      \return action <i>draw ellipse</i> string id
-     */
-    QString actionDrawEllipse() const { return actDrawEllipse; }
-
-    /*!
-      \brief String id of action <i>draw rectangle</i>.
-      \return action <i>draw rectangle</i> string id
-     */
-    QString actionDrawRect() const { return actDrawRect; }
-
-    /*!
-      \brief String id of action <i>draw cornor rectangle</i>.
-      \return action <i>draw cornor rectangle</i> string id
-     */
-    QString actionDrawRoundRect() const { return actDrawRoundRect; }
-
-    /*!
-      \brief String id of action <i>draw polygon</i>.
-      \return action <i>draw polygon</i> string id
-     */
-    QString actionDrawPolygon() const { return actDrawPolygon; }
-
-    /*!
-      \brief String id of menu <i>File</i>.
-      \return menu <i>File</i> string id
-     */
-    QString menuFile() const { return mnFile; }
-
-    /*!
-      \brief String id of menu <i>Edit</i>.
-      \return menu <i>Edit</i> string id
-     */
-    QString menuEdit() const { return mnEdit; }
-
-    /*!
-      \brief String id of menu <i>Tool</i>.
-      \return menu <i>Tool</i> string id
-     */
-    QString menuTool() const { return mnTool; }
-
-    /*!
-      \brief String id of menu <i>Languages</i>.
-      \return menu <i>Languages</i> string id
-     */
-    QString menuLang() const { return mnLang; }
-
-    /*!
-      \brief String id of menu <i>Help</i>.
-      \return menu <i>Help</i> string id
-     */
-    QString menuHelp() const { return mnHelp; }
-
-    /*!
-      \brief String id of menu bar.
-      \return menu bar string id
-     */
-    QString compMenuBar() const { return mb; }
-
-    /*!
-      \brief String id of tool bar.
-      \return tool bar string id
-     */
-    QString compToolBar() const { return tb; }
-
-    /*!
-      \brief String id of tool box.
-      \return tool box string id
-     */
-    QString compToolBox() const { return tbx; }
-
-private:
-    QString actNew;
-    QString actOpen;
-    QString actSave;
-    QString actSaveAs;
-    QString actSaveAll;
-    QString actPrint;
-    QString actExit;
-    QString actUndo;
-    QString actRedo;
-    QString actCut;
-    QString actCopy;
-    QString actPaste;
-    QString actOpenReference;
-    QString actOpenHelp;
-    QString actOpenAbout;
-    QString actSelect;
-    QString actMove;
-    QString actBrush;
-    QString actEraser;
-    QString actPaintCan;
-    QString actDrawText;
-    QString actDrawLine;
-    QString actDrawCurve;
-    QString actDrawEllipse;
-    QString actDrawRect;
-    QString actDrawRoundRect;
-    QString actDrawPolygon;
-    QString mnFile;
-    QString mnEdit;
-    QString mnTool;
-    QString mnLang;
-    QString mnHelp;
-    QString mb;
-    QString tb;
-    QString tbx;
+    static const QString actionNew;
+    static const QString actionOpen;
+    static const QString actionSave;
+    static const QString actionSaveAs;
+    static const QString actionSaveAll;
+    static const QString actionPrint;
+    static const QString actionExit;
+    static const QString actionUndo;
+    static const QString actionRedo;
+    static const QString actionCut;
+    static const QString actionCopy;
+    static const QString actionPaste;
+    static const QString actionOpenReference;
+    static const QString actionOpenHelp;
+    static const QString actionOpenAbout;
+    static const QString actionSelect;
+    static const QString actionMove;
+    static const QString actionBrush;
+    static const QString actionEraser;
+    static const QString actionPaintCan;
+    static const QString actionDrawText;
+    static const QString actionDrawLine;
+    static const QString actionDrawCurve;
+    static const QString actionDrawEllipse;
+    static const QString actionDrawRect;
+    static const QString actionDrawRoundRect;
+    static const QString actionDrawPolygon;
+    static const QString menuFile;
+    static const QString menuEdit;
+    static const QString menuTool;
+    static const QString menuLang;
+    static const QString menuHelp;
+    static const QString menubar;
+    static const QString toolbar;
+    static const QString toolbox;
 };
 
 };

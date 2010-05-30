@@ -28,6 +28,8 @@
   \date 2010-5-16 vergen updated.
  */
 
+#include <QString>
+
 #include "version.h"
 
 /*!
@@ -38,41 +40,43 @@
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2009-12-14 Created.
   \date 2010-5-16
+  \date 2010-5-30 import static const fields
  */
 
 /*!
-  \fn QString Core::Version::buildDate()
-  \brief Build date in short format as YYYY-MM-DD.
-  \return workcopy build date
-
-  \fn QString Core::Version::url()
-  \brief PicWorks version control system URL.
-  \return URL of version control system
-
-  \fn QString Core::Version::major()
-  \brief Major version number.
-  \return major version number
-
-  \fn QString Core::Version::minor()
-  \brief Minor version number.
-  \return minor version number
-
-  \fn QString Core::Version::revision()
-  \brief Revision number.
-  \return the rivision number
-
-  \fn QString Core::Version::build()
-  \brief Build version number.
-  \return build version number
+  \brief URL of workcopy.
+  Workcopy is often the source repo of the application.
  */
+const QString Core::Version::workcopyUrl = QString("$$workcopy_url$$");
 
-Core::VersionInfo::VersionInfo()
-    : wcURL("$$workcopy_url$$"),
-      bDate("$$build_date$$"),
-      rivi("$$rivision$$"),
-      ma("$$major_version$$"),
-      mi("$$minor_version$$"),
-      bu("$$build_version$$")
-{
+/*!
+  \brief Major version number.
+  Major version number increased when lots of features updated.
+ */
+const QString Core::Version::major = QString("$$major_version$$");
 
-}
+/*!
+  \brief Minor version number.
+  Minor version number increased when some feature updated 
+  but the main code is almost the same.
+ */
+const QString Core::Version::minor = QString("$$minor_version$$");
+
+/*!
+  \brief Revision number.
+  Revision number increased when another version released.
+ */
+const QString Core::Version::revision = QString("$$rivision$$");
+
+/*!
+  \brief Build version number.
+  Build version number will be increase when rebuild needed.
+  Often with libraries or execute update.
+ */
+const QString Core::Version::build = QString("$$build_version$$");
+
+/*!
+  \brief Build date in short format as YYYY-MM-DD.
+  Build date is the date on which build.
+ */
+const QString Core::Version::buildDate = QString("$$build_date$$");

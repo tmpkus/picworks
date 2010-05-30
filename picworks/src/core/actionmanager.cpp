@@ -63,11 +63,11 @@
 Core::ActionManager::ActionManager()
 {
     // insert action containers
-    int mbUid = idManager->uid(ID->compMenuBar());
+    int mbUid = idManager->uid(Core::ID::menubar);
     containerMap.insert(mbUid, new Core::MenuBarActionContainer);
-    int tbUid = idManager->uid(ID->compToolBar());
+    int tbUid = idManager->uid(Core::ID::toolbar);
     containerMap.insert(tbUid, new Core::ToolBarActionContainer);
-    int tbxUid = idManager->uid(ID->compToolBox());
+    int tbxUid = idManager->uid(Core::ID::toolbox);
     containerMap.insert(tbxUid, new Core::ToolBarActionContainer);
 }
 

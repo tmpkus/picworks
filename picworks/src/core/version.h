@@ -20,7 +20,7 @@
   \file version.h
   \ingroup Core
   \brief This file contains
-  - class Core::VersionInfo declaration
+  - class Core::Version declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2009-12-14 Created.
  */
@@ -28,38 +28,21 @@
 #ifndef VERSION_H
 #define VERSION_H
 
-#define Version (Core::Singleton<Core::VersionInfo>::instance())
-
-#include <QString>
-
 #include "core_global.h"
+
+class QString;
 
 namespace Core {
 
-class CORESHARED_EXPORT VersionInfo
+class CORESHARED_EXPORT Version
 {
 public:
-    VersionInfo();
-
-    QString url() const { return wcURL; }
-
-    QString major() const { return ma; }
-
-    QString minor() const { return mi; }
-
-    QString revision() const { return rivi; }
-
-    QString build() const { return bu; }
-
-    QString buildDate() const { return bDate; }
-
-private:
-    QString wcURL;
-    QString bDate;
-    QString rivi;
-    QString ma;
-    QString mi;
-    QString bu;
+    static const QString workcopyUrl;
+    static const QString major;
+    static const QString minor;
+    static const QString revision;
+    static const QString build;
+    static const QString buildDate;
 };
 
 }
