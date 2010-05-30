@@ -28,7 +28,7 @@
 #ifndef SINGLETON_H
 #define SINGLETON_H
 
-#include "util_global.h"
+#include "core_global.h"
 
 namespace Core {
 

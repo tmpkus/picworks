@@ -31,7 +31,7 @@
 #include <QObject>
 #include <QAction>
 
-#include "util_global.h"
+#include "core_global.h"
 
 namespace Core {
 

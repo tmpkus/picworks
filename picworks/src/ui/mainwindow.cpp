@@ -38,6 +38,8 @@
 #include <QToolBar>
 #include <QGridLayout>
 #include <QToolButton>
+#include <QFileDialog>
+#include <QMessageBox>
 
 #include "QtWindowListMenu"
 #include "appcontext.h"
@@ -50,6 +52,7 @@
 #include "aboutdialog.h"
 #include "projectwindow.h"
 #include "twocolorselector.h"
+#include "project.h"
 
 /*!
   \brief Constructor.
@@ -458,7 +461,7 @@ void Ui::MainWindow::createToolBox()
 void Ui::MainWindow::establishConnections()
 {
     connect(newAction->action(), SIGNAL(triggered()), this, SLOT(showProjectCreateDialog()));
-    //connect(actionManager->action(ID->actionOpen())->action(), SIGNAL(triggered()), this, SLOT(showFileOpenDialog()));
+    connect(openAction->action(), SIGNAL(triggered()), this, SLOT(showOpenDialog()));
     //connect(actionManager->action(Core::ID::Action::NEW), SIGNAL(triggered()), this, SLOT(showPreferencesDialog()));
     connect(aboutAction->action(), SIGNAL(triggered()), this, SLOT(showAboutDialog()));
 
@@ -478,9 +481,7 @@ void Ui::MainWindow::showProjectCreateDialog()
     int rtn = pcd->exec();
     // get project
     if(rtn == QDialog::Accepted) {
-        ProjectWindow * pw = new ProjectWindow(pcd->project());
-        mdiArea->addSubWindow(pw);
-        pw->show();
+         addProjectWindow(pcd->project());
     }
     delete pcd;
 }
@@ -508,4 +509,35 @@ QToolButton * Ui::MainWindow::createToolButton(Core::Action *action, QWidget *pa
     button->setAutoRaise(true);
     button->setFocusPolicy(Qt::NoFocus);
     return button;
+}
+
+/*!
+  \internal
+  \brief Shows file open dialog.
+ */
+void Ui::MainWindow::showOpenDialog()
+{
+    QString path = QFileDialog::getOpenFileName(this, tr("Open File"), ".", tr("All support formats(*.jpg; *.png);;JPEG Files(*.jpg);;PNG Files(*.png)"));
+    if(!path.isEmpty()) {
+        Core::Project *pro = new Core::Project;
+        QPixmap bg(path);
+        pro->setBackgroundImage(bg);
+        pro->setPath(path);
+        QFileInfo pathInfo(path);
+        QString name(pathInfo.fileName());
+        pro->setPath(path);
+        pro->setName(name);
+        addProjectWindow(pro);
+    }
+}
+
+/*!
+  \internal
+  \brief Adds a project window into application workspace.
+ */
+void Ui::MainWindow::addProjectWindow(Core::Project *pro)
+{
+    ProjectWindow *pw = new ProjectWindow(pro);
+    mdiArea->addSubWindow(pw);
+    pw->show();
 }

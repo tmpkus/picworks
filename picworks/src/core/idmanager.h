@@ -32,7 +32,7 @@
 #include <QString>
 
 #include "singleton.h"
-#include "util_global.h"
+#include "core_global.h"
 
 #define idManager (Core::Singleton<Core::IdManager>::instance())
 

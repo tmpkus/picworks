@@ -31,6 +31,7 @@ class QToolButton;
 namespace Core {
     class Action;
     class ActionManager;
+    class Project;
 };
 
 namespace Ui {
@@ -95,6 +96,8 @@ private:
 private slots:
     void showProjectCreateDialog();
     void showAboutDialog();
+    void showOpenDialog();
+    void addProjectWindow(Core::Project *pro);
 };
 
 }

@@ -26,14 +26,13 @@ CONFIG(release, debug|release) {
     DESTDIR = ../../lib
 }
 HEADERS += action.h \
-    util_global.h \
+    core_global.h \
     actioncontainer.h \
     actionmanager.h \
     appcontext.h \
     appresource.h \
     constants.h \
     idmanager.h \
-    imageio.h \
     singleton.h \
     version.h \
     project.h
@@ -43,7 +42,6 @@ SOURCES += action.cpp \
     appcontext.cpp \
     appresource.cpp \
     idmanager.cpp \
-    imageio.cpp \
     singleton.cpp \
     version.cpp \
     constants.cpp \

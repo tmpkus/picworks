@@ -29,15 +29,15 @@
 #define PROJECT_H
 
 #include <QObject>
+#include <QPixmap>
 
 #include "appresource.h"
-#include "util_global.h"
+#include "core_global.h"
 
 class QColor;
+class QPixmap;
 
 namespace Core {
-
-class AppResource;
 
 class CORESHARED_EXPORT Project : public QObject
 {
@@ -50,48 +50,60 @@ public:
     Project();
     ~Project() {}
 
-    inline QString name() const
+    QString toString() const;
+
+    const QString& name() const
     {
         return dName;
     }
 
-    inline int width() const
+    const QString& path() const
+    {
+        return dPath;
+    }
+
+    int width() const
     {
         return w;
     }
 
-    inline int height() const
+    int height() const
     {
         return h;
     }
 
-    inline AppResource::MeasurementUnit widthUnit() const
+    Core::AppResource::MeasurementUnit widthUnit() const
     {
         return wUnit;
     }
 
-    inline AppResource::MeasurementUnit heightUnit() const
+    Core::AppResource::MeasurementUnit heightUnit() const
     {
         return hUnit;
     }
 
-    inline int dpi() const
+    int dpi() const
     {
         return d;
     }
 
-    inline AppResource::DpiUnit dpiUnit() const
+    Core::AppResource::DpiUnit dpiUnit() const
     {
         return dUnit;
     }
 
-    inline QColor backgroundColor() const
+    const QColor& backgroundColor() const
     {
         return bgColor;
     }
 
+    const QPixmap& backgroundImage() const
+    {
+        return bgImage;
+    }
+
 public slots:
-    inline void setName(const QString & n)
+    void setName(const QString & n)
     {
         if(n != dName) {
             emit projectNameChanged(dName);
@@ -99,7 +111,15 @@ public slots:
         }
     }
 
-    inline void setWidth(int tw)
+    void setPath(const QString & p)
+    {
+        if(p != dPath) {
+            emit projectPathChanged(dPath);
+            dPath = p;
+        }
+    }
+
+    void setWidth(int tw)
     {
         Q_ASSERT(tw > 0);
         if(w != tw) {
@@ -108,7 +128,7 @@ public slots:
         }
     }
 
-    inline void setHeight(int th)
+    void setHeight(int th)
     {
         Q_ASSERT(th > 0);
         if(h != th) {
@@ -117,7 +137,7 @@ public slots:
         }
     }
 
-    inline void setWidthUnit(Core::AppResource::MeasurementUnit wu)
+    void setWidthUnit(Core::AppResource::MeasurementUnit wu)
     {
         if(wu != wUnit) {
             emit projectWidthUnitChanged(wUnit);
@@ -125,7 +145,7 @@ public slots:
         }
     }
 
-    inline void setHeightUnit(Core::AppResource::MeasurementUnit hu)
+    void setHeightUnit(Core::AppResource::MeasurementUnit hu)
     {
         if(hu != hUnit) {
             emit projectHeightUnitChanged(hUnit);
@@ -133,7 +153,7 @@ public slots:
         }
     }
 
-    inline void setDpi(int td)
+    void setDpi(int td)
     {
         Q_ASSERT(td > 0);
         if(td != d) {
@@ -142,7 +162,7 @@ public slots:
         }
     }
 
-    inline void setDpiUnit(Core::AppResource::DpiUnit du)
+    void setDpiUnit(Core::AppResource::DpiUnit du)
     {
         if(dUnit != du) {
             emit projectDpiUnitChanged(dUnit);
@@ -150,7 +170,7 @@ public slots:
         }
     }
 
-    inline void setBackgroundColor(const QColor& c)
+    void setBackgroundColor(const QColor& c)
     {
         if(c != bgColor) {
             emit projectBackgroundColorChanged(bgColor);
@@ -158,8 +178,16 @@ public slots:
         }
     }
 
+    void setBackgroundImage(const QPixmap& img)
+    {
+        bgImage = img;
+        w = bgImage.width();
+        h = bgImage.height();
+    }
+
 signals:
     void projectNameChanged(const QString &oldName);
+    void projectPathChanged(const QString &oldPath);
     void projectWidthChanged(int oldWidth);
     void projectHeightChanged(int oldHeight);
     void projectWidthUnitChanged(Core::AppResource::MeasurementUnit oldWidthUnit);
@@ -170,6 +198,7 @@ signals:
 
 private:
     QString dName;
+    QString dPath;
     int w;
     int h;
     MUnit wUnit;
@@ -177,6 +206,7 @@ private:
     int d;
     DUnit dUnit;
     QColor bgColor;
+    QPixmap bgImage;
 
 }; // end of class
 

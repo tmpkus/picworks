@@ -17,10 +17,10 @@
 //
 
 /*!
-  \file shape.h
+  \file graphicselement.h
   \ingroup Graphics
   \brief This file contains
-  - class Graphics::Shape declaration
+  - class Graphics::GraphicsElement declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 20105-15 Created.
  */
@@ -31,24 +31,23 @@
 #include <QObject>
 #include "graphics_global.h"
 
-class QGraphicsScene;
-class QGraphicsSceneMouseEvent;
+class QPoint;
 
 namespace Graphics {
 
-class GRAPHICSSHARED_EXPORT Shape : public QObject
+class GRAPHICSSHARED_EXPORT GraphicsElement : public QObject
 {
     Q_OBJECT
 public:
-    Shape();
-    virtual ~Shape() {}
+    GraphicsElement();
+    virtual ~GraphicsElement() {}
 
-    virtual void startDraw(QGraphicsSceneMouseEvent * event) = 0;
-    virtual void drawing(QGraphicsSceneMouseEvent * event) = 0;
-    virtual void endDraw(QGraphicsSceneMouseEvent * event) = 0;
+    virtual void startProcess(QPoint * scenePos) = 0;
+    virtual void processing(QPoint * scenePos) = 0;
+    virtual void endProcess(QPoint * scenePos) = 0;
 
 signals:
-    void isDrawing(bool drawing);
+    void isProcessing(bool processing);
 
 }; // end of class
 

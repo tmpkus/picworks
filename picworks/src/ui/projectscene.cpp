@@ -27,14 +27,14 @@
 
 #include <QBrush>
 #include <QPen>
-#include <QLineF>
+#include <QPixmap>
 #include <QGraphicsSceneMouseEvent>
 
 #include "project.h"
 #include "appresource.h"
 #include "appcontext.h"
 #include "projectscene.h"
-#include "shape.h"
+#include "graphicselement.h"
 
 /*!
   \class Ui::ProjectScene projectscene.h
@@ -64,8 +64,13 @@ Ui::ProjectScene::ProjectScene(Core::Project *pro, QObject *parent /* = 0 */)
     Q_CHECK_PTR(pro);
 
     setBackgroundBrush(QBrush(appRes->grayGridImage()));
-    addRect(0, 0, project->width(), project->height(),
-            QPen(Qt::NoPen), QBrush(project->backgroundColor()));
+    if(project->backgroundImage().isNull()) { // from new
+        addRect(0, 0, project->width(), project->height(),
+                QPen(Qt::NoPen), QBrush(project->backgroundColor()));
+    } else { // from open
+        addPixmap(project->backgroundImage());
+    }
+    setSceneRect(0, 0, project->width(), project->height());
 }
 
 /*!
@@ -123,9 +128,9 @@ void Ui::ProjectScene::mousePressEvent(QGraphicsSceneMouseEvent * event)
  */
 void Ui::ProjectScene::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
 {
-    if(processing && drawingShape) {
-        drawingShape->drawing(event);
-    }
+//    if(processing && drawingShape) {
+//        drawingShape->drawing(event);
+//    }
     QGraphicsScene::mouseMoveEvent(event);
 }
 
@@ -134,8 +139,8 @@ void Ui::ProjectScene::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
  */
 void Ui::ProjectScene::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
 {
-    if(drawingShape) {
-        drawingShape->endDraw(event);
-    }
+//    if(drawingShape) {
+//        drawingShape->endDraw(event);
+//    }
     QGraphicsScene::mouseReleaseEvent(event);
 }

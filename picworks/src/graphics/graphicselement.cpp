@@ -17,57 +17,60 @@
 //
 
 /*!
-  \file shape.cpp
+  \file graphicsglement.cpp
   \ingroup Graphics
   \brief This file contains
-  - class Graphics::Shape implemtation
+  - class Graphics::GraphicsElement implemtation
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2010-5-15 Created.
  */
 
-#include "shape.h"
+#include "graphicselement.h"
 
 /*!
-  \class Graphics::Shape shape.h
-  \brief The abstract shape in PicWorks.
-  There are several additional attributes defined in abstrace shape because
-  all shapes are inherited from this abstract shape.
+  \class Graphics::GraphicsElement graphicselement.h
+  \brief The abstract graphics element in PicWorks.
+  Graphics elements are the element which can be added into \a ProjectScene,
+  including shapes, images and texts. In order to subclass a GprahicsElement,
+  you should reimplement \a startProcess(), \a processing() and \a endProcess()
+  functions.
   \version 0.0.1
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2009-11-27 Created.
  */
 
 /*!
-  \fn virtual void Graphics::AbstractShape::startDraw(QGraphicsSceneMouseEvent * event) = 0
-  \brief Starts drawing this shape.
+  \fn virtual void Graphics::GraphicsElement::startProcess(QPoint * scenePos) = 0
+  \brief Starts processing this element.
   This function usually called in \a mousePress event, you can add additional operations
   before drawing. This function is pure virtual, any subclass must override it.
   \note \a isDrawing(true) signal muse be emited if you want to update scene.
   \param event the mouse event genarated from project scene
 
-  \fn virtual void Graphics::AbstractShape::drawing(QGraphicsSceneMouseEvent * event) = 0
-  \brief Drawing this shape.
+  \fn virtual void Graphics::GraphicsElement::processing(QPoint * scenePos) = 0
+  \brief Drawing this element.
   This function usually called in \a mouseMove event. It is the function defined how to drawing
   this shape. This function is pure virtual, any subclass must override it.
   \param event the mouse event genarated from project scene
 
-  \fn virtual void Graphics::AbstractShape::endDraw(QGraphicsSceneMouseEvent * event) = 0
+  \fn virtual void Graphics::GraphicsElement::endProcess(QPoint * scenePos) = 0
   \brief Ends drawing this shape.
   This function usually called in \a mouseRelease event.
   This function is pure virtual, any subclass must override it.
   \note \a isDrawing(false) signal muse be emited if drawing is finished.
   \param event the mouse event genarated from project scene
 
-  \fn void Graphics::AbstractShape::isDrawing(bool drawing)
-  \brief Signal of drawing flag.
-  Usually emits \a true in \a startDraw() and \a false in \a endDraw().
-  \param drawing whether is drawing or not, true if drawing
+  \fn void Graphics::GraphicsElement::isProcessing(bool processing)
+  \brief Signal of processing flag.
+  Processing maybe drawing something or do some transform, like resize.
+  This signal may be emitted true when mouse button pressed and false when button released.
+  \param processing \a true if processing
  */
 
 /*!
   \brief Constractor.
-  Constracts a shape item.
+  Constracts a graphics element.
  */
-Graphics::Shape::Shape()
+Graphics::GraphicsElement::GraphicsElement()
 {
 }

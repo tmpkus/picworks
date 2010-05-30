@@ -26,6 +26,6 @@ CONFIG(release, debug|release) {
     DESTDIR = ../../lib
 }
 
-SOURCES += shape.cpp
+SOURCES += graphicselement.cpp
 HEADERS += graphics_global.h \
-    shape.h
+    graphicselement.h

@@ -37,7 +37,7 @@ namespace Core {
 };
 
 namespace Graphics {
-    class Shape;
+    class GraphicsElement;
 };
 
 namespace Ui {
@@ -60,7 +60,7 @@ protected:
 
 private:
     Core::Project *project;
-    Graphics::Shape *drawingShape;
+    Graphics::GraphicsElement *currentElement;
     bool processing;
     int layerIndex;
 

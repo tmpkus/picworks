@@ -31,7 +31,7 @@
 #include <QHash>
 #include <QString>
 
-#include "util_global.h"
+#include "core_global.h"
 
 class QAction;
 

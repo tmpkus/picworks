@@ -32,7 +32,7 @@
 
 #include <QString>
 
-#include "util_global.h"
+#include "core_global.h"
 
 namespace Core {
 

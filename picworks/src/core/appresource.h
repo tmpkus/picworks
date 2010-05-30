@@ -31,7 +31,7 @@
 #include <QObject>
 #include <QPixmap>
 #include "singleton.h"
-#include "util_global.h"
+#include "core_global.h"
 
 #define appRes (Core::Singleton<Core::AppResource>::instance())
 

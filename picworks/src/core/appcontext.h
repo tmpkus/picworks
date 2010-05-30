@@ -33,7 +33,7 @@
 #include <QVariant>
 #include <QSettings>
 
-#include "util_global.h"
+#include "core_global.h"
 #include "appresource.h"
 #include "singleton.h"
 #include "actionmanager.h"

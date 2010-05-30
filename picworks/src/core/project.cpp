@@ -25,6 +25,7 @@
   \date 2010-5-6 Created.
  */
 
+#include <QPixmap>
 #include "project.h"
 
 /*!
@@ -36,6 +37,7 @@
   Views to show project can be created by this class. Each setter function will emit a signal.
   Note the data of project has default values:
   - name: "untitled", not empty
+  - path: ""
   - width: 800, positive integer, in \a widthUnit
   - height: 600, positive integer, in \a heightUnit
   - widthUnit: "px", not empty, valid values are
@@ -49,6 +51,7 @@
        - Core::AppResource::preInch, dots/inch
        - Core::AppResource::preCmDpi, dots/centimeter
   - backgroundColor: Qt::white
+  - backgroundImage: QPixmap()
   \note This is a subclass of class QObject, so there are some signals and slots in this class.
   \version 0.0.1
   \author Cheng Liang <chengliang.soft@gmail.com>
@@ -61,6 +64,12 @@
   \a projectNameChanged signal will be emited if new name
   is different from the old one.
   \param n new name of this project, default value is "untitled"
+
+  \fn void Core::Project::setPath(const QString & p)
+  \brief Sets project path.
+  \a projectPathChanged signal will be emited if new path
+  is different from the old one.
+  \param p new path of this project, default value is \a QString::Null
 
   \fn void Core::Project::setWidth(int w)
   \brief Sets width of the project in \a widthUnit.
@@ -116,9 +125,20 @@
   is different from the old one.
   \param color new background color, default value is Qt::white
 
+  \fn void Core::Project::setBackgroundImage(const QPixmap& img)
+  \brief Sets background image.
+  \note Project width and height will be set as the width and height of image.
+  \param img new background image, default value is QPixmap()
+
   \fn const QString & Core::Project::name() const
   \brief Gets the name of the project.
   \return name of this project
+
+  \fn const QString & Core::Project::path() const
+  \brief Gets the path of the project.
+  Path is the full path of the file. If project is read from file,
+  the path will be set as the file path.
+  \return path of this project
 
   \fn int Core::Project::width() const
   \brief Gets the width of the project.
@@ -148,9 +168,17 @@
   \brief Gets background color of the project.
   \return background color of the project
 
+  \fn const QPixmap & Core::Project::backgroundImage() const
+  \brief Gets background image of the project.
+  \return background image of the project
+
   \fn void Core::Project::projectNameChanged(const QString &oldName)
   \brief Emits when project name has been changed.
   \param oldName old project name
+
+  \fn void Core::Project::projectPathChanged(const QString &oldPath)
+  \brief Emits when project path has been changed.
+  \param oldPath old project path
 
   \fn void Core::Project::projectWidthChanged(int oldWidth)
   \brief Emits when project width has been changed.
@@ -183,12 +211,32 @@
 
 Core::Project::Project()
     : dName(tr("untitled", "Init Project name.")),
+      dPath(QString()),
       w(800),
       h(600),
       wUnit(Core::AppResource::px),
       hUnit(Core::AppResource::px),
       d(72),
       dUnit(Core::AppResource::perInch),
-      bgColor(Qt::white)
+      bgColor(Qt::white),
+      bgImage(QPixmap())
 {
+}
+
+/*!
+  \brief Shows project data as a string.
+  \return projct data as a string
+ */
+QString Core::Project::toString() const
+{
+    return QString("Project: [name=%1;\n\tpath=%2;\n\twidth=%3 %4;\n\theight=%5 %6;\n\tDPI=%7 %8\n\tbackground color=RBGA(%9, %10, %11, %12)]")
+            .arg(dName)
+            .arg(dPath)
+            .arg(w).arg(appRes->measurementUnitName(wUnit))
+            .arg(h).arg(appRes->measurementUnitName(hUnit))
+            .arg(d).arg(appRes->dpiUnitName(dUnit))
+            .arg(bgColor.red())
+            .arg(bgColor.green())
+            .arg(bgColor.blue())
+            .arg(bgColor.alpha());
 }

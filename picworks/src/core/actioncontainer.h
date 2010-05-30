@@ -33,7 +33,7 @@
 #include <QObject>
 #include <QDebug>
 
-#include "util_global.h"
+#include "core_global.h"
 
 class QMenuBar;
 class QMenu;
