@@ -93,27 +93,27 @@ public:
 
     ~AppResource() {}
 
-    inline const QString measurementUnitName(MeasurementUnit unit) const
+    const QString& measurementUnitName(MeasurementUnit unit) const
     {
         return measurementUnitNames[unit];
     }
 
-    inline const QString dpiUnitName(DpiUnit unit) const
+    const QString& dpiUnitName(DpiUnit unit) const
     {
         return dpiUnitNames[unit];
     }
 
-    inline const QPixmap icon(Icon iconCode) const
+    const QPixmap& icon(Icon iconCode) const
     {
         return icons[iconCode];
     }
 
-    inline const QPixmap splashImage() const
+    const QPixmap& splashImage() const
     {
         return splash;
     }
 
-    inline const QPixmap grayGridImage() const
+    const QPixmap& grayGridImage() const
     {
         return grayGrid;
     }

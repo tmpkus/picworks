@@ -7,9 +7,7 @@
 TARGET = PicWorks
 TEMPLATE = app
 QT *= network
-CONFIG += precompile_header
-PRECOMPILED_HEADER = pch.h
-precompile_header:!isEmpty(PRECOMPILED_HEADER):DEFINES += USING_PCH
+
 SOURCES += main.cpp
 INCLUDEPATH += ../share/qtsingleapplication \
     ../ui \

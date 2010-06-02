@@ -28,7 +28,9 @@
 #include <QBrush>
 #include <QPen>
 #include <QPixmap>
+#include <QPainter>
 #include <QGraphicsSceneMouseEvent>
+#include <QDebug>
 
 #include "project.h"
 #include "appresource.h"
@@ -58,6 +60,7 @@
 Ui::ProjectScene::ProjectScene(Core::Project *pro, QObject *parent /* = 0 */)
         : QGraphicsScene(parent),
           project(pro),
+          showGrid(false),
           layerIndex(1)
 {
     // entry conditions
@@ -143,4 +146,24 @@ void Ui::ProjectScene::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
 //        drawingShape->endDraw(event);
 //    }
     QGraphicsScene::mouseReleaseEvent(event);
+}
+
+/*!
+  \internal Sets this window to show grid lines.
+  \param show true if grid lines should be shown
+ */
+void Ui::ProjectScene::setGrid()
+{
+    showGrid = !showGrid;
+    if(showGrid) {
+        int dpi = project->dpi();
+        QPixmap grid(dpi, dpi);
+        grid.fill(Qt::transparent);
+        QPainter painter(&grid);
+        painter.drawLine(0, dpi - 1, dpi - 1, dpi - 1);
+        painter.drawLine(dpi - 1, 0, dpi - 1, dpi - 1);
+        this->setForegroundBrush(QBrush(grid));
+    } else {
+        this->setForegroundBrush(Qt::NoBrush);
+    }
 }

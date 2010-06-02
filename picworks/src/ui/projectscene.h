@@ -52,6 +52,7 @@ public:
 
 public slots:
     void setProcessing(bool p) { processing = p; }
+    void setGrid();
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent * event);
@@ -62,6 +63,7 @@ private:
     Core::Project *project;
     Graphics::GraphicsElement *currentElement;
     bool processing;
+    bool showGrid;
     int layerIndex;
 
 }; // end of class

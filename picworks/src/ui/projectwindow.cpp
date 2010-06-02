@@ -28,7 +28,6 @@
 #include <QSize>
 #include <QApplication>
 #include <QIcon>
-#include <QStatusBar>
 #include <QScrollArea>
 #include <QVBoxLayout>
 #include <QStyle>
@@ -38,6 +37,7 @@
 #include <QPainter>
 #include <QBrush>
 #include <QScrollBar>
+#include <QPushButton>
 
 #include "projectwindow.h"
 #include "projectview.h"
@@ -97,10 +97,14 @@ Ui::ProjectWindow::ProjectWindow(Core::Project *pro, QWidget *parent /* = 0 */)
     QLabel *msgLabel = new QLabel(statusBar);
     msgLabel->setText("%");
     msgLabel->setFixedWidth(8);
+    QPushButton *gridButton = new QPushButton(statusBar);
+    gridButton->setText("#");
+    gridButton->setFixedSize(20, 18);
     QLabel *ctrlLabel = new QLabel(statusBar);
     ctrlLabel->setFixedWidth(qApp->style()->pixelMetric(QStyle::PM_ScrollBarExtent) - 6);
     statusLayout->addWidget(percentInput);
     statusLayout->addWidget(msgLabel);
+    statusLayout->addWidget(gridButton);
     statusLayout->addWidget(centerPanel->horizontalScrollBar(), 100);
     statusLayout->addWidget(ctrlLabel);
 
@@ -112,6 +116,8 @@ Ui::ProjectWindow::ProjectWindow(Core::Project *pro, QWidget *parent /* = 0 */)
     mainLayout->addWidget(statusBar);
     mainPanel->setLayout(mainLayout);
     setWidget(mainPanel);
+
+    connect(gridButton, SIGNAL(clicked()), scene, SLOT(setGrid()));
 }
 
 /*!

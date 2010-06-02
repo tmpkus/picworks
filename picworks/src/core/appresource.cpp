@@ -63,29 +63,29 @@
   \enum Core::AppResource::Action
   \brief An enum type of actions.
 
-  \fn const QString Core::AppResource::measurementUnitName(int index) const
+  \fn const QString& Core::AppResource::measurementUnitName(int index) const
   \brief Gets the measurement unit name.
   DPI unit names have the same sequence as code.
   \param index the index of name to get
   \return measurement unit name with this index
 
-  \fn const QString Core::AppResource::dpiUnitName(int index) const
+  \fn const QString& Core::AppResource::dpiUnitName(int index) const
   \brief Gets the DPI unit name.
   Measurement unit names have the same sequence as code.
   \param index the index of name to get
   \return DPI unit name with this index
 
-  \fn const QPixmap Core::AppResource::icon(Core::AppResource::Icon iconCode) const
+  \fn const QPixmap& Core::AppResource::icon(Core::AppResource::Icon iconCode) const
   \brief Gets icon.
   Icons can be add to actions.
   \param iconCode the code defined in enum Icon
   \return icon map to this code
 
-  \fn const QPixmap Core::AppResource::splashImage() const
+  \fn const QPixmap& Core::AppResource::splashImage() const
   \brief The image used for splash and about dialog.
   \return the image instance
 
-  \fn const QPixmap Core::AppResource::grayGridImage() const
+  \fn const QPixmap& Core::AppResource::grayGridImage() const
   \brief Gets gray grid image.
   The gray grid image is 20px * 20px with two white boards
   and two gray boards. It is just like parts of a chessboard.
