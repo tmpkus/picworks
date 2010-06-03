@@ -160,8 +160,26 @@ void Ui::ProjectScene::setGrid()
         QPixmap grid(dpi, dpi);
         grid.fill(Qt::transparent);
         QPainter painter(&grid);
-        painter.drawLine(0, dpi - 1, dpi - 1, dpi - 1);
-        painter.drawLine(dpi - 1, 0, dpi - 1, dpi - 1);
+        QPen gridPen(QColor(204, 204, 204));
+        painter.setPen(gridPen);
+        int bor = dpi - 1;
+        painter.drawLine(0, bor, bor, bor);
+        painter.drawLine(bor, 0, bor, bor);
+        gridPen.setStyle(Qt::DotLine);
+        painter.setPen(gridPen);
+        int dpip5 = dpi / 5;
+        int borp5 = dpip5 - 1;
+        painter.drawLine(0, borp5, bor, borp5);
+        painter.drawLine(borp5, 0, borp5, bor);
+        int bor2p5 = dpip5 * 2 - 1;
+        painter.drawLine(0, bor2p5, bor, bor2p5);
+        painter.drawLine(bor2p5, 0, bor2p5, bor);
+        int bor3p5 = dpip5 * 3 - 1;
+        painter.drawLine(0, bor3p5, bor, bor3p5);
+        painter.drawLine(bor3p5, 0, bor3p5, bor);
+        int bor4p5 = dpip5 * 4 - 1;
+        painter.drawLine(0, bor4p5, bor, bor4p5);
+        painter.drawLine(bor4p5, 0, bor4p5, bor);
         this->setForegroundBrush(QBrush(grid));
     } else {
         this->setForegroundBrush(Qt::NoBrush);
