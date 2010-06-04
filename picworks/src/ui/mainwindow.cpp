@@ -51,7 +51,7 @@
 #include "action.h"
 #include "aboutdialog.h"
 #include "projectwindow.h"
-#include "twocolorselector.h"
+#include "colorindicator.h"
 #include "project.h"
 
 /*!
@@ -442,8 +442,8 @@ void Ui::MainWindow::createToolBox()
     layout->addWidget(roundRectangleToolButton, 5, 0, 1, 1);
     QToolButton *polygonToolButton = createToolButton(polygonToolAction);
     layout->addWidget(polygonToolButton, 5, 1, 1, 1);
-    TwoColorSelector *selector = new TwoColorSelector(toolBoxContent);
-    layout->addWidget(selector, 6, 0, 2, 2, Qt::AlignCenter);
+    ColorIndicator *ci = new ColorIndicator(toolBoxContent);
+    layout->addWidget(ci, 6, 0, 2, 2, Qt::AlignCenter);
 
     Core::ActionContainer *toolBoxContainer = actionManager->actionContainer(Core::ID::toolbox);
     QToolBar *toolBox = toolBoxContainer->toolBar();

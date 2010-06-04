@@ -39,7 +39,7 @@ SOURCES += mainwindow.cpp \
     projectscene.cpp \
     projectview.cpp \
     projectwindow.cpp \
-    twocolorselector.cpp
+    colorindicator.cpp
 HEADERS += ui_global.h \
     mainwindow.h \
     aboutdialog.h \
@@ -50,7 +50,7 @@ HEADERS += ui_global.h \
     projectscene.h \
     projectview.h \
     projectwindow.h \
-    twocolorselector.h
+    colorindicator.h
 INCLUDEPATH += ../core \
     ../graphics \
     ../share/qtwindowlistmenu \
