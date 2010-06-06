@@ -32,14 +32,13 @@
 #include <QPixmap>
 
 #include "appresource.h"
-#include "core_global.h"
 
 class QColor;
 class QPixmap;
 
 namespace Core {
 
-class CORESHARED_EXPORT Project : public QObject
+class Project : public QObject
 {
     Q_OBJECT
 

@@ -31,13 +31,12 @@
 #include <QObject>
 #include <QPixmap>
 #include "singleton.h"
-#include "core_global.h"
 
 #define appRes (Core::Singleton<Core::AppResource>::instance())
 
 namespace Core {
 
-class CORESHARED_EXPORT AppResource : public QObject
+class AppResource : public QObject
 {
     Q_OBJECT
 

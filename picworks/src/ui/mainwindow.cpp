@@ -41,7 +41,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-#include "QtWindowListMenu"
+#include "qtwindowlistmenu.h"
 #include "appcontext.h"
 #include "appresource.h"
 #include "mainwindow.h"

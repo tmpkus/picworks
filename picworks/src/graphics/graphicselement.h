@@ -29,13 +29,12 @@
 #define SHAPE_H
 
 #include <QObject>
-#include "graphics_global.h"
 
 class QPoint;
 
 namespace Graphics {
 
-class GRAPHICSSHARED_EXPORT GraphicsElement : public QObject
+class GraphicsElement : public QObject
 {
     Q_OBJECT
 public:

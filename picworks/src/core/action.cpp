@@ -25,6 +25,8 @@
   \date 2010-4-21 Created.
  */
 
+#include <QAction>
+
 #include "action.h"
 
 /*!

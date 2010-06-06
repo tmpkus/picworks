@@ -28,13 +28,11 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#include "core_global.h"
-
 class QString;
 
 namespace Core {
 
-class CORESHARED_EXPORT ID {
+class ID {
 public:
     static const QString actionNew;
     static const QString actionOpen;

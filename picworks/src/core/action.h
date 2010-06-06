@@ -29,13 +29,12 @@
 #define ACTION_H
 
 #include <QObject>
-#include <QAction>
 
-#include "core_global.h"
+class QAction;
 
 namespace Core {
 
-class CORESHARED_EXPORT Action : public QObject
+class Action : public QObject
 {
 public:
     Action(QAction *a = NULL);

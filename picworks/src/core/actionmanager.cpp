@@ -26,6 +26,8 @@
  */
 
 #include <QAction>
+#include <QHash>
+#include <QString>
 
 #include "actionmanager.h"
 #include "actioncontainer.h"

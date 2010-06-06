@@ -29,11 +29,8 @@
 #define APPCONTEXT_H
 
 #include <QObject>
-#include <QPixmap>
 #include <QVariant>
-#include <QSettings>
 
-#include "core_global.h"
 #include "appresource.h"
 #include "singleton.h"
 #include "actionmanager.h"
@@ -47,7 +44,7 @@ namespace Core {
 
 class ActionManager;
 
-class CORESHARED_EXPORT AppContext : public QObject
+class AppContext : public QObject
 {
     Q_OBJECT
 

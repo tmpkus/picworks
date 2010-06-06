@@ -28,13 +28,11 @@
 #ifndef SINGLETON_H
 #define SINGLETON_H
 
-#include "core_global.h"
-
 namespace Core {
 
 template <typename T>
 
-class CORESHARED_EXPORT Singleton
+class Singleton
 {
 public:
     static inline T * instance()

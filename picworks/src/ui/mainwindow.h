@@ -21,8 +21,6 @@
 
 #include <QMainWindow>
 
-#include "ui_global.h"
-
 class QMdiArea;
 class QLabel;
 class QDockWidget;
@@ -36,7 +34,7 @@ namespace Core {
 
 namespace Ui {
 
-class UISHARED_EXPORT MainWindow : public QMainWindow
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 

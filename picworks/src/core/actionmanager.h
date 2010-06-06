@@ -29,10 +29,8 @@
 #define ACTIONMANAGER_H
 
 #include <QHash>
-#include <QString>
 
-#include "core_global.h"
-
+class QString;
 class QAction;
 
 namespace Core {
@@ -40,7 +38,7 @@ namespace Core {
 class ActionContainer;
 class Action;
 
-class CORESHARED_EXPORT ActionManager
+class ActionManager
 {
 public:
     ActionManager();

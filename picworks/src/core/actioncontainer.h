@@ -33,8 +33,6 @@
 #include <QObject>
 #include <QDebug>
 
-#include "core_global.h"
-
 class QMenuBar;
 class QMenu;
 class QToolBar;
@@ -43,7 +41,7 @@ namespace Core {
 
 class Action;
 
-class CORESHARED_EXPORT ActionContainer : public QObject
+class ActionContainer : public QObject
 {
 public:
     ActionContainer() {}
@@ -90,7 +88,7 @@ public:
 
 }; // end of class ActionContainer
 
-class CORESHARED_EXPORT MenuActionContainer : public ActionContainer
+class MenuActionContainer : public ActionContainer
 {
 public:
     MenuActionContainer();
@@ -105,7 +103,7 @@ private:
     QMenu *m;
 }; // end of class MenuActionContainer
 
-class CORESHARED_EXPORT MenuBarActionContainer : public ActionContainer
+class MenuBarActionContainer : public ActionContainer
 {
 public:
     MenuBarActionContainer();
@@ -118,7 +116,7 @@ private:
     QMenuBar *mb;
 }; // end of class MenuBarActionContainer
 
-class CORESHARED_EXPORT ToolBarActionContainer : public ActionContainer
+class ToolBarActionContainer : public ActionContainer
 {
 public:
     ToolBarActionContainer();

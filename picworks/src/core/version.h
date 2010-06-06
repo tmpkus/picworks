@@ -28,13 +28,11 @@
 #ifndef VERSION_H
 #define VERSION_H
 
-#include "core_global.h"
-
 class QString;
 
 namespace Core {
 
-class CORESHARED_EXPORT Version
+class Version
 {
 public:
     static const QString workcopyUrl;

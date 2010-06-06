@@ -32,13 +32,12 @@
 #include <QString>
 
 #include "singleton.h"
-#include "core_global.h"
 
 #define idManager (Core::Singleton<Core::IdManager>::instance())
 
 namespace Core {
 
-class CORESHARED_EXPORT IdManager
+class IdManager
 {
 public:
     IdManager() {}
