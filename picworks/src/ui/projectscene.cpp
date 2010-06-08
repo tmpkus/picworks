@@ -168,6 +168,7 @@ void Ui::ProjectScene::setGrid()
         gridPen.setStyle(Qt::DotLine);
         painter.setPen(gridPen);
         int dpip5 = dpi / 5;
+        // FIXME if dpi is too low, grid lines should be changed as PS
         int borp5 = dpip5 - 1;
         painter.drawLine(0, borp5, bor, borp5);
         painter.drawLine(borp5, 0, borp5, bor);
