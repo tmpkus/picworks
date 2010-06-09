@@ -14,14 +14,12 @@ HEADERS  += mainwindow.h
 FORMS    += mainwindow.ui
 
 CONFIG(debug, debug|release) {
-    UI_DIR = ../debug/ui
     MOC_DIR = ../debug/moc
     OBJECTS_DIR = ../debug/obj
     RCC_DIR = ../debug/rcc
     DESTDIR = ../debug
 }
 CONFIG(release, debug|release) {
-    UI_DIR = ../release/ui
     MOC_DIR = ../release/moc
     OBJECTS_DIR = ../release/obj
     RCC_DIR = ../release/rcc

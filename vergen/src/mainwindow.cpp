@@ -45,14 +45,22 @@ void MainWindow::on_genButton_clicked()
         QTextStream in(&targetTemplate);
         content = in.readAll();
         content.replace("$$workcopy_url$$", ui->wcUrlInput->text());
-        content.replace("$$build_date$$", ui->buildDateInput->text());
-        content.replace("$$rivision$$", ui->rivisionInput->text());
         content.replace("$$major_version$$", ui->majorInput->text());
         content.replace("$$minor_version$$", ui->minorInput->text());
         content.replace("$$build_version$$", ui->buildInput->text());
+        content.replace("$$build_date$$", ui->buildDateInput->text());
+        QDate date = ui->buildDateInput->date();
+        int y = date.year();
+        int m = date.month();
+        int d = date.day();
+        QString sdate = QString::number(y);
+        sdate += m < 10 ? ("0" + QString::number(m)) : QString::number(m);
+        sdate += d < 10 ? ("0" + QString::number(d)) : QString::number(d);
+        content.replace("$$rivision$$", sdate);
         targetTemplate.close();
     } else {
         QMessageBox::warning(this, tr("Warning"), tr("VerGen could not open template file."));
+        return;
     }
     QFile target("version.cpp");
     if(target.open(QFile::WriteOnly | QFile::Text)) {

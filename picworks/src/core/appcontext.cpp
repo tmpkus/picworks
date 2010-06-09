@@ -146,6 +146,6 @@ Core::AppContext::AppContext() : pColor(Qt::black),
     appVersion = QString("%1.%2.%3.%4")
                  .arg(Core::Version::major)
                  .arg(Core::Version::minor)
-                 .arg(Core::Version::revision)
-                 .arg(Core::Version::build);
+                 .arg(Core::Version::build)
+                 .arg(Core::Version::revision);
 }
