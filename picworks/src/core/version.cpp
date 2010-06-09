@@ -66,14 +66,14 @@ const QString Core::Version::minor = QString("0");
   \brief Revision number.
   Revision number increased when another version released.
  */
-const QString Core::Version::revision = QString("20100609");
+const QString Core::Version::revision = QString("1");
 
 /*!
   \brief Build version number.
   Build version number will be increase when rebuild needed.
   Often with libraries or execute update.
  */
-const QString Core::Version::build = QString("1");
+const QString Core::Version::build = QString("20100609");
 
 /*!
   \brief Build date in short format as YYYY-MM-DD.

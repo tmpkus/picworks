@@ -146,7 +146,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QSpinBox" name="buildInput">
+   <widget class="QSpinBox" name="reviInput">
     <property name="geometry">
      <rect>
       <x>250</x>

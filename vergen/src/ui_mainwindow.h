@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed Jun 9 16:11:35 2010
+** Created: Wed Jun 9 23:15:11 2010
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -38,7 +38,7 @@ public:
     QLabel *label_5;
     QSpinBox *majorInput;
     QSpinBox *minorInput;
-    QSpinBox *buildInput;
+    QSpinBox *reviInput;
     QPushButton *fileBrowserButton;
     QLineEdit *filePathInput;
     QDateEdit *buildDateInput;
@@ -84,10 +84,10 @@ public:
         minorInput = new QSpinBox(centralWidget);
         minorInput->setObjectName(QString::fromUtf8("minorInput"));
         minorInput->setGeometry(QRect(150, 40, 42, 22));
-        buildInput = new QSpinBox(centralWidget);
-        buildInput->setObjectName(QString::fromUtf8("buildInput"));
-        buildInput->setGeometry(QRect(250, 40, 42, 22));
-        buildInput->setMinimum(1);
+        reviInput = new QSpinBox(centralWidget);
+        reviInput->setObjectName(QString::fromUtf8("reviInput"));
+        reviInput->setGeometry(QRect(250, 40, 42, 22));
+        reviInput->setMinimum(1);
         fileBrowserButton = new QPushButton(centralWidget);
         fileBrowserButton->setObjectName(QString::fromUtf8("fileBrowserButton"));
         fileBrowserButton->setGeometry(QRect(400, 70, 75, 21));
