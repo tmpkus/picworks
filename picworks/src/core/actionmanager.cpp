@@ -26,100 +26,89 @@
  */
 
 #include <QAction>
-#include <QHash>
 #include <QString>
+#include <QMenuBar>
+#include <QToolBar>
+#include <QIcon>
 
 #include "actionmanager.h"
-#include "actioncontainer.h"
 #include "appresource.h"
 #include "idmanager.h"
-#include "action.h"
 #include "constants.h"
 
 /*!
   \class Core::ActionManager actionmanager.h
   \brief Application action manager.
-  <p>Actions used in PicWorks should be added into this manager. This manager
-  should not get instance by using new operater, call
-  \a appCtx.actionManager() instead.
-  Almost all actions that can be added into main window should be managed by
-  this manager.</p>
-  <p>If you want to add menus into menu bar, you can follow code shown below.
-  \code
-  // use ActionManager to get menu bar instance
-  ActionContainer *mbc = actionManager->actionContainer(Core::AppResource::DEFAULT_MENUBAR);
-  // register actions
-  Core::Action *a = actionManager->registerAction(Core::AppResource::MENU_ITEM_NEW, new QAction);
-  // register menus
-  Core::ActionContainer *mc = actionManager->createMenu(Core::AppResource::MENU_FILE, tr("&File"));
-  // add actions to menus
-  mc->addAction(a);
-  // add menus to menu bar
-  mbc->addMenu(mc);
-  \endcode</p>
+  Action manager is a manager for actions. Actions and action containers
+  can be added into this manager. Also it is easy to get containers in order to
+  add more actions. Action containers may be a menu, a tool bar or something else.
   \version 0.0.1
   \author Cheng Liang <chengliang.soft@gmail.com>
   \date 2009-10-14 Created.
  */
 
 Core::ActionManager::ActionManager()
+    : idManager(Core::Singleton<Core::IdManager>::instance()),
+      mb(new QMenuBar)
 {
     // insert action containers
-    int mbUid = idManager->uid(Core::ID::menubar);
-    containerMap.insert(mbUid, new Core::MenuBarActionContainer);
-    int tbUid = idManager->uid(Core::ID::toolbar);
-    containerMap.insert(tbUid, new Core::ToolBarActionContainer);
-    int tbxUid = idManager->uid(Core::ID::toolbox);
-    containerMap.insert(tbxUid, new Core::ToolBarActionContainer);
+    int tbUid = idManager->uid(Core::ID::TOOL_BAR);
+    toolBarMap.insert(tbUid, new QToolBar);
+    int tbxUid = idManager->uid(Core::ID::TOOL_BOX);
+    toolBarMap.insert(tbxUid, new QToolBar);
+}
+
+QMenuBar * Core::ActionManager::menuBar(const QString & id /* = QString("mb") */)
+{
+    Q_UNUSED(id)
+    return mb;
 }
 
 /*!
-  \brief Gets the action container related to given id.
-  \param id id of action container
-  \return action container with the given id
+  \brief Gets the menu related to given id.
+  \param id id of a menu
+  \param text menu text
+  \return menu with the given id
  */
-Core::ActionContainer * Core::ActionManager::actionContainer(const QString &id)
+QMenu * Core::ActionManager::menu(const QString & id, const QString & text /* = QString() */)
 {
     int uid = idManager->uid(id);
-    const QHash<int, ActionContainer *>::const_iterator it = containerMap.constFind(uid);
-    if(it == containerMap.constEnd()) {
-        qDebug() << "ActionManager cannot find action container with id " << id;
+    const QHash<int, QMenu *>::const_iterator it = menuMap.constFind(uid);
+    if(it == menuMap.constEnd()) {
+        QMenu * menu = new QMenu(text);
+        menuMap.insert(uid, menu);
+        return menu;
+    }
+    return it.value();
+}
+
+/*!
+  \brief Gets the tool bar related to given id.
+  \param id id of a tool bar
+  \return tool bar with the given id
+ */
+QToolBar * Core::ActionManager::toolBar(const QString & id)
+{
+    int uid = idManager->uid(id);
+    const QHash<int, QToolBar *>::const_iterator it = toolBarMap.constFind(uid);
+    if(it == toolBarMap.constEnd()) {
         return NULL;
     }
     return it.value();
 }
 
 /*!
-  \brief Register menu into this container.
-  \param sid string id of this menu
-  \return menu action container added
- */
-Core::ActionContainer * Core::ActionManager::createMenu(const QString &sid,
-                                                        const QString &text /* = QString() */)
-{
-    Core::ActionContainer *mc = actionContainer(sid);
-    if(!mc) {
-        int uid = idManager->uid(sid);
-        mc = new Core::MenuActionContainer;
-        mc->setText(text);
-        containerMap.insert(uid, mc);
-    }
-    return mc;
-}
-
-/*!
-  \brief Register action into action manager.
+  \brief Register an action to action manager.
   \param id string id related this action
-  \param a action
-  \return action wrapper
+  \param act action to insert
+  \return action registered
  */
-Core::Action* Core::ActionManager::registerAction(const QString &id, QAction *a)
+QAction * Core::ActionManager::registerAction(const QString & id, QAction * act)
 {
     int uid = idManager->uid(id);
-    Core::Action *action = actionMap.value(uid, 0);
+    QAction *action = actionMap.value(uid, 0);
     if(!action) {
-        action = new Core::Action(a);
-        actionMap.insert(uid, action);
+        actionMap.insert(uid, act);
     }
-    return action;
+    return act;
 }

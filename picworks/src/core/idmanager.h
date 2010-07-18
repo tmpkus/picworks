@@ -33,8 +33,6 @@
 
 #include "singleton.h"
 
-#define idManager (Core::Singleton<Core::IdManager>::instance())
-
 namespace Core {
 
 class IdManager
