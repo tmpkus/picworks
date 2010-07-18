@@ -22,12 +22,12 @@
 #include <QMainWindow>
 
 class QMdiArea;
+class QAction;
 class QLabel;
 class QDockWidget;
 class QToolButton;
 
 namespace Core {
-    class Action;
     class ActionManager;
     class Project;
 };
@@ -51,33 +51,33 @@ private:
     QLabel *statusLabel;
     QDockWidget *dockSet;
 
-    Core::Action *newAction;
-    Core::Action *openAction;
-    Core::Action *saveAction;
-    Core::Action *saveAsAction;
-    Core::Action *saveAllAction;
-    Core::Action *printAction;
-    Core::Action *exitAction;
-    Core::Action *undoAction;
-    Core::Action *redoAction;
-    Core::Action *cutAction;
-    Core::Action *copyAction;
-    Core::Action *pasteAction;
-    Core::Action *preferencesAction;
-    Core::Action *helpAction;
-    Core::Action *aboutAction;
-    Core::Action *selectToolAction;
-    Core::Action *moveToolAction;
-    Core::Action *brushToolAction;
-    Core::Action *eraserToolAction;
-    Core::Action *paintCanToolAction;
-    Core::Action *textToolAction;
-    Core::Action *lineToolAction;
-    Core::Action *curveToolAction;
-    Core::Action *ellipseToolAction;
-    Core::Action *polygonToolAction;
-    Core::Action *rectangleToolAction;
-    Core::Action *roundRectangleToolAction;
+    QAction *newAction;
+    QAction *openAction;
+    QAction *saveAction;
+    QAction *saveAsAction;
+    QAction *saveAllAction;
+    QAction *printAction;
+    QAction *exitAction;
+    QAction *undoAction;
+    QAction *redoAction;
+    QAction *cutAction;
+    QAction *copyAction;
+    QAction *pasteAction;
+    QAction *preferencesAction;
+    QAction *helpAction;
+    QAction *aboutAction;
+    QAction *selectToolAction;
+    QAction *moveToolAction;
+    QAction *brushToolAction;
+    QAction *eraserToolAction;
+    QAction *paintCanToolAction;
+    QAction *textToolAction;
+    QAction *lineToolAction;
+    QAction *curveToolAction;
+    QAction *ellipseToolAction;
+    QAction *polygonToolAction;
+    QAction *rectangleToolAction;
+    QAction *roundRectangleToolAction;
 
     //------------------------------
     // private functions
@@ -89,7 +89,7 @@ private:
     void createToolBar();
     void createToolBox();
     void establishConnections();
-    QToolButton * createToolButton(Core::Action *action, QWidget *parent = 0);
+    QToolButton * createToolButton(QAction *action, QWidget *parent = 0);
 
 private slots:
     void showProjectCreateDialog();

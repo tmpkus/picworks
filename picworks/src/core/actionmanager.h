@@ -29,14 +29,18 @@
 #define ACTIONMANAGER_H
 
 #include <QHash>
+#include <QString>
 
-class QString;
 class QAction;
+class QIcon;
+class QMenu;
+class QMenuBar;
+class QToolBar;
 
 namespace Core {
 
-class ActionContainer;
-class Action;
+class IdManager;
+class ID;
 
 class ActionManager
 {
@@ -44,14 +48,17 @@ public:
     ActionManager();
     ~ActionManager() {}
 
-    ActionContainer * actionContainer(const QString & id);
-    ActionContainer * createMenu(const QString &sid, const QString &text = QString());
-    Core::Action* registerAction(const QString &id, QAction *a);
+    QMenu * menu(const QString & id, const QString & text = QString());
+    QMenuBar * menuBar(const QString & id = QString("mb"));
+    QToolBar * toolBar(const QString & id);
+    QAction * registerAction(const QString & id, QAction * action);
 
 private:
-    QHash<int, ActionContainer *> containerMap;
-    QHash<int, Action *> actionMap;
-
+    QHash<int, QMenu *> menuMap;
+    QHash<int, QToolBar *> toolBarMap;
+    QHash<int, QAction *> actionMap;
+    IdManager *idManager;
+    QMenuBar *mb;
 }; // end of class
 
 } // end of namespace

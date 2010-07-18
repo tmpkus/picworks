@@ -1,7 +1,6 @@
 # glob syntax
 syntax: glob
 
-picworks/ver
 picworks/*.ini
 picworks/*.o
 picworks/debug/*
@@ -12,11 +11,6 @@ picworks/src/Makefile
 picworks/src/*.user
 picworks/src/*.Debug
 picworks/src/*.Release
-
-picworks/src/app/Makefile
-picworks/src/app/*.user
-picworks/src/app/*.Debug
-picworks/src/app/*.Release
 
 picworks/src/core/Makefile
 picworks/src/core/*.user

@@ -46,9 +46,7 @@
 #include "appresource.h"
 #include "mainwindow.h"
 #include "constants.h"
-#include "actioncontainer.h"
 #include "projectcreator.h"
-#include "action.h"
 #include "aboutdialog.h"
 #include "projectwindow.h"
 #include "colorindicator.h"
@@ -90,12 +88,11 @@ Ui::MainWindow::~MainWindow()
 
 void Ui::MainWindow::createMenus()
 {
-    Core::ActionContainer *menuBarContainer = actionManager->actionContainer(Core::ID::menubar);
-    QMenuBar *mb = menuBarContainer->menuBar();
+    QMenuBar *mb = actionManager->menuBar(Core::ID::menubar);
 #ifndef Q_WS_MAC // System menu bar on Mac
     setMenuBar(mb);
 #endif
-    Core::ActionContainer *fileMenu = actionManager->createMenu(Core::ID::menuFile, tr("&File", "[File] on menu bar."));
+    QMenu *fileMenu = actionManager->menu(Core::ID::menuFile, tr("&File", "[File] on menu bar."));
     fileMenu->addAction(newAction);
     fileMenu->addAction(openAction);
     fileMenu->addSeparator();
@@ -106,22 +103,22 @@ void Ui::MainWindow::createMenus()
     fileMenu->addAction(printAction);
     fileMenu->addSeparator();
     fileMenu->addAction(exitAction);
-    mb->addMenu(fileMenu->menu());
+    mb->addMenu(fileMenu);
 
-    Core::ActionContainer *editMenu = actionManager->createMenu(Core::ID::menuEdit, tr("&Edit", "[Edit] on menu bar."));
+    QMenu *editMenu = actionManager->menu(Core::ID::menuEdit, tr("&Edit", "[Edit] on menu bar."));
     editMenu->addAction(undoAction);
     editMenu->addAction(redoAction);
     editMenu->addSeparator();
     editMenu->addAction(cutAction);
     editMenu->addAction(copyAction);
     editMenu->addAction(pasteAction);
-    mb->addMenu(editMenu->menu());
+    mb->addMenu(editMenu);
 
-    Core::ActionContainer *toolMenu = actionManager->createMenu(Core::ID::menuTool, tr("&Tools", "[Tools] on menu bar."));
-    Core::ActionContainer *langMenu = actionManager->createMenu(Core::ID::menuLang, tr("Languages", "[Language] under menu [Tool]"));
+    QMenu *toolMenu = actionManager->menu(Core::ID::menuTool, tr("&Tools", "[Tools] on menu bar."));
+    QMenu *langMenu = actionManager->menu(Core::ID::menuLang, tr("Languages", "[Language] under menu [Tool]"));
     toolMenu->addMenu(langMenu);
     toolMenu->addAction(preferencesAction);
-    mb->addMenu(toolMenu->menu());
+    mb->addMenu(toolMenu);
 
     QtWindowListMenu *subwindowMenu = new QtWindowListMenu;
     subwindowMenu->attachToMdiArea(mdiArea);
@@ -131,10 +128,10 @@ void Ui::MainWindow::createMenus()
 
     mb->addSeparator();
 
-    Core::ActionContainer *helpMenu = actionManager->createMenu(Core::ID::menuHelp, tr("&Help", "[Help] on menu bar."));
+    QMenu *helpMenu = actionManager->menu(Core::ID::menuHelp, tr("&Help", "[Help] on menu bar."));
     helpMenu->addAction(helpAction);
     helpMenu->addAction(aboutAction);
-    mb->addMenu(helpMenu->menu());
+    mb->addMenu(helpMenu);
 }
 
 /*!
@@ -384,23 +381,23 @@ void Ui::MainWindow::createDockPanels()
  */
 void Ui::MainWindow::createToolBar()
 {
-    Core::ActionContainer *toolBarContainer = actionManager->actionContainer(Core::ID::toolbar);
-    QToolBar *toolBar = toolBarContainer->toolBar();
+    QToolBar *toolBar = actionManager->toolBar(Core::ID::toolbar);
     toolBar->setObjectName("ToolBar");
     addToolBar(toolBar);
 
-    toolBarContainer->addAction(newAction);
-    toolBarContainer->addAction(openAction);
-    toolBarContainer->addAction(saveAction);
-    toolBarContainer->addSeparator();
-    toolBarContainer->addAction(undoAction);
-    toolBarContainer->addAction(redoAction);
-    toolBarContainer->addSeparator();
-    toolBarContainer->addAction(cutAction);
-    toolBarContainer->addAction(copyAction);
-    toolBarContainer->addAction(pasteAction);
-    toolBarContainer->addSeparator();
-    toolBarContainer->addAction(preferencesAction);
+    toolBar->addAction(newAction);
+    toolBar->addAction(newAction);
+    toolBar->addAction(openAction);
+    toolBar->addAction(saveAction);
+    toolBar->addSeparator();
+    toolBar->addAction(undoAction);
+    toolBar->addAction(redoAction);
+    toolBar->addSeparator();
+    toolBar->addAction(cutAction);
+    toolBar->addAction(copyAction);
+    toolBar->addAction(pasteAction);
+    toolBar->addSeparator();
+    toolBar->addAction(preferencesAction);
     toolBar->setIconSize(QSize(16, 16));
     addToolBarBreak();
 }
@@ -445,8 +442,7 @@ void Ui::MainWindow::createToolBox()
     ColorIndicator *ci = new ColorIndicator(toolBoxContent);
     layout->addWidget(ci, 6, 0, 2, 2, Qt::AlignCenter);
 
-    Core::ActionContainer *toolBoxContainer = actionManager->actionContainer(Core::ID::toolbox);
-    QToolBar *toolBox = toolBoxContainer->toolBar();
+    QToolBar *toolBox = actionManager->toolBar(Core::ID::toolbox);
     toolBox->setObjectName("ToolBox");
     toolBox->setOrientation(Qt::Vertical);
     toolBox->addWidget(toolBoxContent);
@@ -460,10 +456,10 @@ void Ui::MainWindow::createToolBox()
  */
 void Ui::MainWindow::establishConnections()
 {
-    connect(newAction->action(), SIGNAL(triggered()), this, SLOT(showProjectCreateDialog()));
-    connect(openAction->action(), SIGNAL(triggered()), this, SLOT(showOpenDialog()));
+    connect(newAction, SIGNAL(triggered()), this, SLOT(showProjectCreateDialog()));
+    connect(openAction, SIGNAL(triggered()), this, SLOT(showOpenDialog()));
     //connect(actionManager->action(Core::ID::Action::NEW), SIGNAL(triggered()), this, SLOT(showPreferencesDialog()));
-    connect(aboutAction->action(), SIGNAL(triggered()), this, SLOT(showAboutDialog()));
+    connect(aboutAction, SIGNAL(triggered()), this, SLOT(showAboutDialog()));
 
     // connect(lineToolAction, SIGNAL(triggered()), AppCtx, SLOT(setCurrentAction()));
 }
@@ -502,10 +498,10 @@ void Ui::MainWindow::showAboutDialog()
   This action will set as the default action instead of adding into its action list.
   @return the pointer to a QToolButton instance by "new" operation
  */
-QToolButton * Ui::MainWindow::createToolButton(Core::Action *action, QWidget *parent /* = 0 */)
+QToolButton * Ui::MainWindow::createToolButton(QAction *action, QWidget *parent /* = 0 */)
 {
     QToolButton *button = new QToolButton(parent);
-    button->setDefaultAction(action->action());
+    button->setDefaultAction(action);
     button->setAutoRaise(true);
     button->setFocusPolicy(Qt::NoFocus);
     return button;

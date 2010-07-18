@@ -5,9 +5,7 @@
 # 2009-9-5
 # -------------------------------------------------
 
-HEADERS += $$PWD/action.h \
-    $$PWD/actioncontainer.h \
-    $$PWD/actionmanager.h \
+HEADERS += $$PWD/actionmanager.h \
     $$PWD/appcontext.h \
     $$PWD/appresource.h \
     $$PWD/constants.h \
@@ -17,8 +15,6 @@ HEADERS += $$PWD/action.h \
     $$PWD/project.h
 
 SOURCES += $$PWD/main.cpp \
-    $$PWD/action.cpp \
-    $$PWD/actioncontainer.cpp \
     $$PWD/actionmanager.cpp \
     $$PWD/appcontext.cpp \
     $$PWD/appresource.cpp \
