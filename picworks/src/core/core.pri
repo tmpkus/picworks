@@ -21,5 +21,4 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/idmanager.cpp \
     $$PWD/singleton.cpp \
     $$PWD/version.cpp \
-    $$PWD/constants.cpp \
     $$PWD/project.cpp
