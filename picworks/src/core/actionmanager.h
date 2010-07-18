@@ -40,7 +40,6 @@ class QToolBar;
 namespace Core {
 
 class IdManager;
-class ID;
 
 class ActionManager
 {
@@ -49,7 +48,7 @@ public:
     ~ActionManager() {}
 
     QMenu * menu(const QString & id, const QString & text = QString());
-    QMenuBar * menuBar(const QString & id = QString("mb"));
+    QMenuBar * menuBar(const QString & id = QString("mbar"));
     QToolBar * toolBar(const QString & id);
     QAction * registerAction(const QString & id, QAction * action);
 

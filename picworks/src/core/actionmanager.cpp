@@ -52,9 +52,9 @@ Core::ActionManager::ActionManager()
       mb(new QMenuBar)
 {
     // insert action containers
-    int tbUid = idManager->uid(Core::ID::toolbar);
+    int tbUid = idManager->uid(Core::ID::TOOL_BAR);
     toolBarMap.insert(tbUid, new QToolBar);
-    int tbxUid = idManager->uid(Core::ID::toolbox);
+    int tbxUid = idManager->uid(Core::ID::TOOL_BOX);
     toolBarMap.insert(tbxUid, new QToolBar);
 }
 
