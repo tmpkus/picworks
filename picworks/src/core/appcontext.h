@@ -29,7 +29,6 @@
 #define APPCONTEXT_H
 
 #include <QObject>
-#include <QVariant>
 
 #include "appresource.h"
 #include "singleton.h"
@@ -55,8 +54,6 @@ public:
 
     inline const QString & version() const { return appVersion; }
 
-    //inline Action currentAction() const { return currAction; }
-
     inline const QColor & penColor() const { return pColor; }
 
     inline int penWidth() const { return pWidth; }
@@ -75,16 +72,6 @@ public:
     }
 
 public slots:
-    inline void setCurrentAction(const QVariant & data)
-    {
-//        if(data.canConvert(QVariant::Int)) {
-//            Action a = static_cast<Action>(data.toInt());
-//            if(currAction != a) {
-//                emit currentActionChanged(a, currAction);
-//                currAction = a;
-//            }
-//        }
-    }
 
     inline void setPenColor(const QColor &c)
     {
@@ -110,15 +97,21 @@ public slots:
         }
     }
 
+    inline void setCurrentAction(QString act)
+    {
+        if(currAct != act) {
+            currAct = act;
+        }
+    }
+
 signals:
-    //void currentActionChanged(const Action & newCurrAction, const Action & oldCurrAction);
     void penColorChanged(const QColor & newColor, const QColor & oldColor);
     void penWidthChanged(int newWidth, int oldWidth);
     void maxPenWidthChanged(int newValue, int oldValue);
 
 private:
     QString appVersion;
-    //Action currAction;
+    QString currAct;
     QColor pColor;
     int pWidth;
     int maxPWidth;
