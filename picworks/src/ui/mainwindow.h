@@ -26,6 +26,7 @@ class QAction;
 class QLabel;
 class QDockWidget;
 class QToolButton;
+class QSignalMapper;
 
 namespace Core {
     class ActionManager;
@@ -47,6 +48,7 @@ private:
     // fields
     //------------------------------
     Core::ActionManager *actionManager;
+    QSignalMapper *mapper;
     QMdiArea *mdiArea;
     QLabel *statusLabel;
     QDockWidget *dockSet;
@@ -96,6 +98,7 @@ private slots:
     void showAboutDialog();
     void showOpenDialog();
     void addProjectWindow(Core::Project *pro);
+    void toolBoxActionTriggered(QString);
 };
 
 }

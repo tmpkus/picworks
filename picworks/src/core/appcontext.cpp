@@ -68,12 +68,6 @@
   is compatible to the older versions.
   \return version number string with format major.minor.revision.build
 
-  \fn AppResource::Action Core::AppContext::currentAction() const
-  \brief Gets the current action of PicWorks.
-  This action code is a type of enum Action defined in AppResource.
-  \sa Core::AppResource
-  \return current action code
-
   \fn ActionManager * Core::ActionManager::actionManager() const
   \brief Action manager in PicWorks.
   \sa Core::ActionManager
@@ -102,6 +96,10 @@
   This setter will emit \a maxPenWidthChanged signal.
   \param w new max width value of pen
 
+  \fn void Core::AppContext::setCurrentAction(QString act)
+  \brief Sets current action id.
+  \param act new action id
+
   \fn const QColor & Core::AppContext::penColor() const
   \brief Gets global pen color.
   \return pen color
@@ -113,11 +111,6 @@
   \fn int Core::AppContext::maxPenWidth() const
   \brief Gets global max pen width
   \return max pen width
-
-  \fn void Core::AppContext::currentActionChanged(const Core::AppResource::Action & newCurrAction, const Core::AppResource::Action & oldCurrAction)
-  \brief Emits when current action changes.
-  \param newCurrAction the new action code
-  \param oldCurrAction the old action code
 
   \fn void Core::AppContext::penColorChanged(const QColor & newColor, const QColor & oldColor)
   \brief Emits when pen color changes.

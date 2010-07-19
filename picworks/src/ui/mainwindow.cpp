@@ -40,6 +40,7 @@
 #include <QToolButton>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QSignalMapper>
 
 #include "qtwindowlistmenu.h"
 #include "appcontext.h"
@@ -64,6 +65,7 @@ Ui::MainWindow::MainWindow(QWidget *parent /* = NULL */)
     setWindowTitle(tr("PicWorks v%1", "Main window title with version number.").arg(appCtx->version()));
 
     actionManager = appCtx->actionManager();
+    mapper = new QSignalMapper(this);
 
     mdiArea = new QMdiArea;
     setCentralWidget(mdiArea);
@@ -237,6 +239,7 @@ void Ui::MainWindow::createActions()
     selectToolQAction->setShortcut(tr("S"));
     selectToolQAction->setCheckable(true);
     selectToolQAction->setChecked(true);
+    selectToolQAction->setData(Core::ID::ACTION_SELECT);
     group->addAction(selectToolQAction);
     selectToolAction = actionManager->registerAction(Core::ID::ACTION_SELECT, selectToolQAction);
 
@@ -246,6 +249,7 @@ void Ui::MainWindow::createActions()
     moveToolQAction->setStatusTip(tr("Move the selected area or the whole page.", "[Move] action tip on status bar."));
     moveToolQAction->setShortcut(tr("M"));
     moveToolQAction->setCheckable(true);
+    moveToolQAction->setData(Core::ID::ACTION_MOVE);
     group->addAction(moveToolQAction);
     moveToolAction = actionManager->registerAction(Core::ID::ACTION_MOVE, moveToolQAction);
 
@@ -255,6 +259,7 @@ void Ui::MainWindow::createActions()
     brushToolQAction->setStatusTip(tr("Use brush.", "[Brush] action tip on status bar."));
     brushToolQAction->setShortcut(tr("B"));
     brushToolQAction->setCheckable(true);
+    brushToolQAction->setData(Core::ID::ACTION_BRUSH);
     group->addAction(brushToolQAction);
     brushToolAction = actionManager->registerAction(Core::ID::ACTION_BRUSH, brushToolQAction);
 
@@ -264,6 +269,7 @@ void Ui::MainWindow::createActions()
     eraserToolQAction->setStatusTip(tr("Use eraser.", "[Eraser] action tip on status bar."));
     eraserToolQAction->setShortcut(tr("E"));
     eraserToolQAction->setCheckable(true);
+    eraserToolQAction->setData(Core::ID::ACTION_ERASER);
     group->addAction(eraserToolQAction);
     eraserToolAction = actionManager->registerAction(Core::ID::ACTION_ERASER, eraserToolQAction);
 
@@ -273,6 +279,7 @@ void Ui::MainWindow::createActions()
     paintCanToolQAction->setStatusTip(tr("Fill the area with selected color.", "[Paint Can] action tip on status bar."));
     paintCanToolQAction->setShortcut(tr("P"));
     paintCanToolQAction->setCheckable(true);
+    paintCanToolQAction->setData(Core::ID::ACTION_PAINT_CAN);
     group->addAction(paintCanToolQAction);
     paintCanToolAction = actionManager->registerAction(Core::ID::ACTION_PAINT_CAN, paintCanToolQAction);
 
@@ -282,6 +289,7 @@ void Ui::MainWindow::createActions()
     textToolQAction->setStatusTip(tr("Add text.", "[Text] action tip on status bar."));
     textToolQAction->setShortcut(tr("T"));
     textToolQAction->setCheckable(true);
+    textToolQAction->setData(Core::ID::ACTION_DRAW_TEXT);
     group->addAction(textToolQAction);
     textToolAction = actionManager->registerAction(Core::ID::ACTION_DRAW_TEXT, textToolQAction);
 
@@ -291,6 +299,7 @@ void Ui::MainWindow::createActions()
     lineToolQAction->setStatusTip(tr("Draw a line.", "[Line] action tip on status bar."));
     lineToolQAction->setShortcut(tr("L"));
     lineToolQAction->setCheckable(true);
+    lineToolQAction->setData(Core::ID::ACTION_DRAW_LINE);
     group->addAction(lineToolQAction);
     lineToolAction = actionManager->registerAction(Core::ID::ACTION_DRAW_LINE, lineToolQAction);
 
@@ -300,6 +309,7 @@ void Ui::MainWindow::createActions()
     curveToolQAction->setStatusTip(tr("Draw a curve.", "[Curve] action tip on status bar."));
     curveToolQAction->setShortcut(tr("C"));
     curveToolQAction->setCheckable(true);
+    curveToolQAction->setData(Core::ID::ACTION_DRAW_CURVE);
     group->addAction(curveToolQAction);
     curveToolAction = actionManager->registerAction(Core::ID::ACTION_DRAW_CURVE, curveToolQAction);
 
@@ -309,6 +319,7 @@ void Ui::MainWindow::createActions()
     ellipseToolQAction->setStatusTip(tr("Draw an ellipse.", "[Ellipse] action tip on status bar."));
     ellipseToolQAction->setShortcut(tr("L"));
     ellipseToolQAction->setCheckable(true);
+    ellipseToolQAction->setData(Core::ID::ACTION_DRAW_ELLIPSE);
     group->addAction(ellipseToolQAction);
     ellipseToolAction = actionManager->registerAction(Core::ID::ACTION_DRAW_ELLIPSE, ellipseToolQAction);
 
@@ -318,6 +329,7 @@ void Ui::MainWindow::createActions()
     polygonToolQAction->setStatusTip(tr("Draw a polygon.", "[Polygon] action tip on status bar."));
     polygonToolQAction->setShortcut(tr("O"));
     polygonToolQAction->setCheckable(true);
+    polygonToolQAction->setData(Core::ID::ACTION_DRAW_POLYGON);
     group->addAction(polygonToolQAction);
     polygonToolAction = actionManager->registerAction(Core::ID::ACTION_DRAW_POLYGON, polygonToolQAction);
 
@@ -327,6 +339,7 @@ void Ui::MainWindow::createActions()
     rectangleToolQAction->setStatusTip(tr("Draw a rectangle.", "[Rectangle] action tip on status bar."));
     rectangleToolQAction->setShortcut(tr("R"));
     rectangleToolQAction->setCheckable(true);
+    rectangleToolQAction->setData(Core::ID::ACTION_DRAW_RECT);
     group->addAction(rectangleToolQAction);
     rectangleToolAction = actionManager->registerAction(Core::ID::ACTION_DRAW_RECT, rectangleToolQAction);
 
@@ -336,6 +349,7 @@ void Ui::MainWindow::createActions()
     roundRectangleToolQAction->setStatusTip(tr("Draw a round corner rectangle.", "[Round Cornor Rectangle] action tip on status bar."));
     roundRectangleToolQAction->setShortcut(tr("U"));
     roundRectangleToolQAction->setCheckable(true);
+    roundRectangleToolQAction->setData(Core::ID::ACTION_DRAW_ROUND_RECT);
     group->addAction(roundRectangleToolQAction);
     roundRectangleToolAction = actionManager->registerAction(Core::ID::ACTION_DRAW_ROUND_RECT, roundRectangleToolQAction);
 }
@@ -461,7 +475,23 @@ void Ui::MainWindow::establishConnections()
     //connect(actionManager->action(Core::ID::Action::NEW), SIGNAL(triggered()), this, SLOT(showPreferencesDialog()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(showAboutDialog()));
 
-    // connect(lineToolAction, SIGNAL(triggered()), AppCtx, SLOT(setCurrentAction()));
+    // tool box actions
+    connect(lineToolAction, SIGNAL(triggered()), mapper, SLOT(map()));
+    mapper->setMapping(lineToolAction, Core::ID::ACTION_DRAW_LINE);
+    connect(textToolAction, SIGNAL(triggered()), mapper, SLOT(map()));
+    mapper->setMapping(textToolAction, Core::ID::ACTION_DRAW_TEXT);
+    connect(curveToolAction, SIGNAL(triggered()), mapper, SLOT(map()));
+    mapper->setMapping(curveToolAction, Core::ID::ACTION_DRAW_CURVE);
+    connect(ellipseToolAction, SIGNAL(triggered()), mapper, SLOT(map()));
+    mapper->setMapping(ellipseToolAction, Core::ID::ACTION_DRAW_ELLIPSE);
+    connect(polygonToolAction, SIGNAL(triggered()), mapper, SLOT(map()));
+    mapper->setMapping(polygonToolAction, Core::ID::ACTION_DRAW_POLYGON);
+    connect(rectangleToolAction, SIGNAL(triggered()), mapper, SLOT(map()));
+    mapper->setMapping(rectangleToolAction, Core::ID::ACTION_DRAW_RECT);
+    connect(roundRectangleToolAction, SIGNAL(triggered()), mapper, SLOT(map()));
+    mapper->setMapping(roundRectangleToolAction, Core::ID::ACTION_DRAW_ROUND_RECT);
+//    connect(mapper, SIGNAL(mapped(QString)), this, SLOT(toolBoxActionTriggered(QString)));
+    connect(mapper, SIGNAL(mapped(QString)), appCtx, SLOT(setCurrentAction(QString)));
 }
 
 /*!
@@ -536,4 +566,29 @@ void Ui::MainWindow::addProjectWindow(Core::Project *pro)
     ProjectWindow *pw = new ProjectWindow(pro);
     mdiArea->addSubWindow(pw);
     pw->show();
+}
+
+/*!
+  \internal
+  \brief Called when tool box actions triggered.
+ */
+void Ui::MainWindow::toolBoxActionTriggered(QString id)
+{
+    if(id == Core::ID::ACTION_DRAW_TEXT) {
+
+    } else if(id == Core::ID::ACTION_DRAW_CURVE) {
+
+    } else if(id == Core::ID::ACTION_DRAW_ELLIPSE) {
+
+    } else if(id == Core::ID::ACTION_DRAW_LINE) {
+
+    } else if(id == Core::ID::ACTION_DRAW_POLYGON) {
+
+    } else if(id == Core::ID::ACTION_DRAW_RECT) {
+
+    } else if(id == Core::ID::ACTION_DRAW_ROUND_RECT) {
+
+    } else {
+        // no such action id, do nothing...
+    }
 }
