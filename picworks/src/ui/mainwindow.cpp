@@ -490,7 +490,6 @@ void Ui::MainWindow::establishConnections()
     mapper->setMapping(rectangleToolAction, Core::ID::ACTION_DRAW_RECT);
     connect(roundRectangleToolAction, SIGNAL(triggered()), mapper, SLOT(map()));
     mapper->setMapping(roundRectangleToolAction, Core::ID::ACTION_DRAW_ROUND_RECT);
-//    connect(mapper, SIGNAL(mapped(QString)), this, SLOT(toolBoxActionTriggered(QString)));
     connect(mapper, SIGNAL(mapped(QString)), appCtx, SLOT(setCurrentAction(QString)));
 }
 
@@ -543,7 +542,11 @@ QToolButton * Ui::MainWindow::createToolButton(QAction *action, QWidget *parent 
  */
 void Ui::MainWindow::showOpenDialog()
 {
-    QString path = QFileDialog::getOpenFileName(this, tr("Open File"), ".", tr("All support formats(*.jpg; *.png);;JPEG Files(*.jpg);;PNG Files(*.png)"));
+    QString path = QFileDialog::getOpenFileName(
+            this,
+            tr("Open File"),
+            ".",
+            tr("All support formats(*.jpg; *.png);;JPEG Files(*.jpg);;PNG Files(*.png)"));
     if(!path.isEmpty()) {
         Core::Project *pro = new Core::Project;
         QPixmap bg(path);
@@ -566,29 +569,4 @@ void Ui::MainWindow::addProjectWindow(Core::Project *pro)
     ProjectWindow *pw = new ProjectWindow(pro);
     mdiArea->addSubWindow(pw);
     pw->show();
-}
-
-/*!
-  \internal
-  \brief Called when tool box actions triggered.
- */
-void Ui::MainWindow::toolBoxActionTriggered(QString id)
-{
-    if(id == Core::ID::ACTION_DRAW_TEXT) {
-
-    } else if(id == Core::ID::ACTION_DRAW_CURVE) {
-
-    } else if(id == Core::ID::ACTION_DRAW_ELLIPSE) {
-
-    } else if(id == Core::ID::ACTION_DRAW_LINE) {
-
-    } else if(id == Core::ID::ACTION_DRAW_POLYGON) {
-
-    } else if(id == Core::ID::ACTION_DRAW_RECT) {
-
-    } else if(id == Core::ID::ACTION_DRAW_ROUND_RECT) {
-
-    } else {
-        // no such action id, do nothing...
-    }
 }

@@ -17,39 +17,34 @@
 //
 
 /*!
-  \file graphicselement.h
+  \file lineelement.h
   \ingroup Graphics
   \brief This file contains
-  - class Graphics::GraphicsElement declaration
+  - class Graphics::LineElement declaration
   \author Cheng Liang <changliang.soft@gmail.com>
-  \date 20105-15 Created.
+  \date 2010-7-19 Created.
  */
 
-#ifndef SHAPE_H
-#define SHAPE_H
+#ifndef LINEELEMENT_H
+#define LINEELEMENT_H
 
-#include <QObject>
+#include "actor.h"
 
-class QPoint;
+class QGraphicsSceneMouseEvent;
 
 namespace Graphics {
 
-class GraphicsElement : public QObject
+class LineElement : public Actor
 {
-    Q_OBJECT
 public:
-    GraphicsElement();
-    virtual ~GraphicsElement() {}
+    LineElement();
+    ~LineElement() {}
 
-    virtual void startProcess(QPoint * scenePos) = 0;
-    virtual void processing(QPoint * scenePos) = 0;
-    virtual void endProcess(QPoint * scenePos) = 0;
-
-signals:
-    void isProcessing(bool processing);
-
+    void mousePress(QGraphicsSceneMouseEvent * event);
+    void mouseMove(QGraphicsSceneMouseEvent * event);
+    void mouseRelease(QGraphicsSceneMouseEvent * event);
 }; // end of class
 
 } // end of namespace
 
-#endif // SHAPE_H
+#endif // LINEELEMENT_H

@@ -98,7 +98,12 @@
 
   \fn void Core::AppContext::setCurrentAction(QString act)
   \brief Sets current action id.
+  This setter will emit \a currentActionChanged signal.
   \param act new action id
+
+  \fn const QString & currentAction() const
+  \brief Gets current action id.
+  \return current action id
 
   \fn const QColor & Core::AppContext::penColor() const
   \brief Gets global pen color.
@@ -132,9 +137,10 @@
   \internal
   \brief Private constructor.
  */
-Core::AppContext::AppContext() : pColor(Qt::black),
-                                 maxPWidth(500),
-                                 actMgr(new Core::ActionManager)
+Core::AppContext::AppContext()
+    : pColor(Qt::black),
+      maxPWidth(500),
+      actMgr(new Core::ActionManager)
 {
     appVersion = QString("%1.%2.%3.%4")
                  .arg(Core::Version::major)
