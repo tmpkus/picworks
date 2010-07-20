@@ -37,7 +37,7 @@ namespace Core {
 };
 
 namespace Graphics {
-    class GraphicsElement;
+    class Actor;
 };
 
 namespace Ui {
@@ -53,6 +53,7 @@ public:
 public slots:
     void setProcessing(bool p) { processing = p; }
     void setGrid();
+    void setCurrentActor(const QString & actId);
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent * event);
@@ -61,7 +62,7 @@ protected:
 
 private:
     Core::Project *project;
-    Graphics::GraphicsElement *currentElement;
+    Graphics::Actor *currActor;
     bool processing;
     bool showGrid;
     int layerIndex;

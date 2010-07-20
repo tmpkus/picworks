@@ -33,7 +33,7 @@
 #include <QDebug>
 
 #include "project.h"
-#include "appresource.h"
+#include "constants.h"
 #include "appcontext.h"
 #include "projectscene.h"
 #include "graphicselement.h"
@@ -74,6 +74,8 @@ Ui::ProjectScene::ProjectScene(Core::Project *pro, QObject *parent /* = 0 */)
         addPixmap(project->backgroundImage());
     }
     setSceneRect(0, 0, project->width(), project->height());
+
+    connect(appCtx, SIGNAL(currentActionChange(const QString &, const QString &)), this, SLOT(setCurrentActor(const QString &)));
 }
 
 /*!
@@ -82,6 +84,9 @@ Ui::ProjectScene::ProjectScene(Core::Project *pro, QObject *parent /* = 0 */)
 void Ui::ProjectScene::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
     if(event->button() == Qt::LeftButton) {
+        if(currActor) {
+            currActor->mousePress(event);
+        }
 //        switch(appCtx->currentAction()) {
 //        case Core::AppResource::DrawLineAction:
 //            {
@@ -184,5 +189,30 @@ void Ui::ProjectScene::setGrid()
         this->setForegroundBrush(QBrush(grid));
     } else {
         this->setForegroundBrush(Qt::NoBrush);
+    }
+}
+
+/*!
+  \brief Sets current actor instance by action id in application context.
+  \param actId new action id
+ */
+void Ui::ProjectScene::setCurrentActor(const QString & actId)
+{
+    if(actId == Core::ID::ACTION_DRAW_TEXT) {
+
+    } else if(actId == Core::ID::ACTION_DRAW_CURVE) {
+
+    } else if(actId == Core::ID::ACTION_DRAW_ELLIPSE) {
+
+    } else if(actId == Core::ID::ACTION_DRAW_LINE) {
+        currActor = new Graphics::LineElement();
+    } else if(actId == Core::ID::ACTION_DRAW_POLYGON) {
+
+    } else if(actId == Core::ID::ACTION_DRAW_RECT) {
+
+    } else if(actId == Core::ID::ACTION_DRAW_ROUND_RECT) {
+
+    } else {
+        // no such action id, do nothing...
     }
 }

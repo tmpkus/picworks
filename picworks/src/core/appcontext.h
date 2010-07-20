@@ -54,6 +54,8 @@ public:
 
     inline const QString & version() const { return appVersion; }
 
+    inline const QString & currentAction() const { return currAct; }
+
     inline const QColor & penColor() const { return pColor; }
 
     inline int penWidth() const { return pWidth; }
@@ -100,6 +102,7 @@ public slots:
     inline void setCurrentAction(QString act)
     {
         if(currAct != act) {
+            emit currentActionChanged(act, currAct);
             currAct = act;
         }
     }
@@ -108,6 +111,7 @@ signals:
     void penColorChanged(const QColor & newColor, const QColor & oldColor);
     void penWidthChanged(int newWidth, int oldWidth);
     void maxPenWidthChanged(int newValue, int oldValue);
+    void currentActionChanged(const QString & newId, const QString & oldId);
 
 private:
     QString appVersion;

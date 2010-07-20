@@ -17,41 +17,29 @@
 //
 
 /*!
-  \file lineelement.cpp
+  \file mouseactor.h
   \ingroup Graphics
   \brief This file contains
-  - class Graphics::LineElement implemtation
-  \author Cheng Liang <chengliang.soft@gmail.com>
+  - class Graphics::MouseActor declaration
+  \author Cheng Liang <changliang.soft@gmail.com>
   \date 2010-7-19 Created.
  */
 
-/*!
-  \class Graphics::LineElement lineelement.h
-  \brief Line element for drawing.
-  \version 0.0.1
-  \author Cheng Liang <chengliang.soft@gmail.com>
-  \date 2010-7-19 Created.
- */
+#ifndef MOUSEACTOR_H
+#define MOUSEACTOR_H
 
-#include <QGraphicsSceneMouseEvent>
+class QGraphicsSceneMouseEvent;
 
-#include "lineelement.h"
+namespace Graphics {
 
-Graphics::LineElement::LineElement()
+class Actor
 {
-}
+public:
+    virtual void mousePress(QGraphicsSceneMouseEvent * event) = 0;
+    virtual void mouseMove(QGraphicsSceneMouseEvent * event) = 0;
+    virtual void mouseRelease(QGraphicsSceneMouseEvent * event) = 0;
+}; // end of class
 
-Graphics::LineElement::mouseMove(QGraphicsSceneMouseEvent *event)
-{
+} // end of namespace
 
-}
-
-Graphics::LineElement::mousePress(QGraphicsSceneMouseEvent *event)
-{
-
-}
-
-Graphics::LineElement::mouseRelease(QGraphicsSceneMouseEvent *event)
-{
-
-}
+#endif // MOUSEACTOR_H

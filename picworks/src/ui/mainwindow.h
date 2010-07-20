@@ -98,7 +98,6 @@ private slots:
     void showAboutDialog();
     void showOpenDialog();
     void addProjectWindow(Core::Project *pro);
-    void toolBoxActionTriggered(QString);
 };
 
 }
