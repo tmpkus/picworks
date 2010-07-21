@@ -1,6 +1,8 @@
 # glob syntax
 syntax: glob
 
+*.orig
+
 picworks/*.ini
 picworks/*.o
 picworks/debug/*

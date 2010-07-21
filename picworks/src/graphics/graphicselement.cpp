@@ -35,23 +35,39 @@
 
 #include <QGraphicsSceneMouseEvent>
 
+#include "appcontext.h"
 #include "graphicselement.h"
 
-Graphics::LineElement::LineElement()
+Graphics::LineElement::LineElement(QGraphicsItem *parent /* = 0 */,
+                                   QGraphicsScene *scene /* = 0 */)
+    : QGraphicsLineItem(parent, scene)
 {
+    setPen(QPen(QBrush(appCtx->penColor(), Qt::SolidPattern), appCtx->penWidth()));
 }
 
 void Graphics::LineElement::mouseMove(QGraphicsSceneMouseEvent *event)
 {
-
+//    this->line().setP2(event->scenePos());
+    qDebug() << "mouse move";
 }
 
 void Graphics::LineElement::mousePress(QGraphicsSceneMouseEvent *event)
 {
-
+//    QLineF line;
+//    line.setP1(event->scenePos());
+//    line.setP2(event->scenePos());
+//    this->setLine(line);
+    qDebug() << "mouse pressed";
 }
 
 void Graphics::LineElement::mouseRelease(QGraphicsSceneMouseEvent *event)
 {
+//    this->line().setP2(event->scenePos());
+//    emit finished();
+    qDebug() << "mouse released";
+}
 
+void Graphics::LineElement::setZIndex(qreal z)
+{
+    this->setZValue(z);
 }

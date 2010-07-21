@@ -28,18 +28,21 @@
 #ifndef LINEELEMENT_H
 #define LINEELEMENT_H
 
-#include "actor.h"
+#include <QGraphicsLineItem>
+
+#include "element.h"
 
 class QGraphicsSceneMouseEvent;
 
 namespace Graphics {
 
-class LineElement : public Actor
+class LineElement : public QGraphicsLineItem, public Element
 {
 public:
-    LineElement();
+    LineElement(QGraphicsItem *parent = 0, QGraphicsScene *scene = 0);
     ~LineElement() {}
 
+    void setZIndex(qreal z);
     void mousePress(QGraphicsSceneMouseEvent * event);
     void mouseMove(QGraphicsSceneMouseEvent * event);
     void mouseRelease(QGraphicsSceneMouseEvent * event);
