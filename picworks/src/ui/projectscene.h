@@ -37,7 +37,7 @@ namespace Core {
 };
 
 namespace Graphics {
-    class Actor;
+    class Element;
 };
 
 namespace Ui {
@@ -51,8 +51,7 @@ public:
     ~ProjectScene() {}
 
 public slots:
-    void setProcessing(bool p) { processing = p; }
-    void setGrid();
+    void showGrid(bool v);
     void setCurrentActor(const QString & actId);
 
 protected:
@@ -62,9 +61,8 @@ protected:
 
 private:
     Core::Project *project;
-    Graphics::Actor *currActor;
-    bool processing;
-    bool showGrid;
+    Graphics::Element *currElement;
+    bool gridVisible;
     int layerIndex;
 
 }; // end of class

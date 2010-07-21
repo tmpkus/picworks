@@ -5,7 +5,7 @@
 # 2010-5-15
 # -------------------------------------------------
 
-HEADERS += $$PWD/actor.h \
+HEADERS += $$PWD/element.h \
     $$PWD/graphicselement.h
 
 SOURCES += $$PWD/graphicselement.cpp

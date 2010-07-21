@@ -30,7 +30,6 @@
 #include <QPixmap>
 #include <QPainter>
 #include <QGraphicsSceneMouseEvent>
-#include <QDebug>
 
 #include "project.h"
 #include "constants.h"
@@ -60,7 +59,8 @@
 Ui::ProjectScene::ProjectScene(Core::Project *pro, QObject *parent /* = 0 */)
         : QGraphicsScene(parent),
           project(pro),
-          showGrid(false),
+          currElement(NULL),
+          gridVisible(false),
           layerIndex(1)
 {
     // entry conditions
@@ -75,7 +75,8 @@ Ui::ProjectScene::ProjectScene(Core::Project *pro, QObject *parent /* = 0 */)
     }
     setSceneRect(0, 0, project->width(), project->height());
 
-    connect(appCtx, SIGNAL(currentActionChange(const QString &, const QString &)), this, SLOT(setCurrentActor(const QString &)));
+    connect(appCtx, SIGNAL(currentActionChanged(const QString &, const QString &)),
+            this, SLOT(setCurrentActor(const QString &)));
 }
 
 /*!
@@ -84,49 +85,12 @@ Ui::ProjectScene::ProjectScene(Core::Project *pro, QObject *parent /* = 0 */)
 void Ui::ProjectScene::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
     if(event->button() == Qt::LeftButton) {
-        if(currActor) {
-            currActor->mousePress(event);
+        if(currElement) {
+            currElement->mousePress(event);
+            //currElement->setZIndex(layerIndex);
+            //connect(currElement, SIGNAL(finished(bool)), this, SLOT(elementFinished(bool)));
+            //addItem(currElement);
         }
-//        switch(appCtx->currentAction()) {
-//        case Core::AppResource::DrawLineAction:
-//            {
-//                GraphicsItem::Line *drawingLine = new GraphicsItem::Line(this);
-//                drawingLine->setPen(QPen(QBrush(appCtx->penColor(), Qt::SolidPattern), appCtx->penWidth()));
-//                drawingLine->setZValue(layerIndex);
-//                addItem(drawingLine);
-//                drawingShape = drawingLine;
-//                break;
-//            }
-//        case Core::AppResource::DrawCurveAction:
-//            {
-//                break;
-//            }
-//        case Core::AppResource::DrawRectAction:
-//            {
-//                break;
-//            }
-//        case Core::AppResource::DrawRoundRectAction:
-//            {
-//                break;
-//            }
-//        case Core::AppResource::DrawEllipseAction:
-//            {
-//                break;
-//            }
-//        case Core::AppResource::DrawPolygonAction:
-//            {
-//                break;
-//            }
-//        default:
-//            {
-//                // not a drawable item, do nothing
-//                break;
-//            }
-//        }
-
-//        if(drawingShape) {
-//            drawingShape->startDraw(event);
-//        }
     }
     QGraphicsScene::mousePressEvent(event);
 }
@@ -136,9 +100,9 @@ void Ui::ProjectScene::mousePressEvent(QGraphicsSceneMouseEvent * event)
  */
 void Ui::ProjectScene::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
 {
-//    if(processing && drawingShape) {
-//        drawingShape->drawing(event);
-//    }
+    if(currElement) {
+        currElement->mousePress(event);
+    }
     QGraphicsScene::mouseMoveEvent(event);
 }
 
@@ -147,20 +111,20 @@ void Ui::ProjectScene::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
  */
 void Ui::ProjectScene::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
 {
-//    if(drawingShape) {
-//        drawingShape->endDraw(event);
-//    }
+    if(currElement) {
+        currElement->mouseRelease(event);
+    }
     QGraphicsScene::mouseReleaseEvent(event);
 }
 
 /*!
   \internal Sets this window to show grid lines.
-  \param show true if grid lines should be shown
+  \param v true if grid lines should be shown
  */
-void Ui::ProjectScene::setGrid()
+void Ui::ProjectScene::showGrid(bool v)
 {
-    showGrid = !showGrid;
-    if(showGrid) {
+    gridVisible = v;
+    if(gridVisible) {
         int dpi = project->dpi();
         QPixmap grid(dpi, dpi);
         grid.fill(Qt::transparent);
@@ -205,7 +169,7 @@ void Ui::ProjectScene::setCurrentActor(const QString & actId)
     } else if(actId == Core::ID::ACTION_DRAW_ELLIPSE) {
 
     } else if(actId == Core::ID::ACTION_DRAW_LINE) {
-        currActor = new Graphics::LineElement();
+        currElement = new Graphics::LineElement(NULL, this);
     } else if(actId == Core::ID::ACTION_DRAW_POLYGON) {
 
     } else if(actId == Core::ID::ACTION_DRAW_RECT) {

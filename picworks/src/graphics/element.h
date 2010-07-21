@@ -17,29 +17,36 @@
 //
 
 /*!
-  \file mouseactor.h
+  \file actor.h
   \ingroup Graphics
   \brief This file contains
-  - class Graphics::MouseActor declaration
+  - class Graphics::Element declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2010-7-19 Created.
  */
 
-#ifndef MOUSEACTOR_H
-#define MOUSEACTOR_H
+#ifndef ELEMENT_H
+#define ELEMENT_H
+
+#include <QGraphicsObject>
 
 class QGraphicsSceneMouseEvent;
 
 namespace Graphics {
 
-class Actor
+class Element : public QObject // QGraphicsObject
 {
+    Q_OBJECT
 public:
+    virtual void setZIndex(qreal z) = 0;
     virtual void mousePress(QGraphicsSceneMouseEvent * event) = 0;
     virtual void mouseMove(QGraphicsSceneMouseEvent * event) = 0;
     virtual void mouseRelease(QGraphicsSceneMouseEvent * event) = 0;
+
+signals:
+    void finished(bool b = true);
 }; // end of class
 
 } // end of namespace
 
-#endif // MOUSEACTOR_H
+#endif // ELEMENT_H

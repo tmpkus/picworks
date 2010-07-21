@@ -99,6 +99,7 @@ Ui::ProjectWindow::ProjectWindow(Core::Project *pro, QWidget *parent /* = 0 */)
     msgLabel->setFixedWidth(8);
     QPushButton *gridButton = new QPushButton(statusBar);
     gridButton->setText("#");
+    gridButton->setCheckable(true);
     gridButton->setFixedSize(20, 18);
     QLabel *ctrlLabel = new QLabel(statusBar);
     ctrlLabel->setFixedWidth(qApp->style()->pixelMetric(QStyle::PM_ScrollBarExtent) - 6);
@@ -109,7 +110,7 @@ Ui::ProjectWindow::ProjectWindow(Core::Project *pro, QWidget *parent /* = 0 */)
     statusLayout->addWidget(ctrlLabel);
 
     QWidget *mainPanel = new QWidget(this);
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->setMargin(0);
     mainLayout->setSpacing(0);
     mainLayout->addWidget(centerPanel);
@@ -117,7 +118,7 @@ Ui::ProjectWindow::ProjectWindow(Core::Project *pro, QWidget *parent /* = 0 */)
     mainPanel->setLayout(mainLayout);
     setWidget(mainPanel);
 
-    connect(gridButton, SIGNAL(clicked()), scene, SLOT(setGrid()));
+    connect(gridButton, SIGNAL(clicked(bool)), scene, SLOT(showGrid(bool)));
 }
 
 /*!
