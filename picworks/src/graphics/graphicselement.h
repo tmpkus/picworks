@@ -20,6 +20,7 @@
   \file lineelement.h
   \ingroup Graphics
   \brief This file contains
+  - class Graphics::GraphicsElement declaration
   - class Graphics::LineElement declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2010-7-19 Created.
@@ -31,7 +32,6 @@
 #include <QGraphicsObject>
 
 class QGraphicsLineItem;
-class QGraphicsSceneMouseEvent;
 
 namespace Graphics {
 
@@ -61,6 +61,11 @@ public:
     void editEnd(const QPointF &point);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    bool contains(const QPointF & point) const;
+    bool isObscuredBy(const QGraphicsItem * item) const;
+    QPainterPath opaqueArea() const;
+    QPainterPath shape() const;
+    int type() const;
 
 private:
     QGraphicsLineItem *lineItem;
