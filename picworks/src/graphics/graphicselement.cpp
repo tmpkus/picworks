@@ -38,36 +38,50 @@
 #include "appcontext.h"
 #include "graphicselement.h"
 
+Graphics::GraphicsElement::GraphicsElement(QGraphicsItem *parent /* = 0 */,
+                                           QGraphicsScene *s /* = 0 */)
+    : QGraphicsObject(parent),
+      scene(s)
+{
+}
+
 Graphics::LineElement::LineElement(QGraphicsItem *parent /* = 0 */,
                                    QGraphicsScene *scene /* = 0 */)
-    : QGraphicsLineItem(parent, scene)
+    : GraphicsElement(parent, scene)
 {
-    setPen(QPen(QBrush(appCtx->penColor(), Qt::SolidPattern), appCtx->penWidth()));
+    lineItem = new QGraphicsLineItem();
+    lineItem->setPen(QPen(QBrush(appCtx->penColor(), Qt::SolidPattern), appCtx->penWidth()));
 }
 
-void Graphics::LineElement::mouseMove(QGraphicsSceneMouseEvent *event)
+Graphics::LineElement::~LineElement()
 {
-//    this->line().setP2(event->scenePos());
-    qDebug() << "mouse move";
+    delete lineItem;
 }
 
-void Graphics::LineElement::mousePress(QGraphicsSceneMouseEvent *event)
+void Graphics::LineElement::editStart(const QPointF &point)
 {
-//    QLineF line;
-//    line.setP1(event->scenePos());
-//    line.setP2(event->scenePos());
-//    this->setLine(line);
-    qDebug() << "mouse pressed";
+    QLineF line;
+    line.setP1(point);
+    line.setP2(point);
+    lineItem->setLine(line);
 }
 
-void Graphics::LineElement::mouseRelease(QGraphicsSceneMouseEvent *event)
+void Graphics::LineElement::editing(const QPointF &point)
 {
-//    this->line().setP2(event->scenePos());
-//    emit finished();
-    qDebug() << "mouse released";
+    lineItem->line().setP2(point);
 }
 
-void Graphics::LineElement::setZIndex(qreal z)
+void Graphics::LineElement::editEnd(const QPointF &point)
 {
-    this->setZValue(z);
+    lineItem->line().setP2(point);
+}
+
+QRectF Graphics::LineElement::boundingRect() const
+{
+    return lineItem->boundingRect();
+}
+
+void Graphics::LineElement::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    lineItem->paint(painter, option, widget);
 }

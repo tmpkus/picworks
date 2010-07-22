@@ -74,9 +74,6 @@ Ui::ProjectScene::ProjectScene(Core::Project *pro, QObject *parent /* = 0 */)
         addPixmap(project->backgroundImage());
     }
     setSceneRect(0, 0, project->width(), project->height());
-
-    connect(appCtx, SIGNAL(currentActionChanged(const QString &, const QString &)),
-            this, SLOT(setCurrentActor(const QString &)));
 }
 
 /*!
@@ -84,12 +81,12 @@ Ui::ProjectScene::ProjectScene(Core::Project *pro, QObject *parent /* = 0 */)
  */
 void Ui::ProjectScene::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
+    setCurrentActor();
     if(event->button() == Qt::LeftButton) {
         if(currElement) {
-            currElement->mousePress(event);
-            //currElement->setZIndex(layerIndex);
-            //connect(currElement, SIGNAL(finished(bool)), this, SLOT(elementFinished(bool)));
-            //addItem(currElement);
+            currElement->editStart(event->scenePos());
+            currElement->setZValue(layerIndex);
+            addItem(currElement);
         }
     }
     QGraphicsScene::mousePressEvent(event);
@@ -101,7 +98,7 @@ void Ui::ProjectScene::mousePressEvent(QGraphicsSceneMouseEvent * event)
 void Ui::ProjectScene::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
 {
     if(currElement) {
-        currElement->mousePress(event);
+        currElement->editing(event->scenePos());
     }
     QGraphicsScene::mouseMoveEvent(event);
 }
@@ -112,7 +109,7 @@ void Ui::ProjectScene::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
 void Ui::ProjectScene::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
 {
     if(currElement) {
-        currElement->mouseRelease(event);
+        currElement->editEnd(event->scenePos());
     }
     QGraphicsScene::mouseReleaseEvent(event);
 }
@@ -160,8 +157,9 @@ void Ui::ProjectScene::showGrid(bool v)
   \brief Sets current actor instance by action id in application context.
   \param actId new action id
  */
-void Ui::ProjectScene::setCurrentActor(const QString & actId)
+void Ui::ProjectScene::setCurrentActor()
 {
+    QString actId = appCtx->currentAction();
     if(actId == Core::ID::ACTION_DRAW_TEXT) {
 
     } else if(actId == Core::ID::ACTION_DRAW_CURVE) {
