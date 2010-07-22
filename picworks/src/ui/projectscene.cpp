@@ -99,6 +99,7 @@ void Ui::ProjectScene::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
 {
     if(currElement) {
         currElement->editing(event->scenePos());
+//        update();
     }
     QGraphicsScene::mouseMoveEvent(event);
 }
