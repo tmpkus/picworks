@@ -28,24 +28,43 @@
 #ifndef LINEELEMENT_H
 #define LINEELEMENT_H
 
-#include <QGraphicsLineItem>
+#include <QGraphicsObject>
 
-#include "element.h"
-
+class QGraphicsLineItem;
 class QGraphicsSceneMouseEvent;
 
 namespace Graphics {
 
-class LineElement : public QGraphicsLineItem, public Element
+class GraphicsElement : public QGraphicsObject
+{
+    Q_OBJECT
+public:
+    GraphicsElement(QGraphicsItem *parent = 0, QGraphicsScene *s = 0);
+
+    virtual void editStart(const QPointF &point) = 0;
+    virtual void editing(const QPointF &point) = 0;
+    virtual void editEnd(const QPointF &point) = 0;
+
+protected:
+    QGraphicsScene *scene;
+
+}; // end of class
+
+class LineElement : public GraphicsElement
 {
 public:
     LineElement(QGraphicsItem *parent = 0, QGraphicsScene *scene = 0);
-    ~LineElement() {}
+    ~LineElement();
 
-    void setZIndex(qreal z);
-    void mousePress(QGraphicsSceneMouseEvent * event);
-    void mouseMove(QGraphicsSceneMouseEvent * event);
-    void mouseRelease(QGraphicsSceneMouseEvent * event);
+    void editStart(const QPointF &point);
+    void editing(const QPointF &point);
+    void editEnd(const QPointF &point);
+    QRectF boundingRect() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+private:
+    QGraphicsLineItem *lineItem;
+
 }; // end of class
 
 } // end of namespace
