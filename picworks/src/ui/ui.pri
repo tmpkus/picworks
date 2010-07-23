@@ -13,7 +13,8 @@ HEADERS += $$PWD/mainwindow.h \
     $$PWD/projectview.h \
     $$PWD/projectwindow.h \
     $$PWD/colorindicator.h \
-    ui/commonbar.h
+    ui/commonbar.h \
+    ui/penwidthpicker.h
 
 SOURCES += $$PWD/mainwindow.cpp \
     $$PWD/aboutdialog.cpp \
@@ -23,4 +24,5 @@ SOURCES += $$PWD/mainwindow.cpp \
     $$PWD/projectview.cpp \
     $$PWD/projectwindow.cpp \
     $$PWD/colorindicator.cpp \
-    ui/commonbar.cpp
+    ui/commonbar.cpp \
+    ui/penwidthpicker.cpp
