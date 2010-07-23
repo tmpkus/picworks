@@ -17,45 +17,50 @@
 //
 
 /*!
-  \file commonbar.h
+  \file penwidthpicker.h
   \ingroup Ui
   \brief This file contains
-  - class Ui::CommonBar declaration
+  - class Ui::PenWidthPicker declaration
   \author Cheng Liang <changliang.soft@gmail.com>
   \date 2010-7-23 Created.
  */
 
-#ifndef COMMONBAR_H
-#define COMMONBAR_H
+#ifndef PENWIDTHPICKER_H
+#define PENWIDTHPICKER_H
 
-#include <QToolBar>
+#include <QWidget>
 
-class QtColorPicker;
+class QSpinBox;
 
 namespace Ui {
 
-class PenWidthPicker;
-
-class CommonBar : public QToolBar
+class PenWidthPicker : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CommonBar(QWidget *parent = 0);
+    PenWidthPicker(bool showLabel = true, QWidget *parent = 0);
+    ~PenWidthPicker() {}
 
 signals:
+    void penWidthChanged(int newWidth, int oldWidth);
 
 public slots:
-    void resetCommonBar(const QString &action);
+    void setPenWidth(int w)
+    {
+        if(w != pw) {
+            emit penWidthChanged(w, pw);
+            pw = w;
+        }
+    }
+
+    void setWidthRange(int min, int max);
 
 private:
-    QtColorPicker *penColorPicker;
-    PenWidthPicker *penWidthPicker;
-
-    QAction *penColorAction;
-    QAction *penWidthAction;
+    QSpinBox *widthBox;
+    int pw;
 
 }; // end of class
 
 } // end of namespace
 
-#endif // COMMONBAR_H
+#endif // PENWIDTHPICKER_H

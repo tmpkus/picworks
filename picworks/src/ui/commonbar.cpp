@@ -25,9 +25,13 @@
   \date 2010-7-23 Created.
  */
 
+#include <QAction>
+
 #include "appcontext.h"
 #include "commonbar.h"
 #include "qtcolorpicker.h"
+#include "penwidthpicker.h"
+#include "constants.h"
 
 /*!
   \class Ui::CommonBar commonbar.h
@@ -49,6 +53,42 @@ Ui::CommonBar::CommonBar(QWidget *parent /* = 0 */) :
     penColorPicker->setToolTip(tr("Choose pen color.", "Pen color button on Common Bar."));
     penColorAction = addWidget(penColorPicker);
 
+    penWidthPicker = new PenWidthPicker(true, this);
+    penWidthPicker->setToolTip(tr("Choose pen width.", "Pen width button on Common Bar."));
+    penWidthPicker->setWidthRange(1, appCtx->maxPenWidth());
+    penWidthAction = addWidget(penWidthPicker);
+
+    setStyleSheet(QString("QToolBar{spacing: 2px;}"));
+    this->setFixedHeight(25);
+
     connect(penColorPicker, SIGNAL(colorChanged(const QColor &)),
             appCtx, SLOT(setPenColor(const QColor &)));
+    connect(penWidthPicker, SIGNAL(penWidthChanged(int,int)),
+            appCtx, SLOT(setPenWidth(int)));
+}
+
+/*!
+  \brief Resets common bar by action id.
+  \param actId action id
+ */
+void Ui::CommonBar::resetCommonBar(const QString &actId)
+{
+    if(actId == Core::ID::ACTION_DRAW_TEXT) {
+
+    } else if(actId == Core::ID::ACTION_DRAW_CURVE) {
+
+    } else if(actId == Core::ID::ACTION_DRAW_ELLIPSE) {
+
+    } else if(actId == Core::ID::ACTION_DRAW_LINE) {
+        penColorAction->setVisible(true);
+        penWidthAction->setVisible(false);
+    } else if(actId == Core::ID::ACTION_DRAW_POLYGON) {
+
+    } else if(actId == Core::ID::ACTION_DRAW_RECT) {
+
+    } else if(actId == Core::ID::ACTION_DRAW_ROUND_RECT) {
+
+    } else {
+        // no such action id, do nothing...
+    }
 }
