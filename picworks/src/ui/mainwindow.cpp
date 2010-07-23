@@ -52,6 +52,7 @@
 #include "projectwindow.h"
 #include "colorindicator.h"
 #include "project.h"
+#include "commonbar.h"
 
 /*!
   \brief Constructor.
@@ -64,7 +65,6 @@ Ui::MainWindow::MainWindow(QWidget *parent /* = NULL */)
     setWindowIcon(appRes->icon(Core::AppResource::ApplicationIcon));
     setWindowTitle(tr("PicWorks v%1", "Main window title with version number.").arg(appCtx->version()));
 
-    actionManager = appCtx->actionManager();
     mapper = new QSignalMapper(this);
 
     mdiArea = new QMdiArea;
@@ -76,6 +76,7 @@ Ui::MainWindow::MainWindow(QWidget *parent /* = NULL */)
     createDockPanels();
     createToolBar();
     createToolBox();
+    createCommonBar();
     establishConnections();
 }
 
@@ -462,6 +463,13 @@ void Ui::MainWindow::createToolBox()
     toolBox->addWidget(toolBoxContent);
     toolBox->setAllowedAreas(Qt::LeftToolBarArea | Qt::RightToolBarArea);
     addToolBar(Qt::LeftToolBarArea, toolBox);
+}
+
+void Ui::MainWindow::createCommonBar()
+{
+    Ui::CommonBar *commonBar = qobject_cast<Ui::CommonBar *>(actionManager->toolBar(Core::ID::COMMON_BAR));
+    commonBar->setObjectName("CommonBar");
+    addToolBar(Qt::TopToolBarArea, commonBar);
 }
 
 /*!

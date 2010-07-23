@@ -31,8 +31,9 @@
 #include <QHash>
 #include <QString>
 
+#define actionManager (Core::Singleton<Core::ActionManager>::instance())
+
 class QAction;
-class QIcon;
 class QMenu;
 class QMenuBar;
 class QToolBar;

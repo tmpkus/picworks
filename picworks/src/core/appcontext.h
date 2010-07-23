@@ -62,8 +62,6 @@ public:
 
     inline int maxPenWidth() const { return maxPWidth; }
 
-    inline ActionManager * actionManager() const { return actMgr; }
-
     inline Ui::MainWindow * mainWindow() const { return win; }
 
     inline void setMainWindow(Ui::MainWindow * mw)
@@ -120,7 +118,6 @@ private:
     int pWidth;
     int maxPWidth;
     Ui::MainWindow * win;
-    ActionManager *actMgr;
 
 }; // end of class
 

@@ -139,8 +139,7 @@
  */
 Core::AppContext::AppContext()
     : pColor(Qt::black),
-      maxPWidth(500),
-      actMgr(new Core::ActionManager)
+      maxPWidth(500)
 {
     appVersion = QString("%1.%2.%3.%4")
                  .arg(Core::Version::major)
