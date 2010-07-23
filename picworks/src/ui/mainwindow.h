@@ -29,7 +29,6 @@ class QToolButton;
 class QSignalMapper;
 
 namespace Core {
-    class ActionManager;
     class Project;
 };
 
@@ -47,7 +46,6 @@ private:
     //------------------------------
     // fields
     //------------------------------
-    Core::ActionManager *actionManager;
     QSignalMapper *mapper;
     QMdiArea *mdiArea;
     QLabel *statusLabel;
@@ -90,6 +88,7 @@ private:
     void createDockPanels();
     void createToolBar();
     void createToolBox();
+    void createCommonBar();
     void establishConnections();
     QToolButton * createToolButton(QAction *action, QWidget *parent = 0);
 

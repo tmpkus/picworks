@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2006-2009  by the original authors of Galaxy
+// Copyright (C) 2006-2010  by the original authors of Galaxy
 // and all its contributors ("Galaxy.org").
 //
 // This program is free software: you can redistribute it and/or modify
@@ -17,46 +17,39 @@
 //
 
 /*!
-  \file aboutdialog.h
+  \file commonbar.h
   \ingroup Ui
   \brief This file contains
-  - class Ui::AboutDialog declaration
+  - class Ui::CommonBar declaration
   \author Cheng Liang <changliang.soft@gmail.com>
-  \date 2009-10-8 Created.
+  \date 2010-7-23 Created.
  */
 
-#ifndef ABOUTDIALOG_H
-#define ABOUTDIALOG_H
+#ifndef COMMONBAR_H
+#define COMMONBAR_H
 
-#include <QDialog>
+#include <QToolBar>
 
-class QMouseEvent;
-class QPaintEvent;
-class QPixmap;
+class QtColorPicker;
 
 namespace Ui {
 
-class AboutDialog : public QDialog
+class CommonBar : public QToolBar
 {
     Q_OBJECT
-
 public:
-    explicit AboutDialog(QWidget *parent = 0);
-    ~AboutDialog();
+    explicit CommonBar(QWidget *parent = 0);
 
-protected:
-    void paintEvent(QPaintEvent* event);
-    void mousePressEvent(QMouseEvent* event);
+signals:
 
-private slots:
-    void showLicenseDialog();
-    void showAboutQtDialog();
+public slots:
 
 private:
-    QPixmap backgroundImage;
+    QtColorPicker *penColorPicker;
+    QAction *penColorAction;
 
 }; // end of class
 
 } // end of namespace
 
-#endif // ABOUTDIALOG_H
+#endif // COMMONBAR_H

@@ -74,7 +74,7 @@ namespace ID {
     const QString MENU_BAR = QString("mbar");
     const QString TOOL_BAR = QString("tbar");
     const QString TOOL_BOX = QString("tbox");
-
+    const QString COMMON_BAR = QString("cbar");
 }
 
 };

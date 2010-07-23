@@ -35,6 +35,7 @@
 #include "appresource.h"
 #include "idmanager.h"
 #include "constants.h"
+#include "commonbar.h"
 
 /*!
   \class Core::ActionManager actionmanager.h
@@ -56,6 +57,8 @@ Core::ActionManager::ActionManager()
     toolBarMap.insert(tbUid, new QToolBar);
     int tbxUid = idManager->uid(Core::ID::TOOL_BOX);
     toolBarMap.insert(tbxUid, new QToolBar);
+    int cbUid = idManager->uid(Core::ID::COMMON_BAR);
+    toolBarMap.insert(cbUid, new Ui::CommonBar);
 }
 
 QMenuBar * Core::ActionManager::menuBar(const QString & id /* = QString("mb") */)
