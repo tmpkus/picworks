@@ -30,11 +30,7 @@
 
 #include <QToolBar>
 
-class QtColorPicker;
-
 namespace Ui {
-
-class PenWidthPicker;
 
 class CommonBar : public QToolBar
 {
@@ -45,12 +41,9 @@ public:
 signals:
 
 public slots:
-    void resetCommonBar(const QString &action);
+    void resetCommonBar(const QString &actId);
 
 private:
-    QtColorPicker *penColorPicker;
-    PenWidthPicker *penWidthPicker;
-
     QAction *penColorAction;
     QAction *penWidthAction;
 
