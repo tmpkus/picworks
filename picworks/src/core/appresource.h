@@ -73,7 +73,9 @@ public:
         RectangleIcon,       //!< Icon for drawing a rectangle tool.
         RoundRectangleIcon,  //!< Icon for drawing a round corner rectangle tool.
         TextIcon,            //!< Icon for text tool.
-        LineIcon             //!< Icon for straight line.
+        LineIcon,            //!< Icon for straight line.
+        AntialiasingIcon,    //!< Icon for antialiasing.
+        AliasingIcon         //!< Icon for aliasing.
     };
 
     enum MeasurementUnit
