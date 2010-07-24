@@ -29,6 +29,9 @@
 #define COMMONBAR_H
 
 #include <QToolBar>
+#include <QToolButton>
+
+class QSpinBox;
 
 namespace Ui {
 
@@ -46,8 +49,47 @@ public slots:
 private:
     QAction *penColorAction;
     QAction *penWidthAction;
+    QAction *antialiasingBoxAction;
 
-}; // end of class
+}; // end of class CommonBar
+
+class PenWidthPicker : public QWidget
+{
+    Q_OBJECT
+public:
+    PenWidthPicker(bool showLabel = true, QWidget *parent = 0);
+    ~PenWidthPicker() {}
+
+signals:
+    void penWidthChanged(int newWidth, int oldWidth);
+
+public slots:
+    void setPenWidth(int w)
+    {
+        if(w != pw) {
+            emit penWidthChanged(w, pw);
+            pw = w;
+        }
+    }
+
+    void setWidthRange(int min, int max);
+
+private:
+    QSpinBox *widthBox;
+    int pw;
+
+}; // end of class PenWidthPicker
+
+class AntialiasingPicker : public QToolButton
+{
+    Q_OBJECT
+public:
+    AntialiasingPicker(QWidget *parent = 0);
+    ~AntialiasingPicker() {}
+
+private slots:
+    void enableAntialiasing(int enable);
+}; // end of class AntialiasingPicker
 
 } // end of namespace
 
