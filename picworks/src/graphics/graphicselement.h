@@ -31,8 +31,6 @@
 
 #include <QGraphicsObject>
 
-class QGraphicsLineItem;
-
 namespace Graphics {
 
 class GraphicsElement : public QGraphicsObject
@@ -70,7 +68,28 @@ public:
 private:
     QGraphicsLineItem *lineItem;
 
-}; // end of class
+}; // end of class LineElement
+
+class RectElement : public GraphicsElement
+{
+public:
+    RectElement(QGraphicsItem *parent = 0, QGraphicsScene *scene = 0);
+    ~RectElement();
+
+    void editStart(const QPointF &point);
+    void editing(const QPointF &point);
+    void editEnd(const QPointF &point);
+    QRectF boundingRect() const;
+    bool contains(const QPointF & point) const;
+    bool isObscuredBy(const QGraphicsItem * item) const;
+    QPainterPath opaqueArea() const;
+    void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
+    QPainterPath shape() const;
+    int type() const;
+
+private:
+    QGraphicsRectItem *rectItem;
+}; // end of class RectElement
 
 } // end of namespace
 
