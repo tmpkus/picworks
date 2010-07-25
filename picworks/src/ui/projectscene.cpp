@@ -172,10 +172,10 @@ void Ui::ProjectScene::setCurrentActor()
     } else if(actId == Core::ID::ACTION_DRAW_POLYGON) {
 
     } else if(actId == Core::ID::ACTION_DRAW_RECT) {
-
+        currElement = new Graphics::RectElement(NULL, this);
     } else if(actId == Core::ID::ACTION_DRAW_ROUND_RECT) {
 
     } else {
-        // no such action id, do nothing...
+        currElement = NULL; // no such action id
     }
 }

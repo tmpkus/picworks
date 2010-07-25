@@ -59,7 +59,7 @@ Graphics::GraphicsElement::GraphicsElement(QGraphicsItem *parent /* = 0 */,
 }
 
 /*!
-  \class Graphics::LineElement lineelement.h
+  \class Graphics::LineElement graphicselement.h
   \brief Line element for drawing.
   \version 0.0.1
   \author Cheng Liang <chengliang.soft@gmail.com>
@@ -156,4 +156,123 @@ QPainterPath Graphics::LineElement::shape() const
 int Graphics::LineElement::type() const
 {
     return lineItem->type();
+}
+
+/*!
+  \class Graphics::RectElement graphicselement.h
+  \brief Rectangle element for drawing.
+  \version 0.0.1
+  \author Cheng Liang <chengliang.soft@gmail.com>
+  \date 2010-7-25 Created.
+ */
+
+Graphics::RectElement::RectElement(QGraphicsItem *parent /* = 0 */,
+                                   QGraphicsScene *scene /* = 0 */)
+    : GraphicsElement(parent, scene)
+{
+    rectItem = new QGraphicsRectItem(parent, scene);
+    rectItem->setPen(QPen(QBrush(appCtx->penColor(), Qt::SolidPattern), appCtx->penWidth()));
+}
+
+Graphics::RectElement::~RectElement()
+{
+}
+
+/*!
+  \reimp
+ */
+void Graphics::RectElement::editStart(const QPointF &point)
+{
+    rectItem->setRect(QRectF(point, point));
+}
+
+/*!
+  \reimp
+ */
+void Graphics::RectElement::editing(const QPointF &point)
+{
+    QPointF start = rectItem->rect().topLeft();
+    if(point.x() >= start.x()) { // mouse move right
+        if(point.y() > start.y()) { // mouse move bottom
+            rectItem->setRect(QRectF(start, point));
+        } else { // mouse move top
+            QRectF rect(rectItem->rect());
+            rect.setTopRight(point);
+            rectItem->setRect(rect);
+//            QRectF rect;
+//            rect.setBottomLeft(start);
+//            rect.setTopRight(point);
+//            rectItem->setRect(rect);
+        }
+    } else { // mouse move left
+        if(point.y() >= start.y()) { // mouse move bottom
+            rectItem->setRect(QRectF(QPointF(point.x(), start.y()), QPointF(start.x(), point.y())));
+        } else { // mouse move top
+            rectItem->setRect(QRectF(point, start));
+        }
+    }
+}
+
+/*!
+  \reimp
+ */
+void Graphics::RectElement::editEnd(const QPointF &point)
+{
+//    rectItem->setRect(QRectF(rectItem->rect().topLeft(), point));
+}
+
+/*!
+  \reimp
+ */
+QRectF Graphics::RectElement::boundingRect() const
+{
+    return rectItem->boundingRect();
+}
+
+/*!
+  \reimp
+ */
+bool Graphics::RectElement::contains(const QPointF & point) const
+{
+    return rectItem->contains(point);
+}
+
+/*!
+  \reimp
+ */
+bool Graphics::RectElement::isObscuredBy(const QGraphicsItem * item) const
+{
+    return rectItem->isObscuredBy(item);
+}
+
+/*!
+  \reimp
+ */
+QPainterPath Graphics::RectElement::opaqueArea() const
+{
+    return rectItem->opaqueArea();
+}
+
+/*!
+  \reimp
+ */
+void Graphics::RectElement::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget /* = 0 */)
+{
+    rectItem->paint(painter, option, widget);
+}
+
+/*!
+  \reimp
+ */
+QPainterPath Graphics::RectElement::shape() const
+{
+    return rectItem->shape();
+}
+
+/*!
+  \reimp
+ */
+int Graphics::RectElement::type() const
+{
+    return rectItem->type();
 }
