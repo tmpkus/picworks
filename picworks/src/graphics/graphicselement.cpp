@@ -183,7 +183,8 @@ Graphics::RectElement::~RectElement()
  */
 void Graphics::RectElement::editStart(const QPointF &point)
 {
-    rectItem->setRect(QRectF(point, point));
+    startPoint = point;
+    rectItem->setRect(QRectF(startPoint, startPoint));
 }
 
 /*!
@@ -191,24 +192,23 @@ void Graphics::RectElement::editStart(const QPointF &point)
  */
 void Graphics::RectElement::editing(const QPointF &point)
 {
-    QPointF start = rectItem->rect().topLeft();
-    if(point.x() >= start.x()) { // mouse move right
-        if(point.y() > start.y()) { // mouse move bottom
-            rectItem->setRect(QRectF(start, point));
+    if(point.x() >= startPoint.x()) { // mouse move right
+        if(point.y() > startPoint.y()) { // mouse move bottom
+            rectItem->setRect(QRectF(startPoint, point));
         } else { // mouse move top
             QRectF rect(rectItem->rect());
             rect.setTopRight(point);
             rectItem->setRect(rect);
-//            QRectF rect;
-//            rect.setBottomLeft(start);
-//            rect.setTopRight(point);
-//            rectItem->setRect(rect);
         }
     } else { // mouse move left
-        if(point.y() >= start.y()) { // mouse move bottom
-            rectItem->setRect(QRectF(QPointF(point.x(), start.y()), QPointF(start.x(), point.y())));
+        if(point.y() > startPoint.y()) { // mouse move bottom
+            QRectF rect(rectItem->rect());
+            rect.setBottomLeft(point);
+            rectItem->setRect(rect);
         } else { // mouse move top
-            rectItem->setRect(QRectF(point, start));
+            QRectF rect(rectItem->rect());
+            rect.setTopLeft(point);
+            rectItem->setRect(rect);
         }
     }
 }

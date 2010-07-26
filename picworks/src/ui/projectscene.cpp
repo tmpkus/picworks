@@ -61,6 +61,7 @@ Ui::ProjectScene::ProjectScene(Core::Project *pro, QObject *parent /* = 0 */)
           project(pro),
           currElement(NULL),
           gridVisible(false),
+          currElementAdded(true),
           layerIndex(1)
 {
     // entry conditions
@@ -87,6 +88,7 @@ void Ui::ProjectScene::mousePressEvent(QGraphicsSceneMouseEvent * event)
             currElement->editStart(event->scenePos());
             currElement->setZValue(layerIndex);
             addItem(currElement);
+            currElementAdded = true;
         }
     }
     QGraphicsScene::mousePressEvent(event);
@@ -111,6 +113,7 @@ void Ui::ProjectScene::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
 {
     if(currElement) {
         currElement->editEnd(event->scenePos());
+        currElement = NULL;
     }
     QGraphicsScene::mouseReleaseEvent(event);
 }
@@ -160,22 +163,27 @@ void Ui::ProjectScene::showGrid(bool v)
  */
 void Ui::ProjectScene::setCurrentActor()
 {
-    QString actId = appCtx->currentAction();
-    if(actId == Core::ID::ACTION_DRAW_TEXT) {
+    // if currElement has not been added into this scene, no more element generate
+    // or the not added ones will never used
+    if(currElementAdded) {
+        QString actId = appCtx->currentAction();
+        if(actId == Core::ID::ACTION_DRAW_TEXT) {
 
-    } else if(actId == Core::ID::ACTION_DRAW_CURVE) {
+        } else if(actId == Core::ID::ACTION_DRAW_CURVE) {
 
-    } else if(actId == Core::ID::ACTION_DRAW_ELLIPSE) {
+        } else if(actId == Core::ID::ACTION_DRAW_ELLIPSE) {
 
-    } else if(actId == Core::ID::ACTION_DRAW_LINE) {
-        currElement = new Graphics::LineElement(NULL, this);
-    } else if(actId == Core::ID::ACTION_DRAW_POLYGON) {
+        } else if(actId == Core::ID::ACTION_DRAW_LINE) {
+            currElement = new Graphics::LineElement(NULL, this);
+        } else if(actId == Core::ID::ACTION_DRAW_POLYGON) {
 
-    } else if(actId == Core::ID::ACTION_DRAW_RECT) {
-        currElement = new Graphics::RectElement(NULL, this);
-    } else if(actId == Core::ID::ACTION_DRAW_ROUND_RECT) {
+        } else if(actId == Core::ID::ACTION_DRAW_RECT) {
+            currElement = new Graphics::RectElement(NULL, this);
+        } else if(actId == Core::ID::ACTION_DRAW_ROUND_RECT) {
 
-    } else {
-        currElement = NULL; // no such action id
+        } else {
+            currElement = NULL; // no such action id
+        }
+        currElementAdded = false;
     }
 }

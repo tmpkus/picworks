@@ -89,6 +89,7 @@ public:
 
 private:
     QGraphicsRectItem *rectItem;
+    QPointF startPoint;
 }; // end of class RectElement
 
 } // end of namespace

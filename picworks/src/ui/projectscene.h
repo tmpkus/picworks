@@ -62,6 +62,7 @@ private:
     Core::Project *project;
     Graphics::GraphicsElement *currElement;
     bool gridVisible;
+    bool currElementAdded;
     int layerIndex;
 
     void setCurrentActor();
