@@ -50,18 +50,8 @@
 
 Ui::CommonBar::CommonBar(QWidget *parent /* = 0 */)
     : QToolBar(parent),
-      penColorAction(NULL),
       penWidthAction(NULL)
 {
-    // pen color picker
-    QtColorPicker *penColorPicker = new QtColorPicker(this, -1, true, false);
-    penColorPicker->setStandardColors();
-    penColorPicker->setCurrentColor(Qt::black);
-    penColorPicker->setMaximumSize(20, 20);
-    penColorPicker->setToolTip(tr("Choose pen color.", "Pen color button on Common Bar."));
-    penColorAction = addWidget(penColorPicker);
-    penColorAction->setVisible(false);
-
     // pen width picker
     PenWidthPicker *penWidthPicker = new PenWidthPicker(true, this);
     penWidthPicker->setToolTip(tr("Choose pen width.", "Pen width button on Common Bar."));
@@ -77,8 +67,6 @@ Ui::CommonBar::CommonBar(QWidget *parent /* = 0 */)
     setStyleSheet(QString("QToolBar{spacing: 2px;}"));
     this->setFixedHeight(25);
 
-    connect(penColorPicker, SIGNAL(colorChanged(const QColor &)),
-            appCtx, SLOT(setPenColor(const QColor &)));
     connect(penWidthPicker, SIGNAL(penWidthChanged(int, int)),
             appCtx, SLOT(setPenWidth(int)));
 }
@@ -96,7 +84,6 @@ void Ui::CommonBar::resetCommonBar(const QString &actId)
     } else if(actId == Core::ID::ACTION_DRAW_ELLIPSE) {
 
     } else if(actId == Core::ID::ACTION_DRAW_LINE) {
-        penColorAction->setVisible(true);
         penWidthAction->setVisible(true);
         antialiasingBoxAction->setVisible(true);
     } else if(actId == Core::ID::ACTION_DRAW_POLYGON) {

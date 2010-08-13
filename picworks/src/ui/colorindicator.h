@@ -53,7 +53,7 @@ public slots:
     void setForegroundColor(const QColor &c);
 
 signals:
-    void backgroundColorChanged(const QColor &oldColor);
+    void backgroundColorChanged(const QColor &newColor);
     void foregroundColorChanged(const QColor &newColor);
 
 protected:
