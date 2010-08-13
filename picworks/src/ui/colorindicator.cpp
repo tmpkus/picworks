@@ -215,8 +215,8 @@ inline QRect Ui::ColorIndicator::switcherSection() const
 inline void Ui::ColorIndicator::setBackgroundColor(const QColor &c)
 {
     if(bgColor != c) {
-        emit backgroundColorChanged(bgColor);
         bgColor = c;
+        emit backgroundColorChanged(bgColor);
         update();
     }
 }
@@ -224,8 +224,8 @@ inline void Ui::ColorIndicator::setBackgroundColor(const QColor &c)
 inline void Ui::ColorIndicator::setForegroundColor(const QColor &c)
 {
     if(fgColor != c) {
-        emit foregroundColorChanged(fgColor);
         fgColor = c;
+        emit foregroundColorChanged(fgColor);
         update();
     }
 }

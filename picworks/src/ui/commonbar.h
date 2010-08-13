@@ -47,7 +47,6 @@ public slots:
     void resetCommonBar(const QString &actId);
 
 private:
-    QAction *penColorAction;
     QAction *penWidthAction;
     QAction *antialiasingBoxAction;
 

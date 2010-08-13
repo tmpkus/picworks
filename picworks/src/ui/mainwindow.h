@@ -34,6 +34,8 @@ namespace Core {
 
 namespace Ui {
 
+class ColorIndicator;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -50,6 +52,7 @@ private:
     QMdiArea *mdiArea;
     QLabel *statusLabel;
     QDockWidget *dockSet;
+    ColorIndicator *ci;
 
     QAction *newAction;
     QAction *openAction;

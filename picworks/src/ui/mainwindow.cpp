@@ -454,7 +454,7 @@ void Ui::MainWindow::createToolBox()
     layout->addWidget(roundRectangleToolButton, 5, 0, 1, 1);
     QToolButton *polygonToolButton = createToolButton(polygonToolAction);
     layout->addWidget(polygonToolButton, 5, 1, 1, 1);
-    ColorIndicator *ci = new ColorIndicator(toolBoxContent);
+    ci = new ColorIndicator(toolBoxContent);
     layout->addWidget(ci, 6, 0, 2, 2, Qt::AlignCenter);
 
     QToolBar *toolBox = actionManager->toolBar(Core::ID::TOOL_BOX);
@@ -501,6 +501,8 @@ void Ui::MainWindow::establishConnections()
     connect(mapper, SIGNAL(mapped(QString)), appCtx, SLOT(setCurrentAction(QString)));
     Ui::CommonBar *commonBar = qobject_cast<Ui::CommonBar *>(actionManager->toolBar(Core::ID::COMMON_BAR));
     connect(mapper, SIGNAL(mapped(QString)), commonBar, SLOT(resetCommonBar(QString)));
+
+    connect(ci, SIGNAL(foregroundColorChanged(QColor)), appCtx, SLOT(setPenColor(const QColor &)));
 }
 
 /*!
