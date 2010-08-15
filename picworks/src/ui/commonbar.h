@@ -42,6 +42,7 @@ public:
     explicit CommonBar(QWidget *parent = 0);
 
 signals:
+    void antialiasingChanged(bool anti);
 
 public slots:
     void resetCommonBar(const QString &actId);
@@ -86,8 +87,12 @@ public:
     AntialiasingPicker(QWidget *parent = 0);
     ~AntialiasingPicker() {}
 
+signals:
+    void antialiasingChanged(bool anti);
+
 private slots:
     void enableAntialiasing(int enable);
+
 }; // end of class AntialiasingPicker
 
 } // end of namespace

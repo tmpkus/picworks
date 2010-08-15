@@ -478,6 +478,9 @@ void Ui::MainWindow::createCommonBar()
  */
 void Ui::MainWindow::establishConnections()
 {
+    Ui::CommonBar *commonBar = qobject_cast<Ui::CommonBar *>(actionManager->toolBar(Core::ID::COMMON_BAR));
+    connect(commonBar, SIGNAL(antialiasingChanged(bool)), this, SIGNAL(antialiasingChanged(bool)));
+
     connect(newAction, SIGNAL(triggered()), this, SLOT(showProjectCreateDialog()));
     connect(openAction, SIGNAL(triggered()), this, SLOT(showOpenDialog()));
     //connect(actionManager->action(Core::ID::Action::NEW), SIGNAL(triggered()), this, SLOT(showPreferencesDialog()));
@@ -499,7 +502,6 @@ void Ui::MainWindow::establishConnections()
     connect(roundRectangleToolAction, SIGNAL(triggered()), mapper, SLOT(map()));
     mapper->setMapping(roundRectangleToolAction, Core::ID::ACTION_DRAW_ROUND_RECT);
     connect(mapper, SIGNAL(mapped(QString)), appCtx, SLOT(setCurrentAction(QString)));
-    Ui::CommonBar *commonBar = qobject_cast<Ui::CommonBar *>(actionManager->toolBar(Core::ID::COMMON_BAR));
     connect(mapper, SIGNAL(mapped(QString)), commonBar, SLOT(resetCommonBar(QString)));
 
     connect(ci, SIGNAL(foregroundColorChanged(QColor)), appCtx, SLOT(setPenColor(const QColor &)));

@@ -52,6 +52,12 @@ public:
 
 public slots:
     void showGrid(bool v);
+    inline void setAntialiasing(bool a)
+    {
+        if(currElementAntialiasing != a) {
+            currElementAntialiasing = a;
+        }
+    }
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent * event);
@@ -63,6 +69,7 @@ private:
     Graphics::GraphicsElement *currElement;
     bool gridVisible;
     bool currElementAdded;
+    bool currElementAntialiasing;
     int layerIndex;
 
     void setCurrentActor();

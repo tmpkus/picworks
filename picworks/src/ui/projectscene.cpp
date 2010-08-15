@@ -62,6 +62,7 @@ Ui::ProjectScene::ProjectScene(Core::Project *pro, QObject *parent /* = 0 */)
           currElement(NULL),
           gridVisible(false),
           currElementAdded(true),
+          currElementAntialiasing(true),
           layerIndex(1)
 {
     // entry conditions
@@ -85,6 +86,7 @@ void Ui::ProjectScene::mousePressEvent(QGraphicsSceneMouseEvent * event)
     setCurrentActor();
     if(event->button() == Qt::LeftButton) {
         if(currElement) {
+            currElement->setAntialiasing(currElementAntialiasing);
             currElement->editStart(event->scenePos());
             currElement->setZValue(layerIndex);
             addItem(currElement);
@@ -115,6 +117,7 @@ void Ui::ProjectScene::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
         currElement->editEnd(event->scenePos());
         currElement = NULL;
     }
+    update();
     QGraphicsScene::mouseReleaseEvent(event);
 }
 

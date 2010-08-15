@@ -69,6 +69,7 @@ Ui::CommonBar::CommonBar(QWidget *parent /* = 0 */)
 
     connect(penWidthPicker, SIGNAL(penWidthChanged(int, int)),
             appCtx, SLOT(setPenWidth(int)));
+    connect(antiBox, SIGNAL(antialiasingChanged(bool)), this, SIGNAL(antialiasingChanged(bool)));
 }
 
 /*!
@@ -197,7 +198,9 @@ void Ui::AntialiasingPicker::enableAntialiasing(int enable)
 {
     if(enable) {
         setIcon(appRes->icon(Core::AppResource::AntialiasingIcon));
+        emit antialiasingChanged(true);
     } else {
         setIcon(appRes->icon(Core::AppResource::AliasingIcon));
+        emit antialiasingChanged(false);
     }
 }

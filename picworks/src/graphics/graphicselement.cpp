@@ -25,6 +25,8 @@
   \date 2010-7-19 Created.
  */
 
+#include <QPainter>
+
 #include "appcontext.h"
 #include "graphicselement.h"
 
@@ -115,7 +117,11 @@ QRectF Graphics::LineElement::boundingRect() const
  */
 void Graphics::LineElement::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    if(antia) {
+        painter->setRenderHints(QPainter::Antialiasing);
+    }
     lineItem->paint(painter, option, widget);
+    painter->setRenderHint(QPainter::Antialiasing, false);
 }
 
 /*!
@@ -258,7 +264,11 @@ QPainterPath Graphics::RectElement::opaqueArea() const
  */
 void Graphics::RectElement::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget /* = 0 */)
 {
+    if(antia) {
+        painter->setRenderHints(QPainter::Antialiasing);
+    }
     rectItem->paint(painter, option, widget);
+    painter->setRenderHints(QPainter::Antialiasing, false);
 }
 
 /*!
