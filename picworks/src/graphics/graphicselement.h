@@ -43,8 +43,19 @@ public:
     virtual void editing(const QPointF &point) = 0;
     virtual void editEnd(const QPointF &point) = 0;
 
+    inline bool antialiasing() { return antia; }
+
+public slots:
+    inline void setAntialiasing(bool a)
+    {
+        if(antia != a) {
+            antia = a;
+        }
+    }
+
 protected:
     QGraphicsScene *scene;
+    bool antia;
 
 }; // end of class
 

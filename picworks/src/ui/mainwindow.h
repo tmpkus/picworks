@@ -44,6 +44,9 @@ public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+signals:
+    void antialiasingChanged(bool anti);
+
 private:
     //------------------------------
     // fields

@@ -44,6 +44,7 @@
 #include "projectscene.h"
 #include "project.h"
 #include "appresource.h"
+#include "appcontext.h"
 
 /*!
   \class Ui::ProjectWindow projectwindow.h
@@ -119,6 +120,7 @@ Ui::ProjectWindow::ProjectWindow(Core::Project *pro, QWidget *parent /* = 0 */)
     setWidget(mainPanel);
 
     connect(gridButton, SIGNAL(clicked(bool)), scene, SLOT(showGrid(bool)));
+    connect(appCtx->mainWindow(), SIGNAL(antialiasingChanged(bool)), scene, SLOT(setAntialiasing(bool)));
 }
 
 /*!
