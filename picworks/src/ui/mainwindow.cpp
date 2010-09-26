@@ -57,12 +57,12 @@
 /*!
   \brief Constructor.
   Creates a new MainWindow instance.
-  \param parent parent widget of this window, default value is \a NULL
+  \param parent parent widget of this window, default value is \a 0
  */
-Ui::MainWindow::MainWindow(QWidget *parent /* = NULL */)
+Ui::MainWindow::MainWindow(QWidget *parent /* = 0 */)
     : QMainWindow(parent)
 {
-    setWindowIcon(appRes->icon(Core::AppResource::ApplicationIcon));
+    setWindowIcon(QIcon(":/app"));
     setWindowTitle(tr("PicWorks v%1", "Main window title with version number.").arg(appCtx->version()));
 
     mapper = new QSignalMapper(this);
@@ -125,8 +125,8 @@ void Ui::MainWindow::createMenus()
 
     QtWindowListMenu *subwindowMenu = new QtWindowListMenu;
     subwindowMenu->attachToMdiArea(mdiArea);
-    subwindowMenu->setCascadeIcon(appRes->icon(Core::AppResource::CascadeIcon));
-    subwindowMenu->setTileIcon(appRes->icon(Core::AppResource::TileIcon));
+    subwindowMenu->setCascadeIcon(QIcon(":/acts/cascade"));
+    subwindowMenu->setTileIcon(QIcon(":/acts/tile"));
     mb->addMenu(subwindowMenu);
 
     mb->addSeparator();
@@ -145,96 +145,96 @@ void Ui::MainWindow::createActions()
 {
     // Common Actions
     QAction *newQAction = new QAction(tr("&New...", "[New] action text."), this);
-    newQAction->setIcon(appRes->icon(Core::AppResource::NewIcon));
+    newQAction->setIcon(QIcon(":/acts/new"));
     newQAction->setShortcut(QKeySequence::New);
     newQAction->setStatusTip(tr("Create a new image file.", "[New] action tip on status bar."));
     newAction = actionManager->registerAction(Core::ID::ACTION_NEW, newQAction);
 
     QAction *openQAction = new QAction(tr("&Open...", "[Open] action text."), this);
-    openQAction->setIcon(appRes->icon(Core::AppResource::OpenIcon));
+    openQAction->setIcon(QIcon(":/acts/open"));
     openQAction->setShortcut(QKeySequence::Open);
     openQAction->setStatusTip(tr("Open an image file.", "[Open] action tip on status bar."));
     openAction = actionManager->registerAction(Core::ID::ACTION_OPEN, openQAction);
 
     QAction *saveQAction = new QAction(tr("&Save", "[Save] action text."), this);
-    saveQAction->setIcon(appRes->icon(Core::AppResource::SaveIcon));
+    saveQAction->setIcon(QIcon(":/acts/save"));
     saveQAction->setShortcut(QKeySequence::Save);
     saveQAction->setStatusTip(tr("Save the project into a file.", "[Save] action tip on status bar."));
     saveAction = actionManager->registerAction(Core::ID::ACTION_SAVE, saveQAction);
 
     QAction *saveAsQAction = new QAction(tr("Save &As...", "[Save As] action text."), this);
-    saveAsQAction->setIcon(appRes->icon(Core::AppResource::SaveAsIcon));
+    saveAsQAction->setIcon(QIcon(":/acts/save_as"));
     saveAsQAction->setShortcut(QKeySequence::SaveAs);
     saveAsQAction->setStatusTip(tr("Save the project as another file.", "[Save As] action tip on status bar."));
     saveAsAction = actionManager->registerAction(Core::ID::ACTION_SAVE_AS, saveAsQAction);
 
     QAction *saveAllQAction = new QAction(tr("Save &All", "[Save All] action text."), this);
-    saveAllQAction->setIcon(appRes->icon(Core::AppResource::SaveAllIcon));
+    saveAllQAction->setIcon(QIcon(":/acts/save_all"));
     saveAllQAction->setStatusTip(tr("Save all the projects.", "[Save All] action tip on status bar."));
     saveAllAction = actionManager->registerAction(Core::ID::ACTION_SAVE_ALL, saveAllQAction);
 
     QAction *printQAction = new QAction(tr("&Print...", "[Print] action text."), this);
-    printQAction->setIcon(appRes->icon(Core::AppResource::PrintIcon));
+    printQAction->setIcon(QIcon(":/acts/print"));
     printQAction->setShortcut(QKeySequence::Print);
     printQAction->setStatusTip(tr("Print the project.", "[Print] action tip on status bar."));
     printAction = actionManager->registerAction(Core::ID::ACTION_PRINT, printQAction);
 
     QAction *exitQAction = new QAction(tr("E&xit", "[Exit] action text."), this);
-    exitQAction->setIcon(appRes->icon(Core::AppResource::ExitIcon));
+    exitQAction->setIcon(QIcon(":/acts/exit"));
     exitQAction->setShortcut(tr("Ctrl+Q", "[Exit] action shortcut."));
     exitQAction->setStatusTip(tr("Exit PicWorks.", "[Exit] action tip on status bar."));
     exitAction = actionManager->registerAction(Core::ID::ACTION_EXIT, exitQAction);
 
     QAction *undoQAction = new QAction(tr("&Undo", "[Undo] action text."), this);
-    undoQAction->setIcon(appRes->icon(Core::AppResource::UndoIcon));
+    undoQAction->setIcon(QIcon(":/acts/undo"));
     undoQAction->setShortcut(QKeySequence::Undo);
     undoQAction->setStatusTip(tr("Undo the last action.", "[Undo] action tip on status bar."));
     undoAction = actionManager->registerAction(Core::ID::ACTION_UNDO, undoQAction);
 
     QAction *redoQAction = new QAction(tr("&Redo", "[Redo] action text."), this);
-    redoQAction->setIcon(appRes->icon(Core::AppResource::RedoIcon));
+    redoQAction->setIcon(QIcon(":/acts/redo"));
     redoQAction->setShortcut(QKeySequence::Redo);
     redoQAction->setStatusTip(tr("Redo the next action.", "[Redo] action tip on status bar."));
     redoAction = actionManager->registerAction(Core::ID::ACTION_REDO, redoQAction);
 
     QAction *cutQAction = new QAction(tr("Cu&t", "[Cut] action text."), this);
-    cutQAction->setIcon(appRes->icon(Core::AppResource::CutIcon));
+    cutQAction->setIcon(QIcon(":/acts/cut"));
     cutQAction->setShortcut(QKeySequence::Cut);
     cutQAction->setStatusTip(tr("Cut selected area.", "[Cut] action tip on status bar."));
     cutAction = actionManager->registerAction(Core::ID::ACTION_CUT, cutQAction);
 
     QAction *copyQAction = new QAction(tr("&Copy", "[Copy] action text."), this);
-    copyQAction->setIcon(appRes->icon(Core::AppResource::CopyIcon));
+    copyQAction->setIcon(QIcon(":/acts/copy"));
     copyQAction->setShortcut(QKeySequence::Copy);
     copyQAction->setStatusTip(tr("Copy selected area.", "[Copy] action tip on status bar."));
     copyAction = actionManager->registerAction(Core::ID::ACTION_COPY, copyQAction);
 
     QAction *pasteQAction = new QAction(tr("&Paste", "[Paste] action text."), this);
-    pasteQAction->setIcon(appRes->icon(Core::AppResource::PasteIcon));
+    pasteQAction->setIcon(QIcon(":/acts/paste"));
     pasteQAction->setShortcut(QKeySequence::Paste);
     pasteQAction->setStatusTip(tr("Paste the cut or copied area.", "[Paste] action tip on status bar."));
     pasteAction = actionManager->registerAction(Core::ID::ACTION_PASTE, pasteQAction);
 
     QAction *preferencesQAction = new QAction(tr("&Preferences...", "[Preferences] action text."), this);
-    preferencesQAction->setIcon(appRes->icon(Core::AppResource::PreferencesIcon));
+    preferencesQAction->setIcon(QIcon(":/acts/pref"));
     preferencesQAction->setStatusTip(tr("Open preferences dialog.", "[Preferences] action tip on status bar."));
     preferencesAction = actionManager->registerAction(Core::ID::ACTION_OPEN_REFERENCE_DIALOG, preferencesQAction);
 
     QAction *helpQAction = new QAction(tr("&Help...", "[Help] action text."), this);
-    helpQAction->setIcon(appRes->icon(Core::AppResource::HelpIcon));
+    helpQAction->setIcon(QIcon(":/acts/help"));
     helpQAction->setShortcut(QKeySequence::HelpContents);
     helpQAction->setStatusTip(tr("Open help contents.", "[Help] action tip on status bar."));
     helpAction = actionManager->registerAction(Core::ID::ACTION_OPEN_HELP_DIALOG, helpQAction);
 
     QAction *aboutQAction = new QAction(tr("&About...", "[About] action text."), this);
-    aboutQAction->setIcon(appRes->icon(Core::AppResource::AboutIcon));
+    aboutQAction->setIcon(QIcon(":/acts/about"));
     aboutQAction->setStatusTip(tr("About PicWorks.", "[About] action tip on status bar."));
     aboutAction = actionManager->registerAction(Core::ID::ACTION_OPEN_HELP_DIALOG, aboutQAction);
 
     // Tool Box Actions
     QActionGroup *group = new QActionGroup(this);
     QAction *selectToolQAction = new QAction(this);
-    selectToolQAction->setIcon(appRes->icon(Core::AppResource::SelectIcon));
+    selectToolQAction->setIcon(QIcon(":/acts/select"));
     selectToolQAction->setToolTip(tr("Select[S]", "[Select] action tip with shortcut."));
     selectToolQAction->setStatusTip(tr("Select an area.", "[Select] action tip on status bar."));
     selectToolQAction->setShortcut(tr("S"));
@@ -245,7 +245,7 @@ void Ui::MainWindow::createActions()
     selectToolAction = actionManager->registerAction(Core::ID::ACTION_SELECT, selectToolQAction);
 
     QAction *moveToolQAction = new QAction(this);
-    moveToolQAction->setIcon(appRes->icon(Core::AppResource::MoveIcon));
+    moveToolQAction->setIcon(QIcon(":/acts/move"));
     moveToolQAction->setToolTip(tr("Move[M]", "[Move] action tip with shortcut."));
     moveToolQAction->setStatusTip(tr("Move the selected area or the whole page.", "[Move] action tip on status bar."));
     moveToolQAction->setShortcut(tr("M"));
@@ -254,18 +254,8 @@ void Ui::MainWindow::createActions()
     group->addAction(moveToolQAction);
     moveToolAction = actionManager->registerAction(Core::ID::ACTION_MOVE, moveToolQAction);
 
-    QAction *brushToolQAction = new QAction(this);
-    brushToolQAction->setIcon(appRes->icon(Core::AppResource::BrushIcon));
-    brushToolQAction->setToolTip(tr("Brush[B]", "[Brush] action tip with shortcut."));
-    brushToolQAction->setStatusTip(tr("Use brush.", "[Brush] action tip on status bar."));
-    brushToolQAction->setShortcut(tr("B"));
-    brushToolQAction->setCheckable(true);
-    brushToolQAction->setData(Core::ID::ACTION_BRUSH);
-    group->addAction(brushToolQAction);
-    brushToolAction = actionManager->registerAction(Core::ID::ACTION_BRUSH, brushToolQAction);
-
     QAction *eraserToolQAction = new QAction(this);
-    eraserToolQAction->setIcon(appRes->icon(Core::AppResource::EraserIcon));
+    eraserToolQAction->setIcon(QIcon(":/acts/eraser"));
     eraserToolQAction->setToolTip(tr("Eraser[E]", "[Eraser] action tip with shortcut."));
     eraserToolQAction->setStatusTip(tr("Use eraser.", "[Eraser] action tip on status bar."));
     eraserToolQAction->setShortcut(tr("E"));
@@ -275,7 +265,7 @@ void Ui::MainWindow::createActions()
     eraserToolAction = actionManager->registerAction(Core::ID::ACTION_ERASER, eraserToolQAction);
 
     QAction *paintCanToolQAction = new QAction(this);
-    paintCanToolQAction->setIcon(appRes->icon(Core::AppResource::PaintCanIcon));
+    paintCanToolQAction->setIcon(QIcon(":/acts/paint_can"));
     paintCanToolQAction->setToolTip(tr("Paint Can[P]", "[Paint Can] action tip with shortcut."));
     paintCanToolQAction->setStatusTip(tr("Fill the area with selected color.", "[Paint Can] action tip on status bar."));
     paintCanToolQAction->setShortcut(tr("P"));
@@ -285,7 +275,7 @@ void Ui::MainWindow::createActions()
     paintCanToolAction = actionManager->registerAction(Core::ID::ACTION_PAINT_CAN, paintCanToolQAction);
 
     QAction *textToolQAction = new QAction(this);
-    textToolQAction->setIcon(appRes->icon(Core::AppResource::TextIcon));
+    textToolQAction->setIcon(QIcon(":/acts/text"));
     textToolQAction->setToolTip(tr("Text[T]", "[Text] action tip with shortcut."));
     textToolQAction->setStatusTip(tr("Add text.", "[Text] action tip on status bar."));
     textToolQAction->setShortcut(tr("T"));
@@ -294,8 +284,28 @@ void Ui::MainWindow::createActions()
     group->addAction(textToolQAction);
     textToolAction = actionManager->registerAction(Core::ID::ACTION_DRAW_TEXT, textToolQAction);
 
+    QAction *paintbrushToolQAction = new QAction(this);
+    paintbrushToolQAction->setIcon(QIcon(":/acts/paintbrush"));
+    paintbrushToolQAction->setToolTip(tr("Paintbrush[B]", "[Paintbrush] action tip with shortcut."));
+    paintbrushToolQAction->setStatusTip(tr("Use paintbrush.", "[Paintbrush] action tip on status bar."));
+    paintbrushToolQAction->setShortcut(tr("B"));
+    paintbrushToolQAction->setCheckable(true);
+    paintbrushToolQAction->setData(Core::ID::ACTION_PAINTBRUSH);
+    group->addAction(paintbrushToolQAction);
+    paintbrushToolAction = actionManager->registerAction(Core::ID::ACTION_PAINTBRUSH, paintbrushToolQAction);
+
+    QAction *pencilToolQAction = new QAction(this);
+    pencilToolQAction->setIcon(QIcon(":/acts/pencil"));
+    pencilToolQAction->setToolTip(tr("Pencil[C]", "[Pencil] action tip with shortcut."));
+    pencilToolQAction->setStatusTip(tr("Use pencil.", "[Pencil] action tip on status bar."));
+    pencilToolQAction->setShortcut(tr("C"));
+    pencilToolQAction->setCheckable(true);
+    pencilToolQAction->setData(Core::ID::ACTION_PENCIL);
+    group->addAction(pencilToolQAction);
+    pencilToolAction = actionManager->registerAction(Core::ID::ACTION_PENCIL, pencilToolQAction);
+
     QAction *lineToolQAction = new QAction(this);
-    lineToolQAction->setIcon(appRes->icon(Core::AppResource::LineIcon));
+    lineToolQAction->setIcon(QIcon(":/acts/line"));
     lineToolQAction->setToolTip(tr("Line[L]", "[Line] action tip with shortcut."));
     lineToolQAction->setStatusTip(tr("Draw a line.", "[Line] action tip on status bar."));
     lineToolQAction->setShortcut(tr("L"));
@@ -305,7 +315,7 @@ void Ui::MainWindow::createActions()
     lineToolAction = actionManager->registerAction(Core::ID::ACTION_DRAW_LINE, lineToolQAction);
 
     QAction *curveToolQAction = new QAction(this);
-    curveToolQAction->setIcon(appRes->icon(Core::AppResource::CurveIcon));
+    curveToolQAction->setIcon(QIcon(":/acts/curve"));
     curveToolQAction->setToolTip(tr("Curve[C]", "[Curve] action tip with shortcut."));
     curveToolQAction->setStatusTip(tr("Draw a curve.", "[Curve] action tip on status bar."));
     curveToolQAction->setShortcut(tr("C"));
@@ -315,7 +325,7 @@ void Ui::MainWindow::createActions()
     curveToolAction = actionManager->registerAction(Core::ID::ACTION_DRAW_CURVE, curveToolQAction);
 
     QAction *ellipseToolQAction = new QAction(this);
-    ellipseToolQAction->setIcon(appRes->icon(Core::AppResource::EllipseIcon));
+    ellipseToolQAction->setIcon(QIcon(":/acts/oval"));
     ellipseToolQAction->setToolTip(tr("Ellipse[P]", "[Ellipse] action tip with shortcut."));
     ellipseToolQAction->setStatusTip(tr("Draw an ellipse.", "[Ellipse] action tip on status bar."));
     ellipseToolQAction->setShortcut(tr("L"));
@@ -325,7 +335,7 @@ void Ui::MainWindow::createActions()
     ellipseToolAction = actionManager->registerAction(Core::ID::ACTION_DRAW_ELLIPSE, ellipseToolQAction);
 
     QAction *polygonToolQAction = new QAction(this);
-    polygonToolQAction->setIcon(appRes->icon(Core::AppResource::PolygonIcon));
+    polygonToolQAction->setIcon(QIcon(":/acts/polygon"));
     polygonToolQAction->setToolTip(tr("Polygon[O]", "[Polygon] action tip with shortcut."));
     polygonToolQAction->setStatusTip(tr("Draw a polygon.", "[Polygon] action tip on status bar."));
     polygonToolQAction->setShortcut(tr("O"));
@@ -335,7 +345,7 @@ void Ui::MainWindow::createActions()
     polygonToolAction = actionManager->registerAction(Core::ID::ACTION_DRAW_POLYGON, polygonToolQAction);
 
     QAction *rectangleToolQAction = new QAction(this);
-    rectangleToolQAction->setIcon(appRes->icon(Core::AppResource::RectangleIcon));
+    rectangleToolQAction->setIcon(QIcon(":/acts/rect"));
     rectangleToolQAction->setToolTip(tr("Rectangle[R]", "[Rectangle] action tip with shortcut."));
     rectangleToolQAction->setStatusTip(tr("Draw a rectangle.", "[Rectangle] action tip on status bar."));
     rectangleToolQAction->setShortcut(tr("R"));
@@ -345,7 +355,7 @@ void Ui::MainWindow::createActions()
     rectangleToolAction = actionManager->registerAction(Core::ID::ACTION_DRAW_RECT, rectangleToolQAction);
 
     QAction *roundRectangleToolQAction = new QAction(this);
-    roundRectangleToolQAction->setIcon(appRes->icon(Core::AppResource::RoundRectangleIcon));
+    roundRectangleToolQAction->setIcon(QIcon(":/acts/round_rect"));
     roundRectangleToolQAction->setToolTip(tr("Round corner rectangle[U]", "[Round Cornor Rectangle] action tip with shortcut."));
     roundRectangleToolQAction->setStatusTip(tr("Draw a round corner rectangle.", "[Round Cornor Rectangle] action tip on status bar."));
     roundRectangleToolQAction->setShortcut(tr("U"));
@@ -434,28 +444,37 @@ void Ui::MainWindow::createToolBox()
     layout->addWidget(selectToolButton, 0, 0, 1, 1);
     QToolButton *moveToolButton = createToolButton(moveToolAction);
     layout->addWidget(moveToolButton, 0, 1, 1, 1);
-    QToolButton *brushToolButton = createToolButton(brushToolAction);
-    layout->addWidget(brushToolButton, 1, 0, 1, 1);
+
+    QToolButton *paintCanToolButton = createToolButton(paintCanToolAction);
+    layout->addWidget(paintCanToolButton, 1, 0, 1, 1);
     QToolButton *eraserToolButton = createToolButton(eraserToolAction);
     layout->addWidget(eraserToolButton, 1, 1, 1, 1);
+
     QToolButton *textToolButton = createToolButton(textToolAction);
     layout->addWidget(textToolButton, 2, 0, 1, 1);
-    QToolButton *paintCanToolButton = createToolButton(paintCanToolAction);
-    layout->addWidget(paintCanToolButton, 2, 1, 1, 1);
+
+    QToolButton *paintbrushToolButton = createToolButton(paintbrushToolAction);
+    layout->addWidget(paintbrushToolButton, 3, 0, 1, 1);
+    QToolButton *pencilToolButton = createToolButton(pencilToolAction);
+    layout->addWidget(pencilToolButton, 3, 1, 1, 1);
+
     QToolButton *lineToolButton = createToolButton(lineToolAction);
-    layout->addWidget(lineToolButton, 3, 0, 1, 1);
+    layout->addWidget(lineToolButton, 4, 0, 1, 1);
     QToolButton *curveToolButton = createToolButton(curveToolAction);
-    layout->addWidget(curveToolButton, 3, 1, 1, 1);
+    layout->addWidget(curveToolButton, 4, 1, 1, 1);
+
     QToolButton *ellipseToolButton = createToolButton(ellipseToolAction);
-    layout->addWidget(ellipseToolButton, 4, 0, 1, 1);
+    layout->addWidget(ellipseToolButton, 5, 0, 1, 1);
     QToolButton *rectangleToolButton = createToolButton(rectangleToolAction);
-    layout->addWidget(rectangleToolButton, 4, 1, 1, 1);
+    layout->addWidget(rectangleToolButton, 5, 1, 1, 1);
+
     QToolButton *roundRectangleToolButton = createToolButton(roundRectangleToolAction);
-    layout->addWidget(roundRectangleToolButton, 5, 0, 1, 1);
+    layout->addWidget(roundRectangleToolButton, 6, 0, 1, 1);
     QToolButton *polygonToolButton = createToolButton(polygonToolAction);
-    layout->addWidget(polygonToolButton, 5, 1, 1, 1);
+    layout->addWidget(polygonToolButton, 6, 1, 1, 1);
+
     ci = new ColorIndicator(toolBoxContent);
-    layout->addWidget(ci, 6, 0, 2, 2, Qt::AlignCenter);
+    layout->addWidget(ci, 7, 0, 2, 2, Qt::AlignCenter);
 
     QToolBar *toolBox = actionManager->toolBar(Core::ID::TOOL_BOX);
     toolBox->setObjectName("ToolBox");

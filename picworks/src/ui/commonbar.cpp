@@ -50,7 +50,7 @@
 
 Ui::CommonBar::CommonBar(QWidget *parent /* = 0 */)
     : QToolBar(parent),
-      penWidthAction(NULL)
+      penWidthAction(0)
 {
     // pen width picker
     PenWidthPicker *penWidthPicker = new PenWidthPicker(true, this);
@@ -169,17 +169,17 @@ Ui::AntialiasingPicker::AntialiasingPicker(QWidget *parent /* = 0 */)
     setPopupMode(QToolButton::InstantPopup);
 
     QMenu *antiMenu = new QMenu(this);
-    QAction *antiAction = new QAction(appRes->icon(Core::AppResource::AntialiasingIcon), tr("turn on antialiasing"), antiMenu);
+    QAction *antiAction = new QAction(QIcon(":/images/antialiasing.png"), tr("turn on antialiasing"), antiMenu);
     antiAction->setCheckable(true);
     antiAction->setChecked(true);
     antiAction->setData(1);
-    QAction *aliasingAction = new QAction(appRes->icon(Core::AppResource::AliasingIcon), tr("turn off antialiasing"), antiMenu);
+    QAction *aliasingAction = new QAction(QIcon(":/images/aliasing.png"), tr("turn off antialiasing"), antiMenu);
     aliasingAction->setCheckable(true);
     aliasingAction->setData(0);
     antiMenu->addAction(antiAction);
     antiMenu->addAction(aliasingAction);
     setMenu(antiMenu);
-    setIcon(appRes->icon(Core::AppResource::AntialiasingIcon));
+    setIcon(QIcon(":/images/antialiasing.png"));
 
     QActionGroup *actGroup = new QActionGroup(antiMenu);
     actGroup->addAction(antiAction);
@@ -197,10 +197,10 @@ Ui::AntialiasingPicker::AntialiasingPicker(QWidget *parent /* = 0 */)
 void Ui::AntialiasingPicker::enableAntialiasing(int enable)
 {
     if(enable) {
-        setIcon(appRes->icon(Core::AppResource::AntialiasingIcon));
+        setIcon(QIcon(":/images/antialiasing.png"));
         emit antialiasingChanged(true);
     } else {
-        setIcon(appRes->icon(Core::AppResource::AliasingIcon));
+        setIcon(QIcon(":/images/aliasing.png"));
         emit antialiasingChanged(false);
     }
 }

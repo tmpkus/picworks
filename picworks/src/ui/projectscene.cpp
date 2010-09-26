@@ -59,7 +59,7 @@
 Ui::ProjectScene::ProjectScene(Core::Project *pro, QObject *parent /* = 0 */)
         : QGraphicsScene(parent),
           project(pro),
-          currElement(NULL),
+          currElement(0),
           gridVisible(false),
           currElementAdded(true),
           currElementAntialiasing(true),
@@ -103,7 +103,6 @@ void Ui::ProjectScene::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
 {
     if(currElement) {
         currElement->editing(event->scenePos());
-//        update();
     }
     QGraphicsScene::mouseMoveEvent(event);
 }
@@ -115,7 +114,7 @@ void Ui::ProjectScene::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
 {
     if(currElement) {
         currElement->editEnd(event->scenePos());
-        currElement = NULL;
+        currElement = 0;
     }
     update();
     QGraphicsScene::mouseReleaseEvent(event);
@@ -177,15 +176,15 @@ void Ui::ProjectScene::setCurrentActor()
         } else if(actId == Core::ID::ACTION_DRAW_ELLIPSE) {
 
         } else if(actId == Core::ID::ACTION_DRAW_LINE) {
-            currElement = new Graphics::LineElement(NULL, this);
+            currElement = new Graphics::LineElement(0, this);
         } else if(actId == Core::ID::ACTION_DRAW_POLYGON) {
 
         } else if(actId == Core::ID::ACTION_DRAW_RECT) {
-            currElement = new Graphics::RectElement(NULL, this);
+            currElement = new Graphics::RectElement(0, this);
         } else if(actId == Core::ID::ACTION_DRAW_ROUND_RECT) {
 
         } else {
-            currElement = NULL; // no such action id
+            currElement = 0; // no such action id
         }
         currElementAdded = false;
     }
