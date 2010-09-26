@@ -95,7 +95,7 @@ QToolBar * Core::ActionManager::toolBar(const QString & id)
     int uid = idManager->uid(id);
     const QHash<int, QToolBar *>::const_iterator it = toolBarMap.constFind(uid);
     if(it == toolBarMap.constEnd()) {
-        return NULL;
+        return 0;
     }
     return it.value();
 }

@@ -7,8 +7,6 @@ CONFIG += precompile_header
 PRECOMPILED_HEADER = core/pch.h
 precompile_header:!isEmpty(PRECOMPILED_HEADER):DEFINES += USING_PCH
 
-CONFIG += debug
-
 # ensure one "debug_and_release" in CONFIG, for clarity...
 debug_and_release {
     CONFIG -= debug_and_release

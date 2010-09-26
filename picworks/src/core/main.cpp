@@ -38,12 +38,12 @@ int main(int argc, char *argv[])
     }
 
     QSplashScreen *splash = new QSplashScreen;
-    splash->setPixmap(appRes->splashImage());
+    splash->setPixmap(QPixmap(":/splash"));
     splash->show();
     Qt::Alignment topRight = Qt::AlignRight | Qt::AlignTop;
     splash->showMessage(QObject::tr("Loading main window...", "Loading text on splash screen."), topRight, Qt::white);
 
-    QSettings *settings = new QSettings(app.applicationDirPath().append("/PicWorks.ini"), QSettings::IniFormat);
+    QSettings *settings = new QSettings(app.applicationDirPath().append("/PicWorks.conf"), QSettings::IniFormat);
 
     // i18n
     QString locale = settings->value("i18n/locale").toString();
@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
     win.showMaximized();
     splash->finish(&win);
     delete splash;
-    splash = NULL;
+    splash = 0;
 
     return app.exec();
 }

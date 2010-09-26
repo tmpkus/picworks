@@ -108,15 +108,6 @@ Core::AppResource::AppResource()
     dpiUnitNames[perCm] = tr("pixel/cm", "pixel/cm measurement unit name.");
 
     // init global constants
-    QPixmap iconSet(":/images/icon.png");
-    icons = new QPixmap[33];
-    for(size_t i = 0; i < 31; i++) {
-        icons[i] = iconSet.copy(16 * i, 0, 16, 16);
-    }
-    icons[31] = QPixmap(":/images/antialiasing.png");
-    icons[32] = QPixmap(":/images/aliasing.png");
-    splash = QPixmap(":/images/splash.png");
-
     grayGrid = QPixmap(20, 20);
     QPainter painter(&grayGrid);
     painter.fillRect(0, 0, 20, 20, Qt::white);

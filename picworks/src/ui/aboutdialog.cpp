@@ -55,13 +55,13 @@
   \param parent parent widget of this window, default value is 0
  */
 Ui::AboutDialog::AboutDialog(QWidget *parent /* = 0 */)
-        : QDialog(parent)
+        : QDialog(parent),
+          backgroundImage(":/splash")
 {
     setWindowFlags(Qt::FramelessWindowHint);
     setWindowTitle(tr("About PicWorks", "About dialog title."));
     setAttribute(Qt::WA_DeleteOnClose);
 
-    backgroundImage = appRes->splashImage();
     resize(backgroundImage.width(), backgroundImage.height());
 
     int buttonY = backgroundImage.height() - 45;

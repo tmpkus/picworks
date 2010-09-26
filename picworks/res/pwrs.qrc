@@ -1,8 +1,41 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/splash.png</file>
-        <file>images/icon.png</file>
+        <file alias="splash">images/splash.png</file>
         <file>images/antialiasing.png</file>
         <file>images/aliasing.png</file>
+        <file alias="app">images/app.png</file>
+    </qresource>
+    <qresource prefix="/acts">
+        <file alias="undo">images/undo.png</file>
+        <file alias="about">images/about.png</file>
+        <file alias="cascade">images/cascade.png</file>
+        <file alias="copy">images/copy.png</file>
+        <file alias="curve">images/curve.png</file>
+        <file alias="cut">images/cut.png</file>
+        <file alias="eraser">images/eraser.png</file>
+        <file alias="exit">images/exit.png</file>
+        <file alias="help">images/help.png</file>
+        <file alias="line">images/line.png</file>
+        <file alias="move">images/move.png</file>
+        <file alias="new">images/new.png</file>
+        <file alias="open">images/open.png</file>
+        <file alias="oval">images/oval.png</file>
+        <file alias="paint_can">images/paint_can.png</file>
+        <file alias="paintbrush">images/paintbrush.png</file>
+        <file alias="paste">images/paste.png</file>
+        <file alias="polygon">images/polygon.png</file>
+        <file alias="pref">images/pref.png</file>
+        <file alias="print">images/print.png</file>
+        <file alias="proj">images/proj.png</file>
+        <file alias="rect">images/rect.png</file>
+        <file alias="redo">images/redo.png</file>
+        <file alias="round_rect">images/round_rect.png</file>
+        <file alias="save">images/save.png</file>
+        <file alias="save_all">images/save_all.png</file>
+        <file alias="save_as">images/save_as.png</file>
+        <file alias="select">images/select.png</file>
+        <file alias="text">images/text.png</file>
+        <file alias="tile">images/tile.png</file>
+        <file alias="pencil">images/pencil.png</file>
     </qresource>
 </RCC>

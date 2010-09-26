@@ -53,9 +53,11 @@ namespace ID {
 
     const QString ACTION_SELECT = QString("aselect");
     const QString ACTION_MOVE = QString("amove");
-    const QString ACTION_BRUSH = QString("abrush");
     const QString ACTION_ERASER = QString("aeraser");
     const QString ACTION_PAINT_CAN = QString("apcan");
+
+    const QString ACTION_PAINTBRUSH = QString("apaintbrush");
+    const QString ACTION_PENCIL = QString("apencil");
 
     const QString ACTION_DRAW_TEXT = QString("adtext");
     const QString ACTION_DRAW_LINE = QString("adline");

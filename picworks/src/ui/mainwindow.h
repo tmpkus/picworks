@@ -74,7 +74,8 @@ private:
     QAction *aboutAction;
     QAction *selectToolAction;
     QAction *moveToolAction;
-    QAction *brushToolAction;
+    QAction *paintbrushToolAction;
+    QAction *pencilToolAction;
     QAction *eraserToolAction;
     QAction *paintCanToolAction;
     QAction *textToolAction;
