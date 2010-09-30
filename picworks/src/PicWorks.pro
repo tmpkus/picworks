@@ -58,9 +58,9 @@ include (graphics/graphics.pri)
 # platform-specific
 win32 {
     # executable icon
-    RC_FILE += ../res/pw.rc
+    RC_FILE += ../res/picworks.rc
 }
 # i18n
-TRANSLATIONS += ../res/locale/pw_zh_CN.ts
+TRANSLATIONS += ../res/locale/picworks_zh_CN.ts
 
-RESOURCES += ../res/pwrs.qrc
+RESOURCES += ../res/picworks.qrc
