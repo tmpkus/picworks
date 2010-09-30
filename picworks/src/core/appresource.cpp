@@ -51,9 +51,6 @@
   \brief The abbrev for getting instance function.
   This is the abbrev for getting instance. It returns an instance not a pointer.
 
-  \enum Core::AppResource::Icon
-  \brief An enum type for icons used in PicWorks.
-
   \enum Core::AppResource::MeasurementUnit
   \brief An enum type for measurement unit.
 
@@ -74,16 +71,6 @@
   Measurement unit names have the same sequence as code.
   \param index the index of name to get
   \return DPI unit name with this index
-
-  \fn const QPixmap& Core::AppResource::icon(Core::AppResource::Icon iconCode) const
-  \brief Gets icon.
-  Icons can be add to actions.
-  \param iconCode the code defined in enum Icon
-  \return icon map to this code
-
-  \fn const QPixmap& Core::AppResource::splashImage() const
-  \brief The image used for splash and about dialog.
-  \return the image instance
 
   \fn const QPixmap& Core::AppResource::grayGridImage() const
   \brief Gets gray grid image.
