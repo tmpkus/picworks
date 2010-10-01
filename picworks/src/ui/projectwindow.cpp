@@ -71,7 +71,7 @@ Ui::ProjectWindow::ProjectWindow(Core::Project *pro, QWidget *parent /* = 0 */)
 
     setAttribute(Qt::WA_DeleteOnClose);
 
-    setWindowIcon(appRes->icon(Core::AppResource::ProjectIcon));
+    setWindowIcon(QIcon(":/proj"));
     setWindowTitle(project->name());
     setMinimumSize(200, 200);
 
