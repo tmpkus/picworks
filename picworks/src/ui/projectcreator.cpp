@@ -76,7 +76,7 @@ Ui::ProjectCreator::ProjectCreator(QWidget *parent /* = 0 */, Qt::WindowFlags fl
            <<appRes->dpiUnitName(Core::AppResource::perCm);
 
     setWindowTitle(tr("New", "Project creator title."));
-    setWindowIcon(appRes->icon(Core::AppResource::ApplicationIcon));
+    setWindowIcon(QIcon(":/app"));
     setFixedSize(260, 240);
 
     // project name

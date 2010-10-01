@@ -4,6 +4,7 @@
         <file>images/antialiasing.png</file>
         <file>images/aliasing.png</file>
         <file alias="app">images/app.png</file>
+	<file alias="proj">images/proj.png</file>
     </qresource>
     <qresource prefix="/acts">
         <file alias="undo">images/undo.png</file>
@@ -26,7 +27,6 @@
         <file alias="polygon">images/polygon.png</file>
         <file alias="pref">images/pref.png</file>
         <file alias="print">images/print.png</file>
-        <file alias="proj">images/proj.png</file>
         <file alias="rect">images/rect.png</file>
         <file alias="redo">images/redo.png</file>
         <file alias="round_rect">images/round_rect.png</file>
